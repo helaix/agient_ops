@@ -1,17 +1,8 @@
 # Linear-GitHub Linking Guide
 
-## Table of Contents
+## Introduction and Purpose
 
-1. [Introduction](#introduction)
-2. [Linking Methods](#linking-methods)
-3. [Best Practices](#best-practices)
-4. [Automation Options](#automation-options)
-5. [Examples](#examples)
-6. [Troubleshooting](#troubleshooting)
-
-## Introduction
-
-Effective integration between Linear and GitHub is essential for maintaining a streamlined development workflow. This guide provides comprehensive information on best practices for linking Linear issues to GitHub pull requests, enabling teams to track work progress across both platforms seamlessly.
+Effective integration between Linear and GitHub is essential for maintaining a streamlined development workflow. This guide provides comprehensive instructions for linking Linear issues to GitHub Pull Requests (PRs), enabling teams to track work progress across both platforms seamlessly.
 
 By establishing a robust linking system between Linear issues and GitHub PRs, teams can:
 
@@ -22,6 +13,44 @@ By establishing a robust linking system between Linear issues and GitHub PRs, te
 - Reduce manual overhead in keeping systems synchronized
 
 This guide covers various methods for linking, best practices, automation options, and troubleshooting common issues to help your team establish an efficient workflow.
+
+## Table of Contents
+
+1. [Introduction and Purpose](#introduction-and-purpose)
+2. [Linking Methods](#linking-methods)
+   - [Branch Name Method](#1-branch-name-method)
+   - [PR Title Method](#2-pr-title-method)
+   - [PR Description with Magic Words](#3-pr-description-with-magic-words)
+   - [Linear URL Method](#4-linear-url-method)
+   - [Commit Messages with Magic Words](#5-commit-messages-with-magic-words)
+3. [Best Practices](#best-practices)
+   - [Standardize Linking Methods](#1-standardize-linking-methods)
+   - [Use Descriptive Branch Names](#2-use-descriptive-branch-names)
+   - [Leverage Linear's Workflow Automation](#3-leverage-linears-workflow-automation)
+   - [Implement Branch Protection Rules](#4-implement-branch-protection-rules)
+   - [Link Multiple Issues When Appropriate](#5-link-multiple-issues-when-appropriate)
+   - [Maintain Bidirectional Communication](#6-maintain-bidirectional-communication)
+   - [Regular Auditing and Cleanup](#7-regular-auditing-and-cleanup)
+4. [Automation Options](#automation-options)
+   - [GitHub Actions for Validation](#1-github-actions-for-validation)
+   - [Linear Autolinks in GitHub](#2-linear-autolinks-in-github)
+   - [Browser Extensions](#3-browser-extensions)
+   - [Custom Webhooks and Integrations](#4-custom-webhooks-and-integrations)
+   - [Zapier or n8n Workflows](#5-zapier-or-n8n-workflows)
+   - [Linear GitHub Integration Settings](#6-linear-github-integration-settings)
+5. [Examples of Effective Linking](#examples-of-effective-linking)
+   - [Feature Development Workflow](#example-1-feature-development-workflow)
+   - [Multi-Issue PR Workflow](#example-2-multi-issue-pr-workflow)
+   - [Hotfix Workflow](#example-3-hotfix-workflow)
+   - [Automated Compliance Workflow](#example-4-automated-compliance-workflow)
+6. [Troubleshooting Common Issues](#troubleshooting-common-issues)
+   - [PR Not Linking to Linear Issue](#issue-pr-not-linking-to-linear-issue)
+   - [Status Not Updating Automatically](#issue-status-not-updating-automatically)
+   - [Multiple Issues Linking Incorrectly](#issue-multiple-issues-linking-incorrectly)
+   - [Comments Not Syncing Between Systems](#issue-comments-not-syncing-between-systems)
+   - [Broken Links After Issue/PR Changes](#issue-broken-links-after-issuepr-changes)
+   - [GitHub Actions Validation Failing](#issue-github-actions-validation-failing)
+   - [Permissions Problems](#issue-permissions-problems)
 
 ## Linking Methods
 
@@ -40,6 +69,15 @@ Including the Linear issue ID in the branch name is one of the most straightforw
 - Clear visual indication of which issue the branch addresses
 - Works with Linear's "Copy git branch name" feature (Cmd/Ctrl + Shift + .)
 
+**Example:**
+```bash
+# Using Linear's "Copy git branch name" feature
+git checkout -b feature/ABC-123-add-login-button
+
+# Or manually creating a branch with the issue ID
+git checkout -b bugfix/ABC-124-fix-login-validation
+```
+
 ### 2. PR Title Method
 
 Including the Linear issue ID in the PR title is another common method.
@@ -52,6 +90,14 @@ Including the Linear issue ID in the PR title is another common method.
 - Simple to implement
 - Can be added to existing PRs
 - Doesn't require specific branch naming conventions
+
+**Example:**
+```
+# Good PR title examples
+"ABC-123: Add user authentication feature"
+"Fix login validation issues (ABC-124)"
+"[ABC-125] Refactor payment processing module"
+```
 
 ### 3. PR Description with Magic Words
 
@@ -70,6 +116,17 @@ Using "magic words" in the PR description provides more control over how the lin
 - Can link multiple issues to a single PR
 - Can specify different relationships between the PR and different issues
 
+**Example:**
+```markdown
+# PR Description Example
+
+This PR adds the login button component to the authentication page.
+
+Fixes ABC-123
+Related to ABC-124
+Part of ABC-125
+```
+
 ### 4. Linear URL Method
 
 Including the full Linear issue URL in the PR description.
@@ -81,6 +138,16 @@ Including the full Linear issue URL in the PR description.
 **Advantages:**
 - Provides a clickable link to the issue
 - Works well when referencing issues from different teams or projects
+
+**Example:**
+```markdown
+# PR Description Example
+
+This PR implements the login functionality.
+
+Fixes https://linear.app/workspace/issue/ABC-123/add-login-button
+Related to https://linear.app/workspace/issue/ABC-124/login-validation
+```
 
 ### 5. Commit Messages with Magic Words
 
@@ -94,6 +161,14 @@ Linking through commit messages allows for more granular tracking.
 - Links individual commits to issues
 - Useful for tracking progress at a more granular level
 - Can automate status changes based on commit activity
+
+**Example:**
+```bash
+# Commit message examples
+git commit -m "Add login button component [ABC-123]"
+git commit -m "Fix validation issues, closes ABC-124"
+git commit -m "Refactor authentication module (part of ABC-125)"
+```
 
 ## Best Practices
 
@@ -113,6 +188,24 @@ To maximize the benefits of linking Linear issues to GitHub PRs, consider the fo
 - Reduced confusion about how to link issues
 - Easier automation and reporting
 
+**Example PR Template:**
+```markdown
+## Description
+<!-- Provide a brief description of the changes in this PR -->
+
+## Linear Issue
+<!-- Add the Linear issue ID or URL here (e.g., ABC-123 or https://linear.app/workspace/issue/ABC-123/title) -->
+
+## Changes Made
+<!-- List the key changes made in this PR -->
+
+## Testing
+<!-- Describe how these changes were tested -->
+
+## Screenshots
+<!-- If applicable, add screenshots to help explain your changes -->
+```
+
 ### 2. Use Descriptive Branch Names
 
 **Recommendation:** Combine issue IDs with descriptive names for branches.
@@ -126,6 +219,14 @@ To maximize the benefits of linking Linear issues to GitHub PRs, consider the fo
 - Clear indication of the issue being addressed
 - Additional context about the type of change
 - Easier branch management and cleanup
+
+**Example Branch Naming Convention:**
+```
+feature/ABC-123-add-login-button
+bugfix/ABC-124-fix-validation-errors
+refactor/ABC-125-improve-authentication-flow
+hotfix/ABC-126-fix-critical-security-issue
+```
 
 ### 3. Leverage Linear's Workflow Automation
 
@@ -141,6 +242,13 @@ To maximize the benefits of linking Linear issues to GitHub PRs, consider the fo
 - Consistent status tracking across the team
 - More accurate reporting on project progress
 
+**Example Configuration:**
+```
+When a PR is opened → Move issue to "In Review"
+When a PR is merged → Move issue to "Done"
+When a PR with "hotfix/" in branch name is merged → Move issue to "Deployed" and add "Hotfix" label
+```
+
 ### 4. Implement Branch Protection Rules
 
 **Recommendation:** Use GitHub branch protection rules to enforce linking practices.
@@ -155,6 +263,23 @@ To maximize the benefits of linking Linear issues to GitHub PRs, consider the fo
 - Prevents untracked work
 - Maintains clean relationship between code and issues
 
+**Example GitHub Action Check:**
+```yaml
+name: Verify Linear Issue Link
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+jobs:
+  verify-linear-link:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ZetaMinusOne/verify-linked-linear-issue-action@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          linear-api-key: ${{ secrets.LINEAR_API_KEY }}
+          require-linear-issue: true
+```
+
 ### 5. Link Multiple Issues When Appropriate
 
 **Recommendation:** When a PR addresses multiple issues, link all relevant issues.
@@ -167,6 +292,18 @@ To maximize the benefits of linking Linear issues to GitHub PRs, consider the fo
 - Complete traceability between code and issues
 - Proper status updates for all affected issues
 - Better reporting and visibility
+
+**Example PR Description:**
+```markdown
+# Multi-Issue PR
+
+This PR refactors the authentication system and fixes several related issues.
+
+Fixes ABC-123 # Will close this issue when merged
+Fixes ABC-124 # Will close this issue when merged
+Related to ABC-125 # Will link but not close
+Part of ABC-126 # Will link but not close
+```
 
 ### 6. Maintain Bidirectional Communication
 
@@ -182,6 +319,11 @@ To maximize the benefits of linking Linear issues to GitHub PRs, consider the fo
 - Complete history in both systems
 - Improved collaboration between team members with different preferences
 
+**Configuration Steps:**
+1. In Linear, go to Settings → Workspace → Integrations → GitHub
+2. Enable "Sync comments between Linear and GitHub"
+3. Configure which types of comments should be synced
+
 ### 7. Regular Auditing and Cleanup
 
 **Recommendation:** Periodically audit and clean up links between systems.
@@ -195,6 +337,29 @@ To maximize the benefits of linking Linear issues to GitHub PRs, consider the fo
 - Maintains data integrity between systems
 - Identifies process breakdowns
 - Ensures accurate reporting and metrics
+
+**Example Audit Script:**
+```javascript
+// Example script to find Linear issues without linked PRs
+const { LinearClient } = require('@linear/sdk');
+const linearClient = new LinearClient({ apiKey: 'YOUR_API_KEY' });
+
+async function findUnlinkedIssues() {
+  const issues = await linearClient.issues({
+    filter: {
+      state: { name: { in: ["In Progress", "In Review"] } },
+      attachments: { url: { notContains: "github.com" } }
+    }
+  });
+  
+  console.log("Issues in progress without GitHub links:");
+  issues.nodes.forEach(issue => {
+    console.log(`- ${issue.identifier}: ${issue.title}`);
+  });
+}
+
+findUnlinkedIssues();
+```
 
 ## Automation Options
 
@@ -242,6 +407,14 @@ export GH_ACCESS_TOKEN=your_github_token
 linear_autolink.py owner/repo
 ```
 
+**Manual Configuration:**
+1. Go to your GitHub repository
+2. Navigate to Settings → Code and automation → Repository → Autolink references
+3. Add a new autolink reference:
+   - Reference prefix: `ABC-`
+   - Target URL: `https://linear.app/workspace/issue/ABC-$1`
+   - Enabled: Yes
+
 ### 3. Browser Extensions
 
 **Description:** Use browser extensions to enhance the integration between Linear and GitHub.
@@ -250,6 +423,11 @@ linear_autolink.py owner/repo
 - Install extensions like [GitHub to Linear](https://github.com/delucis/github-to-linear)
 - Adds "Add to Linear" buttons directly on GitHub issues and PRs
 - Simplifies creating Linear issues from GitHub content
+
+**Popular Extensions:**
+- [GitHub to Linear](https://github.com/delucis/github-to-linear): Adds Linear integration to GitHub UI
+- [Linear for GitHub](https://chrome.google.com/webstore/detail/linear-for-github/kcpjfpopbcnkgplgmomjnhkjdanbfcfp): Chrome extension for creating Linear issues from GitHub
+- [Linear Tools](https://chrome.google.com/webstore/detail/linear-tools/kfmjmhppmljhnknnhpnfhfngjnpnkiog): Enhanced Linear experience with additional features
 
 ### 4. Custom Webhooks and Integrations
 
@@ -265,6 +443,53 @@ linear_autolink.py owner/repo
 - Custom notifications or alerts
 - Specialized reporting or metrics
 
+**Example Webhook Handler (Node.js):**
+```javascript
+// Example webhook handler for GitHub PR events
+const express = require('express');
+const { LinearClient } = require('@linear/sdk');
+const app = express();
+
+app.use(express.json());
+
+app.post('/webhook/github', async (req, res) => {
+  const event = req.headers['x-github-event'];
+  const payload = req.body;
+  
+  if (event === 'pull_request' && payload.action === 'closed' && payload.pull_request.merged) {
+    // Extract Linear issue ID from PR title or description
+    const issueMatch = payload.pull_request.title.match(/([A-Z]+-\d+)/);
+    if (issueMatch) {
+      const issueId = issueMatch[1];
+      const linearClient = new LinearClient({ apiKey: process.env.LINEAR_API_KEY });
+      
+      // Find the issue
+      const issues = await linearClient.issues({
+        filter: { identifier: { eq: issueId } }
+      });
+      
+      if (issues.nodes.length > 0) {
+        const issue = issues.nodes[0];
+        
+        // Update the issue
+        await linearClient.issueUpdate(issue.id, { 
+          stateId: process.env.LINEAR_DONE_STATE_ID,
+          description: `${issue.description}\n\nMerged in PR: ${payload.pull_request.html_url}`
+        });
+        
+        console.log(`Updated Linear issue ${issueId}`);
+      }
+    }
+  }
+  
+  res.status(200).send('Webhook processed');
+});
+
+app.listen(3000, () => {
+  console.log('Webhook server running on port 3000');
+});
+```
+
 ### 5. Zapier or n8n Workflows
 
 **Description:** Use no-code/low-code automation platforms to connect Linear and GitHub.
@@ -278,6 +503,13 @@ linear_autolink.py owner/repo
 - Create Linear issues from GitHub issues or vice versa
 - Update issue fields based on PR status changes
 - Send notifications to Slack when linked PRs are merged
+
+**Sample Zapier Workflow:**
+1. Trigger: New PR created in GitHub
+2. Action: Find Linear issue by searching for issue ID in PR title
+3. Action: Update Linear issue status to "In Review"
+4. Action: Add PR link to Linear issue description
+5. Action: Send notification to Slack channel
 
 ### 6. Linear GitHub Integration Settings
 
@@ -293,7 +525,16 @@ linear_autolink.py owner/repo
 - Branch protection rule handling
 - Comment synchronization options
 
-## Examples
+**Configuration Steps:**
+1. In Linear, go to Settings → Workspace → Integrations → GitHub
+2. Connect your GitHub account if not already connected
+3. Configure the integration settings:
+   - Enable/disable automatic issue linking
+   - Configure comment synchronization
+   - Set up status change automation
+4. For team-specific settings, go to Settings → Team → Workflow → Pull request and commit automation
+
+## Examples of Effective Linking
 
 Here are practical examples of effective Linear-GitHub linking implementations:
 
@@ -316,6 +557,23 @@ Here are practical examples of effective Linear-GitHub linking implementations:
 - Clear traceability
 - Minimal manual updates
 
+**Implementation Code:**
+```bash
+# 1. Assign issue in Linear UI
+
+# 2. Copy branch name from Linear (Cmd/Ctrl + Shift + .)
+
+# 3. Create and checkout branch
+git checkout -b feature/ABC-123-add-login-form
+
+# 4. Make changes and commit
+git add .
+git commit -m "Add login form component [ABC-123]"
+git push -u origin feature/ABC-123-add-login-form
+
+# 5. Create PR in GitHub with title "ABC-123: Add login form"
+```
+
 ### Example 2: Multi-Issue PR Workflow
 
 **Scenario:** A developer is refactoring code that affects multiple issues.
@@ -336,6 +594,21 @@ Here are practical examples of effective Linear-GitHub linking implementations:
 - Proper relationship mapping
 - Appropriate status changes
 - Complete traceability
+
+**Implementation Code:**
+```bash
+# 1. Create and checkout branch
+git checkout -b refactor/ABC-234-api-restructure
+
+# 2. Make changes and commit
+git add .
+git commit -m "Restructure API endpoints [ABC-234]"
+git commit -m "Update authentication flow [ABC-235]"
+git commit -m "Improve error handling [ABC-236]"
+git push -u origin refactor/ABC-234-api-restructure
+
+# 3. Create PR in GitHub with appropriate description
+```
 
 ### Example 3: Hotfix Workflow
 
@@ -358,6 +631,21 @@ Here are practical examples of effective Linear-GitHub linking implementations:
 - Automatic notifications
 - Custom status flow for hotfixes
 
+**Implementation Code:**
+```bash
+# 1. Create issue in Linear UI with priority "Urgent"
+
+# 2. Create and checkout branch
+git checkout -b hotfix/ABC-500-fix-payment-processing
+
+# 3. Make changes and commit
+git add .
+git commit -m "Fix payment processing bug [ABC-500]"
+git push -u origin hotfix/ABC-500-fix-payment-processing
+
+# 4. Create PR in GitHub with appropriate title and description
+```
+
 ### Example 4: Automated Compliance Workflow
 
 **Scenario:** A team needs to ensure all code changes are linked to approved issues for compliance reasons.
@@ -376,7 +664,40 @@ Here are practical examples of effective Linear-GitHub linking implementations:
 - Automatic documentation
 - Audit trail maintenance
 
-## Troubleshooting
+**GitHub Action Example:**
+```yaml
+name: Compliance Check
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+jobs:
+  verify-compliance:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Linear Issue Link
+        uses: ZetaMinusOne/verify-linked-linear-issue-action@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          linear-api-key: ${{ secrets.LINEAR_API_KEY }}
+          require-linear-issue: true
+          
+      - name: Verify Issue Approval Status
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const { title, body } = context.payload.pull_request;
+            const issueMatch = (title + ' ' + body).match(/([A-Z]+-\d+)/);
+            if (!issueMatch) {
+              core.setFailed('No Linear issue ID found in PR title or description');
+              return;
+            }
+            
+            const issueId = issueMatch[1];
+            // Call Linear API to check issue status
+            // Block PR if issue is not in "Approved" state
+```
+
+## Troubleshooting Common Issues
 
 Here are solutions to common issues encountered when linking Linear issues to GitHub PRs:
 
@@ -393,6 +714,18 @@ Here are solutions to common issues encountered when linking Linear issues to Gi
 3. Ensure the issue ID is included in the branch name, PR title, or description
 4. Try using a magic word explicitly in the PR description (e.g., "Fixes ABC-123")
 
+**Verification Steps:**
+```bash
+# Check if the issue ID is in the correct format
+# Should be TEAM-NUMBER (e.g., ABC-123)
+
+# Verify GitHub integration in Linear
+# Settings → Workspace → Integrations → GitHub
+
+# Try adding explicit reference in PR description
+# Edit PR and add: "Fixes ABC-123"
+```
+
 ### Issue: Status Not Updating Automatically
 
 **Possible causes:**
@@ -405,6 +738,18 @@ Here are solutions to common issues encountered when linking Linear issues to Gi
 2. Verify branch protection rules in GitHub
 3. Check if the issue has any blockers or dependencies
 4. Try manually triggering the status change to see if there are permission issues
+
+**Verification Steps:**
+```bash
+# Check Linear workflow automation settings
+# Settings → Team → Workflow → Pull request and commit automation
+
+# Verify GitHub branch protection rules
+# GitHub repository → Settings → Branches → Branch protection rules
+
+# Check for blockers in Linear issue
+# Look for dependencies or blockers in the issue details
+```
 
 ### Issue: Multiple Issues Linking Incorrectly
 
@@ -419,6 +764,18 @@ Here are solutions to common issues encountered when linking Linear issues to Gi
 3. Check for conflicting references in branch name, title, and description
 4. Use the PR description method for multiple issues rather than trying to include all in the title
 
+**Correct Format Example:**
+```markdown
+# PR Description
+
+This PR implements multiple features and fixes.
+
+Fixes ABC-123
+Fixes ABC-124
+Related to ABC-125
+Part of ABC-126
+```
+
 ### Issue: Comments Not Syncing Between Systems
 
 **Possible causes:**
@@ -431,6 +788,19 @@ Here are solutions to common issues encountered when linking Linear issues to Gi
 2. Verify API access and rate limits
 3. Ensure both systems have proper permissions
 4. Check for webhook delivery failures in GitHub settings
+
+**Verification Steps:**
+```bash
+# Check Linear comment sync settings
+# Settings → Workspace → Integrations → GitHub → Sync comments
+
+# Verify webhook deliveries in GitHub
+# GitHub repository → Settings → Webhooks → Recent Deliveries
+
+# Check API rate limits
+# GitHub: https://api.github.com/rate_limit
+# Linear: Check API usage in Linear settings
+```
 
 ### Issue: Broken Links After Issue/PR Changes
 
@@ -445,6 +815,18 @@ Here are solutions to common issues encountered when linking Linear issues to Gi
 3. Create a new link and remove the old one
 4. Use Linear's attachment management to fix broken links
 
+**Fix Steps:**
+```bash
+# For moved issues, update the PR description with the new issue ID
+# Edit PR description and update the issue reference
+
+# For retargeted PRs, check if the link still exists in Linear
+# If not, manually add the PR link in Linear issue attachments
+
+# For changed issue IDs, update all references in GitHub
+# Search for the old ID and replace with the new one
+```
+
 ### Issue: GitHub Actions Validation Failing
 
 **Possible causes:**
@@ -458,6 +840,19 @@ Here are solutions to common issues encountered when linking Linear issues to Gi
 3. Ensure PR follows the required format
 4. Test the action with a known good PR format
 
+**Debugging Steps:**
+```bash
+# Check GitHub Actions logs
+# GitHub repository → Actions → Failed workflow → Job logs
+
+# Verify API key permissions
+# Linear: Settings → Account → API → API Keys
+# GitHub: Settings → Developer settings → Personal access tokens
+
+# Test with known good format
+# Create a test PR with a clear issue ID reference
+```
+
 ### Issue: Permissions Problems
 
 **Possible causes:**
@@ -470,4 +865,21 @@ Here are solutions to common issues encountered when linking Linear issues to Gi
 2. Check API token scopes and permissions
 3. Review organization settings for integration restrictions
 4. Ensure the GitHub app has the necessary repository access
+
+**Permission Check:**
+```bash
+# Check Linear permissions
+# Settings → Members → [Your User] → Verify admin access
+
+# Check GitHub permissions
+# Settings → Organizations → [Your Org] → People → [Your User]
+
+# Verify API token scopes
+# Linear: Settings → Account → API → API Keys
+# GitHub: Settings → Developer settings → Personal access tokens
+```
+
+---
+
+By following the guidelines and best practices outlined in this document, your team can establish an effective system for linking Linear issues to GitHub PRs, improving traceability, automation, and collaboration across your development workflow.
 
