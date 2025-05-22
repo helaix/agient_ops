@@ -1,264 +1,280 @@
-# Branch Naming Conventions for Linear Integration
+# Branch Naming Conventions
 
-## Overview
-
-This document outlines effective branch naming conventions when working with Linear issues and GitHub repositories. Following consistent branch naming patterns improves workflow efficiency, enhances collaboration, and leverages Linear's integration capabilities with GitHub.
+This document provides comprehensive guidelines for effective branch naming conventions based on Linear issues, ensuring clear communication, improved workflow automation, and seamless integration between Linear and GitHub.
 
 ## Table of Contents
 
-- [General Principles](#general-principles)
-- [Recommended Patterns](#recommended-patterns)
-- [Special Cases and Edge Scenarios](#special-cases-and-edge-scenarios)
-- [Linear Issue Integration](#linear-issue-integration)
-- [Implementation Examples](#implementation-examples)
-- [Automation Tools and Options](#automation-tools-and-options)
+1. [Introduction](#introduction)
+2. [General Principles](#general-principles)
+3. [Recommended Patterns](#recommended-patterns)
+4. [Special Cases](#special-cases)
+5. [Integration with Linear](#integration-with-linear)
+6. [Examples](#examples)
+7. [Automation Tools](#automation-tools)
+
+## Introduction
+
+Consistent branch naming conventions are essential for maintaining an organized codebase, especially when working with issue tracking systems like Linear. Well-structured branch names provide immediate context about the purpose of the branch, its relationship to specific issues, and its place in the development workflow.
+
+This guide outlines best practices for naming branches in a way that:
+- Clearly communicates the purpose and content of the branch
+- Integrates seamlessly with Linear issue tracking
+- Enables automated workflows between Linear and GitHub
+- Improves team collaboration and code organization
+- Facilitates easier code reviews and merges
+
+By following these conventions, teams can streamline their development process, reduce confusion, and leverage the full potential of Linear's GitHub integration features.
 
 ## General Principles
 
-Effective branch naming conventions should follow these general principles:
+When naming branches, adhere to these fundamental principles:
 
-1. **Consistency**: Use a consistent format across all branches to make them easily recognizable.
-2. **Clarity**: Branch names should clearly communicate their purpose and relationship to issues.
-3. **Brevity**: Keep branch names concise while still being descriptive.
-4. **Machine-Readability**: Ensure branch names can be parsed by automation tools.
-5. **Human-Readability**: Make branch names easy for team members to understand at a glance.
-6. **Traceability**: Include issue identifiers to maintain a clear link between branches and Linear issues.
-7. **Searchability**: Use formats that make branches easy to find and filter.
-
-### Character Restrictions
-
-Git branch names have some technical restrictions:
-
-- Cannot contain spaces
-- Cannot contain special characters: `~`, `^`, `:`, `\\`, `?`, `*`, `[`, `@{`, or `.`
-- Cannot begin with a dash (`-`) or dot (`.`)
-- Cannot contain consecutive dots (`..`)
-- Cannot contain a sequence that looks like a git reference (`@{`)
+1. **Descriptiveness**: Branch names should clearly indicate their purpose and content.
+2. **Consistency**: Follow a uniform pattern across all branches.
+3. **Brevity**: Keep names concise while maintaining clarity.
+4. **Machine-readability**: Ensure names work well with automation tools.
+5. **Human-readability**: Make names easy to understand at a glance.
+6. **Issue Linkage**: Include references to related Linear issues.
+7. **Hierarchy**: Use prefixes to categorize branches by type.
+8. **Lowercase**: Use lowercase letters to avoid case-sensitivity issues.
+9. **Separators**: Use hyphens (-) to separate words and slashes (/) to separate hierarchical elements.
+10. **No Spaces**: Avoid spaces in branch names; use hyphens instead.
 
 ## Recommended Patterns
 
-Based on industry best practices and Linear's integration capabilities, we recommend the following branch naming patterns:
+### Basic Structure
 
-### 1. Linear Issue ID-Based Pattern
-
-```
-{type}/{issue-id}-{short-description}
-```
-
-Example: `feature/HLX-123-add-login-button`
-
-**Advantages:**
-- Directly links to Linear issue
-- Automatically associates branches with issues in Linear-GitHub integration
-- Makes it easy to find the related issue
-
-**Disadvantages:**
-- Can be slightly longer
-- Requires discipline to include the issue ID consistently
-
-### 2. Linear Issue ID with Kebab Case Description
+The recommended pattern for branch names is:
 
 ```
-{issue-id}/{type}/{short-description}
+{type}/{linear-id}-{short-description}
 ```
 
-Example: `HLX-123/feature/add-login-button`
-
-**Advantages:**
-- Puts the issue ID first for better sorting and visibility
-- Clearly separates the issue ID from the description
-- Works well with Linear's GitHub integration
-
-**Disadvantages:**
-- May be less common in some development environments
-- Slightly longer format
-
-### 3. Type-Based Pattern with Linear ID
-
+For example:
 ```
-{type}-{short-description}-{issue-id}
+feature/hlx-123-add-user-authentication
 ```
 
-Example: `feature-add-login-button-HLX-123`
+### Branch Types
 
-**Advantages:**
-- Emphasizes the type of work being done
-- Still includes the issue ID for traceability
-- Works with Linear's GitHub integration
+Common branch type prefixes include:
 
-**Disadvantages:**
-- Issue ID is less prominent at the end
-- May be harder to scan for specific issues
+| Type | Description | Example |
+|------|-------------|---------|
+| `feature/` | New features or enhancements | `feature/hlx-123-add-search-functionality` |
+| `bugfix/` | Bug fixes | `bugfix/hlx-456-fix-login-error` |
+| `hotfix/` | Urgent fixes for production | `hotfix/hlx-789-fix-critical-security-issue` |
+| `refactor/` | Code refactoring without changing behavior | `refactor/hlx-234-improve-performance` |
+| `docs/` | Documentation updates | `docs/hlx-567-update-api-documentation` |
+| `test/` | Adding or updating tests | `test/hlx-890-add-unit-tests` |
+| `chore/` | Routine tasks, maintenance, dependencies | `chore/hlx-321-update-dependencies` |
+| `release/` | Release preparation | `release/v1.2.0` |
 
-### Common Type Prefixes
+### Short Description Guidelines
 
-- `feature/`: New features or enhancements
-- `bugfix/`: Bug fixes
-- `hotfix/`: Urgent fixes for production issues
-- `chore/`: Maintenance tasks, refactoring, etc.
-- `docs/`: Documentation updates
-- `test/`: Test-related changes
-- `refactor/`: Code refactoring without changing functionality
-- `style/`: Code style/formatting changes
-- `perf/`: Performance improvements
+The short description should:
+- Use lowercase letters
+- Use hyphens to separate words
+- Be concise (3-5 words)
+- Use imperative verbs (add, fix, update, etc.)
+- Avoid unnecessary details
+- Be specific enough to understand the purpose
 
-## Special Cases and Edge Scenarios
+## Special Cases
 
-### Long Issue Titles
+### Multiple Issues
 
-When a Linear issue has a long title, create a concise summary for the branch name:
+When a branch addresses multiple Linear issues, include the primary issue ID in the branch name and reference other issues in commit messages or PR descriptions:
 
-**Linear Issue:** "Implement comprehensive authentication system with OAuth2 and multi-factor authentication"  
-**Branch Name:** `feature/HLX-123-auth-system`
-
-### Multiple Issues in One Branch
-
-When a branch addresses multiple Linear issues, consider these approaches:
-
-1. **Primary Issue Approach**: Use the main/primary issue ID in the branch name
-   ```
-   feature/HLX-123-auth-system
-   ```
-   Then reference other issues in commit messages or PR description.
-
-2. **Multiple ID Approach**: Include multiple IDs for critical connections
-   ```
-   feature/HLX-123-HLX-124-auth-system
-   ```
-   Note: This can make branch names lengthy.
-
-### Temporary or Experimental Branches
-
-For experimental work not yet associated with a Linear issue:
 ```
-exp/{username}/{short-description}
+feature/hlx-123-user-profile-redesign
 ```
-Example: `exp/alex/auth-prototype`
+
+In the PR description:
+```
+Implements user profile redesign (HLX-123)
+Also addresses:
+- HLX-124: Profile image upload
+- HLX-125: User settings panel
+```
+
+### Long-running Branches
+
+For long-running branches that may span multiple releases or significant development periods:
+
+```
+epic/hlx-123-payment-system-overhaul
+```
+
+### Personal or Experimental Branches
+
+For personal or experimental work not yet associated with a Linear issue:
+
+```
+exp/username-feature-prototype
+```
 
 ### Release Branches
 
-For release branches that may encompass multiple issues:
+For release branches:
+
 ```
-release/v{version-number}
+release/v1.2.0
 ```
-Example: `release/v1.2.0`
 
-## Linear Issue Integration
+Or with a specific Linear milestone:
 
-Linear provides specific features for integrating with GitHub branches:
+```
+release/hlx-milestone-q2-2023
+```
 
-### Using Linear's "Copy Git Branch Name" Feature
+## Integration with Linear
 
-Linear offers a built-in feature to generate branch names based on issues:
-
-1. Open an issue in Linear
-2. Use the keyboard shortcut `Cmd/Ctrl + Shift + .` or click the `...` menu and select "Copy Git Branch Name"
-3. Linear will generate a branch name following its default format: `{username}/{issue-id}-{kebab-case-title}`
-   Example: `alex/hlx-123-implement-login-functionality`
-
-### Customizing Linear's Branch Name Format
-
-Linear's default branch name format can be customized in your workspace settings:
-
-1. Go to Settings > Workspace > Custom Branch Format
-2. Use variables like `{id}`, `{title}`, and `{team}` to create your preferred format
-3. Common custom formats include:
-   - `feature/{id}-{title}`
-   - `{id}/{title}`
-   - `{team}/{id}-{title}`
+Linear offers powerful integration with GitHub that can automate workflows based on branch names and commit messages.
 
 ### Automatic Issue Linking
 
-When you include a Linear issue ID in your branch name, Linear's GitHub integration will automatically:
+To automatically link a branch to a Linear issue:
 
-1. Link the branch to the issue
-2. Update the issue status when PRs are created, reviewed, and merged
-3. Display branch and PR information in the Linear issue interface
+1. **Include the issue ID in the branch name**:
+   ```
+   feature/hlx-123-add-user-authentication
+   ```
 
-## Implementation Examples
+2. **Copy branch name directly from Linear**:
+   - Open the issue in Linear
+   - Use the keyboard shortcut `Cmd/Ctrl` + `Shift` + `.`
+   - Or use the command menu and search for "Copy git branch name"
 
-Here are examples of effective branch naming patterns for different types of work:
+### Status Automation
+
+Linear can automatically update issue status based on branch and PR activities:
+
+1. **When a branch is created** with an issue ID, Linear can:
+   - Assign the issue to you (if configured)
+   - Move the issue to "In Progress" (if configured)
+
+2. **When a PR is opened** for a branch with an issue ID, Linear can:
+   - Move the issue to a specified status (configurable in team workflow settings)
+
+3. **When a PR is merged**, Linear can:
+   - Move the issue to "Done" or another specified status
+
+### Magic Words
+
+In commit messages and PR descriptions, you can use "magic words" to control how Linear processes the relationship:
+
+**Closing magic words** (will close the issue when merged):
+- `close`, `closes`, `closed`, `closing`
+- `fix`, `fixes`, `fixed`, `fixing`
+- `resolve`, `resolves`, `resolved`, `resolving`
+- `complete`, `completes`, `completed`, `completing`
+
+**Non-closing magic words** (links without closing):
+- `ref`, `references`
+- `part of`, `related to`
+- `contributes to`, `towards`
+
+Example commit message:
+```
+Add user authentication form (fixes HLX-123)
+```
+
+## Examples
+
+Here are comprehensive examples of effective branch naming in different scenarios:
 
 ### Feature Development
 
 ```
-feature/HLX-123-user-authentication
-feature/user-authentication/HLX-123
-HLX-123-feature-user-authentication
+feature/hlx-123-add-user-authentication
+feature/hlx-456-implement-payment-gateway
+feature/hlx-789-create-dashboard-widgets
 ```
 
 ### Bug Fixes
 
 ```
-bugfix/HLX-456-fix-login-error
-bugfix/login-error/HLX-456
-HLX-456-bugfix-login-error
-```
-
-### Documentation Updates
-
-```
-docs/HLX-789-update-readme
-docs/update-readme/HLX-789
-HLX-789-docs-update-readme
-```
-
-### Refactoring
-
-```
-refactor/HLX-101-optimize-queries
-refactor/optimize-queries/HLX-101
-HLX-101-refactor-optimize-queries
+bugfix/hlx-234-fix-login-redirect-loop
+bugfix/hlx-567-resolve-data-loading-error
+bugfix/hlx-890-address-mobile-layout-issues
 ```
 
 ### Hotfixes
 
 ```
-hotfix/HLX-202-security-vulnerability
-hotfix/security-vulnerability/HLX-202
-HLX-202-hotfix-security-vulnerability
+hotfix/hlx-321-fix-security-vulnerability
+hotfix/hlx-654-resolve-production-crash
+hotfix/hlx-987-fix-critical-data-issue
 ```
 
-## Automation Tools and Options
+### Documentation
 
-Several tools can help automate and enforce branch naming conventions when working with Linear and GitHub:
+```
+docs/hlx-432-update-api-documentation
+docs/hlx-765-improve-setup-instructions
+docs/hlx-098-add-contributing-guidelines
+```
 
-### 1. Linear CLI Tools
+### Refactoring
 
-- **[gh-linear](https://github.com/rawnly/gh-linear)**: A GitHub CLI extension that creates branches from Linear issues
-  ```bash
-  gh linear --issue HLX-123
-  ```
+```
+refactor/hlx-345-optimize-database-queries
+refactor/hlx-678-restructure-component-hierarchy
+refactor/hlx-901-convert-to-typescript
+```
 
-- **[linear-branch](https://www.npmjs.com/package/linear-branch)**: An npm package for creating branches from Linear issues
-  ```bash
-  npx linear-branch
-  ```
+### Testing
 
-### 2. Git Hooks
+```
+test/hlx-234-add-unit-tests-for-auth
+test/hlx-567-improve-test-coverage
+test/hlx-890-setup-e2e-testing
+```
+
+## Automation Tools
+
+Several tools can help enforce and streamline branch naming conventions:
+
+### Linear CLI
+
+The Linear CLI can be used to create branches with the correct naming convention:
+
+```bash
+# Install Linear CLI
+npm install -g @linear/cli
+
+# Create a branch for an issue
+linear branch HLX-123
+```
+
+### Git Hooks
 
 Use Git hooks to enforce branch naming conventions:
 
+1. Create a `pre-push` hook in `.git/hooks/` to validate branch names:
+
 ```bash
-# Example pre-push hook script to validate branch names
 #!/bin/bash
 
-branch_name=$(git symbolic-ref --short HEAD)
-branch_pattern="^(feature|bugfix|hotfix|docs|refactor|test|chore)/[A-Z]+-[0-9]+-[a-z0-9-]+$"
+branch_name=$(git symbolic-ref HEAD | sed -e 's,.*/\(.*\),\1,')
+valid_branch_regex="^(feature|bugfix|hotfix|release|docs|refactor|test|chore)/[a-z]+-[0-9]+-[a-z0-9-]+$"
 
-if ! [[ $branch_name =~ $branch_pattern ]]; then
-  echo "ERROR: Branch name does not follow the convention: {type}/{issue-id}-{description}"
-  echo "Example: feature/HLX-123-add-login"
+if [[ ! $branch_name =~ $valid_branch_regex ]]; then
+  echo "ERROR: Branch name '$branch_name' doesn't follow the naming convention"
+  echo "Branch names should match: $valid_branch_regex"
+  echo "Example: feature/hlx-123-add-user-authentication"
   exit 1
 fi
 ```
 
-### 3. GitHub Actions
+### GitHub Actions
 
-Create GitHub Actions workflows to validate branch names:
+Create a GitHub Action to validate branch names:
 
 ```yaml
-name: Validate Branch Names
+# .github/workflows/validate-branch-name.yml
+name: Validate Branch Name
 
 on:
   create:
@@ -269,62 +285,64 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      - name: Check branch name
+      - name: Validate branch name
         run: |
-          BRANCH=${GITHUB_REF#refs/heads/}
-          if ! [[ $BRANCH =~ ^(feature|bugfix|hotfix|docs|refactor|test|chore)/[A-Z]+-[0-9]+-[a-z0-9-]+$ ]]; then
-            echo "Branch name $BRANCH does not follow convention"
+          BRANCH_NAME=${GITHUB_REF#refs/heads/}
+          PATTERN="^(feature|bugfix|hotfix|release|docs|refactor|test|chore)/[a-z]+-[0-9]+-[a-z0-9-]+$"
+          
+          if [[ ! $BRANCH_NAME =~ $PATTERN ]]; then
+            echo "Branch name '$BRANCH_NAME' doesn't follow the naming convention"
+            echo "Branch names should match: $PATTERN"
+            echo "Example: feature/hlx-123-add-user-authentication"
             exit 1
           fi
 ```
 
-### 4. Linear Automation Features
+### VS Code Extensions
 
-Linear offers built-in automation features:
+The Linear VS Code extension can help with branch creation:
 
-- **Auto-assign and status change**: When using "Copy Git Branch Name", Linear can automatically assign the issue to you and change its status to "In Progress"
-- **Status updates based on PR events**: Configure Linear to update issue status when PRs are created, reviewed, or merged
-- **Branch-specific rules**: Set up custom workflow automations based on target branches
+1. [Linear VS Code Extension](https://marketplace.visualstudio.com/items?itemName=linear.linear-open-issue): Opens the current Linear issue based on the Git branch name
+2. [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens): Provides enhanced Git capabilities in VS Code
 
-### 5. Custom Scripts
+### Custom Scripts
 
 Create custom scripts to generate branch names from Linear issues:
 
 ```javascript
-// Example Node.js script to generate branch names from Linear API
-const { LinearClient } = require('@linear/sdk');
+// create-branch.js
+const readline = require('readline');
+const { exec } = require('child_process');
 
-async function createBranchName(issueId) {
-  const linearClient = new LinearClient({ apiKey: process.env.LINEAR_API_KEY });
-  const issue = await linearClient.issue(issueId);
-  
-  if (!issue) {
-    console.error('Issue not found');
-    return;
-  }
-  
-  const type = getIssueType(issue);
-  const title = issue.title
-    .toLowerCase()
-    .replace(/[^\w\s-]/g, '')
-    .replace(/\s+/g, '-')
-    .substring(0, 50);
-  
-  return `${type}/${issue.identifier}-${title}`;
-}
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
 
-function getIssueType(issue) {
-  // Logic to determine issue type based on labels or other properties
-  if (issue.labels.nodes.some(label => label.name === 'Bug')) {
-    return 'bugfix';
-  }
-  return 'feature';
-}
-
-// Usage
-createBranchName('HLX-123').then(branchName => {
-  console.log(`git checkout -b ${branchName}`);
+rl.question('Enter Linear issue ID (e.g., HLX-123): ', (issueId) => {
+  rl.question('Enter branch type (feature, bugfix, hotfix, etc.): ', (type) => {
+    rl.question('Enter short description: ', (description) => {
+      // Format the description: lowercase, replace spaces with hyphens
+      const formattedDescription = description.toLowerCase().replace(/\s+/g, '-');
+      const branchName = `${type}/${issueId.toLowerCase()}-${formattedDescription}`;
+      
+      console.log(`Creating branch: ${branchName}`);
+      
+      exec(`git checkout -b ${branchName}`, (error, stdout, stderr) => {
+        if (error) {
+          console.error(`Error creating branch: ${error.message}`);
+          return;
+        }
+        if (stderr) {
+          console.error(`Git stderr: ${stderr}`);
+          return;
+        }
+        console.log(`Branch created successfully: ${branchName}`);
+        rl.close();
+      });
+    });
+  });
 });
 ```
 
-By implementing these branch naming conventions and automation tools, teams can streamline their workflow between Linear and GitHub, improving traceability, collaboration, and integration between the two platforms.
+By implementing these conventions and tools, teams can maintain a clean, organized repository that integrates seamlessly with Linear's issue tracking and automation features.
