@@ -1,1 +1,78 @@
+# Agent Operations Entry Point
+
+**IMPORTANT: ALL CODEGEN AGENTS MUST READ THIS FIRST**
+
+This document serves as the centralized entry point for all agent operations in the Helaix ecosystem. Before beginning any task, agents should review this document to understand available resources and follow established workflows.
+
+## Key Resources
+
+### Reference Materials (Quick Access)
+When needing quick reference for commands or workflows, consult these materials:
+
+- **[Command Cheat Sheet](docs/reference/quick_reference/command_cheat_sheet.md)** - Quick reference for common Linear and GitHub commands
+  - Use when: You need to look up specific command syntax or parameters
+  - Contains: Linear commands, GitHub commands, integrated workflows, best practices
+
+- **[Workflow Checklists](docs/reference/quick_reference/workflow_checklists.md)** - Step-by-step guides for common processes
+  - Use when: You need guidance on following proper procedures for tasks
+  - Contains: Issue handling, code development, collaboration, and review workflows
+
+- **[Terminology Glossary](docs/reference/quick_reference/terminology_glossary.md)** - Definitions for consistent communication
+  - Use when: You encounter unfamiliar terms or need to ensure consistent terminology usage
+  - Contains: Linear, GitHub, agent collaboration, and general development terminology
+
+### Main Documentation
+For comprehensive guidance, refer to the main documentation:
+
+- **[Agent Operations Documentation](docs/reference/)** - Complete guide to agent operations
+  - Use when: You need detailed understanding of processes and best practices
+  - Contains: Comprehensive workflows, integration guides, troubleshooting
+
+## When to Use Reference Materials
+
+### Quick Reference Scenarios
+- Looking up command syntax during task execution
+- Checking workflow steps to ensure proper procedure
+- Clarifying terminology for consistent communication
+- Finding examples of common operations
+
+### Comprehensive Documentation Scenarios
+- Learning new processes or workflows
+- Understanding complex integration requirements
+- Troubleshooting issues or errors
+- Planning multi-step or collaborative tasks
+
+## Agent Workflow Integration
+
+1. **Task Initiation**: Review this entry point document
+2. **Resource Selection**: Choose appropriate reference materials based on task needs
+3. **Execution**: Follow established workflows and use command references as needed
+4. **Communication**: Use consistent terminology from the glossary
+5. **Completion**: Document any insights or improvements for future reference
+
+## Environment Variables and API Keys
+
+The following environment variables are available for agent operations:
+
+- `LINEAR_API_KEY`: For executing Linear tasks and operations
+- `RESEND_API_KEY`: For email-related operations and responses
+
+## Important Notes
+
+- Always follow the agent collaboration workflow documented in the repository
+- Use consistent branch naming conventions: `codegen-bot/{feature}-{description}`
+- Reference Linear issues in commit messages and PR descriptions
+- Maintain cross-platform consistency between Linear and GitHub
+
+## Getting Started
+
+1. Read this document completely
+2. Familiarize yourself with the Reference Materials structure
+3. Bookmark relevant quick reference documents for your role
+4. Follow established workflows for all operations
+5. Contribute improvements to documentation as you discover them
+
+---
+
+*This entry point system ensures all agents have access to the most current operational guidance and maintains consistency across all agent activities.*
 
