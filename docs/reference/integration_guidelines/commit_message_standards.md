@@ -1,6 +1,6 @@
 # Commit Message Standards
 
-This document outlines standardized commit message formats that reference Linear issues, providing guidelines for better integration between Linear and GitHub.
+A comprehensive guide for standardized commit message formats that reference Linear issues.
 
 ## Table of Contents
 
@@ -14,24 +14,24 @@ This document outlines standardized commit message formats that reference Linear
 
 ## Introduction
 
-Standardized commit messages play a crucial role in maintaining a clean, traceable, and automated development workflow. When properly formatted, commit messages can:
+Standardized commit messages are essential for maintaining a clean, understandable, and traceable project history. When working with Linear for issue tracking, incorporating issue references into commit messages creates a seamless integration between your code changes and project management workflow.
 
-- Provide clear context about changes
-- Automatically link to issue tracking systems like Linear
-- Trigger workflow automations
-- Generate accurate changelogs
-- Facilitate semantic versioning
+This guide provides a comprehensive set of standards for formatting commit messages that reference Linear issues, combining best practices from conventional commit standards with Linear-specific integration features.
 
-This document focuses specifically on commit message formats that integrate with Linear, allowing for automated issue tracking, status updates, and seamless workflow transitions between code changes and issue management.
+### Purpose
+
+- Create a consistent and readable commit history
+- Automate issue tracking and status updates
+- Enable efficient code review and change tracking
+- Facilitate automatic changelog generation
+- Improve collaboration between development and project management
 
 ## Message Structure
 
-A well-structured commit message that references Linear issues should follow these guidelines:
-
-### Basic Structure
+A well-structured commit message that references Linear issues should follow this format:
 
 ```
-<type>(<optional scope>): <description> [<Linear issue reference>]
+<type>(<optional scope>): <description> [<issue-reference>]
 
 <optional body>
 
@@ -40,319 +40,274 @@ A well-structured commit message that references Linear issues should follow the
 
 ### Components
 
-1. **Type**: Indicates the kind of change (e.g., `feat`, `fix`, `docs`)
+1. **Type**: Indicates the kind of change (see [Semantic Conventions](#semantic-conventions))
 2. **Scope** (optional): Specifies the section of the codebase affected
-3. **Description**: A concise summary of the change
-4. **Linear Issue Reference**: The Linear issue ID (e.g., `HLX-123`)
+3. **Description**: A concise summary of the change (imperative, present tense)
+4. **Issue Reference**: Linear issue ID (e.g., `[HLX-123]`)
 5. **Body** (optional): Detailed explanation of the change
-6. **Footer** (optional): Information about breaking changes or issue references
+6. **Footer** (optional): Information about breaking changes or issue references with magic words
 
-### Character Limits
+### Guidelines
 
-- **Subject Line** (first line): Maximum 72 characters
-- **Body Lines**: Maximum 100 characters per line
-- **Overall Message**: No strict limit, but conciseness is encouraged
+- Keep the first line (type, scope, description, issue reference) under 72 characters
+- Use imperative, present tense in the description (e.g., "add" not "added" or "adds")
+- Capitalize the first letter of the description
+- Do not end the description with a period
+- Separate the body from the first line with a blank line
+- Use the body to explain the what and why of the change, not the how
+- Reference issues in the footer using magic words (see [Linear Issue References](#linear-issue-references))
 
 ## Linear Issue References
 
-Linear provides several ways to reference issues in commit messages, which can trigger automated workflows.
+Linear provides several ways to reference issues in commit messages, which can trigger automated workflow updates.
+
+### Issue ID Format
+
+The standard format for referencing a Linear issue is the team key followed by the issue number:
+
+```
+[TEAM-123]
+```
+
+For example: `[HLX-123]`, `[ENG-456]`, `[DESIGN-789]`
+
+### Placement Options
+
+1. **Branch Name**: Include the issue ID in the branch name (e.g., `feature/HLX-123-add-login-form`)
+2. **Commit Message Subject**: Add the issue ID at the end of the first line (e.g., `feat: Add login form [HLX-123]`)
+3. **Commit Message Body/Footer**: Use magic words with the issue ID or URL
 
 ### Magic Words
 
-Linear recognizes specific "magic words" in commit messages that can link commits to issues and trigger status changes:
+Linear recognizes specific "magic words" that can be used to link commits to issues and trigger status updates:
 
 #### Closing Magic Words
 
-These words will move the issue to "In Progress" when the branch is pushed and "Done" when the commit is merged to the default branch:
+These words will move the issue to "In Progress" when the commit is pushed and "Done" when merged to the default branch:
 
 - `close`, `closes`, `closed`, `closing`
 - `fix`, `fixes`, `fixed`, `fixing`
 - `resolve`, `resolves`, `resolved`, `resolving`
 - `complete`, `completes`, `completed`, `completing`
 
-Example: `fix(auth): correct login validation error fixes HLX-123`
+Example: `Fixes HLX-123` or `Closes https://linear.app/workspace/issue/HLX-123/title`
 
 #### Non-Closing Magic Words
 
 These words will link the commit to the issue but won't automatically close it when merged:
 
 - `ref`, `references`
-- `part of`
-- `related to`
-- `contributes to`
-- `towards`
+- `part of`, `related to`
+- `contributes to`, `towards`
 
-Example: `feat(dashboard): add new analytics chart ref HLX-456`
-
-### Placement Options
-
-Linear issue references can be placed in different parts of the commit message:
-
-1. **In the subject line** (recommended for visibility):
-   ```
-   feat(user): add profile image upload HLX-789
-   ```
-
-2. **In the body with a magic word**:
-   ```
-   feat(user): add profile image upload
-   
-   Implements the user profile image upload feature with drag-and-drop support
-   
-   Closes HLX-789
-   ```
-
-3. **In the footer** (especially for multiple issues):
-   ```
-   feat(user): add profile image upload
-   
-   Implements the user profile image upload feature with drag-and-drop support
-   
-   Fixes: HLX-789
-   Related to: HLX-790, HLX-791
-   ```
-
-### Format Variations
-
-Linear supports several format variations for issue references:
-
-1. **Issue ID only**: `HLX-123`
-2. **With magic word**: `fixes HLX-123`
-3. **Full URL**: `fixes https://linear.app/workspace/issue/HLX-123/title`
+Example: `Related to HLX-123` or `Part of https://linear.app/workspace/issue/HLX-123/title`
 
 ## Semantic Conventions
 
-Adopting semantic conventions for commit messages provides additional structure and enables automated versioning and changelog generation. The most widely adopted standard is [Conventional Commits](https://www.conventionalcommits.org/).
+Following the [Conventional Commits](https://www.conventionalcommits.org/) specification, use these standardized types to indicate the nature of the change:
 
-### Types
+| Type | Description |
+|------|-------------|
+| `feat` | A new feature |
+| `fix` | A bug fix |
+| `docs` | Documentation changes |
+| `style` | Changes that don't affect code functionality (formatting, etc.) |
+| `refactor` | Code changes that neither fix bugs nor add features |
+| `perf` | Performance improvements |
+| `test` | Adding or correcting tests |
+| `build` | Changes to build system or dependencies |
+| `ci` | Changes to CI configuration |
+| `chore` | Other changes that don't modify src or test files |
+| `revert` | Reverts a previous commit |
 
-Common commit types include:
+### Scope
 
-| Type | Description | Example |
-|------|-------------|---------|
-| `feat` | A new feature | `feat(auth): add two-factor authentication` |
-| `fix` | A bug fix | `fix(api): prevent race condition in requests` |
-| `docs` | Documentation changes | `docs(readme): update installation instructions` |
-| `style` | Code style changes (formatting, etc.) | `style(components): format according to style guide` |
-| `refactor` | Code changes that neither fix bugs nor add features | `refactor(utils): simplify date formatting function` |
-| `perf` | Performance improvements | `perf(queries): optimize database lookups` |
-| `test` | Adding or correcting tests | `test(api): add tests for user endpoints` |
-| `build` | Changes to build system or dependencies | `build(deps): update React to v18` |
-| `ci` | Changes to CI configuration | `ci(github): add workflow for automated tests` |
-| `chore` | Other changes that don't modify src or test files | `chore(release): bump version to 1.2.0` |
+The scope provides additional contextual information about the area of the change:
 
-### Scopes
-
-Scopes provide additional context about which part of the codebase is affected. Common approaches to defining scopes include:
-
-1. **Component-based**: `(auth)`, `(dashboard)`, `(api)`
-2. **Module-based**: `(users)`, `(orders)`, `(products)`
-3. **Layer-based**: `(ui)`, `(backend)`, `(database)`
+- Component names: `feat(auth): Add login form [HLX-123]`
+- Module names: `fix(api): Fix data parsing issue [HLX-456]`
+- Feature areas: `docs(onboarding): Update user guide [HLX-789]`
 
 ### Breaking Changes
 
-Breaking changes should be clearly indicated:
+For changes that break backward compatibility, add `BREAKING CHANGE:` in the footer or append a `!` after the type/scope:
 
-1. **In the type with an exclamation mark**:
-   ```
-   feat!: change API response format
-   ```
+```
+feat(api)!: Change authentication endpoints [HLX-123]
 
-2. **In the footer with BREAKING CHANGE**:
-   ```
-   feat(api): change response format
-   
-   BREAKING CHANGE: The response format has changed from XML to JSON
-   ```
+BREAKING CHANGE: The authentication API has been completely redesigned.
+```
 
 ## Examples
 
 Here are examples of well-formatted commit messages that reference Linear issues:
 
-### Feature Addition
+### Simple Feature Addition
 
 ```
-feat(auth): implement password reset flow HLX-123
-
-Add complete password reset flow with email verification
-and security questions. Includes rate limiting to prevent abuse.
-
-Closes HLX-123
-Related to HLX-124, HLX-125
+feat: Add password reset functionality [HLX-123]
 ```
 
-### Bug Fix
+### Bug Fix with Scope
 
 ```
-fix(checkout): resolve payment processing error fixes HLX-456
-
-The payment processing error was caused by an incorrect API endpoint.
-Updated the endpoint URL and added error handling.
+fix(auth): Resolve login timeout issue [HLX-456]
 ```
 
-### Documentation Update
+### Documentation Update with Body
 
 ```
-docs(readme): update installation instructions ref HLX-789
+docs: Update API documentation [HLX-789]
 
-Update the installation instructions to include the new
-environment variables required for configuration.
+Update the authentication API documentation with new endpoints
+and improved examples for better developer experience.
 ```
 
-### Breaking Change
+### Breaking Change with Magic Word
 
 ```
-feat!(api): change authentication mechanism HLX-234
+feat(api)!: Redesign user endpoints [HLX-101]
 
-Replace token-based authentication with OAuth2.
+BREAKING CHANGE: User API endpoints have been redesigned for better
+performance and security.
 
-BREAKING CHANGE: All clients need to update their authentication flow
-to use the new OAuth2 endpoints.
-
-Closes HLX-234
+Closes HLX-101
 ```
 
-### Multiple Issues
+### Refactoring with Non-Closing Reference
 
 ```
-fix(search): improve search performance and fix sorting
+refactor(core): Improve error handling [HLX-202]
 
-- Optimize database queries for faster search results
-- Fix incorrect sorting of results by relevance
+Refactored the error handling system to provide more detailed
+error messages and better logging.
 
-Fixes: HLX-345
-Fixes: HLX-346
-Related to: HLX-347
+Related to HLX-202
 ```
 
-### Refactoring
+### Multiple Issue References
 
 ```
-refactor(utils): simplify date formatting functions ref HLX-567
+fix: Address security vulnerabilities [HLX-303]
 
-Consolidate multiple date formatting functions into a single utility
-with configurable options. Reduces code duplication and improves maintainability.
+- Update dependencies to latest versions
+- Implement input validation
+- Add rate limiting
+
+Fixes HLX-303
+Related to HLX-304, HLX-305
 ```
 
 ## Enforcement Tools
 
-Several tools can help enforce standardized commit message formats:
+To ensure consistent commit message formatting across your team, consider implementing these enforcement tools:
 
 ### Git Hooks
 
-1. **Husky**: Set up Git hooks to validate commit messages
-   - Installation: `npm install husky --save-dev`
-   - Configuration: Create `.husky/commit-msg` hook
+Use pre-commit hooks to validate commit messages before they're accepted:
 
-2. **commitlint**: Lint commit messages against defined rules
-   - Installation: `npm install @commitlint/cli @commitlint/config-conventional --save-dev`
-   - Configuration: Create `commitlint.config.js`
-   - Example configuration:
-     ```js
-     module.exports = {
-       extends: ['@commitlint/config-conventional'],
-       rules: {
-         'references-empty': [2, 'never'], // Require issue references
-         'body-max-line-length': [2, 'always', 100],
-       },
-       parserPreset: {
-         parserOpts: {
-           issuePrefixes: ['HLX-']
-         }
-       }
-     };
-     ```
+#### Using Husky and Commitlint
 
-### Interactive Tools
+1. Install the required packages:
 
-1. **Commitizen**: Interactive CLI for formatting commit messages
-   - Installation: `npm install commitizen --save-dev`
-   - Configuration: `npx commitizen init cz-conventional-changelog --save-dev --save-exact`
-   - Usage: `npx cz` instead of `git commit`
-   - Can be customized to include Linear issue references
+```bash
+npm install --save-dev husky @commitlint/cli @commitlint/config-conventional
+```
 
-2. **git-cz**: Alternative to Commitizen with similar functionality
-   - Installation: `npm install git-cz --save-dev`
-   - Usage: `npx git-cz`
+2. Create a commitlint configuration file (`.commitlintrc.js`):
 
-### Automated Validation
+```javascript
+module.exports = {
+  extends: ['@commitlint/config-conventional'],
+  rules: {
+    'references-empty': [2, 'never'],
+    'body-max-line-length': [0, 'always'],
+    'footer-max-line-length': [0, 'always'],
+  },
+  parserPreset: {
+    parserOpts: {
+      issuePrefixes: ['HLX-', 'ENG-', 'DESIGN-']
+    }
+  }
+};
+```
 
-1. **git-commit-msg-linter**: Lightweight commit message linter
-   - Installation: `npm install git-commit-msg-linter --save-dev`
-   - No configuration required for basic usage
+3. Set up Husky:
 
-2. **GitHub Actions**: Validate commit messages in CI/CD pipelines
-   - Example workflow:
-     ```yaml
-     name: Validate Commit Messages
-     on: [push, pull_request]
-     jobs:
-       validate:
-         runs-on: ubuntu-latest
-         steps:
-           - uses: actions/checkout@v3
-             with:
-               fetch-depth: 0
-           - uses: wagoid/commitlint-github-action@v5
-     ```
+```bash
+npx husky install
+npx husky add .husky/commit-msg 'npx --no -- commitlint --edit "$1"'
+```
 
-### Custom Templates
+### Commit Templates
 
-1. **Git Commit Template**: Create a template for developers to follow
-   - Create `.gitmessage` file with template
-   - Configure Git: `git config --global commit.template .gitmessage`
-   - Example template:
-     ```
-     # <type>(<scope>): <description> [<Linear issue reference>]
-     # |<---- Using a maximum of 72 characters ---->|
-     
-     # Why:
-     
-     # How:
-     
-     # References:
-     # Fixes/Closes/Refs HLX-
-     ```
+Create a commit template to guide developers:
+
+1. Create a `.gitmessage` file:
+
+```
+<type>(<optional scope>): <description> [<issue-reference>]
+
+<body>
+
+<footer>
+```
+
+2. Configure Git to use the template:
+
+```bash
+git config --local commit.template .gitmessage
+```
+
+### GitHub Branch Protection
+
+Set up branch protection rules to enforce commit message standards:
+
+1. Go to your repository settings
+2. Navigate to "Branches" > "Branch protection rules"
+3. Add a rule for your main branches
+4. Enable "Require status checks to pass before merging"
+5. Add your commit linting check as a required status check
+
+### IDE Extensions
+
+Recommend these IDE extensions to your team:
+
+- VS Code: [Conventional Commits](https://marketplace.visualstudio.com/items?itemName=vivaxy.vscode-conventional-commits)
+- JetBrains IDEs: [Conventional Commit](https://plugins.jetbrains.com/plugin/13389-conventional-commit)
 
 ## Integration Benefits
 
-Adopting standardized commit message formats that reference Linear issues provides numerous benefits:
+Adopting standardized commit messages with Linear issue references provides numerous benefits:
 
-### Workflow Automation
+### Automated Workflow Updates
 
-1. **Automatic Status Updates**: Linear can automatically update issue status based on commit and PR activity
-   - Issues move to "In Progress" when commits are pushed
-   - Issues move to "Done" when commits are merged to the default branch
+- Commits automatically move issues to "In Progress" when pushed
+- PRs automatically move issues to "Done" when merged
+- Custom workflow rules can be configured based on branch names
 
-2. **Branch-Specific Rules**: Configure different status transitions based on target branches
-   - Example: Merging to `staging` moves issues to "In QA"
-   - Example: Merging to `main` moves issues to "Deployed"
+### Enhanced Traceability
 
-3. **Auto-Assignment**: Commits can automatically assign issues to developers
+- Direct links between code changes and issues
+- Clear visibility of which commits address which issues
+- Ability to track the full lifecycle of a feature or bug fix
 
-### Traceability
+### Improved Collaboration
 
-1. **Code-to-Issue Linking**: Direct links between code changes and issues
-2. **Change History**: Clear record of why changes were made
-3. **Release Notes**: Automatic generation of release notes from commit messages
+- Team members can quickly understand the purpose of changes
+- Project managers can track development progress without technical knowledge
+- New team members can more easily understand project history
 
-### Developer Experience
+### Automated Documentation
 
-1. **Reduced Manual Updates**: Less need to manually update issue status
-2. **Clear Guidelines**: Developers know exactly how to format commit messages
-3. **Consistency**: Uniform commit history across the project
+- Generate changelogs automatically from commit messages
+- Create release notes with meaningful categorization
+- Document breaking changes clearly
 
-### Project Management
+### Quality Assurance
 
-1. **Progress Tracking**: Better visibility into development progress
-2. **Release Planning**: Easier to determine what features and fixes are included in each release
-3. **Accountability**: Clear record of who made which changes and why
+- Enforce code review processes through commit standards
+- Ensure all changes are associated with tracked issues
+- Maintain a clean and meaningful commit history
 
-### Communication
-
-1. **Cross-Team Visibility**: Non-technical team members can understand changes
-2. **Onboarding**: New team members can quickly understand project history
-3. **Stakeholder Updates**: Easier to communicate changes to stakeholders
-
-By implementing these standards, teams can create a more efficient, transparent, and automated development workflow that seamlessly integrates code changes with issue tracking in Linear.
-
+By following these commit message standards, your team will benefit from improved collaboration, automation, and traceability between your code and Linear issues.
