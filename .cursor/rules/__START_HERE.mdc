@@ -175,7 +175,6 @@ graph TD
 - Learnings could benefit future similar tasks
 - Patterns emerged that could be generalized
 
-
 ### Error Tracking System
 **Use when:** You encounter errors, issues, or unexpected behaviors during task execution.
 **Documentation:** [Error Tracking System](../../docs/reference/self_improvement/error_tracking/)
@@ -211,6 +210,7 @@ graph TD
 - Systematic approach to performance enhancement is required
 - Cross-component learning and improvement is desired
 - Measurable improvement outcomes are needed
+
 ## Workflow Checklists
 
 ### Research Coordination Workflow Checklist
