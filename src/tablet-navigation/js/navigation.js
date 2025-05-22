@@ -25,10 +25,29 @@ class TabNavigation {
                 // Simulate haptic feedback
                 this.triggerHapticFeedback('light');
             });
+            
+            // Add keyboard support for tabs
+            tab.addEventListener('keydown', (e) => {
+                // Enter or Space to activate tab
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    const targetView = tab.dataset.view;
+                    this.switchView(targetView);
+                }
+                
+                // Left/Right arrow keys to navigate between tabs
+                if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+                    e.preventDefault();
+                    this.navigateTabsWithKeyboard(e.key === 'ArrowRight' ? 1 : -1);
+                }
+            });
         });
         
         // Add swipe event listeners for history navigation
         this.setupHistoryNavigation();
+        
+        // Update ARIA attributes when view changes
+        this.updateAriaAttributes();
     }
     
     switchView(viewId) {
@@ -44,8 +63,14 @@ class TabNavigation {
             this.currentView = viewId;
             this.setActiveTab(viewId);
             
+            // Update ARIA attributes
+            this.updateAriaAttributes();
+            
             // Add to navigation history
             this.addToHistory(viewId);
+            
+            // Announce view change for screen readers
+            this.announceViewChange(viewId);
         }
     }
     
@@ -53,13 +78,83 @@ class TabNavigation {
         // Remove active class from all tabs
         this.tabs.forEach(tab => {
             tab.classList.remove('active');
+            tab.setAttribute('aria-selected', 'false');
         });
         
         // Add active class to the selected tab
         const activeTab = Array.from(this.tabs).find(tab => tab.dataset.view === viewId);
         if (activeTab) {
             activeTab.classList.add('active');
+            activeTab.setAttribute('aria-selected', 'true');
         }
+    }
+    
+    // Update ARIA attributes for accessibility
+    updateAriaAttributes() {
+        // Update tab panel relationships
+        this.tabs.forEach(tab => {
+            const viewId = tab.dataset.view;
+            tab.setAttribute('aria-controls', viewId);
+            
+            // Set selected state
+            const isSelected = viewId === this.currentView;
+            tab.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+        });
+        
+        // Update view attributes
+        this.views.forEach(view => {
+            view.setAttribute('aria-hidden', view.id !== this.currentView ? 'true' : 'false');
+            
+            // Set role as tabpanel
+            view.setAttribute('role', 'tabpanel');
+            
+            // Associate with controlling tab
+            const controllingTab = Array.from(this.tabs).find(tab => tab.dataset.view === view.id);
+            if (controllingTab) {
+                view.setAttribute('aria-labelledby', controllingTab.querySelector('span').id || '');
+            }
+        });
+    }
+    
+    // Keyboard navigation between tabs
+    navigateTabsWithKeyboard(direction) {
+        const tabsArray = Array.from(this.tabs);
+        const currentIndex = tabsArray.findIndex(tab => tab.dataset.view === this.currentView);
+        
+        // Calculate new index with wrapping
+        let newIndex = currentIndex + direction;
+        if (newIndex < 0) newIndex = tabsArray.length - 1;
+        if (newIndex >= tabsArray.length) newIndex = 0;
+        
+        // Switch to the new tab
+        const newTab = tabsArray[newIndex];
+        this.switchView(newTab.dataset.view);
+        
+        // Focus the new tab
+        newTab.focus();
+    }
+    
+    // Announce view change for screen readers
+    announceViewChange(viewId) {
+        // Create an aria-live region for announcements
+        let announcer = document.getElementById('view-change-announcer');
+        
+        if (!announcer) {
+            announcer = document.createElement('div');
+            announcer.id = 'view-change-announcer';
+            announcer.setAttribute('aria-live', 'polite');
+            announcer.setAttribute('aria-atomic', 'true');
+            announcer.className = 'sr-only'; // Screen reader only
+            document.body.appendChild(announcer);
+        }
+        
+        // Get view name from heading
+        const view = document.getElementById(viewId);
+        const heading = view ? view.querySelector('h1') : null;
+        const viewName = heading ? heading.textContent : viewId.replace('-view', '');
+        
+        // Announce the view change
+        announcer.textContent = `Switched to ${viewName} view`;
     }
     
     // Navigation history management
@@ -132,6 +227,20 @@ class TabNavigation {
                 }
             }
         }, { passive: true });
+        
+        // Add keyboard shortcuts for history navigation
+        document.addEventListener('keydown', (e) => {
+            // Alt+Left Arrow for back, Alt+Right Arrow for forward
+            if (e.altKey) {
+                if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    this.goBack();
+                } else if (e.key === 'ArrowRight') {
+                    e.preventDefault();
+                    this.goForward();
+                }
+            }
+        });
     }
     
     // Customizable tab order
@@ -160,6 +269,21 @@ class TabNavigation {
                     this.triggerHapticFeedback('light');
                 });
                 
+                // Add keyboard event listener
+                clonedTab.addEventListener('keydown', (e) => {
+                    // Enter or Space to activate tab
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        this.switchView(viewId);
+                    }
+                    
+                    // Left/Right arrow keys to navigate between tabs
+                    if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+                        e.preventDefault();
+                        this.navigateTabsWithKeyboard(e.key === 'ArrowRight' ? 1 : -1);
+                    }
+                });
+                
                 fragment.appendChild(clonedTab);
             }
         });
@@ -173,6 +297,9 @@ class TabNavigation {
         
         // Set the active tab
         this.setActiveTab(this.currentView);
+        
+        // Update ARIA attributes
+        this.updateAriaAttributes();
     }
     
     // Badge notifications
@@ -185,14 +312,18 @@ class TabNavigation {
                 if (badge) {
                     badge.textContent = count > 99 ? '99+' : count;
                     badge.style.display = 'flex';
+                    badge.setAttribute('aria-label', `${count} unread notifications`);
                 } else {
                     const newBadge = document.createElement('div');
                     newBadge.className = 'badge';
                     newBadge.textContent = count > 99 ? '99+' : count;
+                    newBadge.setAttribute('aria-label', `${count} unread notifications`);
+                    newBadge.setAttribute('role', 'status');
                     tab.appendChild(newBadge);
                 }
             } else if (badge) {
                 badge.style.display = 'none';
+                badge.setAttribute('aria-hidden', 'true');
             }
         }
     }
@@ -203,6 +334,7 @@ class TabNavigation {
         // we'll simulate it with a visual indicator
         const hapticElement = document.createElement('div');
         hapticElement.className = 'haptic-feedback';
+        hapticElement.setAttribute('aria-hidden', 'true');
         document.body.appendChild(hapticElement);
         
         // Remove the element after animation completes
@@ -228,4 +360,3 @@ class TabNavigation {
         }
     }
 }
-

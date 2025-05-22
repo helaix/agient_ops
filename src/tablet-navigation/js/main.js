@@ -33,6 +33,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Initial orientation setup
     handleOrientationChange();
+    
+    // Create loading indicator and error message elements
+    createUtilityElements();
 });
 
 // Handle orientation changes
@@ -74,6 +77,71 @@ function adjustUIForOrientation(isPortrait) {
             mainContent.style.height = 'calc(100vh - (var(--bottom-bar-height) * 0.8))';
             mainContent.style.paddingBottom = '70px';
         }
+    }
+}
+
+// Create utility elements for loading and error states
+function createUtilityElements() {
+    // Create loading indicator
+    const loadingIndicator = document.createElement('div');
+    loadingIndicator.className = 'loading-indicator';
+    loadingIndicator.id = 'loading-indicator';
+    loadingIndicator.setAttribute('role', 'status');
+    loadingIndicator.setAttribute('aria-label', 'Loading');
+    document.body.appendChild(loadingIndicator);
+    
+    // Create error message element
+    const errorMessage = document.createElement('div');
+    errorMessage.className = 'error-message';
+    errorMessage.id = 'error-message';
+    errorMessage.setAttribute('role', 'alert');
+    document.body.appendChild(errorMessage);
+    
+    // Expose utility functions globally
+    window.showLoading = showLoading;
+    window.hideLoading = hideLoading;
+    window.showError = showError;
+}
+
+// Show loading indicator
+function showLoading() {
+    const loadingIndicator = document.getElementById('loading-indicator');
+    if (loadingIndicator) {
+        loadingIndicator.style.display = 'block';
+        
+        // Announce loading state for screen readers
+        const announcer = document.getElementById('view-change-announcer');
+        if (announcer) {
+            announcer.textContent = 'Loading, please wait...';
+        }
+    }
+}
+
+// Hide loading indicator
+function hideLoading() {
+    const loadingIndicator = document.getElementById('loading-indicator');
+    if (loadingIndicator) {
+        loadingIndicator.style.display = 'none';
+        
+        // Announce loading complete for screen readers
+        const announcer = document.getElementById('view-change-announcer');
+        if (announcer) {
+            announcer.textContent = 'Loading complete';
+        }
+    }
+}
+
+// Show error message
+function showError(message) {
+    const errorMessage = document.getElementById('error-message');
+    if (errorMessage) {
+        errorMessage.textContent = message;
+        errorMessage.style.display = 'block';
+        
+        // Hide after 5 seconds
+        setTimeout(() => {
+            errorMessage.style.display = 'none';
+        }, 5000);
     }
 }
 
