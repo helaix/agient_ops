@@ -10,99 +10,111 @@ Welcome to the Agent Operations repository! This repository contains essential d
 
 When working with Linear issues, always refer to the [Linear Workflows Reference Guide](../../docs/reference/linear_workflows_reference.md) for comprehensive guidance on:
 
-
 - Understanding Linear workflows and components
-
 - Guidelines for working with Linear issues
-
 - Task delegation and communication best practices
-
 - Common tools and patterns
-
 - Troubleshooting and examples
 
 The [Linear Workflow Decision Diagram](../../docs/reference/linear_workflow_diagram.md) provides a visual guide for when to utilize the Linear Workflows Reference.
+
+**Enhanced Resources for Linear Workflows:**
+
+- **For practical examples**: Use the [Linear Workflow Scenarios](../../docs/examples/linear_workflow_scenarios.md) for common scenarios and real-world examples
+- **For step-by-step guidance**: Consult task-specific guides:
+  - [Simple Tasks Guide](../../docs/examples/linear_workflow_guide_simple_tasks.md) for straightforward, single-agent tasks
+  - [Complex Tasks Guide](../../docs/examples/linear_workflow_guide_complex_tasks.md) for multi-step, complex implementations
+  - [Delegation Guide](../../docs/examples/linear_workflow_guide_delegation.md) for tasks requiring sub-agent coordination
+- **For decision-making**: Use the [Workflow Selection Tree](../../docs/decision_trees/workflow_selection_tree.md) to determine the optimal approach
+- **For troubleshooting**: Start with [Common Linear Issues](../../docs/troubleshooting/common_linear_issues.md) for quick resolution
 
 ### Agent Collaboration
 
 For multi-agent collaboration tasks, refer to the following resources:
 
-
 - [Agent Collaboration Workflow](../../docs/src/content/docs/reference/agent_collaboration_workflow.md): Core workflow definition
-
 - [Implementation Guide](../../docs/src/content/docs/reference/agent_collaboration_implementation_guide.md): Practical examples and code snippets
-
 - [Quick Reference](../../docs/src/content/docs/reference/agent_collaboration_quick_reference.md): Templates and checklists
+
+**Enhanced Resources for Agent Collaboration:**
+
+- **For delegation decisions**: Use the [Delegation Decision Tree](../../docs/decision_trees/delegation_decision_tree.md) to determine when and how to delegate
+- **For communication strategies**: Consult the [Communication Decision Tree](../../docs/decision_trees/communication_decision_tree.md) for optimal communication approaches
+- **For implementation planning**: Use the [Implementation Decision Tree](../../docs/decision_trees/implementation_decision_tree.md) for complex task breakdown
 
 ### Communication and Delegation
 
 For standardized communication and delegation practices, consult the [Communication and Delegation SOPs](../../docs/reference/communication_delegation_sops.md) which provides:
 
-
 - Analysis of communication patterns
-
 - Root causes of delegation failures
-
 - Recommended solutions and SOPs
-
 - Specific guidelines for delegating to sub-agents
 
-## Enhanced Documentation
+**Enhanced Resources for Communication and Delegation:**
 
-### Example-Based Guides
+- **For delegation issues**: Use [Linear Delegation Issues](../../docs/troubleshooting/linear_delegation_issues.md) for troubleshooting delegation problems
+- **For communication problems**: Consult [Linear Communication Issues](../../docs/troubleshooting/linear_communication_issues.md) for resolution strategies
 
-For practical, step-by-step guidance with real-world examples, refer to our example-based guides:
+### Troubleshooting and Problem Resolution
 
+When encountering issues with Linear workflows, use our comprehensive troubleshooting resources:
 
-- [Linear Workflow Scenarios](../../docs/examples/linear_workflow_scenarios.md): Common scenarios and examples
+- **Start here**: [Common Linear Issues](../../docs/troubleshooting/common_linear_issues.md) - Comprehensive list of frequent issues and solutions
+- **Specific issue types**:
+  - [Linear API Issues](../../docs/troubleshooting/linear_api_issues.md) - API-related problems
+  - [Linear Branch Management Issues](../../docs/troubleshooting/linear_branch_management_issues.md) - Git and branch management
+  - [Linear Integration Issues](../../docs/troubleshooting/linear_integration_issues.md) - Integration and deployment issues
+- **Research summary**: [Research Summary](../../docs/troubleshooting/research_summary.md) - Analysis of common issue patterns
 
-- [Linear Workflow Guide: Simple Tasks](../../docs/examples/linear_workflow_guide_simple_tasks.md): Step-by-step guide for simple tasks
+### Decision Support
 
-- [Linear Workflow Guide: Complex Tasks](../../docs/examples/linear_workflow_guide_complex_tasks.md): Guide for complex, multi-step tasks
+For guidance on making optimal workflow decisions, use our decision trees:
 
-- [Linear Workflow Guide: Delegation](../../docs/examples/linear_workflow_guide_delegation.md): Guide for tasks requiring delegation
-
-### Troubleshooting Guides
-
-When encountering issues with Linear workflows, consult our comprehensive troubleshooting guides:
-
-
-- [Common Linear Issues](../../docs/troubleshooting/common_linear_issues.md): Comprehensive list of common issues and solutions
-
-- [Linear API Issues](../../docs/troubleshooting/linear_api_issues.md): Troubleshooting guide for API-related issues
-
-- [Linear Delegation Issues](../../docs/troubleshooting/linear_delegation_issues.md): Troubleshooting guide for delegation-related issues
-
-- [Linear Branch Management Issues](../../docs/troubleshooting/linear_branch_management_issues.md): Troubleshooting guide for branch management issues
-
-- [Linear Communication Issues](../../docs/troubleshooting/linear_communication_issues.md): Troubleshooting guide for communication-related issues
-
-- [Linear Integration Issues](../../docs/troubleshooting/linear_integration_issues.md): Troubleshooting guide for integration-related issues
-
-### Decision Trees
-
-For guidance on making optimal workflow decisions, refer to our decision trees:
-
-
-- [Workflow Selection Tree](../../docs/decision_trees/workflow_selection_tree.md): Main decision tree for selecting appropriate workflows
-
-- [Task Analysis Decision Tree](../../docs/decision_trees/task_analysis_decision_tree.md): Decision tree for task analysis phase
-
-- [Delegation Decision Tree](../../docs/decision_trees/delegation_decision_tree.md): Decision tree for delegation decisions
-
-- [Implementation Decision Tree](../../docs/decision_trees/implementation_decision_tree.md): Decision tree for implementation approaches
-
-- [Communication Decision Tree](../../docs/decision_trees/communication_decision_tree.md): Decision tree for communication strategies
+- **Primary decision point**: [Workflow Selection Tree](../../docs/decision_trees/workflow_selection_tree.md) - Main decision tree for selecting appropriate workflows
+- **Specific decision areas**:
+  - [Task Analysis Decision Tree](../../docs/decision_trees/task_analysis_decision_tree.md) - For task analysis and planning
+  - [Delegation Decision Tree](../../docs/decision_trees/delegation_decision_tree.md) - For delegation decisions
+  - [Implementation Decision Tree](../../docs/decision_trees/implementation_decision_tree.md) - For implementation approaches
+  - [Communication Decision Tree](../../docs/decision_trees/communication_decision_tree.md) - For communication strategies
 
 ## When to Use These Resources
 
-1. **Starting a New Linear issue**: Review the Linear Workflows Reference and use the Decision Diagram to navigate to the right section
-2. **Implementing Specific Task Types**: Consult the relevant example-based guide for your task type
-3. **Making Workflow Decisions**: Use the appropriate decision tree to guide your choices
-4. **Troubleshooting Issues**: Check the relevant troubleshooting guide for your specific issue
-5. **Delegating Complex Tasks**: Consult both Linear Workflows and Agent Collaboration documents
-6. **Communication Issues**: Refer to Communication and Delegation SOPs
-7. **Code Management**: Follow guidelines in Agent Collaboration Workflow
+### Starting a New Linear Task
+1. Begin with the [Linear Workflows Reference Guide](../../docs/reference/linear_workflows_reference.md)
+2. Use the [Linear Workflow Decision Diagram](../../docs/reference/linear_workflow_diagram.md) to navigate to the right section
+3. Consult the [Workflow Selection Tree](../../docs/decision_trees/workflow_selection_tree.md) for decision guidance
+
+### Implementing Specific Task Types
+- **Simple tasks**: [Linear Workflow Guide: Simple Tasks](../../docs/examples/linear_workflow_guide_simple_tasks.md)
+- **Complex tasks**: [Linear Workflow Guide: Complex Tasks](../../docs/examples/linear_workflow_guide_complex_tasks.md)
+- **Delegation required**: [Linear Workflow Guide: Delegation](../../docs/examples/linear_workflow_guide_delegation.md)
+- **Common scenarios**: [Linear Workflow Scenarios](../../docs/examples/linear_workflow_scenarios.md)
+
+### Making Workflow Decisions
+- Start with the [Workflow Selection Tree](../../docs/decision_trees/workflow_selection_tree.md)
+- Use specific decision trees for detailed guidance:
+  - [Task Analysis Decision Tree](../../docs/decision_trees/task_analysis_decision_tree.md)
+  - [Delegation Decision Tree](../../docs/decision_trees/delegation_decision_tree.md)
+  - [Implementation Decision Tree](../../docs/decision_trees/implementation_decision_tree.md)
+  - [Communication Decision Tree](../../docs/decision_trees/communication_decision_tree.md)
+
+### Troubleshooting Issues
+1. First check [Common Linear Issues](../../docs/troubleshooting/common_linear_issues.md)
+2. For specific issue types, use the relevant troubleshooting guide:
+   - [Linear API Issues](../../docs/troubleshooting/linear_api_issues.md)
+   - [Linear Delegation Issues](../../docs/troubleshooting/linear_delegation_issues.md)
+   - [Linear Branch Management Issues](../../docs/troubleshooting/linear_branch_management_issues.md)
+   - [Linear Communication Issues](../../docs/troubleshooting/linear_communication_issues.md)
+   - [Linear Integration Issues](../../docs/troubleshooting/linear_integration_issues.md)
+
+### Collaborating with Other Agents
+1. Review the [Agent Collaboration Workflow](../../docs/src/content/docs/reference/agent_collaboration_workflow.md)
+2. Consult the [Communication and Delegation SOPs](../../docs/reference/communication_delegation_sops.md)
+3. Use the [Implementation Guide](../../docs/src/content/docs/reference/agent_collaboration_implementation_guide.md) for practical examples
+4. Reference the [Quick Reference](../../docs/src/content/docs/reference/agent_collaboration_quick_reference.md) for templates and checklists
+
+## Complete Documentation Index
 
 For a comprehensive index of all documentation resources, refer to the [Documentation Index](../../docs/index.md).
 
