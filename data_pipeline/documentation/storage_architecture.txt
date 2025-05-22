@@ -1,0 +1,18 @@
++-------------------+       +----------------------+       +------------------+
+|                   |       |                      |       |                  |
+| Data Lake         +------>+ Data Warehouse       +------>+ Operational      |
+| (Bronze/Silver/   |       |                      |       | Data Store       |
+| Gold Zones)       |       |                      |       |                  |
++-------------------+       +----------------------+       +------------------+
+        ^                            ^                             ^
+        |                            |                             |
+        |                            |                             |
+        v                            v                             v
++-------------------+       +----------------------+       +------------------+
+|                   |       |                      |       |                  |
+| Metadata          |<----->+ Cache Layer          |<----->+ Specialized      |
+| Repository        |       |                      |       | Data Stores      |
++-------------------+       +----------------------+       +------------------+
+
+Note: This is a placeholder text-based diagram. In a real implementation, this would be replaced with a proper architecture diagram created with a tool like draw.io, Lucidchart, or similar.
+

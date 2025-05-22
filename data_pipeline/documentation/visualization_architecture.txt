@@ -1,0 +1,17 @@
++-------------------+       +----------------------+       +------------------+
+|                   |       |                      |       |                  |
+| Visualization     +------>+ Data Access Layer    +------>+ Dashboard        |
+| Server            |       |                      |       | Repository       |
++-------------------+       +----------------------+       +------------------+
+        ^                            ^                             ^
+        |                            |                             |
+        |                            |                             |
+        v                            v                             v
++-------------------+       +----------------------+       +------------------+
+|                   |       |                      |       |                  |
+| User Management   |<----->+ Embedding Service    |<----->+ Export Service   |
+|                   |       |                      |       |                  |
++-------------------+       +----------------------+       +------------------+
+
+Note: This is a placeholder text-based diagram. In a real implementation, this would be replaced with a proper architecture diagram created with a tool like draw.io, Lucidchart, or similar.
+
