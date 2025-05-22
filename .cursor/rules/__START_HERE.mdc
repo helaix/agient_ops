@@ -79,6 +79,15 @@ graph TD
 
 ## When to Use Each Workflow Pattern
 
+### Business Idea Evaluation Workflow
+**Use when:** You need to systematically evaluate business ideas and opportunities.
+**Documentation:** [Business Idea Evaluation Workflow](../workflows/patterns/business-idea-evaluation-workflow.md)
+**Key indicators:**
+- New business idea or opportunity identified
+- Strategic planning and portfolio review cycles
+- Investment or partnership opportunity assessment
+- Need for systematic business opportunity evaluation
+
 ### Research Coordination Workflow
 **Use when:** You need to investigate multiple aspects of a technology, concept, or solution.
 **Documentation:** [Research Coordination Workflow](../docs/src/content/docs/workflows/patterns/research-coordination-workflow.md)
@@ -383,4 +392,3 @@ When implementing these workflow patterns, refer to the appropriate existing fra
 ## Continuous Improvement
 
 These documents and workflow patterns are continuously updated based on feedback and evolving best practices. If you identify areas for improvement or new patterns, please document them using the Postmortem and Self-Analysis Workflow and contribute them to the repository by creating an issue or PR with your suggestions.
-
