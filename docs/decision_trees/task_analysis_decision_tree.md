@@ -6,6 +6,7 @@ This document provides a structured decision tree for the task analysis phase of
 
 ## Visual Representation
 
+
 ```mermaid
 graph TD
     A[Begin Task Analysis] --> B{Is task description clear<br>and complete?}
@@ -61,6 +62,7 @@ graph TD
     style I fill:#d0e0ff,stroke:#3080ff
     style J1 fill:#d0e0ff,stroke:#3080ff
     style K1 fill:#d0e0ff,stroke:#3080ff
+
 ```
 
 ## Decision Criteria
@@ -154,16 +156,23 @@ For a task like "Add pagination to user list":
 When a task description lacks clarity, follow these steps:
 
 1. **Identify Specific Unclear Points**
+
    - List each ambiguous requirement or missing information
+
    - Prioritize blockers that prevent any progress
 
 2. **Ask Focused Questions**
+
    - Frame questions to elicit specific, actionable responses
+
    - Provide options when possible to facilitate decision-making
+
    - Example: "The task mentions 'improve authentication'. Should this focus on (a) security enhancements, (b) user experience improvements, or (c) both?"
 
 3. **Wait for Response**
+
    - Block further analysis until critical clarifications are received
+
    - For non-blocking clarifications, proceed with assumptions but document them clearly
 
 ### Scope Definition
@@ -171,16 +180,23 @@ When a task description lacks clarity, follow these steps:
 When scope boundaries are unclear:
 
 1. **Identify Boundaries**
+
    - Determine what is explicitly included and excluded
+
    - Identify ambiguous areas that need definition
 
 2. **Propose Scope Definition**
+
    - Suggest clear boundaries based on context and priorities
+
    - Include rationale for proposed scope
+
    - Example: "Based on the performance issues mentioned, I propose focusing on (1) frontend rendering optimization and (2) API response time improvements, excluding database optimization which would require a separate effort."
 
 3. **Seek Confirmation**
+
    - Request explicit approval of the proposed scope
+
    - Document the agreed scope for reference
 
 ### Technical Feasibility Analysis
@@ -188,16 +204,23 @@ When scope boundaries are unclear:
 When requirements may not be technically feasible:
 
 1. **Identify Technical Constraints**
+
    - Pinpoint specific requirements that pose challenges
+
    - Assess available skills, tools, and infrastructure
 
 2. **Research Alternatives**
+
    - Explore alternative approaches or technologies
+
    - Evaluate tradeoffs between different solutions
 
 3. **Propose Modified Approach**
+
    - Suggest feasible alternatives that meet core requirements
+
    - Clearly explain tradeoffs and limitations
+
    - Example: "Full real-time collaboration may not be feasible within the timeline. I propose implementing a simpler version using periodic auto-save and conflict resolution, which achieves 80% of the functionality with significantly less complexity."
 
 ## Examples Illustrating the Decision Process
@@ -208,14 +231,21 @@ When requirements may not be technically feasible:
 
 **Analysis Process:**
 1. **Clarity Assessment:**
+
    - Requirements: Somewhat clear, but "more examples" is non-specific
+
    - Deliverables: Not specified which API endpoints need examples
+
    - Decision: Request clarification on which endpoints to prioritize and how many examples are needed
 
 2. **After Clarification:**
+
    - Scope is now defined: "Add 2-3 examples for each of the 5 core endpoints"
+
    - Technical feasibility: Completely feasible
+
    - Complexity: Simple to moderate
+
    - Decision: Use structured execution planning with clear steps for each endpoint
 
 ### Example 2: Complex Feature Implementation
@@ -224,20 +254,33 @@ When requirements may not be technically feasible:
 
 **Analysis Process:**
 1. **Clarity Assessment:**
+
    - Requirements: Clear need for MFA, but specific methods not specified
+
    - Deliverables: Integration points not fully defined
+
    - Decision: Request clarification on supported MFA methods and integration points
 
 2. **After Clarification:**
+
    - Scope is defined: "Implement SMS and authenticator app MFA for web and mobile apps"
+
    - Technical feasibility: Feasible but challenging
+
    - Complexity: Complex (multiple components, security implications)
+
    - Decision: Use delegation planning to break down into sub-tasks:
+
      - Authentication backend enhancements
+
      - SMS integration service
+
      - Authenticator app integration
+
      - Web UI implementation
+
      - Mobile UI implementation
+
      - Security testing and validation
 
 ## Recommendations for Different Scenarios
@@ -245,50 +288,81 @@ When requirements may not be technically feasible:
 ### For Unclear Tasks
 
 1. **When the task lacks context:**
+
    - Request background information and related documentation
+
    - Ask about the problem being solved, not just the requested solution
+
    - Example: "Could you provide context on why this feature is needed and how users will interact with it?"
 
 2. **When requirements are ambiguous:**
+
    - Propose specific interpretations and ask for confirmation
+
    - Use examples to clarify understanding
+
    - Example: "I understand 'improve performance' to mean reducing page load time to under 2 seconds. Is this correct, or are there other performance aspects to address?"
 
 ### For Scope Definition
 
 1. **When the scope is too broad:**
+
    - Propose breaking it into phases or separate tasks
+
    - Suggest prioritization criteria
+
    - Example: "This appears to be a large initiative. I suggest we focus on Phase 1 (user-facing features) first, followed by Phase 2 (admin features) in a separate task."
 
 2. **When boundaries are unclear:**
+
    - Define explicit inclusion and exclusion criteria
+
    - Seek agreement on specific components affected
+
    - Example: "To clarify scope, this task will include updating the login, registration, and password reset flows, but exclude account management and user profile features. Is this understanding correct?"
 
 ### For Technical Feasibility
 
 1. **When requirements exceed current capabilities:**
+
    - Propose a proof-of-concept or research spike
+
    - Suggest alternative approaches that achieve similar goals
+
    - Example: "Implementing this from scratch would be challenging. I recommend evaluating these three existing libraries that provide similar functionality."
 
 2. **When timeline constraints are tight:**
+
    - Suggest a minimum viable implementation with future enhancements
+
    - Identify which requirements could be deferred
+
    - Example: "To meet the timeline, I recommend implementing the core functionality first, with these additional features planned for a follow-up task."
 
 ## Integration with Existing Documentation
 
 This decision tree complements the existing documentation in the following ways:
 
+
 - **Linear Workflows Reference Guide**: Provides context on the overall workflow in which task analysis occurs
+
 - **Communication and Delegation SOPs**: Offers guidance on how to communicate clarification requests and delegation decisions
+
 - **Workflow Selection Tree**: Helps determine the appropriate workflow after task analysis is complete
 
 ## References
 
+
 - [Linear Workflows Reference Guide](../reference/linear_workflows_reference.md)
+
 - [Communication and Delegation SOPs](../reference/communication_delegation_sops.md)
+
 - [Workflow Selection Tree](./workflow_selection_tree.md)
 
+
+
+## Related Resources
+
+- [Workflow Selection Decision Tree](workflow_selection_tree.md)
+- [Delegation Decision Tree](delegation_decision_tree.md)
+- [Common Linear Workflow Scenarios and Examples](../examples/linear_workflow_scenarios.md)

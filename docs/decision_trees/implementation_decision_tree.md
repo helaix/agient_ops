@@ -6,6 +6,7 @@ This document provides a structured decision tree for selecting the most appropr
 
 ## Visual Representation
 
+
 ```mermaid
 graph TD
     A[Begin Implementation] --> B{Implementation Type?}
@@ -77,6 +78,7 @@ graph TD
     style D5 fill:#ffe0d0,stroke:#ff8030
     style E5 fill:#ffe0d0,stroke:#ff8030
     style F5 fill:#ffe0d0,stroke:#ff8030
+
 ```
 
 ## Decision Criteria
@@ -191,9 +193,13 @@ For a task like "Review authentication implementation":
 #### Direct Implementation
 
 Use direct implementation when:
+
 - The task is simple and well-defined
+
 - Requirements are clear and stable
+
 - The implementation path is straightforward
+
 - Few unknowns or risks exist
 
 This approach involves implementing the solution in a single pass, with minimal iterations. It's suitable for small bug fixes, simple feature additions, or straightforward enhancements.
@@ -207,9 +213,13 @@ This approach involves implementing the solution in a single pass, with minimal 
 #### Iterative Implementation
 
 Use iterative implementation when:
+
 - The task has moderate complexity
+
 - Some aspects may need refinement
+
 - Feedback would improve the solution
+
 - Multiple components are involved
 
 This approach involves implementing the solution in iterations, with feedback and refinement between iterations. It's suitable for medium-sized features or enhancements with some unknowns.
@@ -225,9 +235,13 @@ This approach involves implementing the solution in iterations, with feedback an
 #### Phased Implementation
 
 Use phased implementation when:
+
 - The task is complex with many components
+
 - Significant unknowns or risks exist
+
 - The solution will evolve over time
+
 - Dependencies between components are complex
 
 This approach involves breaking the implementation into distinct phases, with clear milestones and deliverables for each phase. It's suitable for large features or systems with complex requirements.
@@ -246,9 +260,13 @@ This approach involves breaking the implementation into distinct phases, with cl
 #### Manual Testing
 
 Use manual testing when:
+
 - The changes are simple or visual
+
 - Setting up automated tests would be excessive
+
 - Human judgment is needed for evaluation
+
 - The feature is unlikely to change frequently
 
 Manual testing involves manually verifying that the implementation meets requirements through direct interaction with the system.
@@ -256,9 +274,13 @@ Manual testing involves manually verifying that the implementation meets require
 #### Automated Testing
 
 Use automated testing when:
+
 - The changes affect critical functionality
+
 - The feature will likely change or expand
+
 - Regression testing is important
+
 - The behavior can be programmatically verified
 
 Automated testing involves writing test code that verifies the implementation behaves as expected, allowing for repeated validation as the code evolves.
@@ -266,9 +288,13 @@ Automated testing involves writing test code that verifies the implementation be
 #### Hybrid Testing
 
 Use hybrid testing when:
+
 - Some aspects are easily automated while others require human judgment
+
 - Both functional correctness and user experience matter
+
 - The implementation has both critical and non-critical components
+
 - Different types of testing provide complementary value
 
 Hybrid testing combines automated tests for verifiable functionality with manual testing for aspects requiring human evaluation.
@@ -281,25 +307,39 @@ Hybrid testing combines automated tests for verifiable functionality with manual
 
 **Implementation Decision Process:**
 1. **Implementation Type:**
+
    - Primary output is functional code
+
    - Requires programming skills
+
    - Decision: Code Implementation
 
 2. **Code Complexity:**
+
    - Moderate complexity with form validation logic
+
    - Multiple components (form UI, validation, API integration)
+
    - Some UX considerations that may need refinement
+
    - Decision: Iterative Implementation
 
 3. **Testing Approach:**
+
    - Form validation logic can be automated
+
    - UI appearance and behavior needs manual verification
+
    - Decision: Hybrid Testing
 
 4. **Implementation Plan:**
+
    - Iteration 1: Basic form structure and UI
+
    - Iteration 2: Client-side validation logic
+
    - Iteration 3: API integration and submission handling
+
    - Testing: Automated tests for validation rules, manual testing for UX
 
 ### Example 2: Documentation Task
@@ -308,26 +348,41 @@ Hybrid testing combines automated tests for verifiable functionality with manual
 
 **Implementation Decision Process:**
 1. **Implementation Type:**
+
    - Primary output is written documentation
+
    - Requires writing and organization skills
+
    - Decision: Documentation Implementation
 
 2. **Documentation Scope:**
+
    - Large documentation covering multiple API endpoints
+
    - Complex structure with authentication, resources, and error handling
+
    - Multiple audience needs (developers, integrators, support)
+
    - Decision: Modular Documentation
 
 3. **Review Process:**
+
    - Technical accuracy is critical
+
    - Multiple stakeholders should review
+
    - Decision: Expert Review Process
 
 4. **Implementation Plan:**
+
    - Module 1: Authentication and authorization
+
    - Module 2: Payment processing endpoints
+
    - Module 3: Reporting and analytics endpoints
+
    - Module 4: Error handling and troubleshooting
+
    - Review: Technical review by API developers, usability review by integration team
 
 ## Recommendations for Different Scenarios
@@ -335,70 +390,117 @@ Hybrid testing combines automated tests for verifiable functionality with manual
 ### For Code Implementation
 
 1. **When implementing critical functionality:**
+
    - Use phased implementation with clear milestones
+
    - Implement comprehensive automated testing
+
    - Include security and performance considerations from the start
+
    - Example: "For the payment processing system, use a phased approach starting with the core transaction engine, then adding validation, then integration with payment providers."
 
 2. **When implementing UI components:**
+
    - Use iterative implementation with frequent feedback
+
    - Focus on user experience and accessibility
+
    - Include both automated and manual testing
+
    - Example: "For the dashboard redesign, implement iteratively with stakeholder feedback after each major component is completed."
 
 3. **When fixing bugs:**
+
    - Use direct implementation for isolated bugs
+
    - Use iterative implementation for complex bugs
+
    - Ensure regression testing is thorough
+
    - Example: "For this isolated UI bug, use direct implementation with focused testing on the affected component."
 
 ### For Documentation Implementation
 
 1. **When creating technical documentation:**
+
    - Use structured or modular documentation based on size
+
    - Include code examples and use cases
+
    - Ensure technical accuracy through expert review
+
    - Example: "For the API documentation, use modular documentation with separate sections for each endpoint group, including request/response examples."
 
 2. **When creating user-facing documentation:**
+
    - Focus on clarity and accessibility
+
    - Use visual aids and examples
+
    - Test with representative users
+
    - Example: "For the user guide, use structured documentation with screenshots and step-by-step instructions for common tasks."
 
 3. **When updating existing documentation:**
+
    - Maintain consistency with existing style
+
    - Clearly mark updated sections
+
    - Review changes in context of the full document
+
    - Example: "When updating the deployment guide, ensure new instructions follow the same format and style as existing sections."
 
 ### For Research Implementation
 
 1. **When researching technical solutions:**
+
    - Use structured research with clear evaluation criteria
+
    - Compare alternatives systematically
+
    - Provide actionable recommendations
+
    - Example: "For researching authentication providers, use structured research with a comparison matrix of features, pricing, and integration complexity."
 
 2. **When conducting exploratory research:**
+
    - Use comprehensive research with broad initial scope
+
    - Narrow focus as patterns emerge
+
    - Document both findings and process
+
    - Example: "For exploring emerging trends in AI, use comprehensive research starting broadly and then focusing on the most relevant applications to our domain."
 
 ## Integration with Existing Documentation
 
 This decision tree complements the existing documentation in the following ways:
 
+
 - **Linear Workflows Reference Guide**: Provides context on the overall workflow in which implementation occurs
+
 - **Task Analysis Decision Tree**: Helps determine the complexity and requirements that inform implementation decisions
+
 - **Delegation Decision Tree**: Guides how implementation tasks should be structured when delegation is involved
+
 - **Communication Decision Tree**: Offers guidance on how to communicate during the implementation process
 
 ## References
 
+
 - [Linear Workflows Reference Guide](../reference/linear_workflows_reference.md)
+
 - [Task Analysis Decision Tree](./task_analysis_decision_tree.md)
+
 - [Delegation Decision Tree](./delegation_decision_tree.md)
+
 - [Communication Decision Tree](./communication_decision_tree.md)
 
+
+
+## Related Resources
+
+- [Workflow Selection Decision Tree](workflow_selection_tree.md)
+- [Linear Workflow Guide: Complex Tasks](../examples/linear_workflow_guide_complex_tasks.md)
+- [---](../src/content/docs/reference/agent_collaboration_implementation_guide.md)

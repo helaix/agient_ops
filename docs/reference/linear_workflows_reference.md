@@ -33,20 +33,30 @@ A Linear workflow represents the structured process of managing tasks from creat
 
 ### Key Components of Linear Workflows
 
+
 - **Issues**: The fundamental unit of work in Linear, containing descriptions, requirements, and metadata.
+
 - **States**: Issues progress through different states (e.g., Backlog, In Progress, Done) reflecting their current status.
+
 - **Comments**: Communication threads attached to issues for discussions and updates.
+
 - **Labels**: Tags that categorize issues by type, priority, or other attributes.
+
 - **Sub-issues**: Child issues that break down complex tasks into smaller, manageable pieces.
+
 - **Cycles**: Time-boxed periods (similar to sprints) for organizing and prioritizing work.
 
 ### Linear Integration with Development Workflow
 
 Linear workflows integrate with the development process through:
 
+
 - **Branch Creation**: Creating Git branches based on issue identifiers.
+
 - **Pull Requests**: Linking PRs to Linear issues for traceability.
+
 - **Automated State Changes**: Updating issue states based on PR events.
+
 - **Notifications**: Alerting team members about issue updates and mentions.
 
 ## Guidelines for Agents Working with Linear
@@ -92,15 +102,15 @@ For complex issues, agents should:
 3. **Prioritize Sub-Issues**: Order sub-issues based on dependencies and logical workflow.
 4. **Assign Appropriately**: Assign sub-issues to the appropriate agents or team members.
 
-### Child Agent Delegation
+### sub-agent Delegation
 
-When delegating tasks to child agents:
+When delegating tasks to sub-agents:
 
 1. **Create Detailed Sub-Issues**: Include comprehensive context, requirements, and acceptance criteria.
 2. **Provide Scaffolding**: For code-related tasks, create a base branch with necessary scaffolding before creating sub-issues.
 3. **Include Branch Information**: Specify the base branch in the sub-issue description.
 4. **Set Clear Expectations**: Define deliverables and acceptance criteria explicitly.
-5. **Assign to Self**: Assign the sub-issue to yourself, which will trigger a child agent to work on it.
+5. **Assign to Self**: Assign the sub-issue to yourself, which will trigger a sub-agent to work on it.
 
 ### Communication Best Practices
 
@@ -128,35 +138,55 @@ When receiving interrupt messages (additional comments while working on an issue
 Codegen provides several tools for interacting with Linear:
 
 1. **Issue Management**:
+
    - `linear_get_issue`: Retrieve issue details
+
    - `linear_create_issue`: Create new issues
+
    - `linear_update_issue`: Update issue properties
+
    - `linear_self_assign`: Assign an issue to yourself
+
    - `linear_search_issues`: Search for issues with filters
 
 2. **Communication**:
+
    - `linear_comment_on_issue`: Add comments to issues
+
    - `linear_get_issue_comments`: Retrieve comments on an issue
+
    - `send_message`: Send a message in the Linear thread
 
 3. **Linking and References**:
+
    - `linear_attach_link`: Attach external links to issues
 
 4. **Team and Project Management**:
+
    - `linear_get_teams`: List available teams
+
    - `linear_search_teams`: Search for specific teams
+
    - `linear_search_projects`: Find projects by name
+
    - `linear_get_assignees`: List available assignees
 
 5. **State and Label Management**:
+
    - `linear_get_issue_states`: List available issue states
+
    - `linear_get_issue_labels`: List available labels
+
    - `linear_get_issue_priority_values`: List priority values
 
 6. **Cycle Management**:
+
    - `linear_get_active_cycle`: Get the current active cycle
+
    - `linear_get_cycles`: List all cycles
+
    - `linear_get_cycle_issues`: List issues in a cycle
+
    - `linear_assign_issue_to_cycle`: Add an issue to a cycle
 
 ### Common Patterns
@@ -230,8 +260,8 @@ Codegen provides several tools for interacting with Linear:
 2. **Initial Planning**: Codegen analyzes the task and creates a plan to break it down.
 3. **Branch Scaffolding**: Codegen creates a base branch with initial scaffolding.
 4. **Sub-Issue Creation**: Codegen creates multiple sub-issues, each assigned to itself.
-5. **Child Agent Work**: Child agents work on individual sub-issues, creating their own branches from the base branch.
-6. **Progress Tracking**: The parent agent monitors progress and coordinates between child agents.
+5. **sub-agent Work**: sub-agents work on individual sub-issues, creating their own branches from the base branch.
+6. **Progress Tracking**: The parent agent monitors progress and coordinates between sub-agents.
 7. **Integration**: As sub-issues are completed, the parent agent merges changes into the main branch.
 8. **Final PR**: Once all sub-issues are complete, a final PR is created for the entire feature.
 9. **Completion**: After review and approval, the PR is merged, and all issues are marked as "Done".
@@ -249,23 +279,33 @@ Codegen provides several tools for interacting with Linear:
 ### Common Issues and Solutions
 
 1. **Issue Assignment Failures**:
+
    - **Problem**: Unable to assign an issue to yourself.
+
    - **Solution**: Check if the issue is already assigned to someone else. Use `override_assignee: true` if appropriate.
 
 2. **State Transition Errors**:
+
    - **Problem**: Cannot update the issue state.
+
    - **Solution**: Verify that the state ID is valid for the team. Use `linear_get_issue_states` to list available states.
 
 3. **Sub-Issue Creation Problems**:
+
    - **Problem**: Unable to create sub-issues.
+
    - **Solution**: Ensure the parent issue ID is correct and that you have permission to create sub-issues.
 
 4. **Branch Naming Conflicts**:
+
    - **Problem**: Branch creation fails due to naming conflicts.
+
    - **Solution**: Add a unique identifier to the branch name, such as a timestamp or random string.
 
 5. **PR Creation Failures**:
+
    - **Problem**: Unable to create a PR.
+
    - **Solution**: Ensure that changes are pushed to the remote branch before creating the PR. Verify that the branch exists in the remote repository.
 
 ### Escalation Path
@@ -279,12 +319,23 @@ If you encounter persistent issues with Linear workflows:
 
 ## References
 
+
 - [Linear API Documentation](https://developers.linear.app/docs/)
+
 - [GitHub Integration Guide](https://linear.app/docs/github)
+
 - [Linear Workflow Best Practices](https://linear.app/docs/workflow)
+
 - [Codegen Documentation](https://codegen.sh/docs)
 
 ---
 
 This document will be continuously updated to reflect the latest best practices and workflows for Linear integration with Codegen. If you have suggestions for improvements, please create an issue or PR with your proposed changes.
 
+
+
+## Related Resources
+
+- [Common Linear Workflow Scenarios and Examples](../examples/linear_workflow_scenarios.md)
+- [Workflow Selection Decision Tree](../decision_trees/workflow_selection_tree.md)
+- [Linear Workflow Decision Diagram](linear_workflow_diagram.md)

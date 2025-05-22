@@ -9,8 +9,11 @@ This guide addresses common issues encountered when working with the Linear API 
 ### 1. Authentication Failures
 
 **Symptoms:**
+
 - Error messages containing "Unauthorized" or "Authentication failed"
+
 - HTTP 401 status codes
+
 - Unable to access Linear resources despite having the correct permissions
 
 **Resolution Steps:**
@@ -37,16 +40,23 @@ This guide addresses common issues encountered when working with the Linear API 
    ```
 
 **Preventive Measures:**
+
 - Store API keys securely in environment variables or secrets management systems
+
 - Implement proper error handling for authentication failures
+
 - Set up monitoring for API key expiration
+
 - Use scoped API keys with the minimum necessary permissions
 
 ### 2. Rate Limiting Issues
 
 **Symptoms:**
+
 - Error messages containing "Too many requests" or "Rate limit exceeded"
+
 - HTTP 429 status codes
+
 - Operations failing after a large number of API calls
 
 **Resolution Steps:**
@@ -104,23 +114,34 @@ This guide addresses common issues encountered when working with the Linear API 
    ```
 
 **Preventive Measures:**
+
 - Implement rate limiting on the client side to stay within API limits
+
 - Use batch operations where possible
+
 - Cache responses to reduce the number of API calls
+
 - Spread out non-urgent API calls over time
 
 ### 3. GraphQL Query Syntax Errors
 
 **Symptoms:**
+
 - Error messages containing "Syntax Error" or "Invalid query"
+
 - Unexpected or missing data in API responses
+
 - Operations failing with error messages about specific fields or types
 
 **Resolution Steps:**
 1. Validate your GraphQL queries using the Linear API Explorer:
+
    - Visit https://studio.apollographql.com/sandbox/explorer
+
    - Set the endpoint to https://api.linear.app/graphql
+
    - Add your API key as a header: `Authorization: <YOUR_LINEAR_API_KEY>`
+
    - Test your queries interactively
 
 2. Check for common syntax errors:
@@ -173,21 +194,30 @@ This guide addresses common issues encountered when working with the Linear API 
    ```
 
 **Preventive Measures:**
+
 - Use GraphQL code generation tools to create type-safe queries
+
 - Implement query validation in your development workflow
+
 - Keep a library of tested and validated queries
+
 - Use the Linear API documentation as a reference for field names and types
 
 ### 4. Missing Required Fields
 
 **Symptoms:**
+
 - Error messages containing "Required field missing" or similar
+
 - Operations failing when creating or updating Linear resources
+
 - HTTP 400 status codes
 
 **Resolution Steps:**
 1. Check the Linear API documentation for required fields:
+
    - Visit https://developers.linear.app/docs/graphql/working-with-the-graphql-api
+
    - Review the schema for the resource you're working with
 
 2. Ensure all required fields are included in your mutations:
@@ -227,16 +257,23 @@ This guide addresses common issues encountered when working with the Linear API 
    ```
 
 **Preventive Measures:**
+
 - Create helper functions with built-in validation for common operations
+
 - Use TypeScript or similar type systems to catch missing fields at compile time
+
 - Maintain up-to-date documentation on required fields for your specific use cases
+
 - Implement pre-request validation
 
 ### 5. Permission Issues
 
 **Symptoms:**
+
 - Error messages containing "Permission denied" or "Not authorized"
+
 - Unable to perform operations on specific resources
+
 - Operations working for some teams/projects but not others
 
 **Resolution Steps:**
@@ -261,24 +298,34 @@ This guide addresses common issues encountered when working with the Linear API 
    ```
 
 3. Request additional permissions if necessary:
+
    - For organization-wide API keys, contact an organization admin
+
    - For personal API keys, ensure you have the necessary role in the team/organization
 
 **Preventive Measures:**
+
 - Document the required permissions for different operations
+
 - Implement permission checking before attempting operations
+
 - Use scoped API keys with appropriate permissions
+
 - Maintain a clear understanding of your organization's permission structure
 
 ### 6. API Version Compatibility
 
 **Symptoms:**
+
 - Previously working queries suddenly failing
+
 - Unexpected field values or missing fields
+
 - Deprecation warnings in API responses
 
 **Resolution Steps:**
 1. Check for API changes in the Linear changelog:
+
    - Visit https://developers.linear.app/changelog
 
 2. Update queries to use current field names and types:
@@ -319,15 +366,29 @@ This guide addresses common issues encountered when working with the Linear API 
    ```
 
 **Preventive Measures:**
+
 - Subscribe to Linear API changelog and updates
+
 - Regularly review and update API usage
+
 - Implement feature detection rather than assuming field existence
+
 - Use API versioning when available
 
 ## References
 
+
 - [Linear API Documentation](https://developers.linear.app/docs/)
+
 - [GraphQL API Reference](https://developers.linear.app/docs/graphql/working-with-the-graphql-api)
+
 - [Linear Workflows Reference Guide](../reference/linear_workflows_reference.md)
+
 - [Communication and Delegation SOPs](../reference/communication_delegation_sops.md)
 
+
+
+## Related Resources
+
+- [Common Linear Workflow Issues and Solutions](common_linear_issues.md)
+- [Linear Workflows Reference Guide](../reference/linear_workflows_reference.md)

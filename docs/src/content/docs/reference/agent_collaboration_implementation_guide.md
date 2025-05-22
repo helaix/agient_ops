@@ -1,4 +1,5 @@
----
+# ---
+
 title: Agent Collaboration Implementation Guide
 description: Practical implementation guide for the agent collaboration workflow
 ---
@@ -30,8 +31,11 @@ Before implementing the collaboration workflow, ensure:
    ```
 
 2. **Set up project scaffolding**:
+
    - Create necessary directory structures
+
    - Add placeholder files for components to be implemented
+
    - Document the overall architecture
 
 3. **Push the initial branch**:
@@ -42,13 +46,17 @@ Before implementing the collaboration workflow, ensure:
    ```
 
 4. **Create sub-issues for delegation**:
+
    - Use the Linear API to create sub-issues
+
    - Assign to appropriate Level 1 Agents
+
    - Include branch information in the issue description
 
 ## Implementation Examples
 
 ### Example 1: Creating and Assigning a Sub-Issue
+
 
 ```javascript
 // Example code for creating a sub-issue using Linear API
@@ -71,113 +79,149 @@ const subIssue = await createSubIssue(
   "# Task Assignment: Authentication Frontend\n\n## Context\nWe are building a new authentication system...\n\n## Technical Details\n- Branch to work from: `feature/main-task-description`\n- Create your branch with format: `level1/auth-frontend-components`\n\n...",
   "ASSIGNEE_ID"
 );
+
 ```
 
 ### Example 2: Branch Management
 
 #### For Level 1 Agents
 
+
 ```bash
 # Clone the repository if not already done
+
 git clone https://github.com/org/repo.git
 
 # Checkout the parent branch
+
 git checkout feature/main-task-description
 
 # Create your branch
+
 git checkout -b level1/auth-frontend-components
 
 # Make your changes
+
 # ...
 
 # Commit and push
+
 git add .
 git commit -m "Implement basic authentication components"
 git push -u origin level1/auth-frontend-components
+
 ```
 
 #### For Level 2 Agents
 
+
 ```bash
 # Checkout the parent branch
+
 git checkout level1/auth-frontend-components
 
 # Create your branch
+
 git checkout -b level2/login-ui-implementation
 
 # Make your changes
+
 # ...
 
 # Commit and push
+
 git add .
 git commit -m "Implement login form UI"
 git push -u origin level2/login-ui-implementation
+
 ```
 
 ### Example 3: Merging Child Branches
 
 #### For Level 1 Agents
 
+
 ```bash
 # Checkout your branch
+
 git checkout level1/auth-frontend-components
 
 # Merge a Level 2 branch
+
 git merge level2/login-ui-implementation
 
 # Resolve any conflicts
+
 # ...
 
 # Commit and push
+
 git add .
 git commit -m "Merge login UI implementation"
 git push origin level1/auth-frontend-components
+
 ```
 
 #### For Top-Level Agents
 
+
 ```bash
 # Checkout your branch
+
 git checkout feature/main-task-description
 
 # Merge a Level 1 branch
+
 git merge level1/auth-frontend-components
 
 # Resolve any conflicts
+
 # ...
 
 # Commit and push
+
 git add .
 git commit -m "Merge authentication frontend components"
 git push origin feature/main-task-description
+
 ```
 
 ## Communication Examples
 
 ### Example 1: Status Update from Child to Parent
 
+
 ```
+
 @parent-agent Status Update: Login UI Implementation
 
 Progress: 70% complete
 Current Status: Implementing form validation
 Completed:
+
 - Basic form layout
+
 - Authentication API integration
+
 - Error handling
 
 In Progress:
+
 - Form validation
+
 - Accessibility improvements
 
 Blockers: None
 
 ETA: Will complete by EOD tomorrow
+
 ```
 
 ### Example 2: Task Assignment from Parent to Child
 
+
 ```
+
 @child-agent Task Assignment: Implement OAuth Provider Integration
 
 I've created a sub-issue for you to implement the OAuth provider integration component. This is part of our larger authentication system overhaul.
@@ -193,11 +237,14 @@ Key requirements:
 Please refer to the detailed requirements in the sub-issue. Let me know if you have any questions.
 
 Expected completion: 3 days
+
 ```
 
 ### Example 3: Reporting Completion
 
+
 ```
+
 @parent-agent Task Completion: OAuth Provider Integration
 
 I've completed the OAuth provider integration as requested. All requirements have been implemented and tested.
@@ -212,6 +259,7 @@ Branch: `level2/oauth-provider-integration`
 Latest commit: 7a8b9c0
 
 All changes have been pushed to my branch. Please review and let me know if any adjustments are needed.
+
 ```
 
 ## Handling Common Scenarios
@@ -228,9 +276,13 @@ When merge conflicts occur:
    ```
 
 2. **Resolve the conflict**:
+
    - Open the conflicting files
+
    - Look for conflict markers (`<<<<<<<`, `=======`, `>>>>>>>`)
+
    - Edit the files to resolve conflicts
+
    - Ensure the resolution maintains functionality
 
 3. **Complete the merge**:
@@ -247,9 +299,9 @@ When merge conflicts occur:
 
 ### Scenario 2: Handling Blocked Tasks
 
-When a child agent is blocked:
+When a sub-agent is blocked:
 
-1. **Child agent reports the blocker**:
+1. **sub-agent reports the blocker**:
    ```
    @parent-agent Blocker Alert: OAuth Integration
 
@@ -288,8 +340,11 @@ When requirements change:
    3. Enhance security with MFA support (increased priority)
 
    Impact assessment:
+
    - Level 1 Agent B: Update backend services to support these changes
+
    - Level 2 Agent B1: Pivot from Microsoft to Facebook OAuth integration
+
    - Level 2 Agent C2: Prioritize MFA implementation
 
    Please acknowledge this change and update your implementation plans accordingly.
@@ -317,7 +372,9 @@ When requirements change:
 
 **Example**: Breaking down a "User Management System" task
 
+
 ```
+
 User Management System
 ├── Authentication (Level 1 Agent A)
 │   ├── Login/Registration UI (Level 2 Agent A1)
@@ -331,11 +388,13 @@ User Management System
     ├── User List/Search (Level 2 Agent C1)
     ├── User Editing Interface (Level 2 Agent C2)
     └── Permission Management (Level 2 Agent C3)
+
 ```
 
 ### 2. Clear Interface Definitions
 
 Define clear interfaces between components to minimize integration issues:
+
 
 ```typescript
 // Example interface definition for authentication service
@@ -349,17 +408,21 @@ interface AuthenticationService {
 }
 
 // This interface would be shared with all agents working on related components
+
 ```
 
 ### 3. Regular Synchronization
 
 Schedule regular sync points:
 
+
 ```
+
 Daily Updates: Each agent provides a brief status update
 Mid-Point Review: After 50% of the timeline, conduct a comprehensive review
 Integration Testing: Schedule specific points for integration testing
 Final Review: Complete review before submitting the final PR
+
 ```
 
 ## Conclusion
@@ -368,3 +431,10 @@ This implementation guide provides practical examples for applying the Agent Col
 
 Remember that the key to successful collaboration is clear communication, well-defined responsibilities, and consistent code management practices. Adapt these examples to your specific project needs while maintaining the core principles of the workflow.
 
+
+
+## Related Resources
+
+- [---](agent_collaboration_workflow.md)
+- [---](agent_collaboration_quick_reference.md)
+- [Implementation Decision Tree](../../../../decision_trees/implementation_decision_tree.md)

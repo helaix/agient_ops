@@ -9,8 +9,11 @@ This guide addresses common issues encountered when managing Git branches in con
 ### 1. Branch Naming Conflicts
 
 **Symptoms:**
+
 - Error messages when creating branches with existing names
+
 - Confusion about which branch corresponds to which issue
+
 - Accidental work on the wrong branch
 
 **Resolution Steps:**
@@ -45,16 +48,23 @@ This guide addresses common issues encountered when managing Git branches in con
    ```
 
 **Preventive Measures:**
+
 - Establish and document clear branch naming conventions
+
 - Include the Linear issue identifier in all branch names
+
 - Add unique suffixes (timestamps, agent identifiers) when necessary
+
 - Verify branch existence before creation
 
 ### 2. Working from Incorrect Base Branches
 
 **Symptoms:**
+
 - Merge conflicts when integrating changes
+
 - Missing expected code or features in your branch
+
 - Unexpected code appearing in your branch
 
 **Resolution Steps:**
@@ -108,16 +118,23 @@ This guide addresses common issues encountered when managing Git branches in con
    ```
 
 **Preventive Measures:**
+
 - Document the base branch clearly in Linear issue descriptions
+
 - Verify the base branch before starting work
+
 - Include explicit git commands in issue templates
+
 - Implement branch validation in your workflow
 
 ### 3. Merge Conflicts During Integration
 
 **Symptoms:**
+
 - Error messages about merge conflicts when integrating branches
+
 - Failed automated merges in CI/CD pipelines
+
 - Difficulty combining work from multiple sub-issues
 
 **Resolution Steps:**
@@ -169,16 +186,23 @@ This guide addresses common issues encountered when managing Git branches in con
    ```
 
 **Preventive Measures:**
+
 - Regularly sync sub-task branches with the parent branch
+
 - Coordinate work to minimize overlapping changes
+
 - Use feature flags for parallel development
+
 - Implement clear code ownership boundaries
 
 ### 4. Lost Work Due to Branch Mismanagement
 
 **Symptoms:**
+
 - Code changes disappearing after branch operations
+
 - Inability to find previously committed work
+
 - Overwritten changes during merges or rebases
 
 **Resolution Steps:**
@@ -227,16 +251,23 @@ This guide addresses common issues encountered when managing Git branches in con
    ```
 
 **Preventive Measures:**
+
 - Always create backup branches before complex operations
+
 - Push branches to remote regularly
+
 - Use descriptive commit messages
+
 - Document branch relationships in Linear issues
 
 ### 5. Inconsistent Branch States Across Agents
 
 **Symptoms:**
+
 - Different agents seeing different code in the same branch
+
 - Confusion about the latest state of a branch
+
 - Unexpected behavior when multiple agents work on related branches
 
 **Resolution Steps:**
@@ -280,16 +311,23 @@ This guide addresses common issues encountered when managing Git branches in con
    ```
 
 **Preventive Measures:**
+
 - Establish clear communication about branch updates
+
 - Implement a "pull before you work" policy
+
 - Use branch protection rules for important branches
+
 - Document the expected workflow for branch synchronization
 
 ### 6. Difficulty Tracking Branch-Issue Relationships
 
 **Symptoms:**
+
 - Confusion about which branches correspond to which Linear issues
+
 - Challenges in finding the relevant code for a specific issue
+
 - Difficulty managing multiple related branches
 
 **Resolution Steps:**
@@ -335,15 +373,29 @@ This guide addresses common issues encountered when managing Git branches in con
    ```
 
 **Preventive Measures:**
+
 - Follow consistent branch naming conventions that include issue IDs
+
 - Document branch relationships in Linear issues
+
 - Use automated tools to update Linear with branch information
+
 - Implement branch cleanup procedures after issue completion
 
 ## References
 
+
 - [Linear Workflows Reference Guide](../reference/linear_workflows_reference.md)
+
 - [Communication and Delegation SOPs](../reference/communication_delegation_sops.md)
+
 - [Agent Collaboration Workflow](../src/content/docs/reference/agent_collaboration_workflow.md)
+
 - [Git Documentation](https://git-scm.com/doc)
 
+
+
+## Related Resources
+
+- [Common Linear Workflow Issues and Solutions](common_linear_issues.md)
+- [Linear Workflows Reference Guide](../reference/linear_workflows_reference.md)

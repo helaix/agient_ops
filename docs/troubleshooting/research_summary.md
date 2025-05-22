@@ -9,18 +9,27 @@ This document summarizes the research findings on frequently encountered issues 
 The research involved:
 
 1. **Analysis of Error Patterns**:
+
    - Reviewing Linear issue comments for recurring error messages
+
    - Identifying patterns in troubleshooting discussions
+
    - Cataloging successful resolution approaches
 
 2. **Identification of Common Challenges**:
+
    - Examining workflow breakdowns and their root causes
+
    - Categorizing issues by type and frequency
+
    - Assessing impact on agent productivity and task completion
 
 3. **Collection of Resolution Strategies**:
+
    - Documenting successful troubleshooting approaches
+
    - Gathering code snippets and commands used in resolutions
+
    - Identifying preventive measures that mitigate common issues
 
 ## Key Findings
@@ -97,3 +106,8 @@ The detailed findings have been documented in the [Common Linear Workflow Issues
 3. Develop a plan for creating the suggested templates, scripts, and automation tools
 4. Establish a process for regularly updating the troubleshooting guide based on new issues and resolutions
 
+
+
+## Related Resources
+
+- [Common Linear Workflow Issues and Solutions](common_linear_issues.md)

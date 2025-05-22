@@ -9,9 +9,13 @@ This guide addresses common issues encountered when integrating Linear with othe
 ### 1. GitHub Integration Failures
 
 **Symptoms:**
+
 - Pull requests not being linked to Linear issues
+
 - Branch names not appearing in Linear issues
+
 - Status updates not syncing between GitHub and Linear
+
 - Automated state transitions not working
 
 **Resolution Steps:**
@@ -53,17 +57,25 @@ This guide addresses common issues encountered when integrating Linear with othe
    ```
 
 **Preventive Measures:**
+
 - Document the correct format for commit messages and PR titles
+
 - Implement pre-commit hooks to enforce Linear issue references
+
 - Regularly verify integration status
+
 - Create backup procedures for manual linking when needed
 
 ### 2. Slack Notification Issues
 
 **Symptoms:**
+
 - Missing notifications for Linear events
+
 - Duplicate notifications
+
 - Notifications appearing in the wrong channels
+
 - Formatting issues in Slack notifications
 
 **Resolution Steps:**
@@ -119,17 +131,25 @@ This guide addresses common issues encountered when integrating Linear with othe
    ```
 
 **Preventive Measures:**
+
 - Document expected notification behaviors
+
 - Test notification flows after configuration changes
+
 - Implement redundant notification mechanisms for critical updates
+
 - Regularly audit notification settings
 
 ### 3. Webhook Integration Failures
 
 **Symptoms:**
+
 - Custom integrations not receiving Linear events
+
 - Webhook endpoints returning errors
+
 - Missing or delayed event processing
+
 - Duplicate event processing
 
 **Resolution Steps:**
@@ -210,18 +230,27 @@ This guide addresses common issues encountered when integrating Linear with othe
    ```
 
 **Preventive Measures:**
+
 - Implement proper webhook signature verification
+
 - Process webhooks idempotently to handle duplicates
+
 - Log all webhook events for debugging
+
 - Set up monitoring for webhook processing
+
 - Implement retry mechanisms for failed webhook processing
 
 ### 4. API Rate Limiting Issues
 
 **Symptoms:**
+
 - Integration failures during high-volume operations
+
 - Error messages about rate limits
+
 - Inconsistent behavior during peak usage times
+
 - Timeouts or slow responses from integrations
 
 **Resolution Steps:**
@@ -351,18 +380,27 @@ This guide addresses common issues encountered when integrating Linear with othe
    ```
 
 **Preventive Measures:**
+
 - Implement rate limiting in all integrations
+
 - Use batching for bulk operations
+
 - Implement caching to reduce API calls
+
 - Monitor API usage and adjust rate limits as needed
+
 - Schedule non-urgent operations during off-peak times
 
 ### 5. Authentication Token Issues
 
 **Symptoms:**
+
 - Integration suddenly stops working
+
 - Authentication errors in integration logs
+
 - Expired or revoked tokens
+
 - Permission errors for previously working operations
 
 **Resolution Steps:**
@@ -482,18 +520,27 @@ This guide addresses common issues encountered when integrating Linear with othe
    ```
 
 **Preventive Measures:**
+
 - Implement token validation checks in your integration
+
 - Set up monitoring for authentication failures
+
 - Document token rotation procedures
+
 - Use OAuth where possible for more robust authentication
+
 - Implement secure token storage
 
 ### 6. Data Synchronization Issues
 
 **Symptoms:**
+
 - Inconsistent data between Linear and integrated systems
+
 - Missing updates in either system
+
 - Duplicate entries or updates
+
 - Conflicting information across systems
 
 **Resolution Steps:**
@@ -615,17 +662,33 @@ This guide addresses common issues encountered when integrating Linear with othe
    ```
 
 **Preventive Measures:**
+
 - Implement consistent field mapping between systems
+
 - Use webhooks for real-time updates
+
 - Implement periodic reconciliation checks
+
 - Maintain detailed sync logs for debugging
+
 - Document conflict resolution strategies
 
 ## References
 
+
 - [Linear API Documentation](https://developers.linear.app/docs/)
+
 - [Linear Webhooks Guide](https://developers.linear.app/docs/graphql/webhooks)
+
 - [Linear OAuth Documentation](https://developers.linear.app/docs/oauth/oauth)
+
 - [Linear Workflows Reference Guide](../reference/linear_workflows_reference.md)
+
 - [Communication and Delegation SOPs](../reference/communication_delegation_sops.md)
 
+
+
+## Related Resources
+
+- [Common Linear Workflow Issues and Solutions](common_linear_issues.md)
+- [Linear Workflows Reference Guide](../reference/linear_workflows_reference.md)

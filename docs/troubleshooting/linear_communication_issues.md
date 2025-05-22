@@ -9,9 +9,13 @@ This guide addresses common issues encountered when communicating through Linear
 ### 1. Message Formatting Problems
 
 **Symptoms:**
+
 - Text appearing as plain text instead of formatted markdown
+
 - Code blocks not rendering correctly
+
 - Links not being clickable
+
 - Tables or lists displaying incorrectly
 
 **Resolution Steps:**
@@ -24,9 +28,12 @@ This guide addresses common issues encountered when communicating through Linear
        ## Heading 2
        
        Regular paragraph with **bold** and *italic* text.
+
        
        - Bullet point 1
+
        - Bullet point 2
+
          - Nested bullet point
        
        1. Numbered item 1
@@ -116,17 +123,25 @@ This guide addresses common issues encountered when communicating through Linear
    ```
 
 **Preventive Measures:**
+
 - Create templates for common communication formats
+
 - Use a markdown preview tool before sending messages
+
 - Document Linear's markdown syntax in your team guidelines
+
 - Create helper functions for generating properly formatted messages
 
 ### 2. Missed Updates and Notifications
 
 **Symptoms:**
+
 - Team members unaware of important updates
+
 - Agents not responding to mentions or comments
+
 - Critical information being overlooked
+
 - Delayed responses to questions or requests
 
 **Resolution Steps:**
@@ -205,17 +220,25 @@ This guide addresses common issues encountered when communicating through Linear
    ```
 
 **Preventive Measures:**
+
 - Establish communication protocols for different priority levels
+
 - Use consistent notification patterns (e.g., emoji prefixes for importance)
+
 - Implement acknowledgment requirements for critical updates
+
 - Schedule regular synchronization points for team communication
 
 ### 3. Context Loss in Long Threads
 
 **Symptoms:**
+
 - Difficulty following the conversation in long comment threads
+
 - Important information buried in lengthy discussions
+
 - Repeated questions or clarifications
+
 - Confusion about current status or decisions
 
 **Resolution Steps:**
@@ -227,20 +250,29 @@ This guide addresses common issues encountered when communicating through Linear
        ## Discussion Summary (as of ${new Date().toISOString().split('T')[0]})
        
        ### Key Points
+
        - Point 1 raised by @user1 on [date]
+
        - Point 2 raised by @user2 on [date]
+
        - Counterpoint by @user3 on [date]
        
        ### Decisions Made
+
        - Decision 1: [description] (decided on [date])
+
        - Decision 2: [description] (decided on [date])
        
        ### Open Questions
+
        - Question 1: [description]
+
        - Question 2: [description]
        
        ### Next Steps
+
        - Action 1: @assignee1 to [action] by [date]
+
        - Action 2: @assignee2 to [action] by [date]
      `
    });
@@ -258,16 +290,23 @@ This guide addresses common issues encountered when communicating through Linear
        ## Current Status (Updated: ${new Date().toISOString().split('T')[0]})
        
        ### Progress
+
        - Component A: Complete
+
        - Component B: In progress (80%)
+
        - Component C: Not started
        
        ### Recent Decisions
+
        - Decided to use approach X for component B
+
        - Postponed component D to next sprint
        
        ### Blockers
+
        - Waiting for API access from team Y
+
        - Performance issue in component A needs resolution
      `
    });
@@ -319,17 +358,25 @@ This guide addresses common issues encountered when communicating through Linear
    ```
 
 **Preventive Measures:**
+
 - Establish a regular cadence for discussion summaries
+
 - Use structured formats for updates and discussions
+
 - Create separate issues for distinct topics
+
 - Maintain an updated "current status" section in issue descriptions
 
 ### 4. Unclear Action Items and Ownership
 
 **Symptoms:**
+
 - Confusion about who is responsible for specific tasks
+
 - Action items not being completed
+
 - Duplicate work being done
+
 - Important tasks falling through the cracks
 
 **Resolution Steps:**
@@ -339,9 +386,12 @@ This guide addresses common issues encountered when communicating through Linear
      issueId: "ISSUE_ID",
      body: `
        ## Action Items
+
        
        - [ ] @username1: Investigate the performance issue by 2023-06-15
+
        - [ ] @username2: Update the documentation with new API endpoints by 2023-06-16
+
        - [ ] @username3: Review and approve the design changes by 2023-06-17
      `
    });
@@ -425,17 +475,25 @@ This guide addresses common issues encountered when communicating through Linear
    ```
 
 **Preventive Measures:**
+
 - Use a consistent format for action items in all communications
+
 - Create sub-issues for significant action items
+
 - Implement regular action item reviews
+
 - Document ownership and responsibilities clearly
 
 ### 5. Ineffective Status Updates
 
 **Symptoms:**
+
 - Updates that lack critical information
+
 - Inconsistent reporting formats
+
 - Difficulty understanding the current state of work
+
 - Challenges in identifying blockers or risks
 
 **Resolution Steps:**
@@ -447,25 +505,37 @@ This guide addresses common issues encountered when communicating through Linear
        ## Status Update: ${new Date().toISOString().split('T')[0]}
        
        ### Progress
+
        - Completed: [list of completed items]
+
        - In Progress: [list of in-progress items with % complete]
+
        - Not Started: [list of not-started items]
        
        ### Metrics
+
        - Time spent: XX hours
+
        - Test coverage: XX%
+
        - Performance: [key metrics]
        
        ### Blockers
+
        - [blocker 1]: [impact and mitigation plan]
+
        - [blocker 2]: [impact and mitigation plan]
        
        ### Risks
+
        - [risk 1]: [likelihood, impact, and mitigation plan]
+
        - [risk 2]: [likelihood, impact, and mitigation plan]
        
        ### Next Steps
+
        - [next step 1] by [date]
+
        - [next step 2] by [date]
      `
    });
@@ -489,10 +559,14 @@ This guide addresses common issues encountered when communicating through Linear
      issueId: "ISSUE_ID",
      body: `
        ## Component Progress
+
        
        - Component A: ${generateProgressBar(100)} (Complete)
+
        - Component B: ${generateProgressBar(75)} (In Progress)
+
        - Component C: ${generateProgressBar(30)} (In Progress)
+
        - Component D: ${generateProgressBar(0)} (Not Started)
        
        ## Overall Progress
@@ -516,17 +590,25 @@ This guide addresses common issues encountered when communicating through Linear
    ```
 
 **Preventive Measures:**
+
 - Create and use standardized templates for status updates
+
 - Establish a regular cadence for status reporting
+
 - Define clear metrics for measuring progress
+
 - Implement visual indicators for status communication
 
 ### 6. Cross-Team Communication Gaps
 
 **Symptoms:**
+
 - Information silos between teams
+
 - Duplicate or conflicting work
+
 - Missed dependencies between teams
+
 - Inconsistent understanding of requirements or priorities
 
 **Resolution Steps:**
@@ -548,8 +630,11 @@ This guide addresses common issues encountered when communicating through Linear
          }))).join('\n')}
          
          ## Communication Guidelines
+
          - All teams should provide updates on this issue
+
          - Tag relevant team members when posting updates
+
          - Document all cross-team decisions here
        `,
        teamId: teamId,
@@ -639,15 +724,30 @@ This guide addresses common issues encountered when communicating through Linear
    ```
 
 **Preventive Measures:**
+
 - Establish clear cross-team communication channels
+
 - Create coordination issues for work that spans multiple teams
+
 - Implement regular cross-team synchronization meetings or updates
+
 - Document cross-team dependencies and interfaces
 
 ## References
 
+
 - [Linear Workflows Reference Guide](../reference/linear_workflows_reference.md)
+
 - [Communication and Delegation SOPs](../reference/communication_delegation_sops.md)
+
 - [Agent Collaboration Workflow](../src/content/docs/reference/agent_collaboration_workflow.md)
+
 - [Linear API Documentation](https://developers.linear.app/docs/)
 
+
+
+## Related Resources
+
+- [Common Linear Workflow Issues and Solutions](common_linear_issues.md)
+- [Communication Decision Tree](../decision_trees/communication_decision_tree.md)
+- [Communication and Delegation SOPs for Codegen and Sub-Agents](../reference/communication_delegation_sops.md)

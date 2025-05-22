@@ -6,6 +6,7 @@ This document provides a comprehensive decision tree to help agents select the m
 
 ## Visual Representation
 
+
 ```mermaid
 graph TD
     A[New Linear Issue Assigned] --> B{Task Type?}
@@ -47,6 +48,7 @@ graph TD
     style E fill:#d0ffe0,stroke:#30c080
     style F fill:#d0ffe0,stroke:#30c080
     style G fill:#d0ffe0,stroke:#30c080
+
 ```
 
 ## Decision Criteria
@@ -129,66 +131,111 @@ For a task like "Create decision trees for workflow selection":
 ### For Research Tasks
 
 1. **When to use Exploratory Research:**
+
    - The topic is new or has limited existing documentation
+
    - The requirements are open-ended or discovery-oriented
+
    - Multiple approaches or solutions need to be evaluated
+
    - Example: "Research emerging trends in AI agent collaboration"
 
 2. **When to use Targeted Research:**
+
    - Specific questions need to be answered
+
    - There is substantial existing knowledge to build upon
+
    - The output needs to directly inform a decision or implementation
+
    - Example: "Research specific performance optimization techniques for React components"
 
 ### For Implementation Tasks
 
 1. **When to use Direct Implementation:**
+
    - Simple, well-defined tasks with clear requirements
+
    - Tasks that can be completed in a few hours
+
    - Minimal dependencies on other components
+
    - Example: "Fix typo in login error message"
 
 2. **When to use Structured Implementation:**
+
    - Moderate complexity tasks requiring planning
+
    - Tasks that span multiple files or components
+
    - Some dependencies that need to be managed
+
    - Example: "Implement form validation for user registration"
 
 3. **When to use Delegated Implementation:**
+
    - Complex tasks requiring multiple specialized skills
+
    - Tasks that affect multiple systems or components
+
    - High-risk changes requiring careful coordination
+
    - Example: "Implement new authentication system across all services"
 
 ### For Documentation Tasks
 
 1. **When to use New Documentation Creation:**
+
    - No existing documentation on the topic
+
    - New features or processes that need to be documented
+
    - Example: "Create documentation for the new API endpoints"
 
 2. **When to use Documentation Enhancement:**
+
    - Existing documentation needs expansion
+
    - Adding examples, diagrams, or clarifications
+
    - Example: "Add troubleshooting section to the deployment guide"
 
 3. **When to use Documentation Restructuring:**
+
    - Existing documentation is disorganized or inconsistent
+
    - Improving navigation or accessibility
+
    - Example: "Reorganize the developer documentation for better discoverability"
 
 ## Integration with Existing Documentation
 
 This decision tree complements the existing documentation in the following ways:
 
+
 - **Linear Workflows Reference Guide**: Provides detailed information on Linear components and processes referenced in this decision tree
+
 - **Communication and Delegation SOPs**: Offers guidance on how to implement the delegation approaches mentioned in this decision tree
+
 - **Agent Collaboration Workflow**: Details the specific steps for implementing delegated tasks once the appropriate workflow is selected
 
 ## References
 
+
 - [Linear Workflows Reference Guide](../reference/linear_workflows_reference.md)
+
 - [Linear Workflow Decision Diagram](../reference/linear_workflow_diagram.md)
+
 - [Communication and Delegation SOPs](../reference/communication_delegation_sops.md)
+
 - [Agent Collaboration Workflow](../src/content/docs/reference/agent_collaboration_workflow.md)
 
+
+
+## Related Resources
+
+- [Task Analysis Decision Tree](task_analysis_decision_tree.md)
+- [Delegation Decision Tree](delegation_decision_tree.md)
+- [Implementation Decision Tree](implementation_decision_tree.md)
+- [Communication Decision Tree](communication_decision_tree.md)
+- [Linear Workflows Reference Guide](../reference/linear_workflows_reference.md)

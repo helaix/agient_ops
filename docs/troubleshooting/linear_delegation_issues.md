@@ -2,15 +2,18 @@
 
 ## Overview
 
-This guide addresses common issues encountered when delegating tasks through Linear in agent workflows. Delegation issues typically occur when creating sub-issues, assigning tasks to child agents, or coordinating work between multiple agents.
+This guide addresses common issues encountered when delegating tasks through Linear in agent workflows. Delegation issues typically occur when creating sub-issues, assigning tasks to sub-agents, or coordinating work between multiple agents.
 
 ## Common Issues and Solutions
 
 ### 1. Sub-Issue Creation Failures
 
 **Symptoms:**
+
 - Error messages when attempting to create sub-issues
+
 - Sub-issues created without proper parent-child relationships
+
 - Missing information in created sub-issues
 
 **Resolution Steps:**
@@ -77,16 +80,23 @@ This guide addresses common issues encountered when delegating tasks through Lin
    ```
 
 **Preventive Measures:**
+
 - Validate parent issue IDs before creating sub-issues
+
 - Implement error handling specifically for sub-issue creation
+
 - Document the team and permission requirements for sub-issue creation
+
 - Create helper functions for common sub-issue creation patterns
 
-### 2. Child Agent Assignment Issues
+### 2. sub-agent Assignment Issues
 
 **Symptoms:**
-- Child agents not being triggered when assigned to sub-issues
+
+- sub-agents not being triggered when assigned to sub-issues
+
 - Incorrect agents being assigned to tasks
+
 - Assignment notifications not being sent
 
 **Resolution Steps:**
@@ -94,15 +104,15 @@ This guide addresses common issues encountered when delegating tasks through Lin
    ```javascript
    // First, create the sub-issue
    const subIssue = await linear.issueCreate({
-     title: "Task for child agent",
+     title: "Task for sub-agent",
      description: "Detailed description with clear instructions",
      teamId: teamId,
      parentId: parentIssueId
    });
    
-   // Then, assign it to yourself to trigger the child agent
+   // Then, assign it to yourself to trigger the sub-agent
    await linear.issueUpdate(subIssue.id, {
-     assigneeId: yourUserId  // This should be your user ID, not the child agent's
+     assigneeId: yourUserId  // This should be your user ID, not the sub-agent's
    });
    ```
 
@@ -130,7 +140,7 @@ This guide addresses common issues encountered when delegating tasks through Lin
    });
    ```
 
-3. Ensure the issue has sufficient context for the child agent:
+3. Ensure the issue has sufficient context for the sub-agent:
    ```javascript
    // Update the issue with comprehensive context
    await linear.issueUpdate(issueId, {
@@ -139,41 +149,59 @@ This guide addresses common issues encountered when delegating tasks through Lin
        This task is part of the larger project to implement feature X.
        
        ## Requirements
+
        - Implement functionality A
+
        - Ensure tests cover edge cases
+
        - Follow the coding standards in our documentation
        
        ## Resources
+
        - Related documentation: [link]
+
        - Parent issue: ${parentIssueUrl}
+
        - Branch to work from: \`feature/parent-branch\`
        
        ## Deliverables
+
        - Implementation of functionality A
+
        - Unit tests
+
        - Documentation updates
      `
    });
    ```
 
 **Preventive Measures:**
+
 - Create templates for sub-issue descriptions with all necessary context
-- Document the correct assignment process for triggering child agents
+
+- Document the correct assignment process for triggering sub-agents
+
 - Implement validation to ensure issues have sufficient information before assignment
+
 - Use consistent state management for issues in the delegation workflow
 
 ### 3. Coordination and Dependency Management
 
 **Symptoms:**
-- Child agents working on tasks in the wrong order
+
+- sub-agents working on tasks in the wrong order
+
 - Blocked tasks due to unresolved dependencies
+
 - Duplicate or conflicting work across sub-issues
 
 **Resolution Steps:**
 1. Clearly document dependencies in issue descriptions:
    ```markdown
    ## Dependencies
+
    - This task depends on the completion of [ISSUE-123](https://linear.app/org/issue/ISSUE-123)
+
    - This task must be completed before [ISSUE-456](https://linear.app/org/issue/ISSUE-456)
    ```
 
@@ -218,16 +246,23 @@ This guide addresses common issues encountered when delegating tasks through Lin
    ```
 
 **Preventive Measures:**
+
 - Create a visual dependency map for complex task hierarchies
+
 - Implement automated dependency checking in your workflow
+
 - Use consistent terminology for describing dependencies
+
 - Schedule tasks in a logical sequence based on dependencies
 
 ### 4. Incomplete Context in Sub-Issues
 
 **Symptoms:**
-- Child agents requesting additional information
+
+- sub-agents requesting additional information
+
 - Sub-tasks completed incorrectly due to misunderstandings
+
 - Inconsistent implementation across related sub-tasks
 
 **Resolution Steps:**
@@ -247,13 +282,19 @@ This guide addresses common issues encountered when delegating tasks through Lin
    ${acceptanceCriteria}
    
    ## Resources
+
    - Parent Issue: ${parentIssueUrl}
+
    - Documentation: ${relevantDocumentation}
+
    - Branch: \`${branchName}\`
    
    ## Communication
+
    - Report blockers immediately
+
    - Provide progress updates daily
+
    - Notify when complete
    `;
    
@@ -296,25 +337,36 @@ This guide addresses common issues encountered when delegating tasks through Lin
    ```
 
 **Preventive Measures:**
+
 - Create and use standardized templates for different types of sub-issues
+
 - Implement a checklist for context verification before assigning tasks
+
 - Document common context requirements for different task types
+
 - Review sub-issues for completeness before assignment
 
 ### 5. Inconsistent Branch Management
 
 **Symptoms:**
+
 - Confusion about which branches to use for sub-tasks
+
 - Merge conflicts when integrating work from multiple sub-issues
+
 - Lost work due to incorrect branch usage
 
 **Resolution Steps:**
 1. Document the branch strategy clearly in the parent issue:
    ```markdown
    ## Branch Strategy
+
    - Parent branch: `feature/parent-feature`
+
    - Naming convention for sub-task branches: `feature/parent-feature-subtask-{issue-number}`
+
    - All sub-task branches should be created from the parent branch
+
    - Sub-task branches will be merged back into the parent branch
    ```
 
@@ -359,16 +411,23 @@ This guide addresses common issues encountered when delegating tasks through Lin
    ```
 
 **Preventive Measures:**
+
 - Document branch naming conventions in a central location
+
 - Include specific git commands in sub-issue templates
+
 - Implement branch name validation in your workflow
+
 - Create helper scripts for branch management
 
 ### 6. Ineffective Progress Tracking
 
 **Symptoms:**
+
 - Unclear status of delegated tasks
+
 - Difficulty identifying blocked or delayed sub-tasks
+
 - Challenges in reporting overall progress to stakeholders
 
 **Resolution Steps:**
@@ -385,6 +444,7 @@ This guide addresses common issues encountered when delegating tasks through Lin
          **Status**: ${statusUpdate}
          
          **Next Steps**:
+
          - ${nextSteps.join('\n- ')}
          
          **Blockers**:
@@ -439,15 +499,30 @@ This guide addresses common issues encountered when delegating tasks through Lin
    ```
 
 **Preventive Measures:**
+
 - Establish regular check-in schedules for progress updates
+
 - Use consistent formats for progress reporting
+
 - Implement automated progress tracking where possible
+
 - Create visualization tools for complex task hierarchies
 
 ## References
 
+
 - [Linear Workflows Reference Guide](../reference/linear_workflows_reference.md)
+
 - [Communication and Delegation SOPs](../reference/communication_delegation_sops.md)
+
 - [Agent Collaboration Workflow](../src/content/docs/reference/agent_collaboration_workflow.md)
+
 - [Linear API Documentation](https://developers.linear.app/docs/)
 
+
+
+## Related Resources
+
+- [Common Linear Workflow Issues and Solutions](common_linear_issues.md)
+- [Delegation Decision Tree](../decision_trees/delegation_decision_tree.md)
+- [Communication and Delegation SOPs for Codegen and Sub-Agents](../reference/communication_delegation_sops.md)

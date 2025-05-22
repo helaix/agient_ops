@@ -28,8 +28,11 @@ The troubleshooting information in this guide is based on analysis of error patt
 The Linear API key used by an agent has expired or does not have the necessary permissions to perform the requested operations.
 
 **Symptoms:**
+
 - Error messages containing "Unauthorized" or "Access denied"
+
 - Failed API calls with 401 or 403 status codes
+
 - Tools like `linear_create_issue` or `linear_update_issue` failing unexpectedly
 
 **Resolution Steps:**
@@ -51,9 +54,13 @@ The Linear API key used by an agent has expired or does not have the necessary p
    ```
 
 **Prevention:**
+
 - Regularly rotate API keys according to security best practices
+
 - Use scoped API keys with only the necessary permissions
+
 - Implement monitoring for API key expiration
+
 - Document the required permissions for different agent operations
 
 ### 2. Rate Limiting Issues
@@ -62,8 +69,11 @@ The Linear API key used by an agent has expired or does not have the necessary p
 The Linear API enforces rate limits to prevent abuse. Agents making too many requests in a short period may encounter rate limiting.
 
 **Symptoms:**
+
 - Error messages containing "Rate limit exceeded"
+
 - Failed API calls with 429 status codes
+
 - Increasing delays or timeouts in API responses
 
 **Resolution Steps:**
@@ -87,9 +97,13 @@ The Linear API enforces rate limits to prevent abuse. Agents making too many req
 3. Implement request queuing to control the rate of API calls.
 
 **Prevention:**
+
 - Implement rate limiting awareness in agent code
+
 - Cache frequently accessed data to reduce API calls
+
 - Use bulk operations where available instead of multiple single operations
+
 - Schedule non-urgent operations during periods of lower activity
 
 ## Task Delegation Issues
@@ -100,9 +114,13 @@ The Linear API enforces rate limits to prevent abuse. Agents making too many req
 Sub-issues created for task delegation lack clear boundaries, leading to confusion about responsibilities, duplicate work, or gaps in coverage.
 
 **Symptoms:**
+
 - Multiple agents working on overlapping aspects of a task
+
 - Important components of a task not being addressed
+
 - Confusion in comments about who is responsible for what
+
 - Inconsistent approaches to related sub-tasks
 
 **Resolution Steps:**
@@ -112,20 +130,28 @@ Sub-issues created for task delegation lack clear boundaries, leading to confusi
    ## Task Boundaries
    
    This sub-issue is responsible for:
+
    - Component X implementation
+
    - Tests for Component X
    
    This sub-issue is NOT responsible for:
+
    - Component Y implementation (covered in #123)
+
    - Integration with Component Z (covered in #456)
    ```
 3. Add explicit cross-references between related sub-issues.
 4. Hold a synchronization meeting or thread with all involved agents to clarify responsibilities.
 
 **Prevention:**
+
 - Use a standardized template for sub-issues that includes a "Task Boundaries" section
+
 - Create a visual diagram showing the relationship between sub-issues
+
 - Implement a formal task decomposition process before creating sub-issues
+
 - Review sub-issue definitions with all involved agents before starting work
 
 ### 4. Missing Context in Delegated Tasks
@@ -134,9 +160,13 @@ Sub-issues created for task delegation lack clear boundaries, leading to confusi
 Sub-issues lack sufficient context about the parent task, project goals, or relevant background information, making it difficult for agents to understand the purpose and requirements of their tasks.
 
 **Symptoms:**
+
 - Frequent clarification questions from sub-agents
+
 - Implementations that don't align with the overall project goals
+
 - Misinterpretation of requirements
+
 - Delays due to back-and-forth communication
 
 **Resolution Steps:**
@@ -151,17 +181,24 @@ Sub-issues lack sufficient context about the parent task, project goals, or rele
    Your work will be integrated with [related components] and will be used by [stakeholders].
    
    Relevant background information:
+
    - [Link to documentation]
+
    - [Link to related issues]
+
    - [Key decisions or constraints]
    ```
 2. Attach links to relevant documentation, design documents, or discussions.
 3. Provide examples or references to similar work if available.
 
 **Prevention:**
+
 - Use a standardized template for sub-issues that includes a "Context" section
+
 - Create and maintain centralized project documentation
+
 - Include links to parent issues and related resources in all sub-issues
+
 - Provide access to project planning documents and discussions
 
 ## Branch Management Issues
@@ -172,9 +209,13 @@ Sub-issues lack sufficient context about the parent task, project goals, or rele
 Multiple agents create branches with the same or similar names, leading to confusion, merge conflicts, or overwritten work.
 
 **Symptoms:**
+
 - Git errors when pushing to branches
+
 - Unexpected code changes appearing in branches
+
 - Confusion about which branch contains which work
+
 - Merge conflicts when integrating work
 
 **Resolution Steps:**
@@ -192,12 +233,16 @@ Multiple agents create branches with the same or similar names, leading to confu
 4. Update references in issues and PRs to point to the correct branches.
 
 **Prevention:**
+
 - Implement a standardized branch naming convention:
    ```
    codegen-bot/<issue-id>-<brief-description>-<unique-identifier>
    ```
+
 - Document the branch naming convention in project guidelines
+
 - Include the expected branch name in sub-issue descriptions
+
 - Use unique identifiers (like timestamps or agent IDs) in branch names
 
 ### 6. Branch Base Confusion
@@ -206,9 +251,13 @@ Multiple agents create branches with the same or similar names, leading to confu
 Agents create branches from the wrong base branch, leading to missing context, outdated code, or merge conflicts.
 
 **Symptoms:**
+
 - Missing dependencies or context in the branch
+
 - Unexpected merge conflicts
+
 - Code that worked in the branch fails after merging
+
 - Difficulty integrating with other branches
 
 **Resolution Steps:**
@@ -228,9 +277,13 @@ Agents create branches from the wrong base branch, leading to missing context, o
 4. Update the issue with the correct branch information.
 
 **Prevention:**
+
 - Explicitly specify the base branch in all sub-issue descriptions
+
 - Include git commands for creating the correct branch in the issue template
+
 - Implement branch protection rules to prevent direct pushes to important branches
+
 - Create a visual diagram of the branch structure for complex projects
 
 ## Communication Issues
@@ -241,9 +294,13 @@ Agents create branches from the wrong base branch, leading to missing context, o
 Agents provide progress updates in inconsistent formats, making it difficult to track progress, understand status, or synthesize information across multiple sub-tasks.
 
 **Symptoms:**
+
 - Varying levels of detail in update comments
+
 - Different structures for similar types of updates
+
 - Difficulty comparing progress across sub-tasks
+
 - Extra work required to normalize information for reporting
 
 **Resolution Steps:**
@@ -252,17 +309,23 @@ Agents provide progress updates in inconsistent formats, making it difficult to 
    ## Progress Update
    
    **Completed:**
+
    - [x] Task 1
+
    - [x] Task 2
    
    **In Progress:**
+
    - [ ] Task 3 (estimated completion: DATE)
    
    **Blockers:**
+
    - Need clarification on X (cc: @person)
    
    **Next Steps:**
+
    - Complete Task 3
+
    - Start Task 4
    ```
 2. Share the template with all agents involved in the project.
@@ -270,9 +333,13 @@ Agents provide progress updates in inconsistent formats, making it difficult to 
 4. Consolidate existing updates into the new format if necessary.
 
 **Prevention:**
+
 - Include the update template in project documentation
+
 - Provide examples of well-formatted updates
+
 - Review and provide feedback on update formats
+
 - Create a bot or script to validate update formats
 
 ### 8. Missed Notifications or Mentions
@@ -281,18 +348,25 @@ Agents provide progress updates in inconsistent formats, making it difficult to 
 Important communications are missed because of improper tagging, notification settings, or communication channel issues.
 
 **Symptoms:**
+
 - Delayed responses to questions or requests
+
 - Agents unaware of important updates or decisions
+
 - Work proceeding based on outdated information
+
 - Duplicate communications across different channels
 
 **Resolution Steps:**
 1. Identify the proper notification mechanism for each agent:
    ```markdown
    ## Communication Channels
+
    
    - Agent 1: @mention in Linear comments
+
    - Agent 2: Direct message via `send_agent_message`
+
    - Agent 3: Email notifications
    ```
 2. Resend important communications using the appropriate channels.
@@ -300,9 +374,13 @@ Important communications are missed because of improper tagging, notification se
 4. Update communication preferences in agent configurations.
 
 **Prevention:**
+
 - Document communication preferences for all agents
+
 - Use explicit @mentions for important communications
+
 - Implement confirmation mechanisms for critical information
+
 - Use multiple channels for urgent communications
 
 ## Issue State Management Issues
@@ -313,9 +391,13 @@ Important communications are missed because of improper tagging, notification se
 Issues are moved to incorrect states, skipping required steps in the workflow or failing to trigger necessary automations.
 
 **Symptoms:**
+
 - Issues appearing in unexpected views or reports
+
 - Automation triggers not firing as expected
+
 - Confusion about the actual status of work
+
 - Inconsistent state progression across related issues
 
 **Resolution Steps:**
@@ -332,9 +414,13 @@ Issues are moved to incorrect states, skipping required steps in the workflow or
 4. Verify that any expected automations are triggered.
 
 **Prevention:**
+
 - Document the expected state flow for different types of issues
+
 - Implement validation checks before state transitions
+
 - Provide clear guidelines on when to move issues between states
+
 - Create visual workflow diagrams showing valid state transitions
 
 ### 10. Orphaned Issues in Intermediate States
@@ -343,9 +429,13 @@ Issues are moved to incorrect states, skipping required steps in the workflow or
 Issues get stuck in intermediate states (like "In Progress" or "In Review") and are not moved to their final states, leading to inaccurate project status reporting.
 
 **Symptoms:**
+
 - Issues remaining in "In Progress" despite completed work
+
 - PRs merged but issues not marked as "Done"
+
 - Inconsistency between actual work status and issue state
+
 - Inaccurate metrics or reports based on issue states
 
 **Resolution Steps:**
@@ -362,9 +452,13 @@ Issues get stuck in intermediate states (like "In Progress" or "In Review") and 
 4. Add automation to detect and flag potentially orphaned issues.
 
 **Prevention:**
+
 - Implement "Definition of Done" checklists that include updating issue states
+
 - Create automations to suggest state updates based on activity
+
 - Regularly review and update issue states as part of project management
+
 - Include state management in agent handoff procedures
 
 ## Sub-Issue Relationship Issues
@@ -375,9 +469,13 @@ Issues get stuck in intermediate states (like "In Progress" or "In Review") and 
 Sub-issues lose their connection to parent issues, or parent issues are completed without addressing all sub-issues, leading to incomplete work or tracking problems.
 
 **Symptoms:**
+
 - Sub-issues appearing as top-level issues
+
 - Parent issues showing as complete while sub-issues are still open
+
 - Difficulty tracking overall progress of complex tasks
+
 - Inconsistent reporting of project status
 
 **Resolution Steps:**
@@ -401,9 +499,13 @@ Sub-issues lose their connection to parent issues, or parent issues are complete
 4. Update parent issue status based on sub-issue completion.
 
 **Prevention:**
+
 - Use consistent naming conventions for sub-issues
+
 - Include parent issue references in sub-issue titles or descriptions
+
 - Implement validation checks for parent-child relationships
+
 - Create dashboards or views that highlight potential relationship issues
 
 ### 12. Dependency Management Between Sub-Issues
@@ -412,9 +514,13 @@ Sub-issues lose their connection to parent issues, or parent issues are complete
 Dependencies between sub-issues are not properly documented or managed, leading to work being done out of sequence, blocking situations, or integration problems.
 
 **Symptoms:**
+
 - Work starting on issues that depend on uncompleted prerequisites
+
 - Blocking situations where multiple issues are waiting on each other
+
 - Integration problems when combining work from different sub-issues
+
 - Inefficient resource allocation due to unclear dependencies
 
 **Resolution Steps:**
@@ -423,11 +529,15 @@ Dependencies between sub-issues are not properly documented or managed, leading 
    ## Dependencies
    
    This issue depends on:
+
    - #123 (Status: In Progress, Expected completion: DATE)
+
    - #456 (Status: Done)
    
    Issues that depend on this one:
+
    - #789 (Status: Blocked)
+
    - #101 (Status: Not Started)
    ```
 2. Update issue descriptions to document dependencies.
@@ -435,9 +545,13 @@ Dependencies between sub-issues are not properly documented or managed, leading 
 4. Implement workarounds for circular dependencies if necessary.
 
 **Prevention:**
+
 - Document dependencies in issue templates
+
 - Create visual dependency graphs for complex projects
+
 - Use blocking relationships in Linear where available
+
 - Regularly review and update dependency information
 
 ## Linear Tool Usage Issues
@@ -448,9 +562,13 @@ Dependencies between sub-issues are not properly documented or managed, leading 
 Agents use Linear tools with incorrect parameters, leading to failed operations, unexpected results, or error messages.
 
 **Symptoms:**
+
 - Error messages from Linear tools
+
 - Operations that appear to succeed but produce incorrect results
+
 - Inconsistent behavior of similar operations
+
 - Failed API calls with error responses
 
 **Resolution Steps:**
@@ -465,9 +583,13 @@ Agents use Linear tools with incorrect parameters, leading to failed operations,
 4. Update the tool usage with the correct parameters.
 
 **Prevention:**
+
 - Create reference documentation for common tool operations
+
 - Provide examples of correct tool usage for different scenarios
+
 - Implement parameter validation before making API calls
+
 - Create wrapper functions with clear parameter requirements
 
 ### 14. Missing Required Fields in Issue Creation
@@ -476,9 +598,13 @@ Agents use Linear tools with incorrect parameters, leading to failed operations,
 Issues are created without required fields, leading to incomplete information, workflow disruptions, or validation errors.
 
 **Symptoms:**
+
 - Error messages when creating issues
+
 - Issues missing critical information
+
 - Workflow automations not triggering as expected
+
 - Manual intervention required to complete issue setup
 
 **Resolution Steps:**
@@ -500,9 +626,13 @@ Issues are created without required fields, leading to incomplete information, w
 3. Create templates or validation checks for future issue creation.
 
 **Prevention:**
+
 - Use issue templates with all required fields
+
 - Implement validation checks before issue creation
+
 - Provide clear documentation on required fields for different issue types
+
 - Create helper functions that ensure all required fields are included
 
 ## PR Integration Issues
@@ -513,9 +643,13 @@ Issues are created without required fields, leading to incomplete information, w
 Pull requests are not properly linked to their corresponding Linear issues, making it difficult to track the relationship between code changes and tasks.
 
 **Symptoms:**
+
 - Linear issues without links to related PRs
+
 - Difficulty finding the code changes associated with a task
+
 - Manual effort required to connect issues and PRs
+
 - Incomplete audit trail for code changes
 
 **Resolution Steps:**
@@ -536,9 +670,13 @@ Pull requests are not properly linked to their corresponding Linear issues, maki
 3. Update PR descriptions to include Linear issue references.
 
 **Prevention:**
+
 - Include PR linking in the "Definition of Done" checklist
+
 - Automate PR linking using GitHub Actions or similar tools
+
 - Use consistent formats for referencing Linear issues in PR titles or descriptions
+
 - Implement validation checks for PR creation to ensure Linear references
 
 ### 16. Branch Cleanup After PR Merges
@@ -547,9 +685,13 @@ Pull requests are not properly linked to their corresponding Linear issues, maki
 Branches are not properly cleaned up after PRs are merged, leading to cluttered repositories, confusion about active work, or accidental use of outdated branches.
 
 **Symptoms:**
+
 - Large number of stale branches in the repository
+
 - Confusion about which branches are still active
+
 - Accidental work on outdated branches
+
 - Difficulty finding relevant branches for current work
 
 **Resolution Steps:**
@@ -569,9 +711,13 @@ Branches are not properly cleaned up after PRs are merged, leading to cluttered 
 4. Update any references to deleted branches in documentation or issues.
 
 **Prevention:**
+
 - Implement automated branch cleanup after PR merges
+
 - Include branch cleanup in PR merge procedures
+
 - Use branch naming conventions that include dates or issue IDs for easier identification
+
 - Regularly audit and clean up branches as part of repository maintenance
 
 ## Cycle Management Issues
@@ -582,9 +728,13 @@ Branches are not properly cleaned up after PRs are merged, leading to cluttered 
 Issues are not assigned to the appropriate Linear cycles, leading to inaccurate sprint planning, reporting discrepancies, or work prioritization issues.
 
 **Symptoms:**
+
 - Issues missing from cycle views or reports
+
 - Inaccurate cycle completion metrics
+
 - Difficulty tracking progress against sprint goals
+
 - Inconsistent prioritization of work
 
 **Resolution Steps:**
@@ -607,9 +757,13 @@ Issues are not assigned to the appropriate Linear cycles, leading to inaccurate 
 3. Verify cycle assignments and update cycle planning documents.
 
 **Prevention:**
+
 - Include cycle assignment in issue creation templates
+
 - Implement regular cycle planning reviews
+
 - Create automations to suggest cycle assignments based on issue properties
+
 - Provide clear guidelines on cycle assignment criteria
 
 ### 18. Cycle Transition Issues
@@ -618,9 +772,13 @@ Issues are not assigned to the appropriate Linear cycles, leading to inaccurate 
 Issues with the transition between cycles, such as incomplete work not being properly carried over or new cycles not being set up correctly.
 
 **Symptoms:**
+
 - Work from previous cycles disappearing from active views
+
 - Incomplete tasks not being carried forward
+
 - Confusion about which cycle is currently active
+
 - Inconsistent reporting across cycle boundaries
 
 **Resolution Steps:**
@@ -642,9 +800,13 @@ Issues with the transition between cycles, such as incomplete work not being pro
 3. Update cycle documentation and planning artifacts.
 
 **Prevention:**
+
 - Implement formal cycle transition procedures
+
 - Create automation for carrying over incomplete work
+
 - Provide clear guidelines on cycle transitions
+
 - Include cycle transition tasks in project management workflows
 
 ## Summary and Best Practices
@@ -666,36 +828,65 @@ Based on the common issues identified in this document, several key patterns eme
 To minimize the occurrence of the issues documented in this guide, consider implementing these best practices:
 
 1. **Standardized Templates**:
+
    - Use templates for issue creation, updates, and reporting
+
    - Include checklists for common procedures
+
    - Provide examples of well-formatted communications
 
 2. **Clear Workflow Documentation**:
+
    - Document expected state transitions
+
    - Create visual diagrams of workflows
+
    - Provide step-by-step guides for common procedures
 
 3. **Automated Validation**:
+
    - Implement validation checks for critical operations
+
    - Create monitoring for potential issues
+
    - Use bots or scripts to enforce consistency
 
 4. **Regular Audits**:
+
    - Periodically review issue states and relationships
+
    - Clean up stale branches and outdated references
+
    - Verify cycle assignments and dependencies
 
 5. **Comprehensive Onboarding**:
+
    - Provide thorough training on Linear workflows
+
    - Create reference materials for common tasks
+
    - Establish mentoring for new agents
 
 By implementing these preventive measures and referring to this troubleshooting guide when issues arise, agents can maintain efficient, effective Linear workflows with minimal disruption.
 
 ## References
 
+
 - [Linear API Documentation](https://developers.linear.app/docs/)
+
 - [Linear Workflows Reference Guide](../reference/linear_workflows_reference.md)
+
 - [Communication and Delegation SOPs](../reference/communication_delegation_sops.md)
+
 - [Linear Workflow Decision Diagram](../reference/linear_workflow_diagram.md)
 
+
+
+## Related Resources
+
+- [Troubleshooting Linear API Issues](linear_api_issues.md)
+- [Troubleshooting Linear Delegation Issues](linear_delegation_issues.md)
+- [Troubleshooting Linear Branch Management Issues](linear_branch_management_issues.md)
+- [Troubleshooting Linear Communication Issues](linear_communication_issues.md)
+- [Troubleshooting Linear Integration Issues](linear_integration_issues.md)
+- [Research Summary: Frequently Encountered Issues and Solutions in Linear Workflows](research_summary.md)
