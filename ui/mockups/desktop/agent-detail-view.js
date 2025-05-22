@@ -9,6 +9,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Setup Event Listeners
     setupEventListeners();
+    
+    // Setup Keyboard Shortcuts
+    setupKeyboardShortcuts();
 });
 
 // Initialize the Context Access Graph
@@ -397,6 +400,79 @@ function setupEventListeners() {
     rightSidebar.style.display = 'none';
 }
 
+// Setup Keyboard Shortcuts for power users
+function setupKeyboardShortcuts() {
+    document.addEventListener('keydown', function(e) {
+        // Command mode with "/"
+        if (e.key === '/' && !isInputFocused()) {
+            e.preventDefault();
+            document.querySelector('.command-input').focus();
+        }
+        
+        // Alt + Number to select specific agents
+        if (e.altKey && !isNaN(parseInt(e.key)) && parseInt(e.key) >= 1 && parseInt(e.key) <= 5) {
+            e.preventDefault();
+            const agentIndex = parseInt(e.key) - 1;
+            const agentItems = document.querySelectorAll('.agent-item');
+            if (agentItems[agentIndex]) {
+                agentItems.forEach(item => item.classList.remove('active'));
+                agentItems[agentIndex].classList.add('active');
+                // In a real implementation, this would load the selected agent's data
+                console.log(`Selected agent ${agentIndex + 1} via keyboard shortcut`);
+            }
+        }
+        
+        // Ctrl + Number to switch between sections
+        if (e.ctrlKey && !isNaN(parseInt(e.key)) && parseInt(e.key) >= 1 && parseInt(e.key) <= 5) {
+            e.preventDefault();
+            const sectionIndex = parseInt(e.key) - 1;
+            const sections = document.querySelectorAll('.detail-section');
+            if (sections[sectionIndex]) {
+                // Scroll to the section
+                sections[sectionIndex].scrollIntoView({ behavior: 'smooth' });
+                console.log(`Navigated to section ${sectionIndex + 1} via keyboard shortcut`);
+            }
+        }
+        
+        // Escape to cancel current operation or close panels
+        if (e.key === 'Escape') {
+            const rightSidebar = document.querySelector('.right-sidebar');
+            if (rightSidebar.style.display === 'flex') {
+                rightSidebar.style.display = 'none';
+            }
+        }
+        
+        // F1-F5 for quick actions
+        if (e.key === 'F1') {
+            e.preventDefault();
+            console.log('Quick Action: Help/Documentation');
+            alert('Keyboard Shortcuts:\n\n/ - Enter command mode\nAlt+[1-5] - Select agent\nCtrl+[1-5] - Navigate to section\nEsc - Cancel/Close\nF1 - Help\nF2 - Rename\nF3 - Search\nF4 - Toggle configuration\nF5 - Refresh');
+        } else if (e.key === 'F2') {
+            e.preventDefault();
+            console.log('Quick Action: Rename agent');
+        } else if (e.key === 'F3') {
+            e.preventDefault();
+            document.querySelector('.global-search input').focus();
+        } else if (e.key === 'F4') {
+            e.preventDefault();
+            const rightSidebar = document.querySelector('.right-sidebar');
+            rightSidebar.style.display = rightSidebar.style.display === 'none' ? 'flex' : 'none';
+        } else if (e.key === 'F5') {
+            e.preventDefault();
+            console.log('Quick Action: Refresh agent data');
+            // In a real implementation, this would refresh the agent data
+        }
+    });
+    
+    // Helper function to check if an input element is focused
+    function isInputFocused() {
+        const activeElement = document.activeElement;
+        return activeElement.tagName === 'INPUT' || 
+               activeElement.tagName === 'TEXTAREA' || 
+               activeElement.tagName === 'SELECT';
+    }
+}
+
 // Function to handle navigation between views
 function navigateToView(viewName) {
     // In a real implementation, this would navigate to different views
@@ -405,8 +481,12 @@ function navigateToView(viewName) {
     // For demonstration, we'll just show a message
     if (viewName === 'command-center') {
         alert('Navigating to Command Center View');
+        // In a real implementation, this would redirect to the Command Center View
+        // window.location.href = 'command-center-view.html';
     } else if (viewName === 'workflow') {
         alert('Navigating to Workflow Designer View');
+        // In a real implementation, this would redirect to the Workflow Designer View
+        // window.location.href = 'workflow-designer-view.html';
     }
 }
 
@@ -423,4 +503,3 @@ document.addEventListener('DOMContentLoaded', function() {
         navigateToView('workflow');
     });
 });
-
