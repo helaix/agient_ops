@@ -150,8 +150,23 @@ function initResourceChart(data) {
  * Toggles the FAB menu
  */
 function toggleFabMenu() {
-    const fabContainer = document.querySelector('.fab-container');
-    fabContainer.classList.toggle('active');
+    try {
+        const fabContainer = document.querySelector('.fab-container');
+        if (!fabContainer) {
+            console.error('FAB container not found');
+            return;
+        }
+        
+        const fabButton = document.getElementById('main-fab');
+        const isActive = fabContainer.classList.toggle('active');
+        
+        // Update ARIA attributes for accessibility
+        if (fabButton) {
+            fabButton.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+        }
+    } catch (error) {
+        console.error('Error toggling FAB menu:', error);
+    }
 }
 
 /**
@@ -274,4 +289,3 @@ function handleAgentActionClick(event) {
         }
     }
 }
-

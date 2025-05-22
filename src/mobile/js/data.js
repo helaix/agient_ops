@@ -12,7 +12,7 @@ const agentData = [
         status: 'online',
         priority: 2,
         progress: 75,
-        avatar: 'assets/avatar-1.png'
+        avatar: 'assets/placeholder.svg'
     },
     {
         id: 'agent-2',
@@ -21,7 +21,7 @@ const agentData = [
         status: 'busy',
         priority: 4,
         progress: 32,
-        avatar: 'assets/avatar-2.png'
+        avatar: 'assets/placeholder.svg'
     },
     {
         id: 'agent-3',
@@ -30,7 +30,7 @@ const agentData = [
         status: 'online',
         priority: 3,
         progress: 89,
-        avatar: 'assets/avatar-3.png'
+        avatar: 'assets/placeholder.svg'
     },
     {
         id: 'agent-4',
@@ -39,7 +39,7 @@ const agentData = [
         status: 'idle',
         priority: 1,
         progress: 45,
-        avatar: 'assets/avatar-4.png'
+        avatar: 'assets/placeholder.svg'
     },
     {
         id: 'agent-5',
@@ -48,7 +48,7 @@ const agentData = [
         status: 'offline',
         priority: 2,
         progress: 0,
-        avatar: 'assets/avatar-5.png'
+        avatar: 'assets/placeholder.svg'
     }
 ];
 
@@ -158,4 +158,3 @@ const quickActions = [
         action: 'activateVoiceCommand'
     }
 ];
-

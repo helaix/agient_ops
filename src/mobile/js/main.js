@@ -12,33 +12,53 @@ document.addEventListener('DOMContentLoaded', () => {
  * Initializes the mobile interface
  */
 function initializeInterface() {
-    // Render agent cards
-    renderAgentCards(agentData);
-    
-    // Render activity list
-    renderActivityList(activityData);
-    
-    // Initialize resource chart
-    // We're checking if Chart.js is loaded to prevent errors
-    if (typeof Chart !== 'undefined') {
-        initResourceChart(resourceData);
-    } else {
-        // Create a placeholder for the chart if Chart.js is not available
-        const chartCanvas = document.getElementById('resource-chart');
-        if (chartCanvas) {
-            const ctx = chartCanvas.getContext('2d');
-            ctx.font = '12px Arial';
-            ctx.fillStyle = '#6c757d';
-            ctx.textAlign = 'center';
-            ctx.fillText('Chart data visualization', chartCanvas.width / 2, chartCanvas.height / 2);
+    try {
+        // Render agent cards
+        if (Array.isArray(agentData) && agentData.length > 0) {
+            renderAgentCards(agentData);
+        } else {
+            console.error('Agent data is missing or empty');
+            showErrorMessage('Could not load agent data');
         }
+        
+        // Render activity list
+        if (Array.isArray(activityData) && activityData.length > 0) {
+            renderActivityList(activityData);
+        } else {
+            console.error('Activity data is missing or empty');
+            showErrorMessage('Could not load activity data');
+        }
+        
+        // Initialize resource chart
+        // We're checking if Chart.js is loaded to prevent errors
+        if (typeof Chart !== 'undefined') {
+            if (resourceData && resourceData.datasets) {
+                initResourceChart(resourceData);
+            } else {
+                console.error('Resource data is missing or invalid');
+                showErrorMessage('Could not load resource data');
+            }
+        } else {
+            // Create a placeholder for the chart if Chart.js is not available
+            const chartCanvas = document.getElementById('resource-chart');
+            if (chartCanvas) {
+                const ctx = chartCanvas.getContext('2d');
+                ctx.font = '12px Arial';
+                ctx.fillStyle = '#6c757d';
+                ctx.textAlign = 'center';
+                ctx.fillText('Chart data visualization', chartCanvas.width / 2, chartCanvas.height / 2);
+            }
+        }
+        
+        // Set up event listeners
+        setupEventListeners();
+        
+        // Simulate loading state
+        simulateLoading();
+    } catch (error) {
+        console.error('Error initializing interface:', error);
+        showErrorMessage('Failed to initialize interface');
     }
-    
-    // Set up event listeners
-    setupEventListeners();
-    
-    // Simulate loading state
-    simulateLoading();
 }
 
 /**
@@ -186,3 +206,50 @@ function handleResponsiveAdjustments() {
 window.addEventListener('resize', handleResponsiveAdjustments);
 handleResponsiveAdjustments(); // Initial check
 
+/**
+ * Shows an error message to the user
+ * @param {string} message - Error message to display
+ */
+function showErrorMessage(message) {
+    // Create error message element if it doesn't exist
+    let errorMessage = document.querySelector('.error-message');
+    
+    if (!errorMessage) {
+        errorMessage = document.createElement('div');
+        errorMessage.className = 'error-message';
+        
+        // Add styles if not already in CSS
+        if (!document.querySelector('#error-styles')) {
+            const style = document.createElement('style');
+            style.id = 'error-styles';
+            style.textContent = `
+                .error-message {
+                    position: fixed;
+                    top: calc(var(--header-height) + 10px);
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background-color: var(--danger-color);
+                    color: white;
+                    padding: 10px 20px;
+                    border-radius: 4px;
+                    font-size: 14px;
+                    z-index: 1000;
+                    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                    max-width: 90%;
+                    text-align: center;
+                }
+            `;
+            document.head.appendChild(style);
+        }
+        
+        document.body.appendChild(errorMessage);
+    }
+    
+    // Set message and show error
+    errorMessage.textContent = message;
+    
+    // Hide after 5 seconds
+    setTimeout(() => {
+        errorMessage.remove();
+    }, 5000);
+}
