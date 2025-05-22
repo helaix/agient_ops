@@ -52,7 +52,7 @@ class LinearAPIClient:
         
         self.base_url = "https://api.linear.app/graphql"
         self.headers = {
-            "Authorization": f"Bearer {self.api_key}",
+            "Authorization": self.api_key,  # Remove Bearer prefix
             "Content-Type": "application/json"
         }
     
@@ -421,4 +421,3 @@ if __name__ == "__main__":
     for issue in issues:
         issue_with_relations = client.get_issue_with_relations(issue.id)
         print(f"{issue_with_relations.identifier}: blocks {len(issue_with_relations.blocking_issues)} issues, blocked by {len(issue_with_relations.blocked_by_issues)} issues")
-
