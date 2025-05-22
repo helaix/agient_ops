@@ -45,7 +45,11 @@ function NavigationControls({
   };
 
   return (
-    <Box className="navigation-controls">
+    <Box 
+      className="navigation-controls"
+      role="toolbar"
+      aria-label="Showcase navigation and filtering controls"
+    >
       <Box className="filter-group">
         <Tooltip title="Filter by device type">
           <FormControl variant="outlined" size="small">
@@ -57,28 +61,29 @@ function NavigationControls({
               onChange={handleDeviceTypeChange}
               label="Device Type"
               sx={{ minWidth: 150 }}
+              aria-label="Filter screens by device type"
             >
               <MenuItem value="all">
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                  <AllDevicesIcon sx={{ mr: 1 }} />
+                  <AllDevicesIcon sx={{ mr: 1 }} aria-hidden="true" />
                   All Devices
                 </Box>
               </MenuItem>
               <MenuItem value="desktop">
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                  <DesktopIcon sx={{ mr: 1 }} />
+                  <DesktopIcon sx={{ mr: 1 }} aria-hidden="true" />
                   Desktop
                 </Box>
               </MenuItem>
               <MenuItem value="tablet">
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                  <TabletIcon sx={{ mr: 1 }} />
+                  <TabletIcon sx={{ mr: 1 }} aria-hidden="true" />
                   Tablet
                 </Box>
               </MenuItem>
               <MenuItem value="mobile">
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                  <MobileIcon sx={{ mr: 1 }} />
+                  <MobileIcon sx={{ mr: 1 }} aria-hidden="true" />
                   Mobile
                 </Box>
               </MenuItem>
@@ -93,14 +98,24 @@ function NavigationControls({
             value={viewMode}
             exclusive
             onChange={handleViewModeChange}
-            aria-label="view mode"
+            aria-label="View mode selection"
             size="small"
           >
-            <ToggleButton value="grid" aria-label="grid view">
-              <GridIcon />
+            <ToggleButton 
+              value="grid" 
+              aria-label="grid view"
+              aria-pressed={viewMode === 'grid'}
+            >
+              <GridIcon aria-hidden="true" />
+              <span className="visually-hidden">Grid View</span>
             </ToggleButton>
-            <ToggleButton value="list" aria-label="list view">
-              <ListIcon />
+            <ToggleButton 
+              value="list" 
+              aria-label="list view"
+              aria-pressed={viewMode === 'list'}
+            >
+              <ListIcon aria-hidden="true" />
+              <span className="visually-hidden">List View</span>
             </ToggleButton>
           </ToggleButtonGroup>
         </Tooltip>
@@ -112,9 +127,11 @@ function NavigationControls({
             variant={comparisonMode ? "contained" : "outlined"} 
             color="primary" 
             onClick={onComparisonModeToggle}
-            startIcon={<CompareIcon />}
+            startIcon={<CompareIcon aria-hidden="true" />}
             disabled={selectedScreens.length < 2}
             size="small"
+            aria-pressed={comparisonMode}
+            aria-label="Toggle comparison mode"
           >
             Compare
           </Button>
@@ -122,7 +139,11 @@ function NavigationControls({
       </Box>
 
       {selectedScreens.length > 0 && (
-        <Box className="selected-screens">
+        <Box 
+          className="selected-screens"
+          role="region"
+          aria-label="Selected screens"
+        >
           <Box component="span" sx={{ mr: 1 }}>Selected:</Box>
           {selectedScreens.map(screenId => {
             const screen = screens.find(s => s.id === screenId);
@@ -135,6 +156,10 @@ function NavigationControls({
                 variant="outlined"
                 size="small"
                 sx={{ mr: 0.5 }}
+                aria-label={`${screen.title} (click to remove)`}
+                deleteButtonProps={{
+                  'aria-label': `Remove ${screen.title} from selection`
+                }}
               />
             );
           })}
@@ -145,4 +170,3 @@ function NavigationControls({
 }
 
 export default NavigationControls;
-

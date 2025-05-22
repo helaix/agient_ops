@@ -104,6 +104,9 @@ function ComponentLoader({
     return fallback;
   }
 
+  const metadata = componentRegistry.getMetadata(componentId) || {};
+  const componentName = metadata.title || componentId;
+
   return (
     <Box 
       ref={containerRef} 
@@ -116,18 +119,28 @@ function ComponentLoader({
         justifyContent: 'center',
         position: 'relative'
       }}
+      role="region"
+      aria-label={`${componentName} component container`}
     >
       {loading && (
-        <Box sx={{ textAlign: 'center', p: 4 }}>
-          <CircularProgress />
+        <Box 
+          sx={{ textAlign: 'center', p: 4 }}
+          role="status"
+          aria-live="polite"
+        >
+          <CircularProgress aria-label={`Loading ${componentName}`} />
           <Typography variant="body2" sx={{ mt: 2 }}>
-            Loading {componentRegistry.getMetadata(componentId)?.title || componentId}...
+            Loading {componentName}...
           </Typography>
         </Box>
       )}
       
       {error && (
-        <Alert severity="error" sx={{ width: '100%', maxWidth: 500 }}>
+        <Alert 
+          severity="error" 
+          sx={{ width: '100%', maxWidth: 500 }}
+          role="alert"
+        >
           {error}
         </Alert>
       )}
@@ -136,4 +149,3 @@ function ComponentLoader({
 }
 
 export default ComponentLoader;
-

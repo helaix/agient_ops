@@ -41,6 +41,25 @@ const theme = createTheme({
       'sans-serif',
     ].join(','),
   },
+  // Add accessibility-focused components to the theme
+  components: {
+    MuiButton: {
+      defaultProps: {
+        // Add focus visible class for keyboard navigation
+        focusVisibleClassName: 'keyboard-focus-indicator',
+      },
+    },
+    MuiIconButton: {
+      defaultProps: {
+        focusVisibleClassName: 'keyboard-focus-indicator',
+      },
+    },
+    MuiLink: {
+      defaultProps: {
+        focusVisibleClassName: 'keyboard-focus-indicator',
+      },
+    },
+  },
 });
 
 function App() {
@@ -48,13 +67,14 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Router>
-        <Routes>
-          <Route path="/" element={<ShowcasePage />} />
-        </Routes>
+        <main id="main-content">
+          <Routes>
+            <Route path="/" element={<ShowcasePage />} />
+          </Routes>
+        </main>
       </Router>
     </ThemeProvider>
   );
 }
 
 export default App;
-
