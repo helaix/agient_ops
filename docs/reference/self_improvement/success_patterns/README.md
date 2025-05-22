@@ -36,6 +36,15 @@ To begin using the Success Pattern Analysis Framework:
 5. Measure the effectiveness using the [Effectiveness Measurement](./measurement/README.md) framework
 6. Integrate the entire process into your workflows using the [Implementation Guidelines](./implementation/README.md)
 
+## Implementation
+
+For guidance on implementing the Success Pattern Analysis Framework, please refer to the [Integration Guide](../integration/README.md) and the [Implementation Workflow](../integration/implementation_workflow.md).
+
+## Related Components
+
+- [Error Tracking System](../error_tracking/): Complements success pattern analysis by focusing on what needs improvement.
+- [Feedback Collection System](../feedback_collection/): Provides external perspectives on success patterns and their impact.
+
 ## Integration with Self-Improvement Mechanisms
 
 This framework is part of the broader Self-Improvement Mechanisms project, which includes:
