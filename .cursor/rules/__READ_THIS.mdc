@@ -1,1 +1,53 @@
+# Agent Operations Documentation Entry Point
+
+## Overview
+
+This document serves as the central entry point for all agent operations documentation in the Agent Ops repository. All agents should consult this document at the beginning of every task to understand available resources and guidelines.
+
+## Key Resources
+
+### Integration Guidelines
+**Location**: `docs/reference/integration_guidelines/README.md`
+**When to use**: When setting up Linear-GitHub workflows, naming branches/commits, or working with issue tracking integration
+**Purpose**: Provides comprehensive guidelines for improving integration between Linear and GitHub
+
+### Documentation Structure
+- **Research Materials**: Background research and best practices
+- **Implementation Guides**: Step-by-step instructions for specific workflows
+- **Reference Materials**: Quick reference guides and standards
+
+## Quick Start
+
+1. **For Linear-GitHub Integration Tasks**: Start with `docs/reference/integration_guidelines/README.md`
+2. **For General Agent Operations**: Refer to the main documentation in `docs/`
+3. **For Specific Workflows**: Check the appropriate subdirectory in `docs/reference/`
+
+## Agent Workflow
+
+When starting any task:
+
+1. Read this document first
+2. Identify the relevant documentation section
+3. Follow the specific guidelines for your task type
+4. Ensure compliance with established standards
+
+## Documentation Standards
+
+All documentation in this repository follows these principles:
+- Clear, actionable guidance
+- Practical examples and code snippets
+- Consistent formatting and terminology
+- Comprehensive yet concise content
+
+## Getting Help
+
+If you need clarification on any documentation or guidelines:
+1. Check the relevant README files in each documentation section
+2. Review examples and implementation guides
+3. Consult the summary documents for quick reference
+
+---
+
+**Last Updated**: 2025-05-22
+**Maintained By**: Agent Operations Team
 
