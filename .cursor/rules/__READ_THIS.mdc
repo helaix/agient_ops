@@ -1,1 +1,57 @@
+# Agent Operations Guidelines
 
+## Introduction
+
+Welcome to the Agent Operations repository! This repository contains essential documentation, guidelines, and reference materials for agent operations within the Codegen ecosystem.
+
+## Key Resources
+
+### Linear Workflows
+
+When working with Linear issues, always refer to the [Linear Workflows Reference Guide](../../docs/reference/linear_workflows_reference.md) for comprehensive guidance on:
+
+- Understanding Linear workflows and components
+- Guidelines for working with Linear issues
+- Task delegation and communication best practices
+- Common tools and patterns
+- Troubleshooting and examples
+
+The [Linear Workflow Decision Diagram](../../docs/reference/linear_workflow_diagram.md) provides a visual guide for when to utilize the Linear Workflows Reference.
+
+### Templates
+
+When creating Linear issues, PRs, or status updates, use the standardized templates in the [Templates Documentation](../../docs/templates/README.md) which provides:
+
+- Linear issue templates for different task types (feature development, bug fixes, research tasks)
+- PR description templates following best practices
+- Status update templates for progress reports and completion notifications
+- Usage guidelines and examples for each template type
+
+### Agent Collaboration
+
+For multi-agent collaboration tasks, refer to the following resources:
+
+- [Agent Collaboration Workflow](../../docs/src/content/docs/reference/agent_collaboration_workflow.md): Core workflow definition
+- [Implementation Guide](../../docs/src/content/docs/reference/agent_collaboration_implementation_guide.md): Practical examples and code snippets
+- [Quick Reference](../../docs/src/content/docs/reference/agent_collaboration_quick_reference.md): Templates and checklists
+
+### Communication and Delegation
+
+For standardized communication and delegation practices, consult the [Communication and Delegation SOPs](../../docs/reference/communication_delegation_sops.md) which provides:
+
+- Analysis of communication patterns
+- Root causes of delegation failures
+- Recommended solutions and SOPs
+- Specific guidelines for delegating to sub-agents
+
+## When to Use These Resources
+
+1. **Starting a New Linear Task**: Review the Linear Workflows Reference
+2. **Creating Linear Issues, PRs, or Status Updates**: Use the Templates Documentation
+3. **Delegating Complex Tasks**: Consult both Linear Workflows and Agent Collaboration documents
+4. **Communication Issues**: Refer to Communication and Delegation SOPs
+5. **Code Management**: Follow guidelines in Agent Collaboration Workflow
+
+## Continuous Improvement
+
+These documents are continuously updated based on feedback and evolving best practices. If you identify areas for improvement, please create an issue or PR with your suggestions.
