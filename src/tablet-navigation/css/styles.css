@@ -1,0 +1,751 @@
+/* Base Styles */
+:root {
+    --primary-color: #4a6cf7;
+    --secondary-color: #6c757d;
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+    --info-color: #17a2b8;
+    --light-color: #f8f9fa;
+    --dark-color: #343a40;
+    --background-color: #f5f7fa;
+    --card-background: #ffffff;
+    --border-color: #e1e5eb;
+    --text-color: #495057;
+    --text-muted: #6c757d;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transition-speed: 0.3s;
+    --border-radius: 8px;
+    --bottom-bar-height: 70px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    overflow: hidden;
+    touch-action: manipulation;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.app-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Main Content Area */
+main {
+    height: calc(100vh - var(--bottom-bar-height));
+    overflow-y: auto;
+    padding: 20px;
+    padding-bottom: 90px; /* Extra padding to account for bottom bar */
+    transition: transform var(--transition-speed);
+}
+
+/* View Styles */
+.view {
+    display: none;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.active-view {
+    display: block;
+}
+
+.view-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.view-header h1 {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.view-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.action-button {
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+    box-shadow: var(--shadow);
+}
+
+.action-button:active {
+    transform: scale(0.95);
+    background-color: var(--light-color);
+}
+
+/* Bottom Tab Bar */
+.bottom-tab-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: var(--bottom-bar-height);
+    background-color: var(--card-background);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+}
+
+.tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    position: relative;
+    transition: all var(--transition-speed);
+    cursor: pointer;
+    width: 25%;
+    height: 100%;
+}
+
+.tab i {
+    font-size: 22px;
+    margin-bottom: 4px;
+    color: var(--secondary-color);
+    transition: all var(--transition-speed);
+}
+
+.tab span {
+    font-size: 12px;
+    color: var(--text-muted);
+    transition: all var(--transition-speed);
+}
+
+.tab.active i,
+.tab.active span {
+    color: var(--primary-color);
+}
+
+.tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 25%;
+    width: 50%;
+    height: 3px;
+    background-color: var(--primary-color);
+    border-radius: 3px 3px 0 0;
+}
+
+.tab:active {
+    transform: scale(0.95);
+}
+
+/* Badge Notification */
+.badge {
+    position: absolute;
+    top: 8px;
+    right: calc(50% - 15px);
+    background-color: var(--danger-color);
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(220, 53, 69, 0.4);
+}
+
+/* Context Menu (Long Press) */
+.context-menu {
+    position: fixed;
+    display: none;
+    flex-direction: column;
+    background-color: var(--card-background);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    overflow: hidden;
+    animation: scaleIn 0.2s ease-out;
+}
+
+.context-menu-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: background-color var(--transition-speed);
+}
+
+.context-menu-item:hover,
+.context-menu-item:active {
+    background-color: var(--light-color);
+}
+
+.context-menu-item i {
+    margin-right: 12px;
+    font-size: 16px;
+    width: 20px;
+    text-align: center;
+    color: var(--primary-color);
+}
+
+/* Preview Panel */
+.preview-panel {
+    position: fixed;
+    bottom: -300px;
+    left: 0;
+    width: 100%;
+    height: 300px;
+    background-color: var(--card-background);
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+    z-index: 900;
+    transition: transform var(--transition-speed);
+    display: flex;
+    flex-direction: column;
+}
+
+.preview-panel.active {
+    transform: translateY(-300px);
+}
+
+.preview-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.preview-header h3 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+#close-preview {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: var(--text-muted);
+}
+
+.preview-content {
+    flex: 1;
+    padding: 16px;
+    overflow-y: auto;
+}
+
+.preview-actions {
+    display: flex;
+    justify-content: flex-end;
+    padding: 12px 16px;
+    border-top: 1px solid var(--border-color);
+    gap: 12px;
+}
+
+.preview-action {
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all var(--transition-speed);
+}
+
+.preview-action[data-action="open"] {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.preview-action[data-action="edit"] {
+    background-color: var(--light-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+.preview-action:active {
+    transform: scale(0.95);
+}
+
+/* Swipe Action Indicators */
+.swipe-indicators {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.swipe-left-indicator,
+.swipe-right-indicator {
+    position: absolute;
+    top: 0;
+    width: 60px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    opacity: 0;
+    transition: opacity var(--transition-speed);
+}
+
+.swipe-left-indicator {
+    left: 0;
+    background: linear-gradient(to right, rgba(220, 53, 69, 0.2), transparent);
+    color: var(--danger-color);
+}
+
+.swipe-right-indicator {
+    right: 0;
+    background: linear-gradient(to left, rgba(40, 167, 69, 0.2), transparent);
+    color: var(--success-color);
+}
+
+.swipe-left-indicator.active,
+.swipe-right-indicator.active {
+    opacity: 1;
+}
+
+/* Card Styles for Agent, Task, and Workflow items */
+.agent-cards,
+.workflow-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 16px;
+}
+
+.card {
+    background-color: var(--card-background);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    padding: 16px;
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+    position: relative;
+    overflow: hidden;
+}
+
+.card:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.card-title {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.card-status {
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 12px;
+    background-color: var(--light-color);
+}
+
+.card-status.active {
+    background-color: rgba(40, 167, 69, 0.2);
+    color: var(--success-color);
+}
+
+.card-status.idle {
+    background-color: rgba(108, 117, 125, 0.2);
+    color: var(--secondary-color);
+}
+
+.card-content {
+    margin-bottom: 12px;
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+/* Task List Styles */
+.task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.task-item {
+    background-color: var(--card-background);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+    position: relative;
+    overflow: hidden;
+}
+
+.task-item:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.task-info {
+    flex: 1;
+}
+
+.task-title {
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 4px;
+}
+
+.task-description {
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+.task-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+}
+
+.task-priority {
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-weight: 500;
+}
+
+.priority-high {
+    background-color: rgba(220, 53, 69, 0.2);
+    color: var(--danger-color);
+}
+
+.priority-medium {
+    background-color: rgba(255, 193, 7, 0.2);
+    color: var(--warning-color);
+}
+
+.priority-low {
+    background-color: rgba(23, 162, 184, 0.2);
+    color: var(--info-color);
+}
+
+.task-due {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+/* Spatial View Styles */
+.spatial-canvas {
+    width: 100%;
+    height: 500px;
+    background-color: var(--card-background);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+    touch-action: none;
+}
+
+.node {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.1s;
+}
+
+.node-agent {
+    background-color: var(--primary-color);
+}
+
+.node-task {
+    background-color: var(--warning-color);
+}
+
+.node-workflow {
+    background-color: var(--success-color);
+}
+
+.edge {
+    position: absolute;
+    height: 2px;
+    background-color: var(--border-color);
+    transform-origin: left center;
+    z-index: -1;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Media Queries for different tablet sizes and orientations */
+/* Portrait Mode */
+@media (orientation: portrait) {
+    .agent-cards,
+    .workflow-cards {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+    
+    .bottom-tab-bar {
+        height: var(--bottom-bar-height);
+    }
+    
+    .tab i {
+        font-size: 22px;
+    }
+    
+    main {
+        height: calc(100vh - var(--bottom-bar-height));
+        padding-bottom: 90px;
+    }
+}
+
+/* Landscape Mode */
+@media (orientation: landscape) {
+    .agent-cards,
+    .workflow-cards {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+    
+    .bottom-tab-bar {
+        height: calc(var(--bottom-bar-height) * 0.8);
+    }
+    
+    .tab i {
+        font-size: 20px;
+    }
+    
+    main {
+        height: calc(100vh - (var(--bottom-bar-height) * 0.8));
+        padding-bottom: 70px;
+    }
+}
+
+/* iPad Pro (12.9") */
+@media (min-width: 1024px) and (max-height: 1366px) {
+    .agent-cards,
+    .workflow-cards {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+}
+
+/* iPad (10.2" and 10.5") */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .agent-cards,
+    .workflow-cards {
+        grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    }
+}
+
+/* Smaller tablets */
+@media (max-width: 767px) {
+    .agent-cards,
+    .workflow-cards {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    }
+    
+    .view-header h1 {
+        font-size: 20px;
+    }
+    
+    .action-button {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+/* Integration styles for unified showcase */
+.tablet-navigation-component {
+    width: 100%;
+    height: 100%;
+    border: none;
+    overflow: hidden;
+}
+
+/* Component boundary indicator (for development) */
+.component-boundary {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 2px dashed var(--primary-color);
+    pointer-events: none;
+    opacity: 0.3;
+    z-index: 9999;
+    display: none; /* Hidden by default, can be toggled for development */
+}
+
+/* Integration points for connecting with other views */
+.integration-point {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    z-index: 1000;
+    display: none; /* Hidden by default, can be toggled for development */
+}
+
+.integration-point.top {
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.integration-point.right {
+    top: 50%;
+    right: 0;
+    transform: translate(50%, -50%);
+}
+
+.integration-point.bottom {
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 50%);
+}
+
+.integration-point.left {
+    top: 50%;
+    left: 0;
+    transform: translate(-50%, -50%);
+}
+
+/* Touch-specific styles */
+@media (hover: none) {
+    .action-button:hover,
+    .context-menu-item:hover,
+    .tab:hover {
+        /* Remove hover effects on touch devices */
+        background-color: initial;
+    }
+}
+
+/* Utility Classes */
+.hidden {
+    display: none !important;
+}
+
+.no-scroll {
+    overflow: hidden !important;
+}
+
+/* Haptic Feedback Visual Indicator (since we can't actually trigger haptic feedback in a web demo) */
+.haptic-feedback {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+    pointer-events: none;
+    z-index: 9999;
+    animation: haptic 0.15s ease-out;
+}
+
+@keyframes haptic {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* Development Tools */
+.integration-controls {
+    display: none; /* Hidden by default, shown in development mode */
+    position: fixed;
+    bottom: 80px;
+    right: 10px;
+    z-index: 9999;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 8px;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.dev-button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.2s;
+}
+
+.dev-button:hover {
+    background-color: #3a5bd9;
+}
+
+.dev-select {
+    background-color: var(--light-color);
+    border: 1px solid var(--border-color);
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+/* Component States */
+.app-container.portrait .portrait-only {
+    display: block;
+}
+
+.app-container.landscape .landscape-only {
+    display: block;
+}
+
+.app-container.portrait .landscape-only,
+.app-container.landscape .portrait-only {
+    display: none;
+}

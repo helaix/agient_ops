@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Multi-Agent Management - Tablet Navigation</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container tablet-navigation-component">
+        <!-- Component boundary indicator (for development) -->
+        <div class="component-boundary"></div>
+        
+        <!-- Integration points (for development and integration) -->
+        <div class="integration-point top" data-connects-to="tablet-header"></div>
+        <div class="integration-point right" data-connects-to="tablet-context-panel"></div>
+        <div class="integration-point bottom" data-connects-to="tablet-command-input"></div>
+        <div class="integration-point left" data-connects-to="tablet-sidebar"></div>
+        
+        <!-- Main Content Area -->
+        <main id="main-content">
+            <!-- Agents View (Default View) -->
+            <section id="agents-view" class="view active-view">
+                <div class="view-header">
+                    <h1>Agents</h1>
+                    <div class="view-actions">
+                        <button class="action-button" id="filter-agents"><i class="fas fa-filter"></i></button>
+                        <button class="action-button" id="add-agent"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+                
+                <div class="agent-cards">
+                    <!-- Agent cards will be dynamically generated here -->
+                </div>
+            </section>
+
+            <!-- Tasks View -->
+            <section id="tasks-view" class="view">
+                <div class="view-header">
+                    <h1>Tasks</h1>
+                    <div class="view-actions">
+                        <button class="action-button" id="filter-tasks"><i class="fas fa-filter"></i></button>
+                        <button class="action-button" id="add-task"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+                
+                <div class="task-list">
+                    <!-- Task items will be dynamically generated here -->
+                </div>
+            </section>
+
+            <!-- Workflows View -->
+            <section id="workflows-view" class="view">
+                <div class="view-header">
+                    <h1>Workflows</h1>
+                    <div class="view-actions">
+                        <button class="action-button" id="filter-workflows"><i class="fas fa-filter"></i></button>
+                        <button class="action-button" id="add-workflow"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+                
+                <div class="workflow-cards">
+                    <!-- Workflow cards will be dynamically generated here -->
+                </div>
+            </section>
+
+            <!-- Spatial View (for demonstrating two-finger gestures) -->
+            <section id="spatial-view" class="view">
+                <div class="view-header">
+                    <h1>Spatial View</h1>
+                    <div class="view-actions">
+                        <button class="action-button" id="reset-view"><i class="fas fa-undo"></i></button>
+                    </div>
+                </div>
+                
+                <div class="spatial-canvas" id="spatial-canvas">
+                    <!-- Spatial visualization will be rendered here -->
+                </div>
+            </section>
+        </main>
+
+        <!-- Bottom Tab Bar Navigation -->
+        <nav class="bottom-tab-bar">
+            <div class="tab" data-view="agents-view">
+                <i class="fas fa-robot"></i>
+                <span>Agents</span>
+                <div class="badge">3</div>
+            </div>
+            <div class="tab" data-view="tasks-view">
+                <i class="fas fa-tasks"></i>
+                <span>Tasks</span>
+                <div class="badge">7</div>
+            </div>
+            <div class="tab" data-view="workflows-view">
+                <i class="fas fa-diagram-project"></i>
+                <span>Workflows</span>
+            </div>
+            <div class="tab" data-view="spatial-view">
+                <i class="fas fa-project-diagram"></i>
+                <span>Spatial</span>
+            </div>
+        </nav>
+
+        <!-- Context Menu (for long-press actions) -->
+        <div class="context-menu" id="context-menu">
+            <div class="context-menu-item" data-action="view">
+                <i class="fas fa-eye"></i>
+                <span>View Details</span>
+            </div>
+            <div class="context-menu-item" data-action="edit">
+                <i class="fas fa-edit"></i>
+                <span>Edit</span>
+            </div>
+            <div class="context-menu-item" data-action="duplicate">
+                <i class="fas fa-copy"></i>
+                <span>Duplicate</span>
+            </div>
+            <div class="context-menu-item" data-action="delete">
+                <i class="fas fa-trash"></i>
+                <span>Delete</span>
+            </div>
+        </div>
+
+        <!-- Preview Panel (for long-press preview) -->
+        <div class="preview-panel" id="preview-panel">
+            <div class="preview-header">
+                <h3 id="preview-title">Item Preview</h3>
+                <button id="close-preview"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="preview-content" id="preview-content">
+                <!-- Preview content will be dynamically generated -->
+            </div>
+            <div class="preview-actions">
+                <button class="preview-action" data-action="open">Open</button>
+                <button class="preview-action" data-action="edit">Edit</button>
+            </div>
+        </div>
+
+        <!-- Swipe Action Indicators -->
+        <div class="swipe-indicators">
+            <div class="swipe-left-indicator">
+                <i class="fas fa-archive"></i>
+            </div>
+            <div class="swipe-right-indicator">
+                <i class="fas fa-check"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Integration Controls (for development) -->
+    <div class="integration-controls">
+        <button id="toggle-boundaries" class="dev-button">Toggle Boundaries</button>
+        <button id="toggle-orientation" class="dev-button">Toggle Orientation</button>
+        <select id="device-selector" class="dev-select">
+            <option value="ipad-pro">iPad Pro (12.9")</option>
+            <option value="ipad">iPad (10.2"/10.5")</option>
+            <option value="ipad-mini">iPad Mini</option>
+            <option value="android-tablet">Android Tablet</option>
+        </select>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/gestures.js"></script>
+    <script src="js/longpress.js"></script>
+    <script src="js/swipe.js"></script>
+    <script src="js/integration.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
