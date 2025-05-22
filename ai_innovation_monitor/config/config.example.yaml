@@ -1,0 +1,315 @@
+# AI Innovation Monitoring & Adaptation System Configuration
+# Copy this file to config.yaml and customize for your environment
+
+system:
+  name: "AI Innovation Monitor"
+  version: "1.0.0"
+  environment: "production"  # development, staging, production
+
+# Core orchestration settings
+orchestrator:
+  max_concurrent_workflows: 10
+  workflow_timeout: 3600  # seconds
+  
+# Innovation detection configuration
+innovation_detector:
+  max_recent_items: 1000
+  
+  # Keyword weights for impact scoring
+  keyword_weights:
+    "artificial intelligence": 2.0
+    "machine learning": 1.8
+    "deep learning": 1.8
+    "neural network": 1.5
+    "transformer": 1.7
+    "GPT": 1.9
+    "LLM": 1.8
+    "AGI": 2.5
+    "breakthrough": 2.5
+    "state-of-the-art": 2.0
+    "SOTA": 2.0
+    "revolutionary": 2.2
+    "paradigm shift": 2.3
+    "game-changing": 2.1
+    
+  # Domain-specific weights
+  domain_weights:
+    "ai": 1.0
+    "ml": 1.0
+    "security": 1.2
+    "privacy": 1.1
+    "performance": 0.8
+    "scalability": 0.7
+    "safety": 1.3
+    
+  # Source credibility weights
+  source_weights:
+    "arxiv": 1.0
+    "github": 0.8
+    "news": 0.6
+    "social": 0.4
+    "patents": 0.9
+    "conferences": 1.1
+
+# Data source management
+source_manager:
+  sources:
+    arxiv:
+      enabled: true
+      api_key: ""  # Optional, for higher rate limits
+      categories:
+        - "cs.AI"  # Artificial Intelligence
+        - "cs.LG"  # Machine Learning
+        - "cs.CL"  # Computation and Language
+        - "cs.CV"  # Computer Vision
+        - "cs.RO"  # Robotics
+      check_interval: 3600  # seconds
+      max_results: 100
+      
+    github:
+      enabled: true
+      api_token: ""  # GitHub API token for higher rate limits
+      trending_languages:
+        - "python"
+        - "javascript"
+        - "typescript"
+        - "rust"
+        - "go"
+      trending_topics:
+        - "artificial-intelligence"
+        - "machine-learning"
+        - "deep-learning"
+        - "neural-networks"
+      check_interval: 1800
+      max_results: 50
+      
+    news:
+      enabled: true
+      sources:
+        - "techcrunch"
+        - "venturebeat"
+        - "wired"
+        - "mit-technology-review"
+        - "ai-news"
+      api_keys:
+        newsapi: ""  # NewsAPI key
+      check_interval: 1800
+      max_results: 50
+      
+    social:
+      enabled: false  # Disabled by default due to API complexity
+      platforms:
+        twitter:
+          api_key: ""
+          api_secret: ""
+          access_token: ""
+          access_token_secret: ""
+          hashtags:
+            - "#AI"
+            - "#MachineLearning"
+            - "#DeepLearning"
+            - "#ArtificialIntelligence"
+      check_interval: 900
+      
+    patents:
+      enabled: true
+      sources:
+        - "uspto"
+        - "epo"
+      keywords:
+        - "artificial intelligence"
+        - "machine learning"
+        - "neural network"
+      check_interval: 86400  # Daily
+      
+    conferences:
+      enabled: true
+      conferences:
+        - "neurips"
+        - "icml"
+        - "iclr"
+        - "aaai"
+        - "ijcai"
+      check_interval: 86400
+
+# System adaptation configuration
+adaptation_engine:
+  max_concurrent_adaptations: 3
+  auto_execute_threshold: 0.8  # Confidence threshold for automatic execution
+  require_approval_above_risk: "high"  # low, medium, high, critical
+  
+  # Adaptation strategies
+  strategies:
+    security:
+      enabled: true
+      auto_rollback: true
+      validation_required: true
+      
+    performance:
+      enabled: true
+      auto_rollback: false
+      validation_required: true
+      
+    infrastructure:
+      enabled: true
+      auto_rollback: true
+      validation_required: true
+      human_approval_required: true
+
+# Decision engine configuration
+decision_engine:
+  impact_thresholds:
+    critical: 9.0
+    high: 7.0
+    medium: 5.0
+    low: 3.0
+    
+  confidence_thresholds:
+    high: 0.8
+    medium: 0.6
+    low: 0.4
+    
+  risk_tolerance:
+    security: 0.2      # Very low tolerance for security risks
+    performance: 0.5   # Medium tolerance for performance risks
+    cost: 0.7         # Higher tolerance for cost increases
+    compliance: 0.1   # Very low tolerance for compliance risks
+
+# Monitoring and alerting
+monitoring:
+  health_check_interval: 60  # seconds
+  metrics_collection_interval: 300  # seconds
+  
+  alert_thresholds:
+    error_rate: 0.05           # 5% error rate
+    response_time: 5.0         # 5 seconds
+    queue_size: 1000           # Maximum queue size
+    memory_usage: 0.85         # 85% memory usage
+    cpu_usage: 0.90           # 90% CPU usage
+    
+  notifications:
+    email:
+      enabled: false
+      smtp_server: ""
+      smtp_port: 587
+      username: ""
+      password: ""
+      recipients: []
+      
+    slack:
+      enabled: false
+      webhook_url: ""
+      channel: "#ai-monitoring"
+      
+    webhook:
+      enabled: false
+      url: ""
+      headers: {}
+
+# Data storage configuration
+storage:
+  type: "file"  # file, postgresql, mongodb
+  
+  # File storage settings
+  file:
+    path: "data/"
+    retention_days: 90
+    compression: true
+    
+  # Database settings (if using database storage)
+  database:
+    host: "localhost"
+    port: 5432
+    database: "ai_monitor"
+    username: ""
+    password: ""
+    ssl_mode: "prefer"
+
+# API server configuration
+api:
+  enabled: true
+  host: "0.0.0.0"
+  port: 8080
+  enable_cors: true
+  
+  # Authentication (optional)
+  auth:
+    enabled: false
+    type: "api_key"  # api_key, jwt, oauth
+    api_keys: []
+    
+  # Rate limiting
+  rate_limiting:
+    enabled: true
+    requests_per_minute: 100
+    
+# Dashboard configuration
+dashboard:
+  enabled: true
+  refresh_interval: 30  # seconds
+  
+  # Dashboard features
+  features:
+    real_time_monitoring: true
+    historical_charts: true
+    adaptation_logs: true
+    system_metrics: true
+    
+# Logging configuration
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  
+  handlers:
+    console:
+      enabled: true
+      level: "INFO"
+      
+    file:
+      enabled: true
+      level: "DEBUG"
+      filename: "ai_innovation_monitor.log"
+      max_size: "10MB"
+      backup_count: 5
+      
+    syslog:
+      enabled: false
+      address: "localhost:514"
+      facility: "local0"
+
+# Security settings
+security:
+  encryption:
+    enabled: true
+    algorithm: "AES-256"
+    
+  secrets_management:
+    type: "file"  # file, vault, aws_secrets_manager
+    file_path: "secrets.yaml"
+    
+  audit_logging:
+    enabled: true
+    log_file: "audit.log"
+
+# Performance tuning
+performance:
+  worker_threads: 4
+  connection_pool_size: 10
+  cache_size: 1000
+  batch_size: 50
+  
+  # Memory limits
+  max_memory_usage: "2GB"
+  gc_threshold: 0.8
+
+# Development and testing
+development:
+  debug_mode: false
+  mock_sources: false
+  test_mode: false
+  
+  # Test data
+  test_data:
+    innovations_per_hour: 5
+    simulate_failures: false
+
