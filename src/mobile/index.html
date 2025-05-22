@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Multi-Agent Management - Mobile Interface</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/components.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="mobile-container">
+        <!-- Header -->
+        <header class="app-header">
+            <h1>Agent Hub</h1>
+            <button class="header-button"><i class="fas fa-cog"></i></button>
+        </header>
+
+        <!-- Agent Cards Section -->
+        <section class="agent-cards-container">
+            <h2 class="section-title">Active Agents</h2>
+            <div class="agent-cards">
+                <!-- Agent cards will be dynamically generated here -->
+            </div>
+        </section>
+
+        <!-- Status Dashboard -->
+        <section class="status-dashboard">
+            <h2 class="section-title">System Status</h2>
+            <div class="metrics-grid">
+                <div class="metric-card" id="system-health">
+                    <h3>System Health</h3>
+                    <div class="health-indicator">
+                        <div class="health-bar" style="width: 85%;"></div>
+                    </div>
+                    <p class="health-status">Excellent (85%)</p>
+                </div>
+                <div class="metric-card" id="active-tasks">
+                    <h3>Active Tasks</h3>
+                    <div class="task-count">12</div>
+                    <p class="task-status">4 critical</p>
+                </div>
+                <div class="metric-card" id="resource-usage">
+                    <h3>Resource Usage</h3>
+                    <canvas id="resource-chart"></canvas>
+                </div>
+                <div class="metric-card" id="response-time">
+                    <h3>Avg. Response</h3>
+                    <div class="response-time">1.2s</div>
+                    <p class="response-trend">↓ 0.3s</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recent Activity Log -->
+        <section class="activity-log">
+            <h2 class="section-title">Recent Activity</h2>
+            <ul class="activity-list">
+                <!-- Activity items will be dynamically generated here -->
+            </ul>
+        </section>
+
+        <!-- Floating Action Button -->
+        <div class="fab-container">
+            <button class="fab-button" id="main-fab">
+                <i class="fas fa-plus"></i>
+            </button>
+            <div class="fab-actions">
+                <button class="fab-action-button" data-action="new-task">
+                    <i class="fas fa-tasks"></i>
+                </button>
+                <button class="fab-action-button" data-action="new-agent">
+                    <i class="fas fa-robot"></i>
+                </button>
+                <button class="fab-action-button" data-action="voice-command">
+                    <i class="fas fa-microphone"></i>
+                </button>
+                <button class="fab-action-button" data-action="quick-action">
+                    <i class="fas fa-bolt"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <button class="nav-item active" data-view="agents">
+                <i class="fas fa-robot"></i>
+                <span>Agents</span>
+                <div class="badge">3</div>
+            </button>
+            <button class="nav-item" data-view="tasks">
+                <i class="fas fa-tasks"></i>
+                <span>Tasks</span>
+                <div class="badge">7</div>
+            </button>
+            <button class="nav-item" data-view="notifications">
+                <i class="fas fa-bell"></i>
+                <span>Alerts</span>
+                <div class="badge">2</div>
+            </button>
+        </nav>
+    </div>
+
+    <!-- Templates for dynamic content -->
+    <template id="agent-card-template">
+        <div class="agent-card">
+            <div class="agent-avatar">
+                <img src="" alt="Agent Avatar">
+                <div class="status-indicator"></div>
+            </div>
+            <div class="agent-info">
+                <h3 class="agent-name"></h3>
+                <div class="agent-type"></div>
+                <div class="priority-indicator">
+                    <span class="priority-bar"></span>
+                    <span class="priority-bar"></span>
+                    <span class="priority-bar"></span>
+                    <span class="priority-bar"></span>
+                </div>
+            </div>
+            <div class="agent-progress">
+                <svg class="progress-circle" viewBox="0 0 36 36">
+                    <path class="progress-circle-bg"
+                        d="M18 2.0845
+                        a 15.9155 15.9155 0 0 1 0 31.831
+                        a 15.9155 15.9155 0 0 1 0 -31.831" />
+                    <path class="progress-circle-fill"
+                        stroke-dasharray="0, 100"
+                        d="M18 2.0845
+                        a 15.9155 15.9155 0 0 1 0 31.831
+                        a 15.9155 15.9155 0 0 1 0 -31.831" />
+                </svg>
+                <span class="progress-text"></span>
+            </div>
+            <div class="agent-actions">
+                <button class="action-button" data-action="pause">
+                    <i class="fas fa-pause"></i>
+                </button>
+                <button class="action-button" data-action="info">
+                    <i class="fas fa-info"></i>
+                </button>
+            </div>
+        </div>
+    </template>
+
+    <template id="activity-item-template">
+        <li class="activity-item">
+            <div class="activity-icon">
+                <i class="fas"></i>
+            </div>
+            <div class="activity-content">
+                <div class="activity-title"></div>
+                <div class="activity-time"></div>
+            </div>
+        </li>
+    </template>
+
+    <!-- Scripts -->
+    <script src="js/chart.min.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/integration.js"></script>
+</body>
+</html>
