@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desktop Agent Detail View - Multi-Agent Management</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Top Navigation Bar -->
+        <header class="top-bar">
+            <div class="logo">
+                <i class="fas fa-robot"></i>
+                <span>Multi-Agent Management</span>
+            </div>
+            <div class="global-search">
+                <input type="text" placeholder="Search agents, tasks, contexts...">
+                <i class="fas fa-search"></i>
+            </div>
+            <div class="global-actions">
+                <button class="action-btn"><i class="fas fa-plus"></i> New Agent</button>
+                <button class="action-btn"><i class="fas fa-cog"></i></button>
+                <div class="user-profile">
+                    <img src="https://via.placeholder.com/32" alt="User Profile">
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <!-- Left Sidebar - Agent List -->
+            <aside class="left-sidebar">
+                <div class="sidebar-header">
+                    <h3>Agents</h3>
+                    <button class="filter-btn"><i class="fas fa-filter"></i></button>
+                </div>
+                <div class="agent-list">
+                    <div class="agent-item active">
+                        <div class="agent-icon research"><i class="fas fa-search"></i></div>
+                        <div class="agent-info">
+                            <h4>Research Agent</h4>
+                            <span class="status active">Active</span>
+                        </div>
+                    </div>
+                    <div class="agent-item">
+                        <div class="agent-icon coding"><i class="fas fa-code"></i></div>
+                        <div class="agent-info">
+                            <h4>Coding Assistant</h4>
+                            <span class="status idle">Idle</span>
+                        </div>
+                    </div>
+                    <div class="agent-item">
+                        <div class="agent-icon writing"><i class="fas fa-pen"></i></div>
+                        <div class="agent-info">
+                            <h4>Content Writer</h4>
+                            <span class="status busy">Busy</span>
+                        </div>
+                    </div>
+                    <div class="agent-item">
+                        <div class="agent-icon data"><i class="fas fa-database"></i></div>
+                        <div class="agent-info">
+                            <h4>Data Analyst</h4>
+                            <span class="status idle">Idle</span>
+                        </div>
+                    </div>
+                    <div class="agent-item">
+                        <div class="agent-icon customer"><i class="fas fa-headset"></i></div>
+                        <div class="agent-info">
+                            <h4>Customer Support</h4>
+                            <span class="status offline">Offline</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar-footer">
+                    <button class="view-btn active"><i class="fas fa-th-large"></i> Command Center</button>
+                    <button class="view-btn"><i class="fas fa-project-diagram"></i> Workflow</button>
+                </div>
+            </aside>
+
+            <!-- Agent Detail Content -->
+            <div class="detail-content">
+                <!-- Agent Header -->
+                <div class="agent-header">
+                    <div class="agent-title">
+                        <div class="agent-icon research large"><i class="fas fa-search"></i></div>
+                        <div>
+                            <h2>Research Agent</h2>
+                            <div class="agent-tags">
+                                <span class="tag">Information Retrieval</span>
+                                <span class="tag">Data Analysis</span>
+                                <span class="tag">Web Search</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="agent-actions">
+                        <button class="action-btn"><i class="fas fa-pause"></i> Pause</button>
+                        <button class="action-btn"><i class="fas fa-sync"></i> Restart</button>
+                        <button class="action-btn danger"><i class="fas fa-power-off"></i> Stop</button>
+                    </div>
+                </div>
+
+                <!-- Agent Detail Sections -->
+                <div class="detail-sections">
+                    <!-- Agent Profile Section -->
+                    <section class="detail-section">
+                        <div class="section-header">
+                            <h3><i class="fas fa-id-card"></i> Agent Profile</h3>
+                            <button class="section-action"><i class="fas fa-cog"></i></button>
+                        </div>
+                        <div class="section-content profile-content">
+                            <div class="profile-grid">
+                                <div class="profile-item">
+                                    <h4>Status</h4>
+                                    <div class="status-indicator">
+                                        <span class="status-dot active"></span>
+                                        <span>Active - Processing Task #1289</span>
+                                    </div>
+                                </div>
+                                <div class="profile-item">
+                                    <h4>Uptime</h4>
+                                    <div class="uptime">
+                                        <i class="fas fa-clock"></i>
+                                        <span>3d 7h 22m</span>
+                                    </div>
+                                </div>
+                                <div class="profile-item">
+                                    <h4>Version</h4>
+                                    <div class="version">
+                                        <span>v2.3.1</span>
+                                        <span class="update-available">Update Available</span>
+                                    </div>
+                                </div>
+                                <div class="profile-item">
+                                    <h4>Resource Usage</h4>
+                                    <div class="resource-usage">
+                                        <div class="resource-bar">
+                                            <div class="resource-label">CPU</div>
+                                            <div class="progress-bar">
+                                                <div class="progress" style="width: 45%"></div>
+                                            </div>
+                                            <div class="resource-value">45%</div>
+                                        </div>
+                                        <div class="resource-bar">
+                                            <div class="resource-label">RAM</div>
+                                            <div class="progress-bar">
+                                                <div class="progress" style="width: 62%"></div>
+                                            </div>
+                                            <div class="resource-value">62%</div>
+                                        </div>
+                                        <div class="resource-bar">
+                                            <div class="resource-label">API</div>
+                                            <div class="progress-bar">
+                                                <div class="progress" style="width: 28%"></div>
+                                            </div>
+                                            <div class="resource-value">28%</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="capabilities-container">
+                                <h4>Capabilities</h4>
+                                <div class="capabilities-list">
+                                    <div class="capability-item">
+                                        <i class="fas fa-globe"></i>
+                                        <span>Web Search</span>
+                                    </div>
+                                    <div class="capability-item">
+                                        <i class="fas fa-file-alt"></i>
+                                        <span>Document Analysis</span>
+                                    </div>
+                                    <div class="capability-item">
+                                        <i class="fas fa-chart-line"></i>
+                                        <span>Data Visualization</span>
+                                    </div>
+                                    <div class="capability-item">
+                                        <i class="fas fa-newspaper"></i>
+                                        <span>News Monitoring</span>
+                                    </div>
+                                    <div class="capability-item">
+                                        <i class="fas fa-book"></i>
+                                        <span>Academic Research</span>
+                                    </div>
+                                    <div class="capability-item">
+                                        <i class="fas fa-plus-circle"></i>
+                                        <span>Add Capability</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Task Queue Section -->
+                    <section class="detail-section">
+                        <div class="section-header">
+                            <h3><i class="fas fa-tasks"></i> Task Queue</h3>
+                            <button class="section-action"><i class="fas fa-plus"></i> Add Task</button>
+                        </div>
+                        <div class="section-content">
+                            <div class="current-task">
+                                <div class="task-header">
+                                    <h4>Current Task</h4>
+                                    <span class="task-time">Started 27m ago</span>
+                                </div>
+                                <div class="task-card active">
+                                    <div class="task-priority high"></div>
+                                    <div class="task-content">
+                                        <h5>Research renewable energy trends in Europe for Q2 2025</h5>
+                                        <div class="task-meta">
+                                            <span><i class="fas fa-hashtag"></i> Task #1289</span>
+                                            <span><i class="fas fa-user"></i> Requested by: Alex</span>
+                                        </div>
+                                        <div class="task-progress">
+                                            <div class="progress-bar">
+                                                <div class="progress" style="width: 65%"></div>
+                                            </div>
+                                            <span>65%</span>
+                                        </div>
+                                    </div>
+                                    <div class="task-actions">
+                                        <button class="task-btn"><i class="fas fa-pause"></i></button>
+                                        <button class="task-btn"><i class="fas fa-times"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="upcoming-tasks">
+                                <div class="task-header">
+                                    <h4>Upcoming Tasks</h4>
+                                    <div class="task-filters">
+                                        <span class="active">All</span>
+                                        <span>High Priority</span>
+                                        <span>Today</span>
+                                    </div>
+                                </div>
+                                <div class="task-list">
+                                    <div class="task-card">
+                                        <div class="task-priority medium"></div>
+                                        <div class="task-content">
+                                            <h5>Analyze competitor product features and pricing</h5>
+                                            <div class="task-meta">
+                                                <span><i class="fas fa-hashtag"></i> Task #1290</span>
+                                                <span><i class="fas fa-clock"></i> Scheduled: Today</span>
+                                            </div>
+                                        </div>
+                                        <div class="task-actions">
+                                            <button class="task-btn"><i class="fas fa-arrow-up"></i></button>
+                                            <button class="task-btn"><i class="fas fa-edit"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="task-card">
+                                        <div class="task-priority high"></div>
+                                        <div class="task-content">
+                                            <h5>Prepare market research report for executive meeting</h5>
+                                            <div class="task-meta">
+                                                <span><i class="fas fa-hashtag"></i> Task #1291</span>
+                                                <span><i class="fas fa-clock"></i> Scheduled: Today</span>
+                                            </div>
+                                        </div>
+                                        <div class="task-actions">
+                                            <button class="task-btn"><i class="fas fa-arrow-up"></i></button>
+                                            <button class="task-btn"><i class="fas fa-edit"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="task-card">
+                                        <div class="task-priority low"></div>
+                                        <div class="task-content">
+                                            <h5>Find latest academic papers on AI ethics</h5>
+                                            <div class="task-meta">
+                                                <span><i class="fas fa-hashtag"></i> Task #1292</span>
+                                                <span><i class="fas fa-clock"></i> Scheduled: Tomorrow</span>
+                                            </div>
+                                        </div>
+                                        <div class="task-actions">
+                                            <button class="task-btn"><i class="fas fa-arrow-up"></i></button>
+                                            <button class="task-btn"><i class="fas fa-edit"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Context Access Section -->
+                    <section class="detail-section">
+                        <div class="section-header">
+                            <h3><i class="fas fa-project-diagram"></i> Context Access</h3>
+                            <button class="section-action"><i class="fas fa-plus"></i> Add Context</button>
+                        </div>
+                        <div class="section-content">
+                            <div class="context-visualization">
+                                <canvas id="contextGraph"></canvas>
+                            </div>
+                            <div class="context-controls">
+                                <div class="context-list">
+                                    <div class="context-item active">
+                                        <div class="context-icon"><i class="fas fa-database"></i></div>
+                                        <div class="context-info">
+                                            <h5>Market Research DB</h5>
+                                            <span>Full Access</span>
+                                        </div>
+                                        <div class="context-actions">
+                                            <button class="context-btn"><i class="fas fa-share-alt"></i></button>
+                                            <button class="context-btn"><i class="fas fa-cog"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="context-item">
+                                        <div class="context-icon"><i class="fas fa-file-alt"></i></div>
+                                        <div class="context-info">
+                                            <h5>Company Reports</h5>
+                                            <span>Read Access</span>
+                                        </div>
+                                        <div class="context-actions">
+                                            <button class="context-btn"><i class="fas fa-share-alt"></i></button>
+                                            <button class="context-btn"><i class="fas fa-cog"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="context-item">
+                                        <div class="context-icon"><i class="fas fa-globe"></i></div>
+                                        <div class="context-info">
+                                            <h5>Web Search History</h5>
+                                            <span>Full Access</span>
+                                        </div>
+                                        <div class="context-actions">
+                                            <button class="context-btn"><i class="fas fa-share-alt"></i></button>
+                                            <button class="context-btn"><i class="fas fa-cog"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="context-history">
+                                    <h4>Recent Context Access</h4>
+                                    <div class="history-list">
+                                        <div class="history-item">
+                                            <span class="history-time">10:32 AM</span>
+                                            <span class="history-action">Accessed Market Research DB</span>
+                                        </div>
+                                        <div class="history-item">
+                                            <span class="history-time">09:47 AM</span>
+                                            <span class="history-action">Shared Web Search History with Data Analyst</span>
+                                        </div>
+                                        <div class="history-item">
+                                            <span class="history-time">Yesterday</span>
+                                            <span class="history-action">Updated access to Company Reports</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Performance Metrics Section -->
+                    <section class="detail-section">
+                        <div class="section-header">
+                            <h3><i class="fas fa-chart-line"></i> Performance Metrics</h3>
+                            <div class="time-filter">
+                                <span class="active">Day</span>
+                                <span>Week</span>
+                                <span>Month</span>
+                            </div>
+                        </div>
+                        <div class="section-content metrics-content">
+                            <div class="metrics-grid">
+                                <div class="metric-card">
+                                    <div class="metric-header">
+                                        <h4>Response Time</h4>
+                                        <span class="metric-trend positive"><i class="fas fa-arrow-down"></i> 12%</span>
+                                    </div>
+                                    <div class="metric-chart">
+                                        <canvas id="responseTimeChart"></canvas>
+                                    </div>
+                                    <div class="metric-summary">
+                                        <div class="summary-value">1.8s</div>
+                                        <div class="summary-label">Average</div>
+                                    </div>
+                                </div>
+                                <div class="metric-card">
+                                    <div class="metric-header">
+                                        <h4>Completion Rate</h4>
+                                        <span class="metric-trend positive"><i class="fas fa-arrow-up"></i> 5%</span>
+                                    </div>
+                                    <div class="metric-chart">
+                                        <canvas id="completionRateChart"></canvas>
+                                    </div>
+                                    <div class="metric-summary">
+                                        <div class="summary-value">94%</div>
+                                        <div class="summary-label">Success Rate</div>
+                                    </div>
+                                </div>
+                                <div class="metric-card">
+                                    <div class="metric-header">
+                                        <h4>Resource Efficiency</h4>
+                                        <span class="metric-trend positive"><i class="fas fa-arrow-up"></i> 8%</span>
+                                    </div>
+                                    <div class="metric-chart">
+                                        <canvas id="resourceEfficiencyChart"></canvas>
+                                    </div>
+                                    <div class="metric-summary">
+                                        <div class="summary-value">87%</div>
+                                        <div class="summary-label">Efficiency Score</div>
+                                    </div>
+                                </div>
+                                <div class="metric-card">
+                                    <div class="metric-header">
+                                        <h4>Tasks Completed</h4>
+                                        <span class="metric-trend neutral"><i class="fas fa-equals"></i> 0%</span>
+                                    </div>
+                                    <div class="metric-chart">
+                                        <canvas id="tasksCompletedChart"></canvas>
+                                    </div>
+                                    <div class="metric-summary">
+                                        <div class="summary-value">42</div>
+                                        <div class="summary-label">Last 24 Hours</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Command Terminal Section -->
+                    <section class="detail-section">
+                        <div class="section-header">
+                            <h3><i class="fas fa-terminal"></i> Command Terminal</h3>
+                            <div class="terminal-actions">
+                                <button class="terminal-btn"><i class="fas fa-history"></i></button>
+                                <button class="terminal-btn"><i class="fas fa-cog"></i></button>
+                                <button class="terminal-btn"><i class="fas fa-expand"></i></button>
+                            </div>
+                        </div>
+                        <div class="section-content terminal-content">
+                            <div class="terminal-output">
+                                <div class="terminal-line system">
+                                    <span class="timestamp">10:30:15</span>
+                                    <span class="content">System: Connected to Research Agent v2.3.1</span>
+                                </div>
+                                <div class="terminal-line user">
+                                    <span class="timestamp">10:30:22</span>
+                                    <span class="content">User: @research find information about renewable energy trends in Europe</span>
+                                </div>
+                                <div class="terminal-line agent">
+                                    <span class="timestamp">10:30:25</span>
+                                    <span class="content">Agent: I'll search for the latest information on renewable energy trends in Europe. This may take a moment...</span>
+                                </div>
+                                <div class="terminal-line agent">
+                                    <span class="timestamp">10:30:45</span>
+                                    <span class="content">Agent: Searching academic databases and recent news sources...</span>
+                                </div>
+                                <div class="terminal-line agent">
+                                    <span class="timestamp">10:31:12</span>
+                                    <span class="content">Agent: I've found several relevant sources. The latest reports indicate that solar capacity in Europe increased by 41% in Q1 2025 compared to the same period last year.</span>
+                                </div>
+                                <div class="terminal-line agent">
+                                    <span class="timestamp">10:31:30</span>
+                                    <span class="content">Agent: Wind energy installations have also seen a 28% growth, with offshore wind projects accounting for the majority of new capacity.</span>
+                                </div>
+                                <div class="terminal-line user">
+                                    <span class="timestamp">10:31:45</span>
+                                    <span class="content">User: What about investment trends?</span>
+                                </div>
+                                <div class="terminal-line agent">
+                                    <span class="timestamp">10:31:50</span>
+                                    <span class="content">Agent: Analyzing investment data...</span>
+                                </div>
+                                <div class="terminal-line agent">
+                                    <span class="timestamp">10:32:10</span>
+                                    <span class="content">Agent: Investment in renewable energy in Europe reached €45.7 billion in Q1 2025, a 32% increase year-over-year. The largest investments were in Germany (€12.3B), Spain (€8.7B), and Denmark (€6.9B).</span>
+                                </div>
+                            </div>
+                            <div class="terminal-input">
+                                <div class="input-prefix">@research</div>
+                                <input type="text" placeholder="Type a command..." class="command-input">
+                                <button class="send-btn"><i class="fas fa-paper-plane"></i></button>
+                            </div>
+                            <div class="command-suggestions">
+                                <div class="suggestion-item">find information about <span class="highlight">renewable energy policy</span></div>
+                                <div class="suggestion-item">analyze trends in <span class="highlight">battery storage technology</span></div>
+                                <div class="suggestion-item">compare <span class="highlight">solar vs wind</span> growth rates</div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <!-- Right Sidebar - Configuration Panel -->
+            <aside class="right-sidebar">
+                <div class="sidebar-header">
+                    <h3>Configuration</h3>
+                    <button class="close-btn"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="config-sections">
+                    <div class="config-section">
+                        <h4>Agent Settings</h4>
+                        <div class="config-item">
+                            <label>Name</label>
+                            <input type="text" value="Research Agent">
+                        </div>
+                        <div class="config-item">
+                            <label>Description</label>
+                            <textarea>Specialized in information retrieval and data analysis across multiple sources.</textarea>
+                        </div>
+                        <div class="config-item">
+                            <label>Model</label>
+                            <select>
+                                <option>GPT-4 Turbo</option>
+                                <option>Claude 3 Opus</option>
+                                <option>Gemini Pro</option>
+                                <option>Custom Model</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="config-section">
+                        <h4>Resource Allocation</h4>
+                        <div class="config-item">
+                            <label>CPU Priority</label>
+                            <div class="slider-container">
+                                <input type="range" min="1" max="10" value="7">
+                                <span>7/10</span>
+                            </div>
+                        </div>
+                        <div class="config-item">
+                            <label>Memory Limit</label>
+                            <div class="slider-container">
+                                <input type="range" min="1" max="16" value="8">
+                                <span>8 GB</span>
+                            </div>
+                        </div>
+                        <div class="config-item">
+                            <label>API Rate Limit</label>
+                            <div class="slider-container">
+                                <input type="range" min="10" max="100" value="60">
+                                <span>60 req/min</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="config-section">
+                        <h4>Access Control</h4>
+                        <div class="config-item">
+                            <label>Permission Level</label>
+                            <select>
+                                <option>Standard</option>
+                                <option>Elevated</option>
+                                <option>Admin</option>
+                                <option>Custom</option>
+                            </select>
+                        </div>
+                        <div class="config-item checkbox">
+                            <input type="checkbox" id="internet-access" checked>
+                            <label for="internet-access">Internet Access</label>
+                        </div>
+                        <div class="config-item checkbox">
+                            <input type="checkbox" id="file-system" checked>
+                            <label for="file-system">File System Access</label>
+                        </div>
+                        <div class="config-item checkbox">
+                            <input type="checkbox" id="api-access" checked>
+                            <label for="api-access">External API Access</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar-footer">
+                    <button class="secondary-btn">Reset to Default</button>
+                    <button class="primary-btn">Save Changes</button>
+                </div>
+            </aside>
+        </div>
+
+        <!-- Bottom Status Bar -->
+        <footer class="bottom-bar">
+            <div class="system-status">
+                <span class="status-item"><i class="fas fa-server"></i> System: Online</span>
+                <span class="status-item"><i class="fas fa-microchip"></i> CPU: 32%</span>
+                <span class="status-item"><i class="fas fa-memory"></i> RAM: 4.2/16 GB</span>
+            </div>
+            <div class="notification-center">
+                <span><i class="fas fa-bell"></i> 3 Notifications</span>
+            </div>
+        </footer>
+    </div>
+
+    <script src="agent-detail-view.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Agent Management UI/UX Mockups</title>
+    <link rel="stylesheet" href="showcase.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="showcase-container">
+        <header class="showcase-header">
+            <h1>Multi-Agent Management UI/UX Mockups</h1>
+            <div class="view-selector">
+                <select id="viewSelector">
+                    <option value="desktop-agent-detail">Desktop: Agent Detail View</option>
+                    <option value="desktop-command-center">Desktop: Command Center View</option>
+                    <option value="desktop-workflow">Desktop: Workflow Designer</option>
+                    <option value="tablet-command-center">Tablet: Adaptive Command Center</option>
+                    <option value="tablet-navigation">Tablet: Navigation Patterns</option>
+                    <option value="mobile-interface">Mobile: Focused Interface</option>
+                    <option value="mobile-navigation">Mobile: Hierarchical Navigation</option>
+                </select>
+                <button id="fullscreenBtn"><i class="fas fa-expand"></i></button>
+            </div>
+        </header>
+        
+        <main class="showcase-content">
+            <div class="view-description">
+                <h2 id="currentViewTitle">Desktop: Agent Detail View</h2>
+                <p id="currentViewDescription">This view provides detailed information and controls when focusing on a specific agent. It includes agent profile, task queue, context access, performance metrics, and command terminal sections.</p>
+            </div>
+            
+            <div class="iframe-container">
+                <iframe id="viewFrame" src="desktop/agent-detail-view.html" title="UI Mockup View"></iframe>
+            </div>
+        </main>
+        
+        <footer class="showcase-footer">
+            <div class="navigation">
+                <button id="prevBtn"><i class="fas fa-arrow-left"></i> Previous View</button>
+                <button id="nextBtn">Next View <i class="fas fa-arrow-right"></i></button>
+            </div>
+            <div class="info">
+                <span>Multi-Agent Management UI/UX Mockups</span>
+                <span>HLX-1671</span>
+            </div>
+        </footer>
+    </div>
+
+    <script src="showcase.js"></script>
+</body>
+</html>
+
