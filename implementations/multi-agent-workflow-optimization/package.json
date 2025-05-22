@@ -1,0 +1,45 @@
+{
+  "name": "multi-agent-workflow-optimization",
+  "version": "1.0.0",
+  "description": "Comprehensive multi-agent workflow system for optimizing development workstreams",
+  "main": "agents/workflow-orchestrator.js",
+  "scripts": {
+    "start": "node agents/workflow-orchestrator.js",
+    "start:orchestrator": "node agents/workflow-orchestrator.js",
+    "start:integration-dashboard": "node agents/integration-dashboard.js",
+    "start:review-manager": "node agents/review-bottleneck-manager.js",
+    "start:context-optimizer": "node agents/context-switching-optimizer.js",
+    "start:doc-bridge": "node agents/documentation-implementation-bridge.js",
+    "start:linear-manager": "node agents/linear-state-manager.js",
+    "monitor": "node monitoring/dashboard.js",
+    "test": "jest",
+    "lint": "eslint .",
+    "setup": "node scripts/setup.js"
+  },
+  "dependencies": {
+    "@linear/sdk": "^21.0.0",
+    "@octokit/rest": "^20.0.0",
+    "axios": "^1.6.0",
+    "dotenv": "^16.3.0",
+    "express": "^4.18.0",
+    "node-cron": "^3.0.0",
+    "winston": "^3.11.0",
+    "ws": "^8.14.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.50.0",
+    "jest": "^29.7.0",
+    "nodemon": "^3.0.0"
+  },
+  "keywords": [
+    "multi-agent",
+    "workflow",
+    "optimization",
+    "linear",
+    "github",
+    "automation"
+  ],
+  "author": "Codegen Agent",
+  "license": "MIT"
+}
+
