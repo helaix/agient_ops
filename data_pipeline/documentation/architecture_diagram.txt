@@ -1,0 +1,15 @@
++-------------------+       +----------------------+       +------------------+
+|                   |       |                      |       |                  |
+| Data Ingestion    +------>+ Data Transformation  +------>+ Data Storage     |
+|                   |       |                      |       |                  |
++-------------------+       +----------------------+       +--------+---------+
+                                                                    |
+                                                                    v
++-------------------+       +----------------------+       +------------------+
+|                   |       |                      |       |                  |
+| Documentation     |<------+ Data Visualization   |<------+ Data Processing  |
+| & Maintenance     |       |                      |       |                  |
++-------------------+       +----------------------+       +------------------+
+
+Note: This is a placeholder text-based diagram. In a real implementation, this would be replaced with a proper architecture diagram created with a tool like draw.io, Lucidchart, or similar.
+
