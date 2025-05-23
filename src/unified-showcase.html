@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Agent Management UI/UX Showcase</title>
+    <style>
+        /* Base styles */
+        :root {
+            --primary-color: #4a6cf7;
+            --secondary-color: #6c757d;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --border-color: #dee2e6;
+            --spacing-sm: 0.5rem;
+            --spacing-md: 1rem;
+            --spacing-lg: 1.5rem;
+            --spacing-xl: 2rem;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.5;
+            color: var(--dark-color);
+            background-color: var(--light-color);
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--spacing-lg);
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-sm);
+            color: var(--primary-color);
+        }
+        
+        h2 {
+            font-size: 1.75rem;
+            margin-bottom: var(--spacing-md);
+            color: var(--primary-color);
+        }
+        
+        h3 {
+            font-size: 1.25rem;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        p {
+            margin-bottom: var(--spacing-md);
+        }
+        
+        /* Showcase layout */
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .showcase-section {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .showcase-header {
+            padding: var(--spacing-md);
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .showcase-content {
+            padding: var(--spacing-md);
+        }
+        
+        /* Device frames */
+        .device-frame {
+            background-color: #222;
+            border-radius: 16px;
+            padding: 8px;
+            margin: 0 auto;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .desktop-frame {
+            width: 100%;
+            height: 500px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .tablet-frame {
+            width: 768px;
+            height: 1024px;
+            max-width: 100%;
+            max-height: 600px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .phone-frame {
+            width: 375px;
+            height: 667px;
+            max-width: 100%;
+            max-height: 600px;
+            border-radius: 24px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .phone-frame::before {
+            content: '';
+            position: absolute;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 12px;
+            background-color: #111;
+            border-radius: 6px;
+            z-index: 10;
+        }
+        
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background-color: white;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 1200px) {
+            .showcase-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .showcase-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tablet-frame, .phone-frame {
+                transform: scale(0.9);
+                transform-origin: top center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Multi-Agent Management UI/UX Showcase</h1>
+            <p>Comprehensive mockups for desktop, tablet, and mobile form factors</p>
+        </header>
+        
+        <h2>Desktop Experience</h2>
+        <div class="showcase-grid">
+            <div class="showcase-section">
+                <div class="showcase-header">
+                    <h3>Command Center View</h3>
+                </div>
+                <div class="showcase-content">
+                    <p>Comprehensive "God Mode" view inspired by RTS games</p>
+                    <div class="device-frame desktop-frame">
+                        <iframe src="desktop/command-center.html" title="Desktop Command Center"></iframe>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="showcase-section">
+                <div class="showcase-header">
+                    <h3>Agent Detail View</h3>
+                </div>
+                <div class="showcase-content">
+                    <p>Detailed view when focusing on a specific agent</p>
+                    <div class="device-frame desktop-frame">
+                        <iframe src="desktop/agent-detail.html" title="Desktop Agent Detail"></iframe>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="showcase-section">
+                <div class="showcase-header">
+                    <h3>Workflow Designer</h3>
+                </div>
+                <div class="showcase-content">
+                    <p>Interface for creating multi-agent workflows</p>
+                    <div class="device-frame desktop-frame">
+                        <iframe src="desktop/workflow-designer.html" title="Desktop Workflow Designer"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <h2>Tablet Experience</h2>
+        <div class="showcase-grid">
+            <div class="showcase-section">
+                <div class="showcase-header">
+                    <h3>Adaptive Command Center</h3>
+                </div>
+                <div class="showcase-content">
+                    <p>Touch-optimized interface with collapsible sidebars</p>
+                    <div class="device-frame tablet-frame">
+                        <iframe src="tablet/adaptive-command.html" title="Tablet Adaptive Command Center"></iframe>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="showcase-section">
+                <div class="showcase-header">
+                    <h3>Navigation Patterns</h3>
+                </div>
+                <div class="showcase-content">
+                    <p>Specialized navigation for touch interfaces</p>
+                    <div class="device-frame tablet-frame">
+                        <iframe src="tablet/navigation.html" title="Tablet Navigation Patterns"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <h2>Mobile Experience</h2>
+        <div class="showcase-grid">
+            <div class="showcase-section">
+                <div class="showcase-header">
+                    <h3>Focused Interface</h3>
+                </div>
+                <div class="showcase-content">
+                    <p>Prioritizes essential information and actions</p>
+                    <div class="device-frame phone-frame">
+                        <iframe src="mobile/index.html" title="Mobile Focused Interface"></iframe>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="showcase-section">
+                <div class="showcase-header">
+                    <h3>Hierarchical Navigation</h3>
+                </div>
+                <div class="showcase-content">
+                    <p>Optimized navigation for small screens</p>
+                    <div class="device-frame phone-frame">
+                        <iframe src="mobile/hierarchical-nav.html" title="Mobile Hierarchical Navigation"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <h2>Cross-Device Features</h2>
+        <div class="showcase-section">
+            <div class="showcase-header">
+                <h3>Unified Command Language & Context Visualization</h3>
+            </div>
+            <div class="showcase-content">
+                <p>Consistent command syntax and context visualization across all devices</p>
+                <div style="display: flex; flex-wrap: wrap; gap: var(--spacing-lg); justify-content: center;">
+                    <div class="device-frame desktop-frame" style="width: 30%;">
+                        <iframe src="cross-device/desktop.html" title="Cross-Device Desktop"></iframe>
+                    </div>
+                    <div class="device-frame tablet-frame" style="width: 25%; height: 400px;">
+                        <iframe src="cross-device/tablet.html" title="Cross-Device Tablet"></iframe>
+                    </div>
+                    <div class="device-frame phone-frame" style="width: 15%; height: 400px;">
+                        <iframe src="cross-device/mobile.html" title="Cross-Device Mobile"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,1147 @@
+/* Global Styles */
+:root {
+    /* Color Variables */
+    --primary-color: #2a6bcc;
+    --secondary-color: #34c759;
+    --background-color: #f5f7fa;
+    --panel-color: #ffffff;
+    --text-color: #333333;
+    --text-light: #666666;
+    --border-color: #e1e4e8;
+    --hover-color: #f0f2f5;
+    
+    /* Status Colors */
+    --status-active: #34c759;
+    --status-busy: #ff9500;
+    --status-error: #ff3b30;
+    --status-idle: #8e8e93;
+    
+    /* Notification Colors */
+    --notification-info: #007aff;
+    --notification-success: #34c759;
+    --notification-warning: #ff9500;
+    --notification-error: #ff3b30;
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+    
+    /* Spacing */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    
+    /* Dimensions */
+    --top-bar-height: 60px;
+    --bottom-bar-height: 50px;
+    --sidebar-width: 280px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.5;
+    height: 100vh;
+    overflow: hidden;
+}
+
+button {
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-family: inherit;
+    color: inherit;
+}
+
+input {
+    font-family: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+/* Command Center Layout */
+.command-center {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* Top Bar */
+.top-bar {
+    height: var(--top-bar-height);
+    background-color: var(--panel-color);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    padding: 0 var(--spacing-md);
+    box-shadow: var(--shadow-sm);
+    z-index: 10;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-right: var(--spacing-xl);
+}
+
+.logo i {
+    margin-right: var(--spacing-sm);
+    color: var(--primary-color);
+}
+
+.global-search {
+    flex: 1;
+    position: relative;
+    max-width: 500px;
+    margin-right: var(--spacing-xl);
+}
+
+.global-search i {
+    position: absolute;
+    left: var(--spacing-md);
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-light);
+}
+
+.global-search input {
+    width: 100%;
+    padding: var(--spacing-sm) var(--spacing-md) var(--spacing-sm) calc(var(--spacing-md) * 2 + 16px);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    background-color: var(--background-color);
+}
+
+.system-status {
+    display: flex;
+    margin-right: var(--spacing-xl);
+}
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    margin-right: var(--spacing-md);
+    font-size: 0.9rem;
+}
+
+.status-indicator i {
+    margin-right: var(--spacing-xs);
+    color: var(--text-light);
+}
+
+.status-indicator.online i {
+    color: var(--status-active);
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.user-profile img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin-right: var(--spacing-sm);
+}
+
+.user-profile i {
+    margin-left: var(--spacing-sm);
+    color: var(--text-light);
+}
+
+/* Main Container */
+.main-container {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* Left Sidebar (Agent Roster) */
+.left-sidebar {
+    width: var(--sidebar-width);
+    background-color: var(--panel-color);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.sidebar-header {
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filter-controls {
+    display: flex;
+}
+
+.filter-btn, .sort-btn {
+    padding: var(--spacing-xs);
+    margin-left: var(--spacing-xs);
+    border-radius: 4px;
+}
+
+.filter-btn:hover, .sort-btn:hover {
+    background-color: var(--hover-color);
+}
+
+.search-agents {
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.search-agents input {
+    width: 100%;
+    padding: var(--spacing-sm);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+}
+
+.agent-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--spacing-sm) 0;
+}
+
+.agent {
+    display: flex;
+    align-items: center;
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--border-color);
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.agent:hover {
+    background-color: var(--hover-color);
+}
+
+.agent.selected {
+    background-color: var(--hover-color);
+}
+
+.agent-status {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: var(--spacing-md);
+}
+
+.agent-status.active {
+    background-color: var(--status-active);
+}
+
+.agent-status.busy {
+    background-color: var(--status-busy);
+}
+
+.agent-status.error {
+    background-color: var(--status-error);
+}
+
+.agent-status.idle {
+    background-color: var(--status-idle);
+}
+
+.agent-info {
+    flex: 1;
+}
+
+.agent-name {
+    font-weight: 500;
+}
+
+.agent-task {
+    font-size: 0.85rem;
+    color: var(--text-light);
+}
+
+.agent-controls {
+    display: flex;
+}
+
+.agent-control-btn {
+    padding: var(--spacing-xs);
+    margin-left: var(--spacing-xs);
+    border-radius: 4px;
+    color: var(--text-light);
+}
+
+.agent-control-btn:hover {
+    background-color: var(--hover-color);
+    color: var(--primary-color);
+}
+
+/* Main Viewport */
+.main-viewport {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.viewport-header {
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--panel-color);
+}
+
+.view-controls {
+    display: flex;
+}
+
+.view-btn {
+    display: flex;
+    align-items: center;
+    padding: var(--spacing-sm) var(--spacing-md);
+    margin-right: var(--spacing-sm);
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.view-btn:hover {
+    background-color: var(--hover-color);
+}
+
+.view-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.view-btn i {
+    margin-right: var(--spacing-sm);
+}
+
+.viewport-actions {
+    display: flex;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    padding: var(--spacing-sm) var(--spacing-md);
+    margin-left: var(--spacing-sm);
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    transition: background-color 0.2s;
+}
+
+.action-btn:hover {
+    background-color: var(--hover-color);
+}
+
+.action-btn i {
+    margin-right: var(--spacing-sm);
+}
+
+.viewport-content {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+}
+
+.view-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    flex-direction: column;
+}
+
+.view-container.active {
+    display: flex;
+}
+
+/* Map View */
+.map-controls {
+    padding: var(--spacing-sm);
+    display: flex;
+    justify-content: flex-end;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.map-control-btn {
+    padding: var(--spacing-sm);
+    margin-left: var(--spacing-xs);
+    border-radius: 4px;
+}
+
+.map-control-btn:hover {
+    background-color: var(--hover-color);
+}
+
+.map-canvas {
+    flex: 1;
+    background-color: var(--background-color);
+    overflow: hidden;
+}
+
+/* Timeline View */
+.timeline-controls {
+    padding: var(--spacing-sm);
+    display: flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.timeline-control-btn {
+    padding: var(--spacing-sm);
+    margin-right: var(--spacing-sm);
+    border-radius: 4px;
+}
+
+.timeline-control-btn:hover {
+    background-color: var(--hover-color);
+}
+
+.timeline-scale {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+}
+
+.timeline-scale span {
+    margin-right: var(--spacing-sm);
+}
+
+.timeline-scale select {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+}
+
+.timeline-container {
+    flex: 1;
+    overflow: auto;
+    padding: var(--spacing-md);
+}
+
+/* Kanban View */
+.kanban-controls {
+    padding: var(--spacing-sm);
+    display: flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.kanban-control-btn {
+    display: flex;
+    align-items: center;
+    padding: var(--spacing-sm) var(--spacing-md);
+    margin-right: var(--spacing-sm);
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+}
+
+.kanban-control-btn:hover {
+    background-color: var(--hover-color);
+}
+
+.kanban-control-btn i {
+    margin-right: var(--spacing-sm);
+}
+
+.kanban-board {
+    flex: 1;
+    overflow: auto;
+    padding: var(--spacing-md);
+    display: flex;
+    align-items: flex-start;
+}
+
+/* Right Sidebar (Context Panel) */
+.right-sidebar {
+    width: var(--sidebar-width);
+    background-color: var(--panel-color);
+    border-left: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.context-panel {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--spacing-md);
+}
+
+.agent-details, .current-task, .context-access, .recent-activity, .action-buttons {
+    margin-bottom: var(--spacing-lg);
+}
+
+.agent-meta {
+    margin: var(--spacing-md) 0;
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--spacing-sm);
+}
+
+.meta-item i {
+    margin-right: var(--spacing-sm);
+    width: 16px;
+    text-align: center;
+}
+
+.meta-item i.active {
+    color: var(--status-active);
+}
+
+.task-info {
+    margin-top: var(--spacing-md);
+    padding: var(--spacing-md);
+    background-color: var(--background-color);
+    border-radius: 4px;
+}
+
+.task-name {
+    font-weight: 500;
+    margin-bottom: var(--spacing-sm);
+}
+
+.task-progress {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--spacing-sm);
+}
+
+.progress-bar {
+    flex: 1;
+    height: 8px;
+    background-color: var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-right: var(--spacing-sm);
+}
+
+.progress {
+    height: 100%;
+    background-color: var(--primary-color);
+}
+
+.task-meta {
+    margin-top: var(--spacing-sm);
+}
+
+.context-list, .activity-list {
+    margin-top: var(--spacing-md);
+}
+
+.context-item, .activity-item {
+    display: flex;
+    align-items: center;
+    padding: var(--spacing-sm) 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.context-item i {
+    margin-right: var(--spacing-sm);
+    color: var(--primary-color);
+}
+
+.activity-item {
+    display: flex;
+}
+
+.activity-time {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    width: 80px;
+}
+
+.action-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-sm);
+}
+
+.action-btn.primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.action-btn.primary:hover {
+    background-color: #2159a9;
+}
+
+/* Bottom Bar */
+.bottom-bar {
+    height: var(--bottom-bar-height);
+    background-color: var(--panel-color);
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    padding: 0 var(--spacing-md);
+    box-shadow: var(--shadow-sm);
+    z-index: 10;
+}
+
+.resource-metrics {
+    display: flex;
+    flex: 1;
+}
+
+.metric {
+    display: flex;
+    align-items: center;
+    margin-right: var(--spacing-lg);
+    font-size: 0.9rem;
+}
+
+.metric i {
+    margin-right: var(--spacing-sm);
+    color: var(--text-light);
+}
+
+.system-messages {
+    display: flex;
+    margin-right: var(--spacing-lg);
+}
+
+.message {
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: 4px;
+}
+
+.message.info {
+    background-color: rgba(0, 122, 255, 0.1);
+}
+
+.message.info i {
+    color: var(--notification-info);
+    margin-right: var(--spacing-sm);
+}
+
+.message.warning {
+    background-color: rgba(255, 149, 0, 0.1);
+}
+
+.message.warning i {
+    color: var(--notification-warning);
+    margin-right: var(--spacing-sm);
+}
+
+.message.error {
+    background-color: rgba(255, 59, 48, 0.1);
+}
+
+.message.error i {
+    color: var(--notification-error);
+    margin-right: var(--spacing-sm);
+}
+
+.notifications {
+    position: relative;
+}
+
+.notification-btn {
+    padding: var(--spacing-sm);
+    border-radius: 4px;
+}
+
+.notification-btn:hover {
+    background-color: var(--hover-color);
+}
+
+.notification-count {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: var(--notification-error);
+    color: white;
+    font-size: 0.7rem;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Command Input */
+.command-input {
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    background-color: var(--panel-color);
+    border-radius: 8px;
+    box-shadow: var(--shadow-lg);
+    z-index: 100;
+    display: none;
+}
+
+.command-prompt {
+    display: flex;
+    align-items: center;
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.prompt-symbol {
+    font-weight: bold;
+    margin-right: var(--spacing-sm);
+    color: var(--primary-color);
+}
+
+.command-prompt input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+}
+
+.command-suggestions {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.suggestion-item {
+    padding: var(--spacing-md);
+    cursor: pointer;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.suggestion-item:hover {
+    background-color: var(--hover-color);
+}
+
+/* Notification Panel */
+.notification-panel {
+    position: fixed;
+    top: var(--top-bar-height);
+    right: 0;
+    width: 350px;
+    height: calc(100vh - var(--top-bar-height));
+    background-color: var(--panel-color);
+    border-left: 1px solid var(--border-color);
+    box-shadow: var(--shadow-lg);
+    z-index: 50;
+    display: none;
+    flex-direction: column;
+}
+
+.panel-header {
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close-btn {
+    padding: var(--spacing-xs);
+    border-radius: 4px;
+}
+
+.close-btn:hover {
+    background-color: var(--hover-color);
+}
+
+.notification-list {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.notification-item {
+    display: flex;
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.notification-item.unread {
+    background-color: rgba(0, 122, 255, 0.05);
+}
+
+.notification-icon {
+    margin-right: var(--spacing-md);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notification-icon.error {
+    background-color: rgba(255, 59, 48, 0.1);
+    color: var(--notification-error);
+}
+
+.notification-icon.warning {
+    background-color: rgba(255, 149, 0, 0.1);
+    color: var(--notification-warning);
+}
+
+.notification-icon.success {
+    background-color: rgba(52, 199, 89, 0.1);
+    color: var(--notification-success);
+}
+
+.notification-content {
+    flex: 1;
+}
+
+.notification-title {
+    font-weight: 500;
+}
+
+.notification-message {
+    font-size: 0.9rem;
+    margin: var(--spacing-xs) 0;
+}
+
+.notification-time {
+    font-size: 0.8rem;
+    color: var(--text-light);
+}
+
+.notification-actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.notification-actions .action-btn {
+    padding: var(--spacing-xs);
+    margin-bottom: var(--spacing-xs);
+    border-radius: 4px;
+}
+
+.notification-actions .action-btn:hover {
+    background-color: var(--hover-color);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+    :root {
+        --sidebar-width: 250px;
+    }
+    
+    .system-status .status-indicator span {
+        display: none;
+    }
+    
+    .system-status .status-indicator i {
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 992px) {
+    .action-btn span {
+        display: none;
+    }
+    
+    .action-btn i {
+        margin-right: 0;
+    }
+    
+    .view-btn span {
+        display: none;
+    }
+    
+    .view-btn i {
+        margin-right: 0;
+    }
+}
+
+/* Agent Node Styling for Map View */
+.agent-node {
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.agent-node:hover {
+    transform: scale(1.05);
+}
+
+.agent-node circle {
+    stroke: #fff;
+    stroke-width: 2px;
+}
+
+.agent-node.active circle {
+    fill: var(--status-active);
+}
+
+.agent-node.busy circle {
+    fill: var(--status-busy);
+}
+
+.agent-node.error circle {
+    fill: var(--status-error);
+}
+
+.agent-node.idle circle {
+    fill: var(--status-idle);
+}
+
+.agent-node text {
+    font-size: 12px;
+    text-anchor: middle;
+}
+
+.agent-link {
+    stroke-opacity: 0.6;
+}
+
+.agent-link.direct {
+    stroke: var(--primary-color);
+    stroke-width: 2px;
+}
+
+.agent-link.context {
+    stroke: var(--secondary-color);
+    stroke-width: 1.5px;
+    stroke-dasharray: 5, 5;
+}
+
+/* Timeline View Styling */
+.timeline-row {
+    display: flex;
+    margin-bottom: var(--spacing-md);
+    align-items: center;
+}
+
+.timeline-label {
+    width: 150px;
+    font-weight: 500;
+}
+
+.timeline-tasks {
+    flex: 1;
+    position: relative;
+    height: 40px;
+}
+
+.timeline-task {
+    position: absolute;
+    height: 30px;
+    border-radius: 4px;
+    padding: 0 var(--spacing-sm);
+    display: flex;
+    align-items: center;
+    font-size: 0.85rem;
+    color: white;
+    cursor: pointer;
+}
+
+.timeline-task.active {
+    background-color: var(--status-active);
+}
+
+.timeline-task.busy {
+    background-color: var(--status-busy);
+}
+
+.timeline-task.error {
+    background-color: var(--status-error);
+}
+
+.timeline-task.idle {
+    background-color: var(--status-idle);
+}
+
+.timeline-header {
+    display: flex;
+    margin-bottom: var(--spacing-md);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: var(--spacing-sm);
+}
+
+.timeline-header-label {
+    width: 150px;
+}
+
+.timeline-header-days {
+    flex: 1;
+    display: flex;
+}
+
+.timeline-day {
+    flex: 1;
+    text-align: center;
+    font-weight: 500;
+    padding: var(--spacing-sm) 0;
+}
+
+.timeline-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.timeline-grid-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background-color: var(--border-color);
+}
+
+/* Kanban Board Styling */
+.kanban-column {
+    min-width: 280px;
+    margin-right: var(--spacing-md);
+    background-color: var(--background-color);
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    max-height: 100%;
+}
+
+.kanban-column-header {
+    padding: var(--spacing-md);
+    font-weight: 500;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.kanban-column-count {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    padding: 2px 8px;
+    font-size: 0.8rem;
+}
+
+.kanban-cards {
+    padding: var(--spacing-sm);
+    overflow-y: auto;
+    flex: 1;
+}
+
+.kanban-card {
+    background-color: var(--panel-color);
+    border-radius: 4px;
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+    box-shadow: var(--shadow-sm);
+    cursor: grab;
+}
+
+.kanban-card:active {
+    cursor: grabbing;
+}
+
+.kanban-card-title {
+    font-weight: 500;
+    margin-bottom: var(--spacing-sm);
+}
+
+.kanban-card-agent {
+    display: flex;
+    align-items: center;
+    font-size: 0.85rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.kanban-card-agent-status {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: var(--spacing-sm);
+}
+
+.kanban-card-agent-status.active {
+    background-color: var(--status-active);
+}
+
+.kanban-card-agent-status.busy {
+    background-color: var(--status-busy);
+}
+
+.kanban-card-agent-status.error {
+    background-color: var(--status-error);
+}
+
+.kanban-card-agent-status.idle {
+    background-color: var(--status-idle);
+}
+
+.kanban-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: var(--spacing-sm);
+    font-size: 0.85rem;
+}
+
+.kanban-card-priority {
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+}
+
+.kanban-card-priority.high {
+    background-color: rgba(255, 59, 48, 0.1);
+    color: var(--notification-error);
+}
+
+.kanban-card-priority.medium {
+    background-color: rgba(255, 149, 0, 0.1);
+    color: var(--notification-warning);
+}
+
+.kanban-card-priority.low {
+    background-color: rgba(52, 199, 89, 0.1);
+    color: var(--notification-success);
+}
+
+.kanban-add-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-md);
+    border: 2px dashed var(--border-color);
+    border-radius: 4px;
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-light);
+    cursor: pointer;
+}
+
+.kanban-add-card:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.kanban-add-card i {
+    margin-right: var(--spacing-sm);
+}
+

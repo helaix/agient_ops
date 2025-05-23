@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Tablet Adaptive Command Center</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="command-center" id="commandCenter">
+        <!-- Top Bar -->
+        <header class="top-bar">
+            <div class="top-bar-left">
+                <button id="menuButton" class="menu-button" aria-label="Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="logo">
+                    <img src="assets/logo-placeholder.svg" alt="Logo" class="logo-img">
+                </div>
+                <div class="search-container">
+                    <button id="searchButton" class="search-button" aria-label="Search">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <div class="search-expanded" id="searchExpanded">
+                        <input type="text" placeholder="Search agents, tasks, workflows...">
+                    </div>
+                </div>
+            </div>
+            <div class="top-bar-right">
+                <div class="status-indicator">
+                    <i class="fas fa-circle status-icon status-healthy"></i>
+                    <span class="status-text">All Systems Operational</span>
+                </div>
+                <button class="user-profile" aria-label="User Profile">
+                    <img src="assets/user-placeholder.svg" alt="User" class="user-img">
+                </button>
+                <button id="toggleSidebarsButton" class="toggle-sidebars" aria-label="Toggle Sidebars">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <!-- Left Sidebar (Agent List) -->
+            <aside class="sidebar left-sidebar" id="leftSidebar">
+                <div class="sidebar-content">
+                    <h2 class="sidebar-title">Agents</h2>
+                    <ul class="agent-list">
+                        <li class="agent-item active">
+                            <div class="agent-status status-active"></div>
+                            <div class="agent-info">
+                                <h3 class="agent-name">Research Agent</h3>
+                                <p class="agent-task">Analyzing data sources</p>
+                            </div>
+                            <button class="agent-action" aria-label="Agent Actions">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                        </li>
+                        <li class="agent-item">
+                            <div class="agent-status status-busy"></div>
+                            <div class="agent-info">
+                                <h3 class="agent-name">Assistant Agent</h3>
+                                <p class="agent-task">Scheduling meeting</p>
+                            </div>
+                            <button class="agent-action" aria-label="Agent Actions">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                        </li>
+                        <li class="agent-item">
+                            <div class="agent-status status-idle"></div>
+                            <div class="agent-info">
+                                <h3 class="agent-name">Code Agent</h3>
+                                <p class="agent-task">Idle</p>
+                            </div>
+                            <button class="agent-action" aria-label="Agent Actions">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                        </li>
+                        <li class="agent-item">
+                            <div class="agent-status status-error"></div>
+                            <div class="agent-info">
+                                <h3 class="agent-name">Data Agent</h3>
+                                <p class="agent-task">Error: API connection failed</p>
+                            </div>
+                            <button class="agent-action" aria-label="Agent Actions">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <button id="expandLeftButton" class="expand-sidebar" aria-label="Expand Left Sidebar">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </aside>
+
+            <!-- Main Viewport -->
+            <main class="main-viewport" id="mainViewport">
+                <div class="viewport-header">
+                    <div class="view-tabs">
+                        <button class="view-tab active" data-view="map">Map View</button>
+                        <button class="view-tab" data-view="timeline">Timeline</button>
+                        <button class="view-tab" data-view="kanban">Kanban</button>
+                    </div>
+                    <div class="viewport-controls">
+                        <button class="control-button" aria-label="Zoom In">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                        <button class="control-button" aria-label="Zoom Out">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <button class="control-button" aria-label="Reset View">
+                            <i class="fas fa-expand"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="viewport-content">
+                    <!-- Map View (Default) -->
+                    <div class="view-container map-view active" id="mapView">
+                        <!-- This would be a canvas or SVG for the actual map view -->
+                        <div class="map-placeholder">
+                            <div class="agent-node node-research">
+                                <div class="node-icon"><i class="fas fa-search"></i></div>
+                                <div class="node-label">Research</div>
+                            </div>
+                            <div class="agent-node node-assistant">
+                                <div class="node-icon"><i class="fas fa-user-tie"></i></div>
+                                <div class="node-label">Assistant</div>
+                            </div>
+                            <div class="agent-node node-code">
+                                <div class="node-icon"><i class="fas fa-code"></i></div>
+                                <div class="node-label">Code</div>
+                            </div>
+                            <div class="agent-node node-data">
+                                <div class="node-icon"><i class="fas fa-database"></i></div>
+                                <div class="node-label">Data</div>
+                            </div>
+                            <!-- Connection lines would be SVG paths in a real implementation -->
+                            <div class="connection-line line-1"></div>
+                            <div class="connection-line line-2"></div>
+                            <div class="connection-line line-3"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Timeline View (Hidden by default) -->
+                    <div class="view-container timeline-view" id="timelineView">
+                        <div class="timeline-placeholder">
+                            <p>Timeline View Content</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Kanban View (Hidden by default) -->
+                    <div class="view-container kanban-view" id="kanbanView">
+                        <div class="kanban-placeholder">
+                            <p>Kanban View Content</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contextual Toolbar (appears based on selection) -->
+                <div class="contextual-toolbar" id="contextualToolbar">
+                    <button class="toolbar-button" aria-label="Pause Agent">
+                        <i class="fas fa-pause"></i>
+                        <span class="button-label">Pause</span>
+                    </button>
+                    <button class="toolbar-button" aria-label="Send Command">
+                        <i class="fas fa-terminal"></i>
+                        <span class="button-label">Command</span>
+                    </button>
+                    <button class="toolbar-button" aria-label="View Details">
+                        <i class="fas fa-info-circle"></i>
+                        <span class="button-label">Details</span>
+                    </button>
+                    <button class="toolbar-button" aria-label="More Options">
+                        <i class="fas fa-ellipsis-h"></i>
+                        <span class="button-label">More</span>
+                    </button>
+                </div>
+            </main>
+
+            <!-- Right Sidebar (Context Panel) -->
+            <aside class="sidebar right-sidebar" id="rightSidebar">
+                <div class="sidebar-content">
+                    <h2 class="sidebar-title">Context Panel</h2>
+                    <div class="context-panel">
+                        <div class="selected-item-header">
+                            <div class="item-icon"><i class="fas fa-search"></i></div>
+                            <div class="item-title">
+                                <h3>Research Agent</h3>
+                                <span class="item-status status-active">Active</span>
+                            </div>
+                        </div>
+                        
+                        <div class="item-details">
+                            <div class="detail-section">
+                                <h4 class="section-title">Current Task</h4>
+                                <p class="section-content">Analyzing data sources for renewable energy report</p>
+                            </div>
+                            
+                            <div class="detail-section">
+                                <h4 class="section-title">Resource Usage</h4>
+                                <div class="resource-meters">
+                                    <div class="resource-meter">
+                                        <label>CPU</label>
+                                        <div class="meter-bar">
+                                            <div class="meter-fill" style="width: 65%;"></div>
+                                        </div>
+                                        <span class="meter-value">65%</span>
+                                    </div>
+                                    <div class="resource-meter">
+                                        <label>Memory</label>
+                                        <div class="meter-bar">
+                                            <div class="meter-fill" style="width: 42%;"></div>
+                                        </div>
+                                        <span class="meter-value">42%</span>
+                                    </div>
+                                    <div class="resource-meter">
+                                        <label>API Calls</label>
+                                        <div class="meter-bar">
+                                            <div class="meter-fill" style="width: 78%;"></div>
+                                        </div>
+                                        <span class="meter-value">78%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="detail-section">
+                                <h4 class="section-title">Recent Activity</h4>
+                                <ul class="activity-list">
+                                    <li class="activity-item">
+                                        <span class="activity-time">10:42</span>
+                                        <span class="activity-text">Completed data analysis</span>
+                                    </li>
+                                    <li class="activity-item">
+                                        <span class="activity-time">10:38</span>
+                                        <span class="activity-text">Retrieved data from API</span>
+                                    </li>
+                                    <li class="activity-item">
+                                        <span class="activity-time">10:35</span>
+                                        <span class="activity-text">Started new task</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="action-buttons">
+                            <button class="action-button">
+                                <i class="fas fa-pause"></i>
+                                <span>Pause</span>
+                            </button>
+                            <button class="action-button">
+                                <i class="fas fa-terminal"></i>
+                                <span>Command</span>
+                            </button>
+                            <button class="action-button">
+                                <i class="fas fa-cog"></i>
+                                <span>Settings</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <button id="expandRightButton" class="expand-sidebar" aria-label="Expand Right Sidebar">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+            </aside>
+        </div>
+
+        <!-- Bottom Tab Bar -->
+        <nav class="bottom-tab-bar">
+            <div class="tab-buttons">
+                <button class="tab-button active" aria-label="Agents">
+                    <i class="fas fa-user-robot"></i>
+                    <span class="tab-label">Agents</span>
+                </button>
+                <button class="tab-button" aria-label="Tasks">
+                    <i class="fas fa-tasks"></i>
+                    <span class="tab-label">Tasks</span>
+                </button>
+                <button class="tab-button" aria-label="Workflows">
+                    <i class="fas fa-project-diagram"></i>
+                    <span class="tab-label">Workflows</span>
+                </button>
+                <button class="tab-button" aria-label="Notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="tab-label">Notifications</span>
+                    <span class="notification-badge">3</span>
+                </button>
+            </div>
+            <button class="quick-action-button" id="quickActionButton" aria-label="Quick Actions">
+                <i class="fas fa-plus"></i>
+            </button>
+        </nav>
+
+        <!-- Quick Action Palette (hidden by default) -->
+        <div class="quick-action-palette" id="quickActionPalette">
+            <div class="palette-header">
+                <h3>Quick Actions</h3>
+                <button class="close-palette" id="closePalette" aria-label="Close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="palette-content">
+                <button class="palette-action">
+                    <i class="fas fa-plus-circle"></i>
+                    <span>New Agent</span>
+                </button>
+                <button class="palette-action">
+                    <i class="fas fa-play"></i>
+                    <span>Run Workflow</span>
+                </button>
+                <button class="palette-action">
+                    <i class="fas fa-terminal"></i>
+                    <span>Command Mode</span>
+                </button>
+                <button class="palette-action">
+                    <i class="fas fa-microphone"></i>
+                    <span>Voice Command</span>
+                </button>
+                <button class="palette-action">
+                    <i class="fas fa-sync"></i>
+                    <span>Refresh All</span>
+                </button>
+                <button class="palette-action">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+</body>
+</html>
+

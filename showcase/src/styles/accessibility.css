@@ -1,0 +1,82 @@
+/* Accessibility-specific styles */
+
+/* Visually hidden elements (for screen readers only) */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* Focus styles */
+:focus {
+  outline: 2px solid #2196f3;
+  outline-offset: 2px;
+}
+
+/* Skip navigation link - becomes visible on focus */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #2196f3;
+  color: white;
+  padding: 8px;
+  z-index: 100;
+  transition: top 0.3s;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* High contrast mode support */
+@media (forced-colors: active) {
+  .screen-card.selected {
+    border: 3px solid SelectedItem;
+  }
+  
+  .screen-status.completed {
+    background-color: Mark;
+    color: MarkText;
+  }
+  
+  .screen-status.in-progress {
+    background-color: Mark;
+    color: MarkText;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .screen-card:hover {
+    transform: none !important;
+  }
+}
+
+/* Keyboard focus indicator */
+.keyboard-focus-indicator:focus {
+  box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.5);
+}
+
+/* Improved color contrast for status indicators */
+.screen-status.completed {
+  background-color: #2e7d32; /* Darker green for better contrast */
+}
+
+.screen-status.in-progress {
+  background-color: #f57c00; /* Darker yellow/orange for better contrast */
+  color: #000; /* Black text on yellow background for better contrast */
+}
+
