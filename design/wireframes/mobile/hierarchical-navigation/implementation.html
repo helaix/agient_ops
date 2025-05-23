@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Mobile Hierarchical Navigation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Main Container -->
+    <div class="app-container">
+        <!-- List View (Initial View) -->
+        <div class="view" id="list-view">
+            <!-- Header -->
+            <header class="app-header">
+                <button class="header-button" aria-label="Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="header-title">Agents</h1>
+                <button class="header-button" aria-label="User Profile">
+                    <i class="fas fa-user"></i>
+                </button>
+            </header>
+
+            <!-- Search Bar -->
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="search-input" placeholder="Search Agents...">
+                <button class="search-voice" aria-label="Voice Search">
+                    <i class="fas fa-microphone"></i>
+                </button>
+            </div>
+
+            <!-- Pull to Refresh Indicator -->
+            <div class="pull-to-refresh">
+                <div class="pull-arrow">
+                    <i class="fas fa-arrow-down"></i>
+                </div>
+                <span class="pull-text">Pull to refresh</span>
+            </div>
+
+            <!-- Agent List -->
+            <div class="content-container">
+                <div class="section-header">
+                    <h2>ACTIVE AGENTS</h2>
+                </div>
+
+                <div class="agent-list">
+                    <!-- Agent Card 1 -->
+                    <div class="agent-card" data-agent-id="research">
+                        <div class="agent-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="agent-info">
+                            <div class="agent-header">
+                                <h3 class="agent-name">Research Agent</h3>
+                                <span class="status-indicator active"></span>
+                            </div>
+                            <p class="agent-task">Web search on renewable energy</p>
+                            <p class="agent-priority high">Priority: High</p>
+                        </div>
+                    </div>
+
+                    <!-- Agent Card 2 -->
+                    <div class="agent-card" data-agent-id="assistant">
+                        <div class="agent-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="agent-info">
+                            <div class="agent-header">
+                                <h3 class="agent-name">Assistant Agent</h3>
+                                <span class="status-indicator urgent"></span>
+                            </div>
+                            <p class="agent-task">Drafting email to marketing team</p>
+                            <p class="agent-priority urgent">Priority: Urgent</p>
+                        </div>
+                    </div>
+
+                    <!-- Agent Card 3 -->
+                    <div class="agent-card" data-agent-id="data">
+                        <div class="agent-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="agent-info">
+                            <div class="agent-header">
+                                <h3 class="agent-name">Data Analysis Agent</h3>
+                                <span class="status-indicator idle"></span>
+                            </div>
+                            <p class="agent-task">Idle</p>
+                            <p class="agent-priority none">Priority: None</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-header">
+                    <h2>INACTIVE AGENTS</h2>
+                </div>
+
+                <div class="agent-list">
+                    <!-- Agent Card 4 -->
+                    <div class="agent-card" data-agent-id="code">
+                        <div class="agent-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="agent-info">
+                            <div class="agent-header">
+                                <h3 class="agent-name">Code Review Agent</h3>
+                                <span class="status-indicator offline"></span>
+                            </div>
+                            <p class="agent-task">Offline</p>
+                            <p class="agent-priority low">Priority: Low</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="last-updated">
+                    Last updated: 2 minutes ago
+                </div>
+
+                <button class="fab-button">
+                    <i class="fas fa-plus"></i>
+                </button>
+            </div>
+
+            <!-- Bottom Navigation -->
+            <nav class="bottom-nav">
+                <button class="nav-item active">
+                    <i class="fas fa-robot"></i>
+                    <span>Agents</span>
+                </button>
+                <button class="nav-item">
+                    <i class="fas fa-tasks"></i>
+                    <span>Tasks</span>
+                </button>
+                <button class="nav-item">
+                    <i class="fas fa-project-diagram"></i>
+                    <span>Workflows</span>
+                </button>
+                <button class="nav-item">
+                    <i class="fas fa-ellipsis-h"></i>
+                    <span>More</span>
+                </button>
+            </nav>
+        </div>
+
+        <!-- Detail View -->
+        <div class="view hidden" id="detail-view">
+            <!-- Header with Breadcrumb -->
+            <header class="app-header">
+                <button class="header-button back-button" aria-label="Back">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h1 class="header-title">Agent Details</h1>
+                <button class="header-button" aria-label="Options">
+                    <i class="fas fa-ellipsis-v"></i>
+                </button>
+            </header>
+
+            <div class="breadcrumb">
+                <span class="breadcrumb-item">Agents</span>
+                <i class="fas fa-chevron-right breadcrumb-separator"></i>
+                <span class="breadcrumb-item current">Research Agent</span>
+            </div>
+
+            <!-- Agent Detail Content -->
+            <div class="content-container">
+                <div class="agent-profile">
+                    <div class="agent-avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h2 class="agent-title">Research Agent</h2>
+                    <span class="status-badge active">Active</span>
+                </div>
+
+                <div class="detail-section">
+                    <div class="detail-item">
+                        <span class="detail-label">Status:</span>
+                        <span class="detail-value">Active</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Current Task:</span>
+                        <span class="detail-value">Web search on renewable energy sources</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Priority:</span>
+                        <span class="detail-value high">High</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Progress:</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 80%;"></div>
+                        </div>
+                        <span class="progress-text">80%</span>
+                    </div>
+                </div>
+
+                <div class="detail-section">
+                    <h3 class="section-title">CAPABILITIES</h3>
+                    <ul class="capability-list">
+                        <li class="capability-item">Web Search</li>
+                        <li class="capability-item">Data Analysis</li>
+                        <li class="capability-item">Report Generation</li>
+                    </ul>
+                </div>
+
+                <div class="detail-section">
+                    <h3 class="section-title">RESOURCE USAGE</h3>
+                    <div class="resource-item">
+                        <span class="resource-label">CPU:</span>
+                        <div class="resource-bar">
+                            <div class="resource-fill" style="width: 60%;"></div>
+                        </div>
+                        <span class="resource-text">60%</span>
+                    </div>
+                    <div class="resource-item">
+                        <span class="resource-label">Memory:</span>
+                        <div class="resource-bar">
+                            <div class="resource-fill" style="width: 40%;"></div>
+                        </div>
+                        <span class="resource-text">40%</span>
+                    </div>
+                    <div class="resource-item">
+                        <span class="resource-label">API Calls:</span>
+                        <div class="resource-bar">
+                            <div class="resource-fill" style="width: 70%;"></div>
+                        </div>
+                        <span class="resource-text">70%</span>
+                    </div>
+                </div>
+
+                <div class="detail-section">
+                    <h3 class="section-title">RECENT ACTIVITY</h3>
+                    <ul class="activity-list">
+                        <li class="activity-item">
+                            <span class="activity-dot"></span>
+                            <span class="activity-text">Completed search</span>
+                            <span class="activity-time">2m ago</span>
+                        </li>
+                        <li class="activity-item">
+                            <span class="activity-dot"></span>
+                            <span class="activity-text">Started analysis</span>
+                            <span class="activity-time">3m ago</span>
+                        </li>
+                        <li class="activity-item">
+                            <span class="activity-dot"></span>
+                            <span class="activity-text">Received task</span>
+                            <span class="activity-time">10m ago</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="action-button pause">
+                        <i class="fas fa-pause"></i>
+                        Pause Agent
+                    </button>
+                    <button class="action-button modify">
+                        <i class="fas fa-edit"></i>
+                        Modify Task
+                    </button>
+                </div>
+            </div>
+
+            <!-- Bottom Navigation (same as list view) -->
+            <nav class="bottom-nav">
+                <button class="nav-item active">
+                    <i class="fas fa-robot"></i>
+                    <span>Agents</span>
+                </button>
+                <button class="nav-item">
+                    <i class="fas fa-tasks"></i>
+                    <span>Tasks</span>
+                </button>
+                <button class="nav-item">
+                    <i class="fas fa-project-diagram"></i>
+                    <span>Workflows</span>
+                </button>
+                <button class="nav-item">
+                    <i class="fas fa-ellipsis-h"></i>
+                    <span>More</span>
+                </button>
+            </nav>
+        </div>
+
+        <!-- Modal Overlay -->
+        <div class="modal-overlay hidden" id="modal-overlay">
+            <div class="modal-container" id="action-modal">
+                <div class="modal-header">
+                    <h2 class="modal-title">Research Agent Actions</h2>
+                </div>
+                <div class="modal-content">
+                    <button class="modal-action-button">
+                        <i class="fas fa-search"></i>
+                        Start New Search
+                    </button>
+                    <button class="modal-action-button">
+                        <i class="fas fa-pause"></i>
+                        Pause Current Task
+                    </button>
+                    <button class="modal-action-button">
+                        <i class="fas fa-chart-bar"></i>
+                        View Recent Results
+                    </button>
+                    <button class="modal-action-button">
+                        <i class="fas fa-exchange-alt"></i>
+                        Reassign Task
+                    </button>
+                    <button class="modal-action-button">
+                        <i class="fas fa-cog"></i>
+                        Modify Settings
+                    </button>
+                </div>
+                <div class="modal-footer">
+                    <button class="modal-button cancel" id="modal-cancel">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
