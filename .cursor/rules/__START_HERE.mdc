@@ -6,6 +6,18 @@ Welcome to the Agent Operations repository! This repository contains essential d
 
 ## Key Resources
 
+### Decision Trees
+
+For structured decision-making in Linear workflows, refer to the comprehensive decision trees that guide you through key decision points:
+
+- [Workflow Selection Decision Tree](../../docs/decision_trees/workflow_selection_tree.md): Master decision tree for selecting the appropriate workflow approach
+- [Task Analysis Decision Tree](../../docs/decision_trees/task_analysis_decision_tree.md): Systematic approach to analyzing task requirements and complexity
+- [Implementation Decision Tree](../../docs/decision_trees/implementation_decision_tree.md): Guidance for choosing implementation strategies and approaches
+- [Communication Decision Tree](../../docs/decision_trees/communication_decision_tree.md): Structured approach to effective communication during task execution
+- [Delegation Decision Tree](../../docs/decision_trees/delegation_decision_tree.md): Framework for effective task delegation and sub-agent coordination
+
+These decision trees provide visual flowcharts and detailed criteria to help you make optimal decisions at each stage of your workflow.
+
 ### Linear Workflows
 
 When working with Linear issues, always refer to the [Linear Workflows Reference Guide](../../docs/reference/linear_workflows_reference.md) for comprehensive guidance on:
@@ -48,15 +60,18 @@ The self-improvement mechanisms are designed to work alongside existing workflow
 
 ## When to Use These Resources
 
-1. **Starting a New Linear Task**: Review the Linear Workflows Reference
-2. **Delegating Complex Tasks**: Consult both Linear Workflows and Agent Collaboration documents
-3. **Communication Issues**: Refer to Communication and Delegation SOPs
-4. **Code Management**: Follow guidelines in Agent Collaboration Workflow
-5. **Specialized Workflow Patterns**: Use the Workflow Decision Pathways below to select the appropriate pattern
-6. **Error Encountered**: Use the [Error Tracking System](../../docs/reference/self_improvement/error_tracking/) to document and resolve issues
-7. **Successful Completion**: Apply the [Success Pattern Analysis Framework](../../docs/reference/self_improvement/success_patterns/) to capture learnings
-8. **Receiving Feedback**: Utilize the [Feedback Collection System](../../docs/reference/self_improvement/feedback_collection/) to implement improvements
-9. **Continuous Improvement**: Follow the [Integration Framework](../../docs/reference/self_improvement/integration/) for systematic enhancement
+1. **Starting a New Linear Task**: Begin with the [Workflow Selection Decision Tree](../../docs/decision_trees/workflow_selection_tree.md) to identify the optimal approach, then review the Linear Workflows Reference
+2. **Analyzing Task Requirements**: Use the [Task Analysis Decision Tree](../../docs/decision_trees/task_analysis_decision_tree.md) to systematically evaluate complexity and requirements
+3. **Choosing Implementation Strategy**: Consult the [Implementation Decision Tree](../../docs/decision_trees/implementation_decision_tree.md) for guidance on technical approaches
+4. **Communication Planning**: Refer to the [Communication Decision Tree](../../docs/decision_trees/communication_decision_tree.md) for effective communication strategies
+5. **Delegating Complex Tasks**: Use the [Delegation Decision Tree](../../docs/decision_trees/delegation_decision_tree.md) alongside Linear Workflows and Agent Collaboration documents
+6. **Communication Issues**: Refer to Communication and Delegation SOPs
+7. **Code Management**: Follow guidelines in Agent Collaboration Workflow
+8. **Specialized Workflow Patterns**: Use the Workflow Decision Pathways below to select the appropriate pattern
+9. **Error Encountered**: Use the [Error Tracking System](../../docs/reference/self_improvement/error_tracking/) to document and resolve issues
+10. **Successful Completion**: Apply the [Success Pattern Analysis Framework](../../docs/reference/self_improvement/success_patterns/) to capture learnings
+11. **Receiving Feedback**: Utilize the [Feedback Collection System](../../docs/reference/self_improvement/feedback_collection/) to implement improvements
+12. **Continuous Improvement**: Follow the [Integration Framework](../../docs/reference/self_improvement/integration/) for systematic enhancement
 
 ## Workflow Decision Pathways
 
