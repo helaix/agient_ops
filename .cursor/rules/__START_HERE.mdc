@@ -46,6 +46,12 @@ For continuous improvement of agent performance through systematic tracking, ana
 
 The self-improvement mechanisms are designed to work alongside existing workflows to enhance agent performance and enable continuous learning.
 
+### Quick References and Tools
+
+For quick access to command syntax and operational guidance, refer to these essential reference materials:
+
+- [Command Cheat Sheet for Linear and GitHub Operations](../../docs/reference/quick_reference/command_cheat_sheet.md): Comprehensive reference for common Linear and GitHub operations including command syntax, parameter descriptions, practical examples, and best practices
+
 ## When to Use These Resources
 
 1. **Starting a New Linear Task**: Review the Linear Workflows Reference
@@ -57,6 +63,7 @@ The self-improvement mechanisms are designed to work alongside existing workflow
 7. **Successful Completion**: Apply the [Success Pattern Analysis Framework](../../docs/reference/self_improvement/success_patterns/) to capture learnings
 8. **Receiving Feedback**: Utilize the [Feedback Collection System](../../docs/reference/self_improvement/feedback_collection/) to implement improvements
 9. **Continuous Improvement**: Follow the [Integration Framework](../../docs/reference/self_improvement/integration/) for systematic enhancement
+10. **Need Command Reference**: Use the [Command Cheat Sheet](../../docs/reference/quick_reference/command_cheat_sheet.md) for quick access to Linear and GitHub operation syntax and examples
 
 ## Workflow Decision Pathways
 
