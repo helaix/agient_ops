@@ -5,11 +5,12 @@
 1. [Introduction](#introduction)
 2. [Overview of Linear Workflows](#overview-of-linear-workflows)
 3. [Guidelines for Agents Working with Linear](#guidelines-for-agents-working-with-linear)
-4. [Task Delegation and Communication](#task-delegation-and-communication)
-5. [Common Tools and Patterns](#common-tools-and-patterns)
-6. [Examples of Successful Workflows](#examples-of-successful-workflows)
-7. [Troubleshooting](#troubleshooting)
-8. [References](#references)
+4. [Linear Issue Reference Standards](#linear-issue-reference-standards)
+5. [Task Delegation and Communication](#task-delegation-and-communication)
+6. [Common Tools and Patterns](#common-tools-and-patterns)
+7. [Examples of Successful Workflows](#examples-of-successful-workflows)
+8. [Troubleshooting](#troubleshooting)
+9. [References](#references)
 
 ## Introduction
 
@@ -80,6 +81,77 @@ When completing an issue, agents should:
 3. **Summarize Changes**: Provide a concise summary of the changes made and how they fulfill the requirements.
 4. **Request Review**: If appropriate, request review from specific team members.
 5. **Update Issue State**: Move the issue to the appropriate state (e.g., "Ready for Review" or "Done").
+
+## Linear Issue Reference Standards
+
+### Standard Issue Reference Format
+
+**REQUIRED**: All Linear issue references MUST use the full URL format for proper status display and clickability.
+
+#### ✅ Correct Format (REQUIRED)
+```
+https://linear.app/helaix/issue/ISSUE-ID
+```
+
+**Examples:**
+- https://linear.app/helaix/issue/HLX-1681
+- https://linear.app/helaix/issue/HNTSMN-674
+
+#### ❌ Incorrect Formats (DO NOT USE)
+- Plain identifiers: `HLX-1681` or `HNTSMN-674`
+- Markdown links: `[HLX-1681: Title](https://linear.app/helaix/issue/HLX-1681)`
+- Partial references: `HLX-1681: Title`
+
+### Why Use Full URLs?
+
+1. **Automatic Status Display**: Linear automatically converts URLs into rich links showing current status
+2. **Real-time Updates**: Status changes are reflected immediately in the rendered links
+3. **Direct Navigation**: One-click access to the referenced issue
+4. **Consistency**: Standardized format across all documentation and communications
+5. **Accessibility**: Works consistently across all Linear interfaces and integrations
+
+### Implementation Guidelines
+
+#### In Issue Descriptions
+When referencing other issues in descriptions:
+```markdown
+## Related Issues
+- https://linear.app/helaix/issue/HLX-1608
+- https://linear.app/helaix/issue/HNTSMN-672
+
+## Dependencies
+This issue depends on completion of https://linear.app/helaix/issue/HLX-1685
+```
+
+#### In Comments
+When commenting on issues:
+```markdown
+Progress update: Completed work on https://linear.app/helaix/issue/HNTSMN-674
+Next step: Begin implementation of https://linear.app/helaix/issue/HNTSMN-676
+```
+
+#### In Documentation
+When documenting workflows or processes:
+```markdown
+The integration dashboard (https://linear.app/helaix/issue/HLX-1681) tracks 
+progress across multiple sub-issues including https://linear.app/helaix/issue/HNTSMN-669
+```
+
+### Enforcement
+
+- **Code Reviews**: All PRs must use the standard URL format for issue references
+- **Documentation Updates**: Any documentation referencing Linear issues must be updated to use URLs
+- **Agent Training**: All agents must follow this standard in their communications
+- **Template Updates**: Issue templates and workflows must include examples using the URL format
+
+### Migration from Legacy Formats
+
+When updating existing documentation:
+
+1. **Find**: Search for patterns like `HLX-\d+`, `HNTSMN-\d+`, etc.
+2. **Replace**: Convert to full URL format: `https://linear.app/helaix/issue/ISSUE-ID`
+3. **Verify**: Ensure the URLs are valid and point to existing issues
+4. **Test**: Confirm that the links render properly in Linear
 
 ## Task Delegation and Communication
 
@@ -287,4 +359,3 @@ If you encounter persistent issues with Linear workflows:
 ---
 
 This document will be continuously updated to reflect the latest best practices and workflows for Linear integration with Codegen. If you have suggestions for improvements, please create an issue or PR with your proposed changes.
-

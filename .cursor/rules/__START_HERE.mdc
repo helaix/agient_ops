@@ -12,11 +12,14 @@ When working with Linear issues, always refer to the [Linear Workflows Reference
 
 - Understanding Linear workflows and components
 - Guidelines for working with Linear issues
+- **Linear Issue Reference Standards**: REQUIRED use of full URL format (`https://linear.app/helaix/issue/ISSUE-ID`)
 - Task delegation and communication best practices
 - Common tools and patterns
 - Troubleshooting and examples
 
 The [Linear Workflow Decision Diagram](../../docs/reference/linear_workflow_diagram.md) provides a visual guide for when to utilize the Linear Workflows Reference.
+
+**⚠️ CRITICAL**: All Linear issue references MUST use the full URL format: `https://linear.app/helaix/issue/ISSUE-ID`. This ensures proper status display, clickability, and real-time updates. DO NOT use plain identifiers, markdown links, or partial references.
 
 ### Agent Collaboration
 
