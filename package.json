@@ -1,0 +1,29 @@
+{
+  "name": "helaix-linear-tools",
+  "version": "1.0.0",
+  "description": "Tools and scripts for managing Linear workspace organization",
+  "main": "index.js",
+  "scripts": {
+    "label-migration": "node scripts/linear-label-migration.js",
+    "label-migration:dry-run": "DRY_RUN=true node scripts/linear-label-migration.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "linear",
+    "project-management",
+    "automation",
+    "labels"
+  ],
+  "author": "Helaix Team",
+  "license": "MIT",
+  "dependencies": {
+    "@linear/sdk": "^22.0.0"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
+
