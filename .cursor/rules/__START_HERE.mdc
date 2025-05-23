@@ -6,6 +6,18 @@ Welcome to the Agent Operations repository! This repository contains essential d
 
 ## Key Resources
 
+### Integration Guidelines
+
+**Location**: `../../docs/reference/integration_guidelines/README.md`
+**When to use**: When setting up Linear-GitHub workflows, naming branches/commits, or working with issue tracking integration
+**Purpose**: Provides comprehensive guidelines for improving integration between Linear and GitHub
+
+For detailed guidance on:
+- Linking Linear issues to GitHub PRs
+- Branch naming conventions based on Linear issues
+- Commit message standards with Linear issue references
+- Automation tools and best practices
+
 ### Linear Workflows
 
 When working with Linear issues, always refer to the [Linear Workflows Reference Guide](../../docs/reference/linear_workflows_reference.md) for comprehensive guidance on:
@@ -17,6 +29,84 @@ When working with Linear issues, always refer to the [Linear Workflows Reference
 - Troubleshooting and examples
 
 The [Linear Workflow Decision Diagram](../../docs/reference/linear_workflow_diagram.md) provides a visual guide for when to utilize the Linear Workflows Reference.
+
+For practical examples and detailed scenarios, see the [Linear Workflow Scenarios and Examples](../../docs/examples/linear_workflow_scenarios.md) which provides:
+- Real-world workflow implementations
+- Common scenario patterns
+- Best practice examples
+- Troubleshooting guides
+
+### Decision Trees and Workflow Selection
+
+**Location**: `../../docs/reference/decision_trees/README.md`
+**When to use**: When you need to select the appropriate workflow pattern for your task
+**Purpose**: Provides visual decision trees and selection criteria for workflow patterns
+
+Key components:
+- Linear workflow decision trees
+- Task complexity assessment guides
+- Workflow pattern selection criteria
+- Integration decision pathways
+
+### Step-by-Step Workflow Checklists
+
+**Location**: `../../docs/reference/workflow_checklists/README.md`
+**When to use**: When executing specific workflow patterns and need detailed step-by-step guidance
+**Purpose**: Provides comprehensive checklists for common agent tasks
+
+Includes checklists for:
+- Research coordination workflows
+- Task decomposition patterns
+- Communication and reporting
+- Quality assurance processes
+
+### Terminology and Glossary
+
+**Location**: `../../docs/reference/terminology/README.md`
+**When to use**: When you need clarification on terms used across Linear, GitHub, and agent collaboration
+**Purpose**: Provides standardized definitions and terminology
+
+Key sections:
+- Linear-specific terminology
+- GitHub workflow terms
+- Agent collaboration vocabulary
+- Cross-platform integration terms
+
+### Troubleshooting and Issue Resolution
+
+**Location**: `../../docs/reference/troubleshooting/README.md`
+**When to use**: When encountering issues or errors in workflows
+**Purpose**: Provides solutions for frequently encountered problems
+
+Coverage includes:
+- Common Linear workflow issues
+- GitHub integration problems
+- Agent communication failures
+- Performance and optimization issues
+
+### Quick References and Tools
+
+**Location**: `../../docs/reference/quick_reference/README.md`
+**When to use**: When you need rapid access to commands, templates, or reference materials
+**Purpose**: Provides quick access to essential tools and references
+
+Includes:
+- Command cheat sheets for Linear and GitHub operations
+- Template libraries for common tasks
+- Quick reference cards for workflow patterns
+- Tool configuration guides
+
+### UI Design and Workflow Templates
+
+**Location**: `../../docs/templates/ui_design/README.md`
+**When to use**: When creating user interfaces or design-related workflows
+**Purpose**: Provides reusable UI design prompts and workflow templates
+
+Components:
+- UI design prompt templates
+- Design workflow patterns
+- User experience guidelines
+- Interface design standards
 
 ### Agent Collaboration
 
@@ -51,14 +141,21 @@ The self-improvement mechanisms are designed to work alongside existing workflow
 ## When to Use These Resources
 
 1. **Starting a New Linear Task**: Review the Linear Workflows Reference
-2. **Delegating Complex Tasks**: Consult both Linear Workflows and Agent Collaboration documents
-3. **Communication Issues**: Refer to Communication and Delegation SOPs
-4. **Code Management**: Follow guidelines in Agent Collaboration Workflow
-5. **Specialized Workflow Patterns**: Use the Workflow Decision Pathways below to select the appropriate pattern
-6. **Error Encountered**: Use the [Error Tracking System](../../docs/reference/self_improvement/error_tracking/) to document and resolve issues
-7. **Successful Completion**: Apply the [Success Pattern Analysis Framework](../../docs/reference/self_improvement/success_patterns/) to capture learnings
-8. **Receiving Feedback**: Utilize the [Feedback Collection System](../../docs/reference/self_improvement/feedback_collection/) to implement improvements
-9. **Continuous Improvement**: Follow the [Integration Framework](../../docs/reference/self_improvement/integration/) for systematic enhancement
+2. **Linear-GitHub Integration Tasks**: Start with the Integration Guidelines
+3. **Workflow Pattern Selection**: Use the Decision Trees and Workflow Selection guides
+4. **Need Step-by-Step Guidance**: Consult the Workflow Checklists
+5. **Terminology Questions**: Reference the Terminology and Glossary
+6. **Encountering Issues**: Check the Troubleshooting and Issue Resolution guides
+7. **Quick Reference Needed**: Use the Quick References and Tools section
+8. **UI/Design Tasks**: Refer to UI Design and Workflow Templates
+9. **Delegating Complex Tasks**: Consult both Linear Workflows and Agent Collaboration documents
+10. **Communication Issues**: Refer to Communication and Delegation SOPs
+11. **Code Management**: Follow guidelines in Agent Collaboration Workflow
+12. **Specialized Workflow Patterns**: Use the Workflow Decision Pathways below to select the appropriate pattern
+13. **Error Encountered**: Use the [Error Tracking System](../../docs/reference/self_improvement/error_tracking/) to document and resolve issues
+14. **Successful Completion**: Apply the [Success Pattern Analysis Framework](../../docs/reference/self_improvement/success_patterns/) to capture learnings
+15. **Receiving Feedback**: Utilize the [Feedback Collection System](../../docs/reference/self_improvement/feedback_collection/) to implement improvements
+16. **Continuous Improvement**: Follow the [Integration Framework](../../docs/reference/self_improvement/integration/) for systematic enhancement
 
 ## Workflow Decision Pathways
 
