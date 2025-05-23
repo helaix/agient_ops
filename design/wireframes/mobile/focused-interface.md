@@ -1,5 +1,8 @@
 # Mobile Focused Interface Wireframe
 
+## Overview
+This wireframe outlines the structure and components of the Mobile Focused Interface for the Multi-Agent Management system.
+
 ## Agent Cards View (Home Screen)
 
 ```
@@ -13,7 +16,7 @@
 | | 🤖 Research Agent         🟢 | |
 | | Currently: Web search on...  | |
 | | Priority: High               | |
-| | Progress: ███████░░░ 70%     | |
+| | Progress: ████████░░ 70%     | |
 | +------------------------------+ |
 |                                  |
 | +------------------------------+ |
@@ -69,6 +72,36 @@
 +----------------------------------+
 ```
 
+## Layout Structure
+
+```
+┌─────────────────────────────┐
+│ [Header/App Bar]            │
+├─────────────────────────────┤
+│ [Agent Cards - Scrollable]  │
+│ ┌───┐ ┌───┐ ┌───┐ ┌───┐    │
+│ │   │ │   │ │   │ │   │    │
+│ └───┘ └───┘ └───┘ └───┘    │
+├─────────────────────────────┤
+│ [Status Dashboard]          │
+│ ┌─────┐ ┌─────┐            │
+│ │     │ │     │            │
+│ └─────┘ └─────┘            │
+│ ┌─────┐ ┌─────┐            │
+│ │     │ │     │            │
+│ └─────┘ └─────┘            │
+│                             │
+│ [Recent Activity]           │
+│ - Item 1                    │
+│ - Item 2                    │
+│                             │
+│                  [FAB]      │
+├─────────────────────────────┤
+│ [Bottom Navigation]         │
+│ [Agents] [Tasks] [Notifs]   │
+└─────────────────────────────┘
+```
+
 ## Component Details
 
 ### Header
@@ -82,6 +115,8 @@
 - Recent searches shown on focus
 
 ### Agent Cards
+- Card dimensions: Full width, 120px height
+- Horizontal scrolling container
 - Compact representation of each agent with:
   - Icon and name
   - Status indicator (colored dot)
@@ -92,20 +127,26 @@
 - Swipe left/right for quick actions
 
 ### Status Dashboard
+- Full width container
+- Key metrics in grid layout (2x2)
 - Glanceable metrics and system status
 - Progress bars for key metrics
 - Recent notifications with timestamps
 - Tap any section to expand details
 
-### Floating Action Button
+### Floating Action Button (FAB)
+- Floating action button in bottom right
 - Context-aware primary action
 - Expands to show related actions on tap
 - Changes based on current view
+- Voice command trigger
 
 ### Bottom Navigation
+- Fixed at bottom
 - Primary navigation between main sections
 - Active tab highlighted
 - More (⋯) button for additional options
+- Badge indicators for updates
 
 ## Mobile Interaction Notes
 
@@ -131,4 +172,10 @@
    - In-app notification center (swipe down)
    - Actionable notifications (reply, approve, etc.)
    - Priority-based notification filtering
+
+## Interactions
+- Agent cards: Tap to view details, swipe for more
+- Status dashboard: Tap metrics for detailed view
+- FAB: Tap to expand, long press for voice
+- Bottom nav: Tap to navigate between sections
 
