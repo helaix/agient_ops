@@ -27,7 +27,8 @@ export type AgentType =
   | 'review-manager'
   | 'context-optimizer'
   | 'pattern-bridge'
-  | 'linear-state';
+  | 'linear-state'
+  | 'state-manager';
 
 export type AgentStatus = 'idle' | 'active' | 'paused' | 'error' | 'terminated';
 
@@ -245,3 +246,82 @@ export interface SystemMetrics {
   resourceUtilization: number;
 }
 
+// State Management Types for State Manager Durable Object
+
+export interface StateVersion {
+  id: string;
+  workflowId: string;
+  version: number;
+  state: WorkflowState;
+  timestamp: number;
+  author: string; // Agent ID that created this version
+  parentVersion?: string;
+  changeDescription: string;
+  checksum: string;
+}
+
+export interface StateChange {
+  id: string;
+  workflowId: string;
+  type: 'task-update' | 'agent-status' | 'workflow-status' | 'metadata-update';
+  path: string; // JSON path to changed property
+  oldValue: any;
+  newValue: any;
+  timestamp: number;
+  agentId: string;
+}
+
+export interface StateConflict {
+  id: string;
+  workflowId: string;
+  conflictingChanges: StateChange[];
+  detectedAt: number;
+  resolutionStrategy: 'last-write-wins' | 'merge' | 'manual';
+  status: 'pending' | 'resolved' | 'failed';
+}
+
+export interface StateSnapshot {
+  id: string;
+  workflowId: string;
+  state: WorkflowState;
+  createdAt: number;
+  description: string;
+  size: number;
+  checksum: string;
+}
+
+export interface StateSubscription {
+  id: string;
+  workflowId: string;
+  agentId: string;
+  eventTypes: StateChangeType[];
+  createdAt: number;
+  lastNotified?: number;
+}
+
+export type StateChangeType = 'task-update' | 'agent-status' | 'workflow-status' | 'metadata-update' | 'all';
+
+export interface StateValidationResult {
+  isValid: boolean;
+  errors: string[];
+  warnings: string[];
+  checksum: string;
+}
+
+export interface StateArchivePolicy {
+  maxVersionsPerWorkflow: number;
+  archiveAfterDays: number;
+  compressionEnabled: boolean;
+  r2ArchiveEnabled: boolean;
+}
+
+export interface StateMetrics {
+  totalStates: number;
+  activeWorkflows: number;
+  versionsCreated: number;
+  conflictsResolved: number;
+  snapshotsCreated: number;
+  averageStateSize: number;
+  averageRetrievalTime: number;
+  averagePersistenceTime: number;
+}

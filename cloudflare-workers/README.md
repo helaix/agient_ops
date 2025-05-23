@@ -1,388 +1,465 @@
 # Enhanced Multi-Agent Workflow System
 
-A sophisticated multi-agent coordination platform built on Cloudflare Workers and Durable Objects, designed to automate and optimize complex workflows with intelligent agent collaboration.
-
-## 🏗️ Architecture Overview
-
-```mermaid
-graph TB
-    subgraph "Cloudflare Edge"
-        A[API Gateway Worker] --> B[Workflow Orchestrator]
-        B --> C[Agent Coordinator DO]
-        B --> D[State Manager DO]
-        B --> E[Event Router Worker]
-    end
-    
-    subgraph "Persistent Agent Layer"
-        F[Integration Dashboard Agent DO]
-        G[Review Manager Agent DO]
-        H[Context Optimizer Agent DO]
-        I[Pattern Bridge Agent DO]
-        J[Linear State Agent DO]
-    end
-    
-    subgraph "External Integrations"
-        K[Linear API]
-        L[GitHub API]
-        M[Slack/Discord API]
-        N[Custom Dashboard UI]
-    end
-    
-    C --> F
-    C --> G
-    C --> H
-    C --> I
-    C --> J
-    
-    F --> K
-    G --> L
-    H --> M
-    I --> K
-    J --> K
-    
-    D --> N
-    E --> N
-```
+A sophisticated multi-agent coordination platform built on Cloudflare Workers and Durable Objects, featuring centralized state management, real-time synchronization, and intelligent workflow orchestration.
 
 ## 🚀 Features
 
-### Phase 2: Persistent Agent Infrastructure ✅
-- **Base Agent Framework**: Durable Object foundation with state persistence
-- **Agent Lifecycle Management**: Spawn, pause, resume, terminate operations
-- **Inter-Agent Communication**: Message-based coordination protocol
-- **Workflow Orchestration**: Central coordination with dynamic task distribution
-- **Event-Driven Architecture**: Real-time webhook processing and routing
+### Core Capabilities
 
-### Phase 3: Advanced Automation (In Progress)
-- **Intelligent Review Management**: Automated assignment and SLA enforcement
-- **Context Switching Optimization**: AI-powered productivity enhancement
-- **Pattern Application Engine**: ML-based workflow optimization
+- **🤖 Multi-Agent Coordination**: Intelligent agent spawning, task distribution, and lifecycle management
+- **📊 Centralized State Management**: Version-controlled workflow state with conflict resolution
+- **⚡ Real-time Synchronization**: Cross-agent state broadcasting and eventual consistency
+- **🔄 State Recovery**: Automatic backup, snapshots, and disaster recovery
+- **📈 Performance Optimization**: Efficient querying, lazy loading, and memory optimization
+- **🛡️ Conflict Resolution**: Automatic detection and resolution of concurrent updates
 
-### Phase 4: Advanced Intelligence (Planned)
-- **Predictive Analytics**: Real-time bottleneck identification
-- **Self-Optimizing Workflows**: Continuous improvement automation
-- **Advanced Integration Ecosystem**: Multi-platform coordination
+### State Manager Features
 
-## 🛠️ Technology Stack
+- **Version Control**: Complete state history with branching and merging
+- **Subscription System**: Real-time state change notifications
+- **Snapshot Management**: Point-in-time state backups and restoration
+- **Archive Policies**: Automatic archiving of old versions to R2 storage
+- **Validation Engine**: Comprehensive state integrity checking
+- **Metrics & Monitoring**: Built-in performance tracking and analytics
 
-- **Runtime**: Cloudflare Workers (V8 Isolates)
-- **State Management**: Durable Objects
-- **Storage**: KV (config), R2 (logs), Analytics Engine (metrics)
-- **Language**: TypeScript
-- **Build Tool**: Wrangler CLI
-
-## 📦 Project Structure
+## 🏗️ Architecture
 
 ```
-cloudflare-workers/
-├── src/
-│   ├── agents/
-│   │   ├── base-agent.ts           # Base agent Durable Object
-│   │   ├── agent-coordinator.ts    # Central coordination logic
-│   │   ├── integration-dashboard.ts # Dashboard agent
-│   │   ├── review-manager.ts       # Review automation
-│   │   ├── context-optimizer.ts    # Context switching optimization
-│   │   ├── pattern-bridge.ts       # Pattern application
-│   │   └── linear-state.ts         # Linear integration
-│   ├── workers/
-│   │   ├── api-gateway.ts          # Request routing
-│   │   └── event-router.ts         # Event processing
-│   ├── utils/
-│   │   ├── crypto.ts               # Signature validation
-│   │   ├── metrics.ts              # Analytics helpers
-│   │   └── storage.ts              # Storage utilities
-│   ├── types/
-│   │   └── index.ts                # TypeScript definitions
-│   └── index.ts                    # Main worker entry point
-├── wrangler.toml                   # Cloudflare configuration
-├── package.json                    # Dependencies
-└── tsconfig.json                   # TypeScript config
+┌─────────────────────────────────────────────────────────────┐
+│                    Cloudflare Edge                          │
+├─────────────────────────────────────────────────────────────┤
+│  API Gateway Worker                                         │
+│  ├── Workflow Orchestrator                                 │
+│  ├── Event Router                                          │
+│  └── Request/Response Handler                              │
+├─────────────────────────────────────────────────────────────┤
+│  Durable Objects Layer                                     │
+│  ├── Agent Coordinator DO                                  │
+│  ├── State Manager DO ⭐                                   │
+│  ├── Integration Dashboard Agent DO                        │
+│  ├── Review Manager Agent DO                               │
+│  ├── Context Optimizer Agent DO                            │
+│  ├── Pattern Bridge Agent DO                               │
+│  └── Linear State Agent DO                                 │
+├─────────────────────────────────────────────────────────────┤
+│  Storage Layer                                             │
+│  ├── KV Storage (Configuration & Caching)                 │
+│  ├── R2 Storage (Logs & Archives)                         │
+│  └── Analytics Engine (Metrics)                           │
+└─────────────────────────────────────────────────────────────┘
+```
+
+## 🎯 State Manager Implementation
+
+The State Manager Durable Object is the centerpiece of this implementation, providing:
+
+### Core Components
+
+```typescript
+export class StateManager extends BaseAgent {
+  private stateVersions: Map<string, StateVersion[]>
+  private activeStates: Map<string, WorkflowState>
+  private stateSubscriptions: Map<string, Set<string>>
+  private conflictResolutionQueue: StateConflict[]
+}
+```
+
+### Key Data Structures
+
+#### StateVersion
+```typescript
+interface StateVersion {
+  id: string;
+  workflowId: string;
+  version: number;
+  state: WorkflowState;
+  timestamp: number;
+  author: string;
+  parentVersion?: string;
+  changeDescription: string;
+  checksum: string;
+}
+```
+
+#### StateChange
+```typescript
+interface StateChange {
+  id: string;
+  workflowId: string;
+  type: 'task-update' | 'agent-status' | 'workflow-status' | 'metadata-update';
+  path: string;
+  oldValue: any;
+  newValue: any;
+  timestamp: number;
+  agentId: string;
+}
 ```
 
 ## 🚀 Quick Start
 
 ### Prerequisites
+
 - Node.js 18+
-- Cloudflare account
+- Cloudflare account with Workers enabled
 - Wrangler CLI installed
 
 ### Installation
 
 ```bash
+# Clone the repository
+git clone <repository-url>
 cd cloudflare-workers
+
+# Install dependencies
 npm install
+
+# Configure Wrangler
+wrangler login
 ```
 
 ### Development
 
 ```bash
-# Start local development server
+# Start development server
 npm run dev
 
-# Deploy to staging
-wrangler deploy --env staging
+# Run tests
+npm test
 
-# Deploy to production
-wrangler deploy --env production
+# Run tests with coverage
+npm run test:coverage
+
+# Type checking
+npm run type-check
+
+# Linting
+npm run lint
 ```
 
-### Configuration
+### Deployment
 
-1. **Environment Variables**: Set in `wrangler.toml` or via Wrangler CLI
-   ```bash
-   wrangler secret put LINEAR_API_KEY
-   wrangler secret put GITHUB_TOKEN
-   wrangler secret put SLACK_TOKEN
-   ```
+```bash
+# Deploy to Cloudflare
+npm run deploy
 
-2. **KV Namespaces**: Create and bind storage namespaces
-   ```bash
-   wrangler kv:namespace create "CONFIG_KV"
-   wrangler kv:namespace create "CONFIG_KV" --preview
-   ```
+# Deploy with dry run (validation only)
+npm run build
+```
 
-3. **R2 Buckets**: Create storage for logs and analytics
-   ```bash
-   wrangler r2 bucket create workflow-logs
-   ```
+## 📖 API Reference
 
-## 📡 API Reference
+### State Management Endpoints
+
+#### Create/Update Workflow State
+```http
+POST /api/workflows/{workflowId}/state
+Content-Type: application/json
+
+{
+  "state": { /* WorkflowState object */ },
+  "author": "agent-id",
+  "changeDescription": "Description of changes"
+}
+```
+
+#### Get Current State
+```http
+GET /api/workflows/{workflowId}/state
+```
+
+#### Get Specific Version
+```http
+GET /api/workflows/{workflowId}/state?version=5
+```
+
+#### Get State History
+```http
+GET /api/workflows/{workflowId}/history
+```
+
+#### Create Snapshot
+```http
+POST /api/workflows/{workflowId}/snapshots
+Content-Type: application/json
+
+{
+  "description": "Pre-deployment snapshot"
+}
+```
+
+#### Restore from Snapshot
+```http
+POST /api/workflows/{workflowId}/restore
+Content-Type: application/json
+
+{
+  "snapshotId": "snapshot-uuid"
+}
+```
 
 ### Workflow Management
 
 #### Create Workflow
 ```http
-POST /api/workflows/create
+POST /api/workflows
 Content-Type: application/json
 
 {
-  "name": "Code Review Workflow",
-  "description": "Automated code review process",
+  "name": "Data Processing Workflow",
+  "description": "Process incoming data",
   "priority": "high",
   "context": {
-    "userId": "user123",
-    "githubRepoId": "repo456",
-    "tags": ["code-review", "automation"]
+    "userId": "user-123",
+    "tags": ["data", "processing"]
   }
 }
 ```
 
 #### Get Workflow Status
 ```http
-GET /api/workflows/status/{workflowId}
+GET /api/workflows/{workflowId}
 ```
 
-#### Terminate Workflow
+### Health Check
 ```http
-POST /api/workflows/terminate/{workflowId}
+GET /health
 ```
-
-### Agent Management
-
-#### Spawn Agent
-```http
-POST /api/agents/spawn
-Content-Type: application/json
-
-{
-  "type": "review-manager",
-  "workflowId": "workflow123",
-  "config": {
-    "maxConcurrentTasks": 5,
-    "timeoutMs": 300000
-  }
-}
-```
-
-#### Get Agent Status
-```http
-GET /api/agents/status/{agentId}
-```
-
-#### Get Agent Health
-```http
-GET /api/agents/health/{agentId}
-```
-
-### Webhooks
-
-#### GitHub Webhook
-```http
-POST /api/webhooks/github
-X-Hub-Signature-256: sha256=...
-Content-Type: application/json
-
-{
-  "action": "opened",
-  "pull_request": { ... }
-}
-```
-
-#### Linear Webhook
-```http
-POST /api/webhooks/linear
-Content-Type: application/json
-
-{
-  "action": "create",
-  "data": { ... }
-}
-```
-
-### System Health
-
-#### Health Check
-```http
-GET /api/health
-```
-
-Response:
-```json
-{
-  "status": "healthy",
-  "timestamp": 1640995200000,
-  "version": "1.0.0",
-  "environment": "production",
-  "components": {
-    "coordinator": "healthy",
-    "agents": "healthy",
-    "storage": "healthy"
-  }
-}
-```
-
-## 🤖 Agent Types
-
-### Integration Dashboard Agent
-- **Purpose**: Centralized workflow monitoring and coordination
-- **Capabilities**: Status aggregation, progress tracking, bottleneck detection
-- **Triggers**: Workflow events, status updates, manual requests
-
-### Review Manager Agent
-- **Purpose**: Automated code review management
-- **Capabilities**: Reviewer assignment, SLA enforcement, quality analysis
-- **Triggers**: PR events, review timeouts, escalation conditions
-
-### Context Optimizer Agent
-- **Purpose**: Minimize context switching and optimize productivity
-- **Capabilities**: Task clustering, time-blocking, context preservation
-- **Triggers**: Task assignments, schedule changes, productivity patterns
-
-### Pattern Bridge Agent
-- **Purpose**: Apply and evolve workflow patterns
-- **Capabilities**: Pattern matching, effectiveness tracking, adaptation
-- **Triggers**: Workflow completion, pattern opportunities, performance data
-
-### Linear State Agent
-- **Purpose**: Synchronize with Linear project management
-- **Capabilities**: Issue tracking, status updates, progress reporting
-- **Triggers**: Linear webhooks, workflow events, status changes
-
-## 📊 Monitoring & Analytics
-
-### Metrics Collection
-- **Execution Time**: Task and workflow duration tracking
-- **Error Rates**: Failure analysis and retry patterns
-- **Agent Utilization**: Resource usage and load balancing
-- **Throughput**: Task completion rates and bottlenecks
-
-### Logging
-- **Structured Logs**: JSON format with correlation IDs
-- **Log Levels**: Error, warn, info, debug
-- **Storage**: R2 bucket with automatic rotation
-- **Retention**: 30 days for debug, 90 days for errors
-
-### Alerting
-- **Health Checks**: Automated monitoring of agent health
-- **Performance Thresholds**: SLA violation detection
-- **Error Patterns**: Anomaly detection and escalation
-- **Resource Limits**: Usage monitoring and scaling alerts
-
-## 🔒 Security
-
-### Authentication
-- **API Keys**: Service-to-service authentication
-- **Webhook Signatures**: HMAC validation for external events
-- **CORS**: Configurable cross-origin policies
-
-### Authorization
-- **Role-Based Access**: Agent capability restrictions
-- **Resource Isolation**: Workflow and tenant separation
-- **Audit Logging**: Complete action tracking
-
-### Data Protection
-- **Encryption**: At-rest and in-transit encryption
-- **PII Handling**: Minimal data collection and retention
-- **Compliance**: GDPR and SOC2 considerations
-
-## 🚀 Deployment
-
-### Infrastructure Requirements
-- **Cloudflare Workers**: 10-20 worker scripts
-- **Durable Objects**: 5-10 DO classes with auto-scaling
-- **KV Storage**: Configuration and caching (10GB)
-- **R2 Storage**: Logs and analytics (100GB)
-- **Analytics Engine**: Performance metrics (unlimited)
-
-### Scaling Considerations
-- **Geographic Distribution**: Edge deployment for low latency
-- **Auto-scaling**: Dynamic resource allocation based on load
-- **Fault Tolerance**: Multi-region redundancy and recovery
-- **Performance**: Sub-100ms response times globally
-
-### Cost Estimation
-- **Workers**: ~$50-100/month (10M requests)
-- **Durable Objects**: ~$100-200/month (1M requests, 10GB storage)
-- **Storage & Analytics**: ~$50-100/month (100GB R2, metrics)
-- **Total**: ~$200-400/month for production workload
 
 ## 🧪 Testing
 
+The implementation includes comprehensive test suites:
+
 ### Unit Tests
-```bash
-npm test
-```
+- State persistence and retrieval
+- Version control operations
+- Conflict detection and resolution
+- Subscription management
+- Snapshot creation and restoration
 
 ### Integration Tests
+- Multi-agent state synchronization
+- Concurrent update handling
+- Recovery from failures
+- Cross-agent communication
+
+### Performance Tests
+- High-frequency state updates
+- Large workflow states
+- Concurrent operations
+- Memory usage validation
+
+### Running Tests
+
 ```bash
-npm run test:integration
+# Run all tests
+npm test
+
+# Run specific test file
+npm test state-manager.test.ts
+
+# Run with coverage
+npm run test:coverage
+
+# Watch mode
+npm run test:watch
 ```
 
-### Load Testing
+## 📊 Performance Targets
+
+### Response Time Targets
+- **State Retrieval**: <50ms for active states
+- **State Persistence**: <100ms for normal updates
+- **State Synchronization**: <200ms for cross-agent updates
+- **Conflict Resolution**: <500ms for simple conflicts
+
+### Scalability Targets
+- Support 1000+ concurrent workflows
+- Handle 10,000+ state updates per minute
+- Maintain <1MB memory per workflow
+- Archive states older than 30 days
+
+### Reliability Targets
+- 99.9% uptime for state operations
+- Zero data loss for committed states
+- <1 second recovery time for failures
+- Automatic conflict resolution for 95% of conflicts
+
+## 🔧 Configuration
+
+### Environment Variables
+
 ```bash
-npm run test:load
+# Required
+ENVIRONMENT=development|staging|production
+
+# Optional (set via wrangler secret put)
+LINEAR_API_KEY=your_linear_api_key
+GITHUB_TOKEN=your_github_token
+SLACK_TOKEN=your_slack_token
 ```
 
-## 📚 Documentation
+### Archive Policy Configuration
 
-- [Architecture Decision Records](./docs/adr/)
-- [Agent Development Guide](./docs/agents.md)
-- [Deployment Guide](./docs/deployment.md)
-- [API Documentation](./docs/api.md)
-- [Troubleshooting Guide](./docs/troubleshooting.md)
+```typescript
+const archivePolicy: StateArchivePolicy = {
+  maxVersionsPerWorkflow: 100,
+  archiveAfterDays: 30,
+  compressionEnabled: true,
+  r2ArchiveEnabled: true
+};
+```
+
+## 🔍 Monitoring & Observability
+
+### Built-in Metrics
+
+The State Manager automatically tracks:
+- Total states managed
+- Active workflows
+- Versions created
+- Conflicts resolved
+- Snapshots created
+- Average retrieval/persistence times
+
+### Analytics Engine Integration
+
+Metrics are automatically sent to Cloudflare Analytics Engine:
+
+```typescript
+// Custom metrics example
+await stateManager.logMetrics('custom_operation', {
+  duration: operationTime,
+  success: 1,
+  workflow_count: activeWorkflows
+});
+```
+
+### Health Monitoring
+
+```http
+GET /health
+```
+
+Returns comprehensive system health including:
+- Component status
+- Performance metrics
+- Error rates
+- Resource utilization
+
+## 🛠️ Development Guide
+
+### Adding New Agent Types
+
+1. Create agent class extending `BaseAgent`
+2. Add to `AgentType` union in types
+3. Update namespace mappings
+4. Add Durable Object binding in `wrangler.toml`
+
+### Extending State Manager
+
+1. Add new task types to `processTask` method
+2. Implement corresponding handler methods
+3. Add tests for new functionality
+4. Update documentation
+
+### Custom Conflict Resolution
+
+```typescript
+// Implement custom resolution strategy
+private async resolveCustomConflict(conflict: StateConflict): Promise<WorkflowState> {
+  // Custom logic here
+  return resolvedState;
+}
+```
+
+## 🚨 Error Handling
+
+### Common Error Scenarios
+
+1. **State Validation Failures**
+   ```typescript
+   try {
+     await stateManager.persistWorkflowState(workflowId, invalidState);
+   } catch (error) {
+     if (error.message.includes('State validation failed')) {
+       // Handle validation error
+     }
+   }
+   ```
+
+2. **Storage Errors**
+   ```typescript
+   try {
+     const state = await stateManager.getWorkflowState(workflowId);
+   } catch (error) {
+     // Implement fallback logic
+   }
+   ```
+
+3. **Conflict Resolution**
+   ```typescript
+   // Conflicts are automatically detected and queued
+   const resolvedState = await stateManager.resolveStateConflict(conflictId);
+   ```
+
+## 🔐 Security Considerations
+
+- **Input Validation**: All states are validated before persistence
+- **Checksums**: Data integrity verification using SHA-256
+- **Access Controls**: Agent-based authorization for state operations
+- **Audit Trail**: Complete history of all state changes
+
+## 📈 Future Enhancements
+
+### Planned Features
+- Advanced conflict resolution strategies
+- State compression for large workflows
+- Distributed state sharding
+- Real-time state streaming
+- Machine learning-based optimization
+
+### Extension Points
+- Custom validation rules
+- Pluggable conflict resolution strategies
+- Custom archiving policies
+- External storage backends
 
 ## 🤝 Contributing
 
 1. Fork the repository
 2. Create a feature branch
-3. Make your changes
-4. Add tests
+3. Implement changes with tests
+4. Ensure all tests pass
 5. Submit a pull request
+
+### Code Style
+
+- Use TypeScript strict mode
+- Follow ESLint configuration
+- Maintain 80%+ test coverage
+- Document public APIs
 
 ## 📄 License
 
-MIT License - see [LICENSE](LICENSE) file for details.
+MIT License - see LICENSE file for details
 
 ## 🆘 Support
 
-- **Issues**: GitHub Issues for bug reports and feature requests
-- **Discussions**: GitHub Discussions for questions and ideas
-- **Documentation**: Comprehensive guides and API reference
-- **Community**: Discord server for real-time support
+For issues and questions:
+1. Check the documentation
+2. Review existing issues
+3. Create a new issue with detailed description
+4. Include relevant logs and configuration
+
+## 🙏 Acknowledgments
+
+Built with:
+- [Cloudflare Workers](https://workers.cloudflare.com/)
+- [Durable Objects](https://developers.cloudflare.com/durable-objects/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Vitest](https://vitest.dev/)
 
 ---
 
-**Status**: 🚧 Phase 2 Implementation in Progress
-**Version**: 1.0.0-alpha
-**Last Updated**: 2024-01-01
+**Enhanced Multi-Agent Workflow System** - Powering the future of distributed agent coordination.
 

@@ -470,6 +470,7 @@ export class AgentCoordinator extends BaseAgent {
       case 'context-optimizer': return this.env.CONTEXT_OPTIMIZER_AGENT;
       case 'pattern-bridge': return this.env.PATTERN_BRIDGE_AGENT;
       case 'linear-state': return this.env.LINEAR_STATE_AGENT;
+      case 'state-manager': return this.env.STATE_MANAGER;
       default: return null;
     }
   }
@@ -654,4 +655,3 @@ export class AgentCoordinator extends BaseAgent {
     await this.state.storage.put('strategies', strategiesObj);
   }
 }
-

@@ -279,6 +279,7 @@ export abstract class BaseAgent {
   protected getAgentNamespace(agentId: string): DurableObjectNamespace | null {
     // This is a simplified mapping - in practice, you'd have a registry
     if (agentId.includes('coordinator')) return this.env.AGENT_COORDINATOR;
+    if (agentId.includes('state-manager')) return this.env.STATE_MANAGER;
     if (agentId.includes('dashboard')) return this.env.INTEGRATION_DASHBOARD_AGENT;
     if (agentId.includes('review')) return this.env.REVIEW_MANAGER_AGENT;
     if (agentId.includes('context')) return this.env.CONTEXT_OPTIMIZER_AGENT;
@@ -373,4 +374,3 @@ export abstract class BaseAgent {
     }
   }
 }
-
