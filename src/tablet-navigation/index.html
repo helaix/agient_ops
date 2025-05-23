@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Multi-Agent Management - Tablet Navigation</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container tablet-navigation-component">
+        <!-- Component boundary indicator (for development) -->
+        <div class="component-boundary" aria-hidden="true"></div>
+        
+        <!-- Integration points (for development and integration) -->
+        <div class="integration-point top" data-connects-to="tablet-header" aria-hidden="true"></div>
+        <div class="integration-point right" data-connects-to="tablet-context-panel" aria-hidden="true"></div>
+        <div class="integration-point bottom" data-connects-to="tablet-command-input" aria-hidden="true"></div>
+        <div class="integration-point left" data-connects-to="tablet-sidebar" aria-hidden="true"></div>
+        
+        <!-- Main Content Area -->
+        <main id="main-content" role="main">
+            <!-- Agents View (Default View) -->
+            <section id="agents-view" class="view active-view" aria-labelledby="agents-heading">
+                <div class="view-header">
+                    <h1 id="agents-heading">Agents</h1>
+                    <div class="view-actions" role="toolbar" aria-label="Agent actions">
+                        <button class="action-button" id="filter-agents" aria-label="Filter agents"><i class="fas fa-filter" aria-hidden="true"></i></button>
+                        <button class="action-button" id="add-agent" aria-label="Add agent"><i class="fas fa-plus" aria-hidden="true"></i></button>
+                    </div>
+                </div>
+                
+                <div class="agent-cards" role="list" aria-label="Agent list">
+                    <!-- Agent cards will be dynamically generated here -->
+                </div>
+            </section>
+
+            <!-- Tasks View -->
+            <section id="tasks-view" class="view" aria-labelledby="tasks-heading">
+                <div class="view-header">
+                    <h1 id="tasks-heading">Tasks</h1>
+                    <div class="view-actions" role="toolbar" aria-label="Task actions">
+                        <button class="action-button" id="filter-tasks" aria-label="Filter tasks"><i class="fas fa-filter" aria-hidden="true"></i></button>
+                        <button class="action-button" id="add-task" aria-label="Add task"><i class="fas fa-plus" aria-hidden="true"></i></button>
+                    </div>
+                </div>
+                
+                <div class="task-list" role="list" aria-label="Task list">
+                    <!-- Task items will be dynamically generated here -->
+                </div>
+            </section>
+
+            <!-- Workflows View -->
+            <section id="workflows-view" class="view" aria-labelledby="workflows-heading">
+                <div class="view-header">
+                    <h1 id="workflows-heading">Workflows</h1>
+                    <div class="view-actions" role="toolbar" aria-label="Workflow actions">
+                        <button class="action-button" id="filter-workflows" aria-label="Filter workflows"><i class="fas fa-filter" aria-hidden="true"></i></button>
+                        <button class="action-button" id="add-workflow" aria-label="Add workflow"><i class="fas fa-plus" aria-hidden="true"></i></button>
+                    </div>
+                </div>
+                
+                <div class="workflow-cards" role="list" aria-label="Workflow list">
+                    <!-- Workflow cards will be dynamically generated here -->
+                </div>
+            </section>
+
+            <!-- Spatial View (for demonstrating two-finger gestures) -->
+            <section id="spatial-view" class="view" aria-labelledby="spatial-heading">
+                <div class="view-header">
+                    <h1 id="spatial-heading">Spatial View</h1>
+                    <div class="view-actions" role="toolbar" aria-label="Spatial view actions">
+                        <button class="action-button" id="reset-view" aria-label="Reset view"><i class="fas fa-undo" aria-hidden="true"></i></button>
+                    </div>
+                </div>
+                
+                <div class="spatial-canvas" id="spatial-canvas" role="application" aria-label="Spatial visualization">
+                    <!-- Spatial visualization will be rendered here -->
+                </div>
+            </section>
+        </main>
+
+        <!-- Bottom Tab Bar Navigation -->
+        <nav class="bottom-tab-bar" role="tablist" aria-label="Main navigation">
+            <div class="tab" data-view="agents-view" role="tab" aria-selected="true" aria-controls="agents-view" tabindex="0">
+                <i class="fas fa-robot" aria-hidden="true"></i>
+                <span>Agents</span>
+                <div class="badge" aria-label="3 unread notifications" role="status">3</div>
+            </div>
+            <div class="tab" data-view="tasks-view" role="tab" aria-selected="false" aria-controls="tasks-view" tabindex="0">
+                <i class="fas fa-tasks" aria-hidden="true"></i>
+                <span>Tasks</span>
+                <div class="badge" aria-label="7 unread notifications" role="status">7</div>
+            </div>
+            <div class="tab" data-view="workflows-view" role="tab" aria-selected="false" aria-controls="workflows-view" tabindex="0">
+                <i class="fas fa-diagram-project" aria-hidden="true"></i>
+                <span>Workflows</span>
+            </div>
+            <div class="tab" data-view="spatial-view" role="tab" aria-selected="false" aria-controls="spatial-view" tabindex="0">
+                <i class="fas fa-project-diagram" aria-hidden="true"></i>
+                <span>Spatial</span>
+            </div>
+        </nav>
+
+        <!-- Context Menu (for long-press actions) -->
+        <div class="context-menu" id="context-menu" role="menu" aria-label="Context menu" hidden>
+            <div class="context-menu-item" data-action="view" role="menuitem" tabindex="0">
+                <i class="fas fa-eye" aria-hidden="true"></i>
+                <span>View Details</span>
+            </div>
+            <div class="context-menu-item" data-action="edit" role="menuitem" tabindex="0">
+                <i class="fas fa-edit" aria-hidden="true"></i>
+                <span>Edit</span>
+            </div>
+            <div class="context-menu-item" data-action="duplicate" role="menuitem" tabindex="0">
+                <i class="fas fa-copy" aria-hidden="true"></i>
+                <span>Duplicate</span>
+            </div>
+            <div class="context-menu-item" data-action="delete" role="menuitem" tabindex="0">
+                <i class="fas fa-trash" aria-hidden="true"></i>
+                <span>Delete</span>
+            </div>
+        </div>
+
+        <!-- Preview Panel (for long-press preview) -->
+        <div class="preview-panel" id="preview-panel" role="dialog" aria-labelledby="preview-title" aria-modal="true" hidden>
+            <div class="preview-header">
+                <h3 id="preview-title">Item Preview</h3>
+                <button id="close-preview" aria-label="Close preview"><i class="fas fa-times" aria-hidden="true"></i></button>
+            </div>
+            <div class="preview-content" id="preview-content">
+                <!-- Preview content will be dynamically generated -->
+            </div>
+            <div class="preview-actions" role="toolbar" aria-label="Preview actions">
+                <button class="preview-action" data-action="open">Open</button>
+                <button class="preview-action" data-action="edit">Edit</button>
+            </div>
+        </div>
+
+        <!-- Swipe Action Indicators -->
+        <div class="swipe-indicators" aria-hidden="true">
+            <div class="swipe-left-indicator">
+                <i class="fas fa-archive"></i>
+            </div>
+            <div class="swipe-right-indicator">
+                <i class="fas fa-check"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Integration Controls (for development) -->
+    <div class="integration-controls" aria-label="Development controls" aria-hidden="true">
+        <button id="toggle-boundaries" class="dev-button">Toggle Boundaries</button>
+        <button id="toggle-orientation" class="dev-button">Toggle Orientation</button>
+        <select id="device-selector" class="dev-select" aria-label="Select device size">
+            <option value="ipad-pro">iPad Pro (12.9")</option>
+            <option value="ipad">iPad (10.2"/10.5")</option>
+            <option value="ipad-mini">iPad Mini</option>
+            <option value="android-tablet">Android Tablet</option>
+        </select>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/gestures.js"></script>
+    <script src="js/longpress.js"></script>
+    <script src="js/swipe.js"></script>
+    <script src="js/integration.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
