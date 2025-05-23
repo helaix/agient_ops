@@ -1,0 +1,77 @@
+name = "enhanced-multi-agent-workflow"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+# Environment variables
+[vars]
+ENVIRONMENT = "development"
+
+# Durable Objects bindings
+[[durable_objects.bindings]]
+name = "AGENT_COORDINATOR"
+class_name = "AgentCoordinator"
+
+[[durable_objects.bindings]]
+name = "STATE_MANAGER"
+class_name = "StateManager"
+
+[[durable_objects.bindings]]
+name = "INTEGRATION_DASHBOARD_AGENT"
+class_name = "IntegrationDashboardAgent"
+
+[[durable_objects.bindings]]
+name = "REVIEW_MANAGER_AGENT"
+class_name = "ReviewManagerAgent"
+
+[[durable_objects.bindings]]
+name = "CONTEXT_OPTIMIZER_AGENT"
+class_name = "ContextOptimizerAgent"
+
+[[durable_objects.bindings]]
+name = "PATTERN_BRIDGE_AGENT"
+class_name = "PatternBridgeAgent"
+
+[[durable_objects.bindings]]
+name = "LINEAR_STATE_AGENT"
+class_name = "LinearStateAgent"
+
+# Durable Objects migrations
+[[migrations]]
+tag = "v1"
+new_classes = [
+  "AgentCoordinator",
+  "StateManager",
+  "IntegrationDashboardAgent",
+  "ReviewManagerAgent",
+  "ContextOptimizerAgent",
+  "PatternBridgeAgent",
+  "LinearStateAgent"
+]
+
+# KV namespace for configuration and caching
+[[kv_namespaces]]
+binding = "CONFIG_KV"
+id = "config_namespace"
+preview_id = "config_namespace_preview"
+
+# R2 bucket for logs and analytics
+[[r2_buckets]]
+binding = "LOGS_BUCKET"
+bucket_name = "workflow-logs"
+
+# Analytics Engine for metrics
+[[analytics_engine_datasets]]
+binding = "METRICS"
+dataset = "workflow_metrics"
+
+[env.production]
+name = "enhanced-multi-agent-workflow-prod"
+[env.production.vars]
+ENVIRONMENT = "production"
+
+[env.staging]
+name = "enhanced-multi-agent-workflow-staging"
+[env.staging.vars]
+ENVIRONMENT = "staging"
+
