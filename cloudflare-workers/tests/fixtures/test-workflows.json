@@ -1,0 +1,400 @@
+{
+  "simple_code_review": {
+    "id": "workflow-simple-review",
+    "name": "Simple Code Review",
+    "description": "Basic code review workflow for small PRs",
+    "status": "pending",
+    "priority": "medium",
+    "createdAt": "2023-12-01T10:00:00Z",
+    "estimatedDurationMs": 7200000,
+    "progress": {
+      "totalTasks": 3,
+      "completedTasks": 0,
+      "failedTasks": 0,
+      "activeAgents": 1,
+      "bottlenecks": [],
+      "metrics": {
+        "averageTaskDuration": 0,
+        "agentUtilization": {},
+        "errorRate": 0,
+        "throughput": 0
+      }
+    },
+    "context": {
+      "userId": "user-123",
+      "githubRepoId": "org/test-repo",
+      "linearIssueId": "issue-abc123",
+      "tags": ["code-review", "simple"],
+      "metadata": {
+        "prNumber": 456,
+        "complexity": "low"
+      }
+    },
+    "tasks": {
+      "task-1": {
+        "id": "task-1",
+        "type": "assign-reviewers",
+        "priority": "high",
+        "payload": {
+          "prNumber": 456,
+          "requiredReviewers": 2,
+          "expertise": ["backend", "api"]
+        },
+        "context": {
+          "workflowId": "workflow-simple-review",
+          "metadata": {}
+        },
+        "createdAt": "2023-12-01T10:00:00Z",
+        "retryCount": 0,
+        "maxRetries": 3
+      },
+      "task-2": {
+        "id": "task-2",
+        "type": "monitor-review-progress",
+        "priority": "medium",
+        "payload": {
+          "prNumber": 456,
+          "checkInterval": 3600000
+        },
+        "context": {
+          "workflowId": "workflow-simple-review",
+          "parentTaskId": "task-1",
+          "metadata": {}
+        },
+        "createdAt": "2023-12-01T10:00:00Z",
+        "retryCount": 0,
+        "maxRetries": 5
+      },
+      "task-3": {
+        "id": "task-3",
+        "type": "notify-completion",
+        "priority": "low",
+        "payload": {
+          "prNumber": 456,
+          "notificationChannels": ["slack", "linear"]
+        },
+        "context": {
+          "workflowId": "workflow-simple-review",
+          "parentTaskId": "task-2",
+          "metadata": {}
+        },
+        "createdAt": "2023-12-01T10:00:00Z",
+        "retryCount": 0,
+        "maxRetries": 3
+      }
+    },
+    "agents": {
+      "review-manager": "agent-review-001"
+    },
+    "dependencies": [
+      {
+        "id": "dep-1",
+        "type": "task",
+        "dependsOn": "task-1",
+        "condition": "success"
+      },
+      {
+        "id": "dep-2",
+        "type": "task",
+        "dependsOn": "task-2",
+        "condition": "success"
+      }
+    ],
+    "metadata": {
+      "template": "simple-review",
+      "version": "1.0"
+    }
+  },
+  
+  "complex_multi_agent": {
+    "id": "workflow-complex-multi",
+    "name": "Complex Multi-Agent Workflow",
+    "description": "Complex workflow involving multiple agents and parallel processing",
+    "status": "running",
+    "priority": "high",
+    "createdAt": "2023-12-01T09:00:00Z",
+    "startedAt": "2023-12-01T09:05:00Z",
+    "estimatedDurationMs": 14400000,
+    "progress": {
+      "totalTasks": 12,
+      "completedTasks": 4,
+      "failedTasks": 1,
+      "activeAgents": 3,
+      "bottlenecks": ["external-api-rate-limit"],
+      "metrics": {
+        "averageTaskDuration": 450000,
+        "agentUtilization": {
+          "integration-dashboard": 0.8,
+          "review-manager": 0.9,
+          "context-optimizer": 0.6
+        },
+        "errorRate": 8.33,
+        "throughput": 0.5
+      }
+    },
+    "context": {
+      "userId": "user-456",
+      "githubRepoId": "org/complex-repo",
+      "linearIssueId": "issue-def456",
+      "slackChannelId": "C9876543210",
+      "tags": ["complex", "multi-agent", "high-priority"],
+      "metadata": {
+        "prNumber": 789,
+        "complexity": "high",
+        "teamSize": 8,
+        "deadline": "2023-12-02T18:00:00Z"
+      }
+    },
+    "tasks": {
+      "task-coordination": {
+        "id": "task-coordination",
+        "type": "coordinate-agents",
+        "priority": "critical",
+        "payload": {
+          "agentTypes": ["integration-dashboard", "review-manager", "context-optimizer"],
+          "coordinationStrategy": "parallel-with-sync-points"
+        },
+        "context": {
+          "workflowId": "workflow-complex-multi",
+          "metadata": {}
+        },
+        "createdAt": "2023-12-01T09:00:00Z",
+        "startedAt": "2023-12-01T09:05:00Z",
+        "retryCount": 0,
+        "maxRetries": 2
+      }
+    },
+    "agents": {
+      "integration-dashboard": "agent-dashboard-002",
+      "review-manager": "agent-review-003",
+      "context-optimizer": "agent-context-001"
+    },
+    "dependencies": [],
+    "metadata": {
+      "template": "complex-multi-agent",
+      "version": "2.1",
+      "escalationLevel": 1
+    }
+  },
+  
+  "context_optimization": {
+    "id": "workflow-context-opt",
+    "name": "Context Switching Optimization",
+    "description": "Workflow to optimize developer context switching patterns",
+    "status": "completed",
+    "priority": "medium",
+    "createdAt": "2023-12-01T08:00:00Z",
+    "startedAt": "2023-12-01T08:05:00Z",
+    "completedAt": "2023-12-01T09:45:00Z",
+    "estimatedDurationMs": 3600000,
+    "actualDurationMs": 6000000,
+    "progress": {
+      "totalTasks": 6,
+      "completedTasks": 6,
+      "failedTasks": 0,
+      "activeAgents": 0,
+      "bottlenecks": [],
+      "metrics": {
+        "averageTaskDuration": 600000,
+        "agentUtilization": {
+          "context-optimizer": 0.95
+        },
+        "errorRate": 0,
+        "throughput": 1.0
+      }
+    },
+    "context": {
+      "userId": "user-789",
+      "tags": ["context-optimization", "productivity"],
+      "metadata": {
+        "analysisWindow": "7d",
+        "switchThreshold": 5,
+        "optimizationTarget": "reduce-switches-by-30%"
+      }
+    },
+    "tasks": {
+      "analyze-patterns": {
+        "id": "analyze-patterns",
+        "type": "analyze-context-patterns",
+        "priority": "high",
+        "payload": {
+          "userId": "user-789",
+          "timeWindow": "7d",
+          "includeWeekends": false
+        },
+        "context": {
+          "workflowId": "workflow-context-opt",
+          "metadata": {}
+        },
+        "createdAt": "2023-12-01T08:00:00Z",
+        "startedAt": "2023-12-01T08:05:00Z",
+        "completedAt": "2023-12-01T08:25:00Z",
+        "retryCount": 0,
+        "maxRetries": 3
+      },
+      "generate-recommendations": {
+        "id": "generate-recommendations",
+        "type": "generate-optimization-recommendations",
+        "priority": "high",
+        "payload": {
+          "analysisResults": "ref:analyze-patterns",
+          "optimizationGoals": ["reduce-switches", "improve-focus-time"]
+        },
+        "context": {
+          "workflowId": "workflow-context-opt",
+          "parentTaskId": "analyze-patterns",
+          "metadata": {}
+        },
+        "createdAt": "2023-12-01T08:25:00Z",
+        "startedAt": "2023-12-01T08:30:00Z",
+        "completedAt": "2023-12-01T09:00:00Z",
+        "retryCount": 0,
+        "maxRetries": 3
+      }
+    },
+    "agents": {
+      "context-optimizer": "agent-context-002"
+    },
+    "dependencies": [
+      {
+        "id": "dep-analysis",
+        "type": "task",
+        "dependsOn": "analyze-patterns",
+        "condition": "success"
+      }
+    ],
+    "metadata": {
+      "template": "context-optimization",
+      "version": "1.5",
+      "results": {
+        "switchesReduced": 12,
+        "focusTimeImproved": "45%",
+        "productivityGain": "23%"
+      }
+    }
+  },
+  
+  "error_recovery": {
+    "id": "workflow-error-recovery",
+    "name": "Error Recovery Workflow",
+    "description": "Workflow demonstrating error handling and recovery mechanisms",
+    "status": "failed",
+    "priority": "high",
+    "createdAt": "2023-12-01T11:00:00Z",
+    "startedAt": "2023-12-01T11:05:00Z",
+    "estimatedDurationMs": 1800000,
+    "progress": {
+      "totalTasks": 4,
+      "completedTasks": 1,
+      "failedTasks": 3,
+      "activeAgents": 0,
+      "bottlenecks": ["external-service-unavailable", "rate-limit-exceeded"],
+      "metrics": {
+        "averageTaskDuration": 300000,
+        "agentUtilization": {
+          "integration-dashboard": 0.3
+        },
+        "errorRate": 75,
+        "throughput": 0.1
+      }
+    },
+    "context": {
+      "userId": "user-error",
+      "tags": ["error-testing", "recovery"],
+      "metadata": {
+        "simulatedErrors": true,
+        "errorTypes": ["timeout", "rate-limit", "service-unavailable"]
+      }
+    },
+    "tasks": {
+      "failing-task": {
+        "id": "failing-task",
+        "type": "external-api-call",
+        "priority": "high",
+        "payload": {
+          "endpoint": "https://api.example.com/unavailable",
+          "timeout": 5000
+        },
+        "context": {
+          "workflowId": "workflow-error-recovery",
+          "metadata": {}
+        },
+        "createdAt": "2023-12-01T11:00:00Z",
+        "startedAt": "2023-12-01T11:05:00Z",
+        "retryCount": 3,
+        "maxRetries": 3
+      }
+    },
+    "agents": {
+      "integration-dashboard": "agent-dashboard-error"
+    },
+    "dependencies": [],
+    "metadata": {
+      "template": "error-recovery",
+      "version": "1.0",
+      "errorDetails": {
+        "lastError": "Service unavailable",
+        "errorCount": 3,
+        "recoveryAttempts": 2
+      }
+    }
+  },
+  
+  "load_test_scenario": {
+    "id": "workflow-load-test",
+    "name": "Load Test Scenario",
+    "description": "High-volume workflow for load testing",
+    "status": "running",
+    "priority": "low",
+    "createdAt": "2023-12-01T12:00:00Z",
+    "startedAt": "2023-12-01T12:01:00Z",
+    "estimatedDurationMs": 600000,
+    "progress": {
+      "totalTasks": 100,
+      "completedTasks": 45,
+      "failedTasks": 2,
+      "activeAgents": 5,
+      "bottlenecks": [],
+      "metrics": {
+        "averageTaskDuration": 120000,
+        "agentUtilization": {
+          "integration-dashboard": 0.95,
+          "review-manager": 0.88,
+          "context-optimizer": 0.92,
+          "pattern-bridge": 0.85,
+          "linear-state": 0.90
+        },
+        "errorRate": 2,
+        "throughput": 7.5
+      }
+    },
+    "context": {
+      "userId": "load-test-user",
+      "tags": ["load-test", "performance", "stress-test"],
+      "metadata": {
+        "targetThroughput": "10 tasks/minute",
+        "maxConcurrency": 5,
+        "testDuration": "10 minutes"
+      }
+    },
+    "tasks": {},
+    "agents": {
+      "integration-dashboard": "agent-dashboard-load-1",
+      "review-manager": "agent-review-load-1",
+      "context-optimizer": "agent-context-load-1",
+      "pattern-bridge": "agent-pattern-load-1",
+      "linear-state": "agent-linear-load-1"
+    },
+    "dependencies": [],
+    "metadata": {
+      "template": "load-test",
+      "version": "1.0",
+      "loadTestConfig": {
+        "rampUpTime": 60000,
+        "sustainedLoad": 480000,
+        "rampDownTime": 60000
+      }
+    }
+  }
+}
+

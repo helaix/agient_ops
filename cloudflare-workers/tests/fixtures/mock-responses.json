@@ -1,0 +1,398 @@
+{
+  "github": {
+    "pull_request": {
+      "success": {
+        "id": 123456789,
+        "number": 456,
+        "title": "Add new feature",
+        "body": "This PR adds a new feature",
+        "state": "open",
+        "user": {
+          "login": "developer",
+          "id": 12345
+        },
+        "base": {
+          "ref": "main",
+          "sha": "abc123"
+        },
+        "head": {
+          "ref": "feature-branch",
+          "sha": "def456"
+        },
+        "created_at": "2023-12-01T10:00:00Z",
+        "updated_at": "2023-12-01T10:00:00Z"
+      },
+      "not_found": {
+        "message": "Not Found",
+        "documentation_url": "https://docs.github.com/rest"
+      }
+    },
+    "review_request": {
+      "success": {
+        "pull_request": {
+          "requested_reviewers": [
+            {
+              "login": "reviewer1",
+              "id": 67890
+            },
+            {
+              "login": "reviewer2", 
+              "id": 67891
+            }
+          ]
+        }
+      },
+      "error": {
+        "message": "Validation Failed",
+        "errors": [
+          {
+            "resource": "PullRequest",
+            "field": "reviewers",
+            "code": "invalid"
+          }
+        ]
+      }
+    },
+    "comment": {
+      "success": {
+        "id": 987654321,
+        "body": "This is a test comment",
+        "user": {
+          "login": "bot",
+          "id": 11111
+        },
+        "created_at": "2023-12-01T10:30:00Z",
+        "updated_at": "2023-12-01T10:30:00Z"
+      }
+    },
+    "reviews": {
+      "success": [
+        {
+          "id": 111111111,
+          "user": {
+            "login": "reviewer1",
+            "id": 67890
+          },
+          "state": "APPROVED",
+          "body": "Looks good to me!",
+          "submitted_at": "2023-12-01T11:00:00Z"
+        },
+        {
+          "id": 111111112,
+          "user": {
+            "login": "reviewer2",
+            "id": 67891
+          },
+          "state": "CHANGES_REQUESTED",
+          "body": "Please fix the formatting issues",
+          "submitted_at": "2023-12-01T11:30:00Z"
+        }
+      ]
+    }
+  },
+  
+  "linear": {
+    "issue": {
+      "success": {
+        "id": "issue-abc123",
+        "title": "Implement new feature",
+        "description": "We need to implement this new feature",
+        "state": {
+          "name": "In Progress",
+          "type": "started"
+        },
+        "assignee": {
+          "id": "user-123",
+          "name": "John Developer",
+          "email": "john@example.com"
+        },
+        "team": {
+          "id": "team-456",
+          "name": "Backend Team",
+          "key": "BACK"
+        },
+        "priority": 2,
+        "createdAt": "2023-12-01T09:00:00Z",
+        "updatedAt": "2023-12-01T10:00:00Z"
+      },
+      "not_found": {
+        "error": "Issue not found"
+      }
+    },
+    "comment": {
+      "success": {
+        "id": "comment-def456",
+        "body": "This is a test comment on the Linear issue",
+        "user": {
+          "id": "user-bot",
+          "name": "Bot User"
+        },
+        "createdAt": "2023-12-01T10:45:00Z"
+      }
+    },
+    "teams": {
+      "success": [
+        {
+          "id": "team-456",
+          "name": "Backend Team",
+          "key": "BACK"
+        },
+        {
+          "id": "team-789",
+          "name": "Frontend Team", 
+          "key": "FRONT"
+        }
+      ]
+    },
+    "users": {
+      "success": [
+        {
+          "id": "user-123",
+          "name": "John Developer",
+          "email": "john@example.com"
+        },
+        {
+          "id": "user-456",
+          "name": "Jane Designer",
+          "email": "jane@example.com"
+        }
+      ]
+    }
+  },
+  
+  "slack": {
+    "message": {
+      "success": {
+        "ok": true,
+        "channel": "C1234567890",
+        "ts": "1701428400.123456",
+        "message": {
+          "type": "message",
+          "subtype": "bot_message",
+          "text": "Test message sent successfully",
+          "ts": "1701428400.123456",
+          "bot_id": "B0987654321"
+        }
+      },
+      "error": {
+        "ok": false,
+        "error": "channel_not_found"
+      }
+    },
+    "channel": {
+      "success": {
+        "ok": true,
+        "channel": {
+          "id": "C1234567890",
+          "name": "test-channel",
+          "created": 1701428400,
+          "creator": "U0987654321"
+        }
+      }
+    },
+    "user": {
+      "success": {
+        "ok": true,
+        "user": {
+          "id": "U0987654321",
+          "name": "testuser",
+          "real_name": "Test User",
+          "profile": {
+            "email": "test@example.com"
+          }
+        }
+      }
+    }
+  },
+  
+  "agent_responses": {
+    "task_success": {
+      "taskId": "task-123",
+      "status": "success",
+      "result": {
+        "processed": true,
+        "data": "Task completed successfully",
+        "timestamp": "2023-12-01T10:00:00Z"
+      },
+      "metrics": {
+        "executionTimeMs": 1250,
+        "memoryUsageMB": 15.5,
+        "apiCallsCount": 3,
+        "errorCount": 0,
+        "retryCount": 0
+      }
+    },
+    "task_failure": {
+      "taskId": "task-456",
+      "status": "failure",
+      "error": "External API timeout",
+      "metrics": {
+        "executionTimeMs": 5000,
+        "memoryUsageMB": 12.3,
+        "apiCallsCount": 1,
+        "errorCount": 1,
+        "retryCount": 2
+      }
+    },
+    "task_retry": {
+      "taskId": "task-789",
+      "status": "retry",
+      "error": "Rate limit exceeded",
+      "nextTasks": [
+        {
+          "id": "task-789-retry",
+          "type": "retry-task",
+          "priority": "medium",
+          "payload": {
+            "originalTaskId": "task-789",
+            "retryDelay": 60000
+          },
+          "context": {
+            "workflowId": "workflow-123",
+            "metadata": {
+              "retryAttempt": 1
+            }
+          },
+          "createdAt": "2023-12-01T10:05:00Z",
+          "scheduledAt": "2023-12-01T10:06:00Z",
+          "retryCount": 0,
+          "maxRetries": 3
+        }
+      ],
+      "metrics": {
+        "executionTimeMs": 2000,
+        "memoryUsageMB": 10.1,
+        "apiCallsCount": 1,
+        "errorCount": 1,
+        "retryCount": 1
+      }
+    },
+    "status": {
+      "healthy": {
+        "id": "agent-123",
+        "type": "integration-dashboard",
+        "status": "idle",
+        "currentTasks": [],
+        "lastHeartbeat": "2023-12-01T10:00:00Z",
+        "createdAt": "2023-12-01T09:00:00Z",
+        "activeTask": null,
+        "messageQueueLength": 0,
+        "uptime": 3600000
+      },
+      "busy": {
+        "id": "agent-456",
+        "type": "review-manager",
+        "status": "active",
+        "currentTasks": ["task-abc", "task-def"],
+        "lastHeartbeat": "2023-12-01T10:00:00Z",
+        "createdAt": "2023-12-01T09:00:00Z",
+        "activeTask": {
+          "id": "task-abc",
+          "type": "assign-reviewers",
+          "startedAt": "2023-12-01T09:55:00Z"
+        },
+        "messageQueueLength": 3,
+        "uptime": 3600000
+      },
+      "error": {
+        "id": "agent-789",
+        "type": "context-optimizer",
+        "status": "error",
+        "currentTasks": [],
+        "lastHeartbeat": "2023-12-01T09:45:00Z",
+        "createdAt": "2023-12-01T09:00:00Z",
+        "activeTask": null,
+        "messageQueueLength": 0,
+        "uptime": 2700000,
+        "error": "Connection to external service failed"
+      }
+    },
+    "health": {
+      "healthy": {
+        "status": "healthy",
+        "timestamp": "2023-12-01T10:00:00Z",
+        "lastHeartbeat": "2023-12-01T10:00:00Z",
+        "activeTask": null,
+        "messageQueueLength": 0
+      },
+      "degraded": {
+        "status": "degraded",
+        "timestamp": "2023-12-01T10:00:00Z",
+        "lastHeartbeat": "2023-12-01T09:58:30Z",
+        "activeTask": "task-long-running",
+        "messageQueueLength": 5,
+        "warning": "High message queue length"
+      },
+      "unhealthy": {
+        "status": "unhealthy",
+        "timestamp": "2023-12-01T10:00:00Z",
+        "lastHeartbeat": "2023-12-01T09:50:00Z",
+        "activeTask": null,
+        "messageQueueLength": 0,
+        "error": "Agent not responding"
+      }
+    }
+  },
+  
+  "workflow_responses": {
+    "coordination_success": {
+      "workflowId": "workflow-123",
+      "status": "running",
+      "agentsSpawned": [
+        {
+          "agentId": "agent-dashboard-001",
+          "type": "integration-dashboard",
+          "status": "active"
+        },
+        {
+          "agentId": "agent-review-001", 
+          "type": "review-manager",
+          "status": "active"
+        }
+      ],
+      "tasksDistributed": 5,
+      "estimatedCompletion": "2023-12-01T12:00:00Z"
+    },
+    "coordination_failure": {
+      "workflowId": "workflow-456",
+      "status": "failed",
+      "error": "Failed to spawn required agents",
+      "failedAgents": [
+        {
+          "type": "context-optimizer",
+          "error": "Resource limit exceeded"
+        }
+      ]
+    }
+  },
+  
+  "performance_metrics": {
+    "load_test_results": {
+      "totalOperations": 1000,
+      "successfulOperations": 985,
+      "failedOperations": 15,
+      "averageResponseTime": 245.5,
+      "minResponseTime": 89.2,
+      "maxResponseTime": 1250.8,
+      "p95ResponseTime": 456.7,
+      "p99ResponseTime": 789.3,
+      "throughput": 16.42,
+      "errorRate": 1.5,
+      "memoryUsage": 45.2
+    },
+    "stress_test_results": {
+      "totalOperations": 10000,
+      "successfulOperations": 9750,
+      "failedOperations": 250,
+      "averageResponseTime": 892.3,
+      "minResponseTime": 156.7,
+      "maxResponseTime": 5000.0,
+      "p95ResponseTime": 2100.5,
+      "p99ResponseTime": 3500.2,
+      "throughput": 8.91,
+      "errorRate": 2.5,
+      "memoryUsage": 78.9
+    }
+  }
+}
+

@@ -1,0 +1,231 @@
+{
+  "github_pr_opened": {
+    "action": "opened",
+    "pull_request": {
+      "id": 123456789,
+      "number": 456,
+      "title": "Add new feature implementation",
+      "body": "This PR implements the new feature as requested in issue #123.\n\n## Changes\n- Added new API endpoint\n- Updated documentation\n- Added unit tests\n\n## Testing\n- All existing tests pass\n- New tests added for the feature",
+      "user": { 
+        "login": "developer",
+        "id": 12345,
+        "avatar_url": "https://github.com/images/error/developer_happy.gif"
+      },
+      "base": { 
+        "ref": "main",
+        "sha": "abc123def456"
+      },
+      "head": { 
+        "ref": "feature/new-implementation",
+        "sha": "def456abc123"
+      },
+      "state": "open",
+      "created_at": "2023-12-01T10:00:00Z",
+      "updated_at": "2023-12-01T10:00:00Z",
+      "mergeable": true,
+      "mergeable_state": "clean",
+      "draft": false,
+      "requested_reviewers": [
+        {
+          "login": "reviewer1",
+          "id": 67890
+        }
+      ]
+    },
+    "repository": {
+      "id": 987654321,
+      "name": "test-repo",
+      "full_name": "org/test-repo",
+      "owner": {
+        "login": "org",
+        "id": 11111
+      }
+    }
+  },
+  
+  "github_pr_review_requested": {
+    "action": "review_requested",
+    "pull_request": {
+      "id": 123456789,
+      "number": 456,
+      "title": "Add new feature implementation",
+      "state": "open"
+    },
+    "requested_reviewer": {
+      "login": "senior-dev",
+      "id": 54321
+    },
+    "repository": {
+      "name": "test-repo",
+      "full_name": "org/test-repo"
+    }
+  },
+  
+  "linear_issue_created": {
+    "action": "create",
+    "data": {
+      "id": "issue-abc123",
+      "title": "Implement user authentication system",
+      "description": "We need to implement a comprehensive user authentication system with the following features:\n\n- User registration and login\n- Password reset functionality\n- Two-factor authentication\n- Session management\n- Role-based access control",
+      "state": { 
+        "name": "Todo",
+        "type": "unstarted"
+      },
+      "assignee": {
+        "id": "user-123",
+        "name": "John Developer",
+        "email": "john@example.com"
+      },
+      "team": {
+        "id": "team-456",
+        "name": "Backend Team",
+        "key": "BACK"
+      },
+      "priority": 2,
+      "estimate": 8,
+      "createdAt": "2023-12-01T10:00:00Z",
+      "updatedAt": "2023-12-01T10:00:00Z"
+    },
+    "type": "Issue"
+  },
+  
+  "linear_issue_updated": {
+    "action": "update",
+    "data": {
+      "id": "issue-abc123",
+      "title": "Implement user authentication system",
+      "state": { 
+        "name": "In Progress",
+        "type": "started"
+      },
+      "assignee": {
+        "id": "user-123",
+        "name": "John Developer"
+      },
+      "updatedAt": "2023-12-01T11:30:00Z"
+    },
+    "updatedFrom": {
+      "state": {
+        "name": "Todo",
+        "type": "unstarted"
+      }
+    },
+    "type": "Issue"
+  },
+  
+  "slack_message": {
+    "type": "message",
+    "channel": "C1234567890",
+    "user": "U0987654321",
+    "text": "Hey team, the new feature is ready for review! Check out PR #456",
+    "ts": "1701428400.123456",
+    "team": "T1111111111",
+    "blocks": [
+      {
+        "type": "section",
+        "text": {
+          "type": "mrkdwn",
+          "text": "Hey team, the new feature is ready for review! Check out PR #456"
+        }
+      }
+    ]
+  },
+  
+  "webhook_github_push": {
+    "ref": "refs/heads/main",
+    "before": "abc123def456",
+    "after": "def456abc123",
+    "repository": {
+      "id": 987654321,
+      "name": "test-repo",
+      "full_name": "org/test-repo"
+    },
+    "pusher": {
+      "name": "developer",
+      "email": "developer@example.com"
+    },
+    "commits": [
+      {
+        "id": "def456abc123",
+        "message": "Add new feature implementation\n\nThis commit adds the core functionality for the new feature.",
+        "author": {
+          "name": "Developer",
+          "email": "developer@example.com"
+        },
+        "added": ["src/new-feature.ts"],
+        "modified": ["src/index.ts", "README.md"],
+        "removed": []
+      }
+    ]
+  },
+  
+  "internal_agent_spawn": {
+    "type": "agent_spawn_request",
+    "agentType": "review-manager",
+    "workflowId": "workflow-xyz789",
+    "context": {
+      "githubPrId": "456",
+      "repository": "org/test-repo",
+      "priority": "high",
+      "deadline": "2023-12-02T10:00:00Z"
+    },
+    "timestamp": "2023-12-01T10:05:00Z"
+  },
+  
+  "internal_task_completion": {
+    "type": "task_completed",
+    "taskId": "task-def789",
+    "agentId": "agent-abc123",
+    "workflowId": "workflow-xyz789",
+    "result": {
+      "status": "success",
+      "data": {
+        "reviewersAssigned": ["senior-dev", "tech-lead"],
+        "estimatedReviewTime": "2 hours",
+        "slaDeadline": "2023-12-01T18:00:00Z"
+      }
+    },
+    "metrics": {
+      "executionTimeMs": 1250,
+      "apiCallsCount": 3,
+      "errorCount": 0
+    },
+    "timestamp": "2023-12-01T10:07:30Z"
+  },
+  
+  "context_switch_detected": {
+    "type": "context_switch",
+    "userId": "user-123",
+    "fromContext": {
+      "type": "coding",
+      "project": "authentication-system",
+      "file": "src/auth.ts"
+    },
+    "toContext": {
+      "type": "review",
+      "project": "test-repo",
+      "pullRequest": 456
+    },
+    "switchDuration": 45000,
+    "timestamp": "2023-12-01T10:15:00Z"
+  },
+  
+  "pattern_application_opportunity": {
+    "type": "pattern_opportunity",
+    "patternId": "parallel-review-tracks",
+    "workflowId": "workflow-xyz789",
+    "context": {
+      "prComplexity": "high",
+      "teamSize": 8,
+      "availableReviewers": 4,
+      "deadline": "urgent"
+    },
+    "confidence": 0.85,
+    "estimatedImprovement": {
+      "timeReduction": "40%",
+      "qualityIncrease": "15%"
+    },
+    "timestamp": "2023-12-01T10:20:00Z"
+  }
+}
+
