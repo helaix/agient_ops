@@ -35,6 +35,17 @@ For standardized communication and delegation practices, consult the [Communicat
 - Recommended solutions and SOPs
 - Specific guidelines for delegating to sub-agents
 
+### Self-Improvement Mechanisms
+
+For continuous improvement of agent performance through systematic tracking, analysis, and feedback, refer to the [Self-Improvement Mechanisms](../../docs/reference/self_improvement/) which provides:
+
+- [Error Tracking System](../../docs/reference/self_improvement/error_tracking/): Framework for identifying, categorizing, analyzing, and resolving errors
+- [Success Pattern Analysis Framework](../../docs/reference/self_improvement/success_patterns/): Methodology for identifying and replicating successful patterns
+- [Feedback Collection System](../../docs/reference/self_improvement/feedback_collection/): Structured approach to collecting and implementing feedback
+- [Integration Framework](../../docs/reference/self_improvement/integration/): Comprehensive guide for integrating all components
+
+The self-improvement mechanisms are designed to work alongside existing workflows to enhance agent performance and enable continuous learning.
+
 ## When to Use These Resources
 
 1. **Starting a New Linear Task**: Review the Linear Workflows Reference
@@ -42,6 +53,10 @@ For standardized communication and delegation practices, consult the [Communicat
 3. **Communication Issues**: Refer to Communication and Delegation SOPs
 4. **Code Management**: Follow guidelines in Agent Collaboration Workflow
 5. **Specialized Workflow Patterns**: Use the Workflow Decision Pathways below to select the appropriate pattern
+6. **Error Encountered**: Use the [Error Tracking System](../../docs/reference/self_improvement/error_tracking/) to document and resolve issues
+7. **Successful Completion**: Apply the [Success Pattern Analysis Framework](../../docs/reference/self_improvement/success_patterns/) to capture learnings
+8. **Receiving Feedback**: Utilize the [Feedback Collection System](../../docs/reference/self_improvement/feedback_collection/) to implement improvements
+9. **Continuous Improvement**: Follow the [Integration Framework](../../docs/reference/self_improvement/integration/) for systematic enhancement
 
 ## Workflow Decision Pathways
 
@@ -53,28 +68,55 @@ graph TD
     B -->|Complex Implementation| D[Task Decomposition Meta-Workflow]
     B -->|Evolving Requirements| E[Adaptive Coordination Meta-Meta-Workflow]
     B -->|Task Completion| F[Postmortem and Self-Analysis]
+    B -->|Error Encountered| G[Error Tracking System]
+    B -->|Feedback Received| H[Feedback Collection System]
     
-    C --> G{Multiple Research Areas?}
-    G -->|Yes| H[Create Sub-Issues]
-    G -->|No| I[Single Research Document]
+    C --> G1{Multiple Research Areas?}
+    G1 -->|Yes| H1[Create Sub-Issues]
+    G1 -->|No| I1[Single Research Document]
     
-    D --> J{Clear Component Boundaries?}
-    J -->|Yes| K[Component-Based Decomposition]
-    J -->|No| L[Capability-Based Decomposition]
+    D --> J1{Clear Component Boundaries?}
+    J1 -->|Yes| K1[Component-Based Decomposition]
+    J1 -->|No| L1[Capability-Based Decomposition]
     
-    E --> M{Progress Monitoring}
-    M --> N{Strategy Adjustment}
-    N --> O{Learning and Refinement}
+    E --> M1{Progress Monitoring}
+    M1 --> N1{Strategy Adjustment}
+    N1 --> O1{Learning and Refinement}
     
-    F --> P{Document Learnings}
-    P --> Q{Identify Patterns}
-    Q --> R{Create Reusable Documentation}
+    F --> P1{Document Learnings}
+    P1 --> Q1{Identify Patterns}
+    Q1 --> R1{Create Reusable Documentation}
+    
+    G --> S1[Error Categorization]
+    S1 --> T1[Root Cause Analysis]
+    T1 --> U1[Solution Implementation]
+    U1 --> V1[Pattern Documentation]
+    
+    H --> W1[Feedback Analysis]
+    W1 --> X1[Priority Assessment]
+    X1 --> Y1[Implementation Planning]
+    Y1 --> Z1[Impact Measurement]
+    
+    %% Self-Improvement Integration Points
+    H1 --> SI1[Success Pattern Analysis]
+    I1 --> SI1
+    K1 --> SI1
+    L1 --> SI1
+    R1 --> SI1
+    V1 --> SI1
+    Z1 --> SI1
+    
+    SI1 --> SI2[Continuous Improvement Cycle]
     
     style A fill:#d0e0ff,stroke:#3080ff
     style C fill:#ffe0d0,stroke:#ff8030
     style D fill:#d0ffe0,stroke:#30c080
     style E fill:#ffd0e0,stroke:#ff3080
     style F fill:#e0d0ff,stroke:#8030ff
+    style G fill:#ffeecc,stroke:#ff9900
+    style H fill:#ccffee,stroke:#00cc66
+    style SI1 fill:#ffffcc,stroke:#ffcc00
+    style SI2 fill:#ffffcc,stroke:#ffcc00
 ```
 
 ## When to Use Each Workflow Pattern
@@ -132,6 +174,42 @@ graph TD
 - Novel approaches or challenges were encountered
 - Learnings could benefit future similar tasks
 - Patterns emerged that could be generalized
+
+### Error Tracking System
+**Use when:** You encounter errors, issues, or unexpected behaviors during task execution.
+**Documentation:** [Error Tracking System](../../docs/reference/self_improvement/error_tracking/)
+**Key indicators:**
+- System failures or unexpected behaviors occur
+- Tasks cannot be completed as expected
+- Recurring issues need systematic tracking
+- Root cause analysis is required for problem resolution
+
+### Success Pattern Analysis Framework
+**Use when:** You want to identify, document, and replicate successful approaches.
+**Documentation:** [Success Pattern Analysis Framework](../../docs/reference/self_improvement/success_patterns/)
+**Key indicators:**
+- Tasks completed successfully with notable efficiency
+- Innovative approaches that could benefit other agents
+- Collaboration patterns that worked exceptionally well
+- Outcomes exceeded expectations
+
+### Feedback Collection System
+**Use when:** You need to gather, analyze, and implement feedback on agent performance.
+**Documentation:** [Feedback Collection System](../../docs/reference/self_improvement/feedback_collection/)
+**Key indicators:**
+- Stakeholders provide input on agent performance
+- User experience feedback is available
+- Performance metrics suggest areas for improvement
+- Systematic feedback collection is needed for continuous improvement
+
+### Self-Improvement Integration Framework
+**Use when:** You want to implement a comprehensive approach to continuous improvement.
+**Documentation:** [Integration Framework](../../docs/reference/self_improvement/integration/)
+**Key indicators:**
+- Multiple improvement mechanisms need coordination
+- Systematic approach to performance enhancement is required
+- Cross-component learning and improvement is desired
+- Measurable improvement outcomes are needed
 
 ## Workflow Checklists
 
@@ -377,10 +455,10 @@ The workflows documented here complement and extend the existing frameworks in t
 1. **Linear Workflows Reference**: For Linear-specific tools and processes
 2. **Agent Collaboration Workflow**: For hierarchical delegation and code management
 3. **Communication and Delegation SOPs**: For standardized communication practices
+4. **Self-Improvement Mechanisms**: For continuous improvement of agent performance
 
-When implementing these workflow patterns, refer to the appropriate existing frameworks for specific implementation details related to Linear, collaboration, and communication.
+When implementing these workflow patterns, refer to the appropriate existing frameworks for specific implementation details related to Linear, collaboration, communication, and self-improvement.
 
 ## Continuous Improvement
 
 These documents and workflow patterns are continuously updated based on feedback and evolving best practices. If you identify areas for improvement or new patterns, please document them using the Postmortem and Self-Analysis Workflow and contribute them to the repository by creating an issue or PR with your suggestions.
-
