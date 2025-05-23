@@ -17,7 +17,7 @@ This document analyzes communication and delegation patterns between Codegen and
 
 The goal is to establish clear Standard Operating Procedures (SOPs) that optimize the collaboration between parent agents and sub-agents, ensuring efficient task completion, clear communication, and effective knowledge transfer.
 
-**⚠️ CRITICAL UPDATE**: Following analysis of misleading status language issues (HLX-1726), enhanced communication guidelines have been established. See [Agent Communication Guidelines](#agent-communication-guidelines) section for mandatory status language standards.
+**⚠️ CRITICAL UPDATE**: Following analysis of misleading status language issues (https://linear.app/helaix/issue/HLX-1726), enhanced communication guidelines have been established. See [Agent Communication Guidelines](#agent-communication-guidelines) section for mandatory status language standards.
 
 ## Identified Communication/Delegation Patterns
 
@@ -327,7 +327,7 @@ This resulted in well-coordinated research efforts with consistent outputs that 
 
 #### Example 2: Effective Task Completion Reporting
 
-In issue HNTSMN-308 (Analyze Point #3: Breaking Through Current Context to Level Up), the sub-agent:
+In issue https://linear.app/helaix/issue/HNTSMN-308 (Analyze Point #3: Breaking Through Current Context to Level Up), the sub-agent:
 - Provided a comprehensive analysis following the specified framework
 - Used clear section headings matching the requested structure
 - Included detailed, actionable recommendations
@@ -338,7 +338,7 @@ This enabled the parent agent to easily integrate the analysis into the larger p
 
 #### Example 3: Clear Branch Management in Multi-Agent Project
 
-In issue HLX-1465 (Epic Management Workflow), the parent agent:
+In issue https://linear.app/helaix/issue/HLX-1465 (Epic Management Workflow), the parent agent:
 - Created a main epic branch for the overall task
 - Had sub-agents create branches from the main branch with consistent naming
 - Documented the branch strategy in the issue description

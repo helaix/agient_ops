@@ -14,11 +14,11 @@ This postmortem documents the process, workflows, and learnings from the Remotio
 ### Sub-Issue Creation
 - **Instruction**: Create five sub-issues, one for each capability
 - **Action**: Created detailed sub-issues with specific research guidelines, resources, and deliverables:
-  - HLX-1598: Research Intelligent Video Segmentation
-  - HLX-1594: Research Progressive Asset Loading
-  - HLX-1595: Research Client-side Video Processing
-  - HLX-1596: Research Enhanced Asset Browser
-  - HLX-1597: Research Optimized Rendering Decisions
+  - https://linear.app/helaix/issue/HLX-1598: Research Intelligent Video Segmentation
+  - https://linear.app/helaix/issue/HLX-1594: Research Progressive Asset Loading
+  - https://linear.app/helaix/issue/HLX-1595: Research Client-side Video Processing
+  - https://linear.app/helaix/issue/HLX-1596: Research Enhanced Asset Browser
+  - https://linear.app/helaix/issue/HLX-1597: Research Optimized Rendering Decisions
 - **Rationale**: Breaking down the research into focused components allowed for parallel investigation and specialized attention to each capability
 
 ### Progress Monitoring
@@ -41,7 +41,7 @@ This postmortem documents the process, workflows, and learnings from the Remotio
 
 ### Parent Issue Update
 - **Instruction**: "Comment on parent task with your update"
-- **Action**: Posted a summary comment on the parent issue (HLX-1411) tagging @codegen
+- **Action**: Posted a summary comment on the parent issue (https://linear.app/helaix/issue/HLX-1411) tagging @codegen
 - **Rationale**: Keeping the parent task updated ensures stakeholders have visibility into the overall progress
 
 ### Task Completion
