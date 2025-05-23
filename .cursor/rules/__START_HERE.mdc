@@ -18,6 +18,13 @@ When working with Linear issues, always refer to the [Linear Workflows Reference
 
 The [Linear Workflow Decision Diagram](../../docs/reference/linear_workflow_diagram.md) provides a visual guide for when to utilize the Linear Workflows Reference.
 
+For practical examples and detailed scenarios, see the [Linear Workflow Scenarios and Examples](../../docs/examples/linear_workflow_scenarios.md) which provides:
+
+- Step-by-step workflows for common scenarios
+- Practical examples with code and commands
+- Best practices for different types of Linear tasks
+- Templates and implementation guidance
+
 ### Agent Collaboration
 
 For multi-agent collaboration tasks, refer to the following resources:
@@ -48,7 +55,7 @@ The self-improvement mechanisms are designed to work alongside existing workflow
 
 ## When to Use These Resources
 
-1. **Starting a New Linear Task**: Review the Linear Workflows Reference
+1. **Starting a New Linear Task**: Review the Linear Workflows Reference and check the [Linear Workflow Scenarios](../../docs/examples/linear_workflow_scenarios.md) for practical examples
 2. **Delegating Complex Tasks**: Consult both Linear Workflows and Agent Collaboration documents
 3. **Communication Issues**: Refer to Communication and Delegation SOPs
 4. **Code Management**: Follow guidelines in Agent Collaboration Workflow
