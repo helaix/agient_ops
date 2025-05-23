@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Agent Management - Desktop Command Center</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="command-center">
+        <!-- Top Bar -->
+        <header class="top-bar">
+            <div class="logo">
+                <i class="fas fa-robot"></i>
+                <span>Agent Command</span>
+            </div>
+            <div class="global-search">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search agents, tasks, contexts...">
+            </div>
+            <div class="system-status">
+                <div class="status-indicator online">
+                    <i class="fas fa-circle"></i>
+                    <span>System Online</span>
+                </div>
+                <div class="status-indicator">
+                    <i class="fas fa-server"></i>
+                    <span>Resources: 72%</span>
+                </div>
+                <div class="status-indicator">
+                    <i class="fas fa-network-wired"></i>
+                    <span>Network: Stable</span>
+                </div>
+            </div>
+            <div class="user-profile">
+                <img src="https://via.placeholder.com/32" alt="User Avatar">
+                <span>Admin User</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </header>
+
+        <div class="main-container">
+            <!-- Left Sidebar (Agent Roster) -->
+            <aside class="left-sidebar">
+                <div class="sidebar-header">
+                    <h3>Agent Roster</h3>
+                    <div class="filter-controls">
+                        <button class="filter-btn">
+                            <i class="fas fa-filter"></i>
+                        </button>
+                        <button class="sort-btn">
+                            <i class="fas fa-sort"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="search-agents">
+                    <input type="text" placeholder="Search agents...">
+                </div>
+                <ul class="agent-list">
+                    <li class="agent active" data-agent-id="agent1">
+                        <div class="agent-status active"></div>
+                        <div class="agent-info">
+                            <div class="agent-name">Research Agent</div>
+                            <div class="agent-task">Analyzing data sources</div>
+                        </div>
+                        <div class="agent-controls">
+                            <button class="agent-control-btn" title="Pause Agent">
+                                <i class="fas fa-pause"></i>
+                            </button>
+                            <button class="agent-control-btn" title="View Details">
+                                <i class="fas fa-info-circle"></i>
+                            </button>
+                            <button class="agent-control-btn" title="Quick Command">
+                                <i class="fas fa-terminal"></i>
+                            </button>
+                        </div>
+                    </li>
+                    <li class="agent busy" data-agent-id="agent2">
+                        <div class="agent-status busy"></div>
+                        <div class="agent-info">
+                            <div class="agent-name">Writer Agent</div>
+                            <div class="agent-task">Drafting content</div>
+                        </div>
+                        <div class="agent-controls">
+                            <button class="agent-control-btn" title="Pause Agent">
+                                <i class="fas fa-pause"></i>
+                            </button>
+                            <button class="agent-control-btn" title="View Details">
+                                <i class="fas fa-info-circle"></i>
+                            </button>
+                            <button class="agent-control-btn" title="Quick Command">
+                                <i class="fas fa-terminal"></i>
+                            </button>
+                        </div>
+                    </li>
+                    <li class="agent error" data-agent-id="agent3">
+                        <div class="agent-status error"></div>
+                        <div class="agent-info">
+                            <div class="agent-name">Data Agent</div>
+                            <div class="agent-task">API connection failed</div>
+                        </div>
+                        <div class="agent-controls">
+                            <button class="agent-control-btn" title="Restart Agent">
+                                <i class="fas fa-redo"></i>
+                            </button>
+                            <button class="agent-control-btn" title="View Details">
+                                <i class="fas fa-info-circle"></i>
+                            </button>
+                            <button class="agent-control-btn" title="Quick Command">
+                                <i class="fas fa-terminal"></i>
+                            </button>
+                        </div>
+                    </li>
+                    <li class="agent idle" data-agent-id="agent4">
+                        <div class="agent-status idle"></div>
+                        <div class="agent-info">
+                            <div class="agent-name">Assistant Agent</div>
+                            <div class="agent-task">Waiting for tasks</div>
+                        </div>
+                        <div class="agent-controls">
+                            <button class="agent-control-btn" title="Assign Task">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <button class="agent-control-btn" title="View Details">
+                                <i class="fas fa-info-circle"></i>
+                            </button>
+                            <button class="agent-control-btn" title="Quick Command">
+                                <i class="fas fa-terminal"></i>
+                            </button>
+                        </div>
+                    </li>
+                    <li class="agent active" data-agent-id="agent5">
+                        <div class="agent-status active"></div>
+                        <div class="agent-info">
+                            <div class="agent-name">Code Agent</div>
+                            <div class="agent-task">Refactoring module</div>
+                        </div>
+                        <div class="agent-controls">
+                            <button class="agent-control-btn" title="Pause Agent">
+                                <i class="fas fa-pause"></i>
+                            </button>
+                            <button class="agent-control-btn" title="View Details">
+                                <i class="fas fa-info-circle"></i>
+                            </button>
+                            <button class="agent-control-btn" title="Quick Command">
+                                <i class="fas fa-terminal"></i>
+                            </button>
+                        </div>
+                    </li>
+                </ul>
+            </aside>
+
+            <!-- Main Viewport -->
+            <main class="main-viewport">
+                <div class="viewport-header">
+                    <h2>Command Center</h2>
+                    <div class="view-controls">
+                        <button class="view-btn active" data-view="map">
+                            <i class="fas fa-project-diagram"></i>
+                            <span>Map View</span>
+                        </button>
+                        <button class="view-btn" data-view="timeline">
+                            <i class="fas fa-stream"></i>
+                            <span>Timeline View</span>
+                        </button>
+                        <button class="view-btn" data-view="kanban">
+                            <i class="fas fa-columns"></i>
+                            <span>Kanban View</span>
+                        </button>
+                    </div>
+                    <div class="viewport-actions">
+                        <button class="action-btn">
+                            <i class="fas fa-plus"></i>
+                            <span>New Agent</span>
+                        </button>
+                        <button class="action-btn">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="viewport-content">
+                    <!-- Map View (Default) -->
+                    <div class="view-container map-view active" id="map-view">
+                        <div class="map-controls">
+                            <button class="map-control-btn" title="Zoom In">
+                                <i class="fas fa-search-plus"></i>
+                            </button>
+                            <button class="map-control-btn" title="Zoom Out">
+                                <i class="fas fa-search-minus"></i>
+                            </button>
+                            <button class="map-control-btn" title="Reset View">
+                                <i class="fas fa-compress-arrows-alt"></i>
+                            </button>
+                            <button class="map-control-btn" title="Group Agents">
+                                <i class="fas fa-object-group"></i>
+                            </button>
+                        </div>
+                        <div class="map-canvas" id="agent-map">
+                            <!-- Map will be rendered here by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Timeline View -->
+                    <div class="view-container timeline-view" id="timeline-view">
+                        <div class="timeline-controls">
+                            <button class="timeline-control-btn" title="Zoom In">
+                                <i class="fas fa-search-plus"></i>
+                            </button>
+                            <button class="timeline-control-btn" title="Zoom Out">
+                                <i class="fas fa-search-minus"></i>
+                            </button>
+                            <button class="timeline-control-btn" title="Today">
+                                <i class="fas fa-calendar-day"></i>
+                            </button>
+                            <div class="timeline-scale">
+                                <span>Scale:</span>
+                                <select>
+                                    <option>Hours</option>
+                                    <option selected>Days</option>
+                                    <option>Weeks</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="timeline-container" id="agent-timeline">
+                            <!-- Timeline will be rendered here by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Kanban View -->
+                    <div class="view-container kanban-view" id="kanban-view">
+                        <div class="kanban-controls">
+                            <button class="kanban-control-btn" title="Add Column">
+                                <i class="fas fa-plus"></i>
+                                <span>Add Column</span>
+                            </button>
+                            <button class="kanban-control-btn" title="Collapse All">
+                                <i class="fas fa-compress"></i>
+                            </button>
+                            <button class="kanban-control-btn" title="Expand All">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
+                        <div class="kanban-board" id="agent-kanban">
+                            <!-- Kanban board will be rendered here by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Right Sidebar (Context Panel) -->
+            <aside class="right-sidebar">
+                <div class="sidebar-header">
+                    <h3>Context Panel</h3>
+                    <button class="close-btn">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="context-panel">
+                    <div class="agent-details">
+                        <h4>Research Agent</h4>
+                        <div class="agent-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-circle active"></i>
+                                <span>Status: Active</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-clock"></i>
+                                <span>Uptime: 3h 45m</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-microchip"></i>
+                                <span>CPU: 42%</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-memory"></i>
+                                <span>Memory: 512MB</span>
+                            </div>
+                        </div>
+                        <div class="agent-description">
+                            <p>Specialized in gathering and analyzing information from various data sources. Currently working on market research for Project Alpha.</p>
+                        </div>
+                    </div>
+                    <div class="current-task">
+                        <h4>Current Task</h4>
+                        <div class="task-info">
+                            <div class="task-name">Analyzing data sources</div>
+                            <div class="task-progress">
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 65%"></div>
+                                </div>
+                                <span>65%</span>
+                            </div>
+                            <div class="task-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-hourglass-half"></i>
+                                    <span>Est. completion: 45m</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-exclamation-circle"></i>
+                                    <span>Priority: High</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="context-access">
+                        <h4>Context Access</h4>
+                        <ul class="context-list">
+                            <li class="context-item">
+                                <i class="fas fa-database"></i>
+                                <span>Market Data</span>
+                            </li>
+                            <li class="context-item">
+                                <i class="fas fa-file-alt"></i>
+                                <span>Project Requirements</span>
+                            </li>
+                            <li class="context-item">
+                                <i class="fas fa-chart-line"></i>
+                                <span>Analytics Dashboard</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="recent-activity">
+                        <h4>Recent Activity</h4>
+                        <ul class="activity-list">
+                            <li class="activity-item">
+                                <div class="activity-time">10:45 AM</div>
+                                <div class="activity-description">Completed API data extraction</div>
+                            </li>
+                            <li class="activity-item">
+                                <div class="activity-time">10:30 AM</div>
+                                <div class="activity-description">Started analyzing competitor data</div>
+                            </li>
+                            <li class="activity-item">
+                                <div class="activity-time">10:15 AM</div>
+                                <div class="activity-description">Connected to market database</div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="action-btn primary">
+                            <i class="fas fa-tasks"></i>
+                            <span>Assign Task</span>
+                        </button>
+                        <button class="action-btn">
+                            <i class="fas fa-edit"></i>
+                            <span>Modify Context</span>
+                        </button>
+                        <button class="action-btn">
+                            <i class="fas fa-terminal"></i>
+                            <span>Send Command</span>
+                        </button>
+                        <button class="action-btn">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>View Details</span>
+                        </button>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <!-- Bottom Bar -->
+        <footer class="bottom-bar">
+            <div class="resource-metrics">
+                <div class="metric">
+                    <i class="fas fa-microchip"></i>
+                    <span>CPU: 45%</span>
+                </div>
+                <div class="metric">
+                    <i class="fas fa-memory"></i>
+                    <span>Memory: 6.2GB / 16GB</span>
+                </div>
+                <div class="metric">
+                    <i class="fas fa-network-wired"></i>
+                    <span>Network: 25MB/s</span>
+                </div>
+                <div class="metric">
+                    <i class="fas fa-cloud"></i>
+                    <span>API Calls: 1.2K/hr</span>
+                </div>
+            </div>
+            <div class="system-messages">
+                <div class="message info">
+                    <i class="fas fa-info-circle"></i>
+                    <span>System update available</span>
+                </div>
+            </div>
+            <div class="notifications">
+                <button class="notification-btn">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-count">3</span>
+                </button>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Command Input (Hidden by default, shown with "/" key) -->
+    <div class="command-input" id="command-input">
+        <div class="command-prompt">
+            <span class="prompt-symbol">/</span>
+            <input type="text" placeholder="Type a command...">
+        </div>
+        <div class="command-suggestions">
+            <div class="suggestion-item">@research find information about renewable energy</div>
+            <div class="suggestion-item">@all pause tasks</div>
+            <div class="suggestion-item">@assistant schedule meeting with marketing team</div>
+        </div>
+    </div>
+
+    <!-- Notification Panel (Hidden by default) -->
+    <div class="notification-panel" id="notification-panel">
+        <div class="panel-header">
+            <h3>Notifications</h3>
+            <button class="close-btn">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="notification-list">
+            <div class="notification-item unread">
+                <div class="notification-icon error">
+                    <i class="fas fa-exclamation-circle"></i>
+                </div>
+                <div class="notification-content">
+                    <div class="notification-title">Data Agent Error</div>
+                    <div class="notification-message">API connection failed. Check credentials.</div>
+                    <div class="notification-time">10 minutes ago</div>
+                </div>
+                <div class="notification-actions">
+                    <button class="action-btn">
+                        <i class="fas fa-redo"></i>
+                    </button>
+                    <button class="action-btn">
+                        <i class="fas fa-check"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="notification-item unread">
+                <div class="notification-icon warning">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="notification-content">
+                    <div class="notification-title">Resource Warning</div>
+                    <div class="notification-message">Writer Agent approaching memory limit.</div>
+                    <div class="notification-time">25 minutes ago</div>
+                </div>
+                <div class="notification-actions">
+                    <button class="action-btn">
+                        <i class="fas fa-wrench"></i>
+                    </button>
+                    <button class="action-btn">
+                        <i class="fas fa-check"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="notification-item">
+                <div class="notification-icon success">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="notification-content">
+                    <div class="notification-title">Task Completed</div>
+                    <div class="notification-message">Research Agent completed market analysis.</div>
+                    <div class="notification-time">1 hour ago</div>
+                </div>
+                <div class="notification-actions">
+                    <button class="action-btn">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                    <button class="action-btn">
+                        <i class="fas fa-check"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
