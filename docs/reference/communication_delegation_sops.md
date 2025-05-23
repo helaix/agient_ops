@@ -7,14 +7,17 @@
 3. [Root Causes of Communication/Delegation Failures](#root-causes-of-communicationdelegation-failures)
 4. [Recommended Solutions and SOPs](#recommended-solutions-and-sops)
 5. [Specific Guidelines for Codegen Delegating to Sub-Agents](#specific-guidelines-for-codegen-delegating-to-sub-agents)
-6. [Examples of Successful and Unsuccessful Communication/Delegation](#examples-of-successful-and-unsuccessful-communicationdelegation)
-7. [Summary of Key Findings and Recommendations](#summary-of-key-findings-and-recommendations)
+6. [Agent Communication Guidelines](#agent-communication-guidelines)
+7. [Examples of Successful and Unsuccessful Communication/Delegation](#examples-of-successful-and-unsuccessful-communicationdelegation)
+8. [Summary of Key Findings and Recommendations](#summary-of-key-findings-and-recommendations)
 
 ## Introduction
 
 This document analyzes communication and delegation patterns between Codegen and sub-agents, identifying common issues, root causes, and recommended solutions. The analysis is based on a review of comment logs from Linear issues, focusing particularly on instances where communication or delegation failed or succeeded.
 
 The goal is to establish clear Standard Operating Procedures (SOPs) that optimize the collaboration between parent agents and sub-agents, ensuring efficient task completion, clear communication, and effective knowledge transfer.
+
+**⚠️ CRITICAL UPDATE**: Following analysis of misleading status language issues (HLX-1726), enhanced communication guidelines have been established. See [Agent Communication Guidelines](#agent-communication-guidelines) section for mandatory status language standards.
 
 ## Identified Communication/Delegation Patterns
 
@@ -254,6 +257,59 @@ The goal is to establish clear Standard Operating Procedures (SOPs) that optimiz
 - **Set expectations for response times** to questions or requests
 - **Use structured formats** for different types of messages
 
+## Agent Communication Guidelines
+
+**⚠️ MANDATORY COMPLIANCE**: All agents must follow the enhanced communication guidelines to prevent misleading status language.
+
+### Status Language Standards
+
+Following analysis of Agent #22242's misleading communication about deployment status, all agents must now comply with standardized status language requirements. The core issue was agents claiming work was "merged to main" when it was only merged between feature branches in sandbox environment.
+
+**For complete guidelines, see**: [Agent Communication Guidelines](./agent_communication_guidelines.md)
+
+### Key Requirements
+
+#### ✅ **Required Status Verification**
+Before claiming any deployment status, agents MUST verify:
+1. **Actual branch status**: Use `git branch -r` to confirm remote branches
+2. **PR status**: Check if PR exists and is merged to main
+3. **Deployment status**: Verify if changes are user-accessible
+
+#### ✅ **Approved Status Language**
+- "✅ Work completed in feature branch `[branch-name]` - ready for PR creation"
+- "🔄 Child agent work integrated into parent branch `[branch-name]`"
+- "📝 Implementation complete - ready to create PR to main"
+- "🎉 PR #[number] successfully merged to main branch" (only when actually merged)
+
+#### ❌ **Prohibited Status Language**
+- "Merged to main" (unless PR is actually merged to main)
+- "Deployed" (unless changes are user-accessible)
+- "Successfully merged into main branch" (when only merged to feature branch)
+
+### Communication Templates
+
+All agents must use standardized templates for status updates:
+
+**Sandbox Work Completion**:
+```
+✅ Work completed in feature branch `[branch-name]` - ready for PR creation
+**Status**: Development complete in sandbox environment
+**Next Step**: Create PR to merge into main branch
+```
+
+**Child Agent Integration**:
+```
+🔄 Child agent work integrated into parent branch `[branch-name]`
+**Status**: Sub-agent changes consolidated
+**Next Step**: Parent agent will create final PR
+```
+
+### Enforcement
+
+- **Parent agents** must monitor child agent language and correct misleading status claims
+- **Child agents** must use sandbox-appropriate language and avoid deployment claims
+- **All agents** must verify status before making claims
+
 ## Examples of Successful and Unsuccessful Communication/Delegation
 
 ### Successful Communication/Delegation Examples
@@ -369,4 +425,3 @@ In some technical implementation tasks, insufficient context led to:
    - Document integration decisions and rationales
 
 By implementing these recommendations, Codegen can significantly improve the efficiency and effectiveness of delegation to sub-agents, resulting in higher quality outputs, faster completion times, and reduced coordination overhead.
-

@@ -35,6 +35,8 @@ For standardized communication and delegation practices, consult the [Communicat
 - Recommended solutions and SOPs
 - Specific guidelines for delegating to sub-agents
 
+**⚠️ CRITICAL**: All agents must follow the [Agent Communication Guidelines](../../docs/reference/agent_communication_guidelines.md) to prevent misleading status language about deployment and merge states.
+
 ### Self-Improvement Mechanisms
 
 For continuous improvement of agent performance through systematic tracking, analysis, and feedback, refer to the [Self-Improvement Mechanisms](../../docs/reference/self_improvement/) which provides:
