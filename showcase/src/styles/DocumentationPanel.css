@@ -1,0 +1,48 @@
+.documentation-panel {
+  margin-top: 3rem;
+  padding: 1.5rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+.documentation-content {
+  margin-top: 1rem;
+}
+
+.doc-description {
+  line-height: 1.6;
+}
+
+.doc-description ul, 
+.doc-description ol {
+  padding-left: 1.5rem;
+}
+
+.doc-description li {
+  margin-bottom: 0.5rem;
+}
+
+.doc-description code {
+  background-color: #f0f0f0;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+.doc-description pre {
+  background-color: #f0f0f0;
+  padding: 1rem;
+  border-radius: 4px;
+  overflow-x: auto;
+  font-family: monospace;
+}
+
+.doc-description a {
+  color: #1890ff;
+  text-decoration: none;
+}
+
+.doc-description a:hover {
+  text-decoration: underline;
+}
+
