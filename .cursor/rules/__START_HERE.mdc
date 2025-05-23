@@ -1,469 +1,78 @@
-# Agent Operations Guidelines and Workflow Selection Guide
+# Codegen Agent Workflow Router
 
-## Introduction
+## Base Workflow - Execute Every Time
 
-Welcome to the Agent Operations repository! This repository contains essential documentation, guidelines, and reference materials for agent operations within the Codegen ecosystem. This guide will help you identify and implement the most appropriate workflow patterns for your current task. By following the decision pathways and utilizing the provided checklists, you can ensure consistent, effective execution of complex tasks.
+**🚨 CRITICAL**: All agents must follow this sequence on every task:
 
-## Key Resources
+1. **Initialize** → Review task requirements and context
+2. **Route** → Use decision tree below to select appropriate workflow
+3. **Execute** → Follow selected workflow documentation
+4. **Validate** → Ensure deliverables meet requirements
+5. **Communicate** → Update status using [Tactical Communication Standards](../../docs/reference/tactical_communication_standards.md)
 
-### Linear Workflows
-
-When working with Linear issues, always refer to the [Linear Workflows Reference Guide](../../docs/reference/linear_workflows_reference.md) for comprehensive guidance on:
-
-- Understanding Linear workflows and components
-- Guidelines for working with Linear issues
-- **Linear Issue Reference Standards**: REQUIRED use of full URL format (`https://linear.app/helaix/issue/ISSUE-ID`)
-- Task delegation and communication best practices
-- Common tools and patterns
-- Troubleshooting and examples
-
-The [Linear Workflow Decision Diagram](../../docs/reference/linear_workflow_diagram.md) provides a visual guide for when to utilize the Linear Workflows Reference.
-
-**⚠️ CRITICAL**: All Linear issue references MUST use the full URL format: `https://linear.app/helaix/issue/ISSUE-ID`. This ensures proper status display, clickability, and real-time updates. DO NOT use plain identifiers, markdown links, or partial references.
-
-### Agent Collaboration
-
-For multi-agent collaboration tasks, refer to the following resources:
-
-- [Agent Collaboration Workflow](../../docs/src/content/docs/reference/agent_collaboration_workflow.md): Core workflow definition
-- [Implementation Guide](../../docs/src/content/docs/reference/agent_collaboration_implementation_guide.md): Practical examples and code snippets
-- [Quick Reference](../../docs/src/content/docs/reference/agent_collaboration_quick_reference.md): Templates and checklists
-
-### Communication and Delegation
-
-For standardized communication and delegation practices, consult the [Communication and Delegation SOPs](../../docs/reference/communication_delegation_sops.md) which provides:
-
-- Analysis of communication patterns
-- Root causes of delegation failures
-- Recommended solutions and SOPs
-- Specific guidelines for delegating to sub-agents
-
-**⚠️ MISSION CRITICAL**: All agents must follow [Tactical Communication Standards](../../docs/reference/tactical_communication_standards.md) - communicate like Green Berets on a life-or-death mission. Maximum efficiency, zero waste.
-
-### Self-Improvement Mechanisms
-
-For continuous improvement of agent performance through systematic tracking, analysis, and feedback, refer to the [Self-Improvement Mechanisms](../../docs/reference/self_improvement/) which provides:
-
-- [Error Tracking System](../../docs/reference/self_improvement/error_tracking/): Framework for identifying, categorizing, analyzing, and resolving errors
-- [Success Pattern Analysis Framework](../../docs/reference/self_improvement/success_patterns/): Methodology for identifying and replicating successful patterns
-- [Feedback Collection System](../../docs/reference/self_improvement/feedback_collection/): Structured approach to collecting and implementing feedback
-- [Integration Framework](../../docs/reference/self_improvement/integration/): Comprehensive guide for integrating all components
-
-The self-improvement mechanisms are designed to work alongside existing workflows to enhance agent performance and enable continuous learning.
-
-## When to Use These Resources
-
-1. **Starting a New Linear Task**: Review the Linear Workflows Reference
-2. **Delegating Complex Tasks**: Consult both Linear Workflows and Agent Collaboration documents
-3. **Communication Issues**: Refer to Communication and Delegation SOPs
-4. **Code Management**: Follow guidelines in Agent Collaboration Workflow
-5. **Specialized Workflow Patterns**: Use the Workflow Decision Pathways below to select the appropriate pattern
-6. **Error Encountered**: Use the [Error Tracking System](../../docs/reference/self_improvement/error_tracking/) to document and resolve issues
-7. **Successful Completion**: Apply the [Success Pattern Analysis Framework](../../docs/reference/self_improvement/success_patterns/) to capture learnings
-8. **Receiving Feedback**: Utilize the [Feedback Collection System](../../docs/reference/self_improvement/feedback_collection/) to implement improvements
-9. **Continuous Improvement**: Follow the [Integration Framework](../../docs/reference/self_improvement/integration/) for systematic enhancement
-
-## Workflow Decision Pathways
+## Workflow Router - Select Your Path
 
 ```mermaid
 graph TD
-    A[New Task Assigned] --> B{Task Type?}
+    A[New Task] --> B{Task involves Linear?}
+    B -->|Yes| C[📋 Linear Workflows]
+    B -->|No| D{Multiple agents needed?}
     
-    B -->|Research Task| C[Research Coordination Workflow]
-    B -->|Complex Implementation| D[Task Decomposition Meta-Workflow]
-    B -->|Evolving Requirements| E[Adaptive Coordination Meta-Meta-Workflow]
-    B -->|Task Completion| F[Postmortem and Self-Analysis]
-    B -->|Error Encountered| G[Error Tracking System]
-    B -->|Feedback Received| H[Feedback Collection System]
+    C --> E[Follow: Linear Workflows Reference]
     
-    C --> G1{Multiple Research Areas?}
-    G1 -->|Yes| H1[Create Sub-Issues]
-    G1 -->|No| I1[Single Research Document]
+    D -->|Yes| F[🤝 Agent Collaboration]
+    D -->|No| G{Research required?}
     
-    D --> J1{Clear Component Boundaries?}
-    J1 -->|Yes| K1[Component-Based Decomposition]
-    J1 -->|No| L1[Capability-Based Decomposition]
+    F --> H[Follow: Agent Collaboration Workflow]
     
-    E --> M1{Progress Monitoring}
-    M1 --> N1{Strategy Adjustment}
-    N1 --> O1{Learning and Refinement}
+    G -->|Yes| I[🔍 Research Coordination]
+    G -->|No| J[📝 Standard Implementation]
     
-    F --> P1{Document Learnings}
-    P1 --> Q1{Identify Patterns}
-    Q1 --> R1{Create Reusable Documentation}
+    I --> K[Follow: Research Coordination Workflow]
+    J --> L[Follow: Base Implementation Pattern]
     
-    G --> S1[Error Categorization]
-    S1 --> T1[Root Cause Analysis]
-    T1 --> U1[Solution Implementation]
-    U1 --> V1[Pattern Documentation]
-    
-    H --> W1[Feedback Analysis]
-    W1 --> X1[Priority Assessment]
-    X1 --> Y1[Implementation Planning]
-    Y1 --> Z1[Impact Measurement]
-    
-    %% Self-Improvement Integration Points
-    H1 --> SI1[Success Pattern Analysis]
-    I1 --> SI1
-    K1 --> SI1
-    L1 --> SI1
-    R1 --> SI1
-    V1 --> SI1
-    Z1 --> SI1
-    
-    SI1 --> SI2[Continuous Improvement Cycle]
-    
-    style A fill:#d0e0ff,stroke:#3080ff
-    style C fill:#ffe0d0,stroke:#ff8030
-    style D fill:#d0ffe0,stroke:#30c080
-    style E fill:#ffd0e0,stroke:#ff3080
-    style F fill:#e0d0ff,stroke:#8030ff
-    style G fill:#ffeecc,stroke:#ff9900
-    style H fill:#ccffee,stroke:#00cc66
-    style SI1 fill:#ffffcc,stroke:#ffcc00
-    style SI2 fill:#ffffcc,stroke:#ffcc00
+    style A fill:#d0e0ff
+    style C fill:#ffe0d0
+    style F fill:#d0ffe0
+    style I fill:#ffd0e0
+    style J fill:#e0d0ff
 ```
 
-## When to Use Each Workflow Pattern
+## Essential Resources
 
-### Research Coordination Workflow
-**Use when:** You need to investigate multiple aspects of a technology, concept, or solution.
-**Documentation:** [Research Coordination Workflow](../docs/src/content/docs/workflows/patterns/research-coordination-workflow.md)
-**Key indicators:**
-- Task involves gathering information from multiple sources
-- Requires synthesis of findings into cohesive recommendations
-- Benefits from structured documentation of discoveries
-- Involves evaluation against specific criteria
+### Linear Tasks
+- **📋 [Linear Workflows Reference](../../docs/reference/linear_workflows_reference.md)** - Complete Linear guidance
+- **⚠️ CRITICAL**: Use full URL format: `https://linear.app/helaix/issue/ISSUE-ID`
 
-### Task Decomposition and Recomposition Meta-Workflow
-**Use when:** You're facing a complex task that can be broken down into smaller, manageable components.
-**Documentation:** [Task Decomposition Meta-Workflow](../docs/src/content/docs/workflows/meta-patterns/task-decomposition-and-recomposition-meta-workflow.md)
-**Key indicators:**
-- Task is too large for a single agent to complete efficiently
-- Components can be worked on in parallel
-- Clear interfaces exist between components
-- Final solution requires integration of multiple parts
+### Multi-Agent Tasks
+- **🤝 [Agent Collaboration Workflow](../../docs/src/content/docs/reference/agent_collaboration_workflow.md)** - Delegation and coordination
+- **📞 [Communication SOPs](../../docs/reference/communication_delegation_sops.md)** - Standardized communication
 
-### Adaptive Coordination System Meta-Meta-Workflow
-**Use when:** You're managing a complex project with evolving requirements or uncertain paths.
-**Documentation:** [Adaptive Coordination Meta-Meta-Workflow](../docs/src/content/docs/workflows/meta-meta-patterns/adaptive-coordination-system-meta-meta-workflow.md)
-**Key indicators:**
-- Project has high uncertainty or evolving requirements
-- Multiple coordination strategies might be needed
-- Long-running initiative that will evolve over time
-- Requires adaptation based on emerging information
+### Research Tasks
+- **🔍 [Research Coordination Workflow](../docs/src/content/docs/workflows/patterns/research-coordination-workflow.md)** - Structured investigation
 
-### Hierarchical Communication and Reporting Workflow
-**Use when:** You're managing communication across multiple levels of a task hierarchy.
-**Documentation:** [Hierarchical Communication Workflow](../docs/src/content/docs/workflows/patterns/hierarchical-communication-and-reporting-workflow.md)
-**Key indicators:**
-- Multiple nested levels of tasks exist
-- Information needs to flow between parent and child tasks
-- Different stakeholders need different levels of detail
-- Coordination across specialized domains is required
+### Communication (All Tasks)
+- **🎯 [Tactical Communication Standards](../../docs/reference/tactical_communication_standards.md)** - MANDATORY for all communication
 
-### Structured Feedback and Recognition Workflow
-**Use when:** You need to provide feedback on completed work or acknowledge contributions.
-**Documentation:** [Structured Feedback Workflow](../docs/src/content/docs/workflows/patterns/structured-feedback-and-recognition-workflow.md)
-**Key indicators:**
-- Reviewing work completed by other agents
-- Need to reinforce effective practices
-- Opportunity to acknowledge quality work
-- Building a culture of continuous improvement
+### Self-Improvement (When Issues Occur)
+- **📊 [Error Tracking](../../docs/reference/self_improvement/error_tracking/)** - Document and resolve issues
+- **🔄 [Success Patterns](../../docs/reference/self_improvement/success_patterns/)** - Capture learnings
 
-### Postmortem and Self-Analysis Workflow
-**Use when:** You've completed a significant task and need to document learnings.
-**Documentation:** [Postmortem Workflow](../docs/src/content/docs/workflows/patterns/postmortem-and-self-analysis-workflow.md)
-**Key indicators:**
-- Complex project has been completed
-- Novel approaches or challenges were encountered
-- Learnings could benefit future similar tasks
-- Patterns emerged that could be generalized
+## Quick Decision Guide
 
-### Error Tracking System
-**Use when:** You encounter errors, issues, or unexpected behaviors during task execution.
-**Documentation:** [Error Tracking System](../../docs/reference/self_improvement/error_tracking/)
-**Key indicators:**
-- System failures or unexpected behaviors occur
-- Tasks cannot be completed as expected
-- Recurring issues need systematic tracking
-- Root cause analysis is required for problem resolution
+**Linear Issue?** → Use Linear Workflows Reference  
+**Need sub-agents?** → Use Agent Collaboration Workflow  
+**Research task?** → Use Research Coordination Workflow  
+**Error occurred?** → Use Error Tracking System  
+**Task complete?** → Document patterns and learnings  
 
-### Success Pattern Analysis Framework
-**Use when:** You want to identify, document, and replicate successful approaches.
-**Documentation:** [Success Pattern Analysis Framework](../../docs/reference/self_improvement/success_patterns/)
-**Key indicators:**
-- Tasks completed successfully with notable efficiency
-- Innovative approaches that could benefit other agents
-- Collaboration patterns that worked exceptionally well
-- Outcomes exceeded expectations
+## Emergency Protocols
 
-### Feedback Collection System
-**Use when:** You need to gather, analyze, and implement feedback on agent performance.
-**Documentation:** [Feedback Collection System](../../docs/reference/self_improvement/feedback_collection/)
-**Key indicators:**
-- Stakeholders provide input on agent performance
-- User experience feedback is available
-- Performance metrics suggest areas for improvement
-- Systematic feedback collection is needed for continuous improvement
+- **Blocked?** → Escalate via Linear comments with specific blocker details
+- **Error?** → Document in Error Tracking System immediately
+- **Unclear requirements?** → Request clarification before proceeding
+- **Communication issues?** → Follow Tactical Communication Standards
 
-### Self-Improvement Integration Framework
-**Use when:** You want to implement a comprehensive approach to continuous improvement.
-**Documentation:** [Integration Framework](../../docs/reference/self_improvement/integration/)
-**Key indicators:**
-- Multiple improvement mechanisms need coordination
-- Systematic approach to performance enhancement is required
-- Cross-component learning and improvement is desired
-- Measurable improvement outcomes are needed
+---
+*For detailed workflows, checklists, and implementation guides, follow the links above. This router ensures you start with the right framework for your specific task type.*
 
-## Workflow Checklists
-
-### Research Coordination Workflow Checklist
-
-#### Initial Scaffold Creation
-- [ ] Create standardized directory structure for research findings
-- [ ] Establish templates for documentation, code examples, and recommendations
-- [ ] Define common terminology and evaluation criteria
-- [ ] Set up central repository for findings
-
-#### Sub-task Definition
-- [ ] Break down research into discrete, focused components
-- [ ] Create detailed guidelines for each research area
-- [ ] Specify clear deliverables and evaluation criteria
-- [ ] Provide relevant resources and starting points
-- [ ] Establish boundaries between research areas
-
-#### Progress Monitoring
-- [ ] Implement regular check-ins and status updates
-- [ ] Track completion of research milestones
-- [ ] Identify and address blockers or challenges
-- [ ] Adjust timelines and priorities as needed
-- [ ] Facilitate cross-component communication
-
-#### Findings Synthesis
-- [ ] Collect and organize individual research components
-- [ ] Identify common themes, patterns, and insights
-- [ ] Resolve contradictions or inconsistencies
-- [ ] Create unified documentation structure
-- [ ] Validate findings against original objectives
-
-#### Comprehensive Reporting
-- [ ] Distill key insights and recommendations
-- [ ] Provide executive summary for stakeholders
-- [ ] Include detailed technical documentation
-- [ ] Outline implementation roadmap and next steps
-- [ ] Link to supporting evidence and examples
-
-### Task Decomposition Meta-Workflow Checklist
-
-#### Task Analysis
-- [ ] Identify the overall objective and success criteria
-- [ ] Map the problem space to understand scope and boundaries
-- [ ] Identify natural divisions and potential parallel work streams
-- [ ] Analyze dependencies between components
-- [ ] Create a high-level timeline with key milestones
-
-#### Decomposition Strategy
-- [ ] Define clear boundaries between components
-- [ ] Establish interfaces and communication protocols
-- [ ] Create consistent templates and documentation standards
-- [ ] Develop clear success criteria for each component
-- [ ] Document the decomposition rationale
-
-#### Component Distribution
-- [ ] Assign components based on expertise and availability
-- [ ] Provide context and background for each component
-- [ ] Establish timelines and checkpoints
-- [ ] Create communication channels for cross-component issues
-- [ ] Ensure all agents understand their responsibilities
-
-#### Progress Synchronization
-- [ ] Implement regular status updates and check-ins
-- [ ] Track dependencies and blockers
-- [ ] Adjust timelines and priorities as needed
-- [ ] Facilitate cross-component communication
-- [ ] Address integration challenges proactively
-
-#### Recomposition Strategy
-- [ ] Define the integration approach before completion
-- [ ] Establish quality gates for component acceptance
-- [ ] Create a unified structure for the final deliverable
-- [ ] Identify gaps and overlaps between components
-- [ ] Plan for sequential vs. parallel integration
-
-#### Synthesis and Validation
-- [ ] Integrate components according to the recomposition strategy
-- [ ] Resolve conflicts and inconsistencies
-- [ ] Validate the integrated result against original objectives
-- [ ] Refine and polish the final deliverable
-- [ ] Document integration decisions and rationales
-
-### Adaptive Coordination Meta-Meta-Workflow Checklist
-
-#### Coordination Strategy Library
-- [ ] Collect proven coordination patterns and workflows
-- [ ] Document when each pattern is most effective
-- [ ] Create templates and implementation guidelines
-- [ ] Compile examples of successful applications
-- [ ] Organize patterns by complexity and applicability
-
-#### Task Analysis and Strategy Selection
-- [ ] Analyze task complexity, scope, and characteristics
-- [ ] Identify potential coordination challenges
-- [ ] Select initial coordination strategy from the library
-- [ ] Customize the strategy for the specific context
-- [ ] Document strategy selection rationale
-
-#### Progress Monitoring Mechanisms
-- [ ] Implement multi-level progress tracking
-- [ ] Collect both quantitative and qualitative progress data
-- [ ] Identify patterns, bottlenecks, and emerging issues
-- [ ] Compare actual progress against expected patterns
-- [ ] Create early warning indicators for potential problems
-
-#### Strategy Adjustment Triggers
-- [ ] Define conditions that indicate strategy ineffectiveness
-- [ ] Establish thresholds for intervention
-- [ ] Create early warning indicators for potential issues
-- [ ] Implement regular strategy review checkpoints
-- [ ] Document trigger criteria and responses
-
-#### Dynamic Adaptation Process
-- [ ] Evaluate effectiveness of current coordination approach
-- [ ] Identify specific aspects that need adjustment
-- [ ] Select alternative strategies from the library
-- [ ] Implement changes with minimal disruption
-- [ ] Communicate adjustments to all participants
-
-#### Learning and Refinement
-- [ ] Document coordination challenges and solutions
-- [ ] Update the strategy library with new patterns
-- [ ] Refine existing strategies based on outcomes
-- [ ] Share learnings across the organization
-- [ ] Create case studies of successful adaptations
-
-### Hierarchical Communication Workflow Checklist
-
-#### Communication Channel Establishment
-- [ ] Define appropriate channels for different types of communication
-- [ ] Establish protocols for parent-child task communication
-- [ ] Create mechanisms for cross-task coordination
-- [ ] Set up stakeholder reporting channels
-- [ ] Document communication expectations
-
-#### Context Preservation
-- [ ] Ensure child tasks have sufficient context from parent tasks
-- [ ] Maintain connection to overall objectives and requirements
-- [ ] Provide access to relevant background information
-- [ ] Create mechanisms for context clarification
-- [ ] Document key decisions and rationales
-
-#### Progress Reporting
-- [ ] Implement regular status updates from child to parent tasks
-- [ ] Standardize reporting format and frequency
-- [ ] Include both progress metrics and qualitative insights
-- [ ] Highlight dependencies, blockers, and risks
-- [ ] Ensure appropriate visibility to stakeholders
-
-#### Synthesis and Aggregation
-- [ ] Consolidate information from multiple child tasks
-- [ ] Identify patterns, dependencies, and cross-cutting concerns
-- [ ] Create integrated progress views for stakeholders
-- [ ] Distill key insights for higher-level reporting
-- [ ] Maintain traceability between detailed and summary information
-
-#### Escalation and Intervention
-- [ ] Establish clear criteria for issue escalation
-- [ ] Create pathways for rapid intervention when needed
-- [ ] Implement mechanisms for resource reallocation
-- [ ] Provide support for resolving cross-task conflicts
-- [ ] Document escalation decisions and outcomes
-
-### Structured Feedback Workflow Checklist
-
-#### Performance Analysis
-- [ ] Review completed work against defined criteria
-- [ ] Identify specific strengths and notable achievements
-- [ ] Recognize technical quality and innovation
-- [ ] Note areas of exceptional contribution
-- [ ] Identify opportunities for improvement
-
-#### Feedback Structuring
-- [ ] Organize feedback into specific categories
-- [ ] Prioritize positive recognition before constructive criticism
-- [ ] Ensure feedback is specific and actionable
-- [ ] Connect feedback to broader goals and objectives
-- [ ] Use concrete examples to illustrate points
-
-#### Personalized Delivery
-- [ ] Tailor feedback to the recipient's role and contribution
-- [ ] Use appropriate communication channels
-- [ ] Time feedback delivery for maximum impact
-- [ ] Ensure visibility to relevant stakeholders
-- [ ] Create opportunities for dialogue
-
-#### Recognition Amplification
-- [ ] Highlight exceptional contributions to wider audience
-- [ ] Connect individual achievements to team or organizational success
-- [ ] Document notable contributions for future reference
-- [ ] Create opportunities for peer recognition
-- [ ] Acknowledge specific technical accomplishments
-
-#### Feedback Integration
-- [ ] Incorporate feedback into ongoing work processes
-- [ ] Use feedback patterns to inform future task assignments
-- [ ] Identify opportunities for skill development
-- [ ] Create feedback loops for continuous improvement
-- [ ] Document how feedback influenced subsequent work
-
-### Postmortem Workflow Checklist
-
-#### Comprehensive Documentation
-- [ ] Record all instructions received and actions taken
-- [ ] Document decision points and rationales
-- [ ] Capture challenges encountered and solutions implemented
-- [ ] Note any sub-optimal aspects and how they were addressed
-- [ ] Create a timeline of key events and milestones
-
-#### Pattern Identification
-- [ ] Analyze workflows and processes that emerged during execution
-- [ ] Identify recurring patterns and effective approaches
-- [ ] Recognize meta-patterns that span multiple activities
-- [ ] Categorize workflows by level of abstraction
-- [ ] Document relationships between different patterns
-
-#### Generalization and Abstraction
-- [ ] Extract generalizable principles from specific implementations
-- [ ] Define reusable workflow patterns with clear components
-- [ ] Create implementation guidelines for each pattern
-- [ ] Identify applicability criteria for different contexts
-- [ ] Develop checklists for pattern implementation
-
-#### Knowledge Structuring
-- [ ] Organize insights into a coherent knowledge structure
-- [ ] Establish relationships between different workflow patterns
-- [ ] Create a hierarchy of patterns from concrete to abstract
-- [ ] Develop a taxonomy for categorizing workflow patterns
-- [ ] Create visual representations of pattern relationships
-
-#### Documentation for Reuse
-- [ ] Create detailed documentation for each identified pattern
-- [ ] Include components, implementation guidelines, and examples
-- [ ] Specify applicability criteria and limitations
-- [ ] Provide relationship mapping to other patterns
-- [ ] Ensure documentation is accessible and discoverable
-
-## Integration with Existing Frameworks
-
-The workflows documented here complement and extend the existing frameworks in the Agent Operations repository:
-
-1. **Linear Workflows Reference**: For Linear-specific tools and processes
-2. **Agent Collaboration Workflow**: For hierarchical delegation and code management
-3. **Communication and Delegation SOPs**: For standardized communication practices
-4. **Self-Improvement Mechanisms**: For continuous improvement of agent performance
-
-When implementing these workflow patterns, refer to the appropriate existing frameworks for specific implementation details related to Linear, collaboration, communication, and self-improvement.
-
-## Continuous Improvement
-
-These documents and workflow patterns are continuously updated based on feedback and evolving best practices. If you identify areas for improvement or new patterns, please document them using the Postmortem and Self-Analysis Workflow and contribute them to the repository by creating an issue or PR with your suggestions.
