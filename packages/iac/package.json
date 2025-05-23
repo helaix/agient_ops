@@ -1,0 +1,22 @@
+{
+  "name": "@sparkflow/iac",
+  "version": "1.0.0",
+  "description": "Infrastructure as Code for Sparkflow application",
+  "main": "index.js",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "deploy:dev": "alchemy deploy --environment development",
+    "deploy:prod": "alchemy deploy --environment production",
+    "plan": "alchemy plan",
+    "destroy": "alchemy destroy"
+  },
+  "dependencies": {
+    "@alchemy/cloudflare": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "typescript": "^5.8.3"
+  }
+}
+
