@@ -35,6 +35,21 @@ For standardized communication and delegation practices, consult the [Communicat
 - Recommended solutions and SOPs
 - Specific guidelines for delegating to sub-agents
 
+### Reusable Workflows and Prompts
+
+For ready-to-use workflows and prompts that can be applied across different projects and tasks, refer to the [Reusable Workflows](../../workflows/) directory which contains:
+
+- **[UI Design Prompt](../../workflows/prompts/ui-design-prompt.md)**: Comprehensive prompt for Claude Sonnet 3.7 to create professional React UI mockups with detailed design specifications
+- **[Workflow Patterns](../../workflows/patterns/)**: Documented workflow patterns for common task types
+- **[Meta-Patterns](../../workflows/meta-patterns/)**: Higher-level coordination patterns for complex multi-component tasks
+- **[Meta-Meta-Patterns](../../workflows/meta-meta-patterns/)**: Adaptive coordination systems for evolving requirements
+
+**When to use reusable workflows:**
+- UI/UX design tasks requiring professional mockups
+- Standardized prompt engineering for specific AI models
+- Repeatable task patterns that benefit from consistent execution
+- Cross-project workflows that can be adapted to different contexts
+
 ### Self-Improvement Mechanisms
 
 For continuous improvement of agent performance through systematic tracking, analysis, and feedback, refer to the [Self-Improvement Mechanisms](../../docs/reference/self_improvement/) which provides:
@@ -52,11 +67,13 @@ The self-improvement mechanisms are designed to work alongside existing workflow
 2. **Delegating Complex Tasks**: Consult both Linear Workflows and Agent Collaboration documents
 3. **Communication Issues**: Refer to Communication and Delegation SOPs
 4. **Code Management**: Follow guidelines in Agent Collaboration Workflow
-5. **Specialized Workflow Patterns**: Use the Workflow Decision Pathways below to select the appropriate pattern
-6. **Error Encountered**: Use the [Error Tracking System](../../docs/reference/self_improvement/error_tracking/) to document and resolve issues
-7. **Successful Completion**: Apply the [Success Pattern Analysis Framework](../../docs/reference/self_improvement/success_patterns/) to capture learnings
-8. **Receiving Feedback**: Utilize the [Feedback Collection System](../../docs/reference/self_improvement/feedback_collection/) to implement improvements
-9. **Continuous Improvement**: Follow the [Integration Framework](../../docs/reference/self_improvement/integration/) for systematic enhancement
+5. **UI/UX Design Tasks**: Use the UI Design Prompt from Reusable Workflows
+6. **Standardized Prompting**: Check Reusable Workflows for applicable prompts
+7. **Specialized Workflow Patterns**: Use the Workflow Decision Pathways below to select the appropriate pattern
+8. **Error Encountered**: Use the [Error Tracking System](../../docs/reference/self_improvement/error_tracking/) to document and resolve issues
+9. **Successful Completion**: Apply the [Success Pattern Analysis Framework](../../docs/reference/self_improvement/success_patterns/) to capture learnings
+10. **Receiving Feedback**: Utilize the [Feedback Collection System](../../docs/reference/self_improvement/feedback_collection/) to implement improvements
+11. **Continuous Improvement**: Follow the [Integration Framework](../../docs/reference/self_improvement/integration/) for systematic enhancement
 
 ## Workflow Decision Pathways
 
@@ -67,6 +84,7 @@ graph TD
     B -->|Research Task| C[Research Coordination Workflow]
     B -->|Complex Implementation| D[Task Decomposition Meta-Workflow]
     B -->|Evolving Requirements| E[Adaptive Coordination Meta-Meta-Workflow]
+    B -->|UI/UX Design Task| UI[UI Design Prompt Workflow]
     B -->|Task Completion| F[Postmortem and Self-Analysis]
     B -->|Error Encountered| G[Error Tracking System]
     B -->|Feedback Received| H[Feedback Collection System]
@@ -82,6 +100,12 @@ graph TD
     E --> M1{Progress Monitoring}
     M1 --> N1{Strategy Adjustment}
     N1 --> O1{Learning and Refinement}
+    
+    UI --> UI1{Design Requirements Clear?}
+    UI1 -->|Yes| UI2[Apply UI Design Prompt]
+    UI1 -->|No| UI3[Clarify Requirements First]
+    UI2 --> UI4[Generate Professional Mockups]
+    UI3 --> UI2
     
     F --> P1{Document Learnings}
     P1 --> Q1{Identify Patterns}
@@ -102,6 +126,7 @@ graph TD
     I1 --> SI1
     K1 --> SI1
     L1 --> SI1
+    UI4 --> SI1
     R1 --> SI1
     V1 --> SI1
     Z1 --> SI1
@@ -112,6 +137,7 @@ graph TD
     style C fill:#ffe0d0,stroke:#ff8030
     style D fill:#d0ffe0,stroke:#30c080
     style E fill:#ffd0e0,stroke:#ff3080
+    style UI fill:#e0f0ff,stroke:#4080ff
     style F fill:#e0d0ff,stroke:#8030ff
     style G fill:#ffeecc,stroke:#ff9900
     style H fill:#ccffee,stroke:#00cc66
@@ -147,6 +173,23 @@ graph TD
 - Multiple coordination strategies might be needed
 - Long-running initiative that will evolve over time
 - Requires adaptation based on emerging information
+
+### UI Design Prompt Workflow
+**Use when:** You need to create professional UI/UX mockups and implementations.
+**Documentation:** [UI Design Prompt](../../workflows/prompts/ui-design-prompt.md)
+**Key indicators:**
+- Task requires creating React UI components with TypeScript and Tailwind CSS
+- Need professional design specifications and visual mockups
+- Require responsive design considerations for multiple screen sizes
+- Want consistent design system implementation with accessibility features
+- Need both light and dark mode support
+
+**How to use:**
+1. Copy the complete UI Design Prompt from the workflows directory
+2. Start a new conversation with Claude Sonnet 3.7
+3. Paste the prompt at the beginning
+4. Provide specific UI requirements and constraints
+5. Request both mobile and desktop versions if needed
 
 ### Hierarchical Communication and Reporting Workflow
 **Use when:** You're managing communication across multiple levels of a task hierarchy.
