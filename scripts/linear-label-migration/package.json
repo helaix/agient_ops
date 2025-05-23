@@ -1,0 +1,36 @@
+{
+  "name": "linear-label-migration",
+  "version": "1.0.0",
+  "description": "Phase 2.2: Label Migration & Standardization tools for Linear workspace organization",
+  "type": "module",
+  "main": "migration-cli.js",
+  "bin": {
+    "linear-migrate": "./migration-cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node migration-cli.js",
+    "analyze": "node migration-cli.js --step analyze",
+    "dry-run": "node migration-cli.js --dry-run",
+    "migrate": "node migration-cli.js --live",
+    "validate": "node migration-cli.js --step validate",
+    "test": "node test-migration.js"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  },
+  "keywords": [
+    "linear",
+    "labels",
+    "migration",
+    "organization",
+    "workflow"
+  ],
+  "author": "Codegen Agent",
+  "license": "MIT"
+}
+
