@@ -6,6 +6,16 @@ Welcome to the Agent Operations repository! This repository contains essential d
 
 ## Key Resources
 
+### Quick Reference Materials
+
+For immediate access to essential information during task execution, refer to the [Quick Reference Materials](../../docs/reference/quick_reference/) which provides:
+
+- [Command Cheat Sheet](../../docs/reference/quick_reference/command_cheat_sheet.md): Comprehensive reference for Linear and GitHub commands with examples and best practices
+- [Terminology Glossary](../../docs/reference/quick_reference/terminology_glossary.md): Definitions of terms used across Linear, GitHub, and agent collaboration
+- [Workflow Checklists](../../docs/reference/quick_reference/workflow_checklists.md): Step-by-step guides for common processes
+
+These materials are designed for quick lookup during active work and complement the comprehensive documentation below.
+
 ### Linear Workflows
 
 When working with Linear issues, always refer to the [Linear Workflows Reference Guide](../../docs/reference/linear_workflows_reference.md) for comprehensive guidance on:
@@ -48,15 +58,18 @@ The self-improvement mechanisms are designed to work alongside existing workflow
 
 ## When to Use These Resources
 
-1. **Starting a New Linear Task**: Review the Linear Workflows Reference
-2. **Delegating Complex Tasks**: Consult both Linear Workflows and Agent Collaboration documents
-3. **Communication Issues**: Refer to Communication and Delegation SOPs
-4. **Code Management**: Follow guidelines in Agent Collaboration Workflow
-5. **Specialized Workflow Patterns**: Use the Workflow Decision Pathways below to select the appropriate pattern
-6. **Error Encountered**: Use the [Error Tracking System](../../docs/reference/self_improvement/error_tracking/) to document and resolve issues
-7. **Successful Completion**: Apply the [Success Pattern Analysis Framework](../../docs/reference/self_improvement/success_patterns/) to capture learnings
-8. **Receiving Feedback**: Utilize the [Feedback Collection System](../../docs/reference/self_improvement/feedback_collection/) to implement improvements
-9. **Continuous Improvement**: Follow the [Integration Framework](../../docs/reference/self_improvement/integration/) for systematic enhancement
+1. **Quick Command Lookup**: Use the [Command Cheat Sheet](../../docs/reference/quick_reference/command_cheat_sheet.md) for immediate reference to Linear and GitHub commands
+2. **Term Clarification**: Consult the [Terminology Glossary](../../docs/reference/quick_reference/terminology_glossary.md) when encountering unfamiliar terms
+3. **Process Guidance**: Follow the [Workflow Checklists](../../docs/reference/quick_reference/workflow_checklists.md) for step-by-step task execution
+4. **Starting a New Linear Task**: Review the Linear Workflows Reference
+5. **Delegating Complex Tasks**: Consult both Linear Workflows and Agent Collaboration documents
+6. **Communication Issues**: Refer to Communication and Delegation SOPs
+7. **Code Management**: Follow guidelines in Agent Collaboration Workflow
+8. **Specialized Workflow Patterns**: Use the Workflow Decision Pathways below to select the appropriate pattern
+9. **Error Encountered**: Use the [Error Tracking System](../../docs/reference/self_improvement/error_tracking/) to document and resolve issues
+10. **Successful Completion**: Apply the [Success Pattern Analysis Framework](../../docs/reference/self_improvement/success_patterns/) to capture learnings
+11. **Receiving Feedback**: Utilize the [Feedback Collection System](../../docs/reference/self_improvement/feedback_collection/) to implement improvements
+12. **Continuous Improvement**: Follow the [Integration Framework](../../docs/reference/self_improvement/integration/) for systematic enhancement
 
 ## Workflow Decision Pathways
 
