@@ -12,17 +12,22 @@ This document coordinates the integration of 11 open non-draft PRs into the main
 ## Open PRs to Process
 
 ### Research and Documentation PRs
-1. **PR #37**: Add UI Design Prompt as Reusable Workflow
-2. **PR #34**: Add Linear Workflow Scenarios Documentation  
-3. **PR #28**: Add decision trees for Linear workflow selection
-4. **PR #20**: Synthesis: Combine Research and Creation Outputs into Cohesive Reference Materials
-5. **PR #19**: Research: Step-by-Step Workflows for Common Agent Tasks
-6. **PR #14**: [HLX-1652] Synthesize Integration Improvement Guidelines
-7. **PR #10**: Research: Frequently Encountered Issues and Solutions in Linear Workflows
-8. **PR #9**: Research: Terminology Used Across Linear, GitHub, and Agent Collaboration
-9. **PR #8**: Creation: Command Cheat Sheet for Linear and GitHub Operations
-10. **PR #7**: Template Creation: Initial Structure and Process
-11. **PR #6**: Integration Improvements: Linear-GitHub Integration Guidelines
+1. **PR #37**: Add UI Design Prompt as Reusable Workflow → **HLX-1727** (Agent #22538 working)
+2. **PR #34**: Add Linear Workflow Scenarios Documentation → **HLX-1728** 
+3. **PR #28**: Add decision trees for Linear workflow selection → **HLX-1729**
+4. **PR #20**: Synthesis: Combine Research and Creation Outputs into Cohesive Reference Materials → **HLX-1730** (Agent #22541 working)
+5. **PR #19**: Research: Step-by-Step Workflows for Common Agent Tasks → **HLX-1731** (Agent #22542 working)
+6. **PR #14**: [HLX-1652] Synthesize Integration Improvement Guidelines → **HLX-1732** (Agent #22543 working)
+7. **PR #10**: Research: Frequently Encountered Issues and Solutions in Linear Workflows → **HLX-1733**
+8. **PR #9**: Research: Terminology Used Across Linear, GitHub, and Agent Collaboration → **HLX-1734**
+9. **PR #8**: Creation: Command Cheat Sheet for Linear and GitHub Operations → **HLX-1735**
+10. **PR #7**: Template Creation: Initial Structure and Process → **HLX-1736**
+11. **PR #6**: Integration Improvements: Linear-GitHub Integration Guidelines → **HLX-1737**
+
+## Sub-Agent Assignment Status
+✅ **All 11 sub-issues created and assigned to Codegen agents**
+- 4 agents currently active and working
+- 7 additional agents will be spawned as sub-issues are picked up
 
 ## Integration Strategy
 
@@ -61,4 +66,3 @@ Each PR will be assigned to a dedicated sub-agent for:
 - All documentation properly linked in main entry point
 - Consistent documentation structure maintained
 - All workflows and guidelines accessible through main entry point
-
