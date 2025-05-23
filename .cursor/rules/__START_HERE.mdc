@@ -6,6 +6,15 @@ Welcome to the Agent Operations repository! This repository contains essential d
 
 ## Key Resources
 
+### Terminology and Glossary
+
+For standardized terminology used across Linear, GitHub, and agent collaboration, refer to the [Terminology Glossary](../../docs/reference/quick_reference/terminology_glossary.md) which provides:
+
+- Comprehensive definitions of Linear terminology with context and examples
+- GitHub terminology with cross-references to Linear concepts
+- Agent collaboration terminology for multi-agent workflows
+- Cross-references between related terms across different systems
+
 ### Linear Workflows
 
 When working with Linear issues, always refer to the [Linear Workflows Reference Guide](../../docs/reference/linear_workflows_reference.md) for comprehensive guidance on:
@@ -48,15 +57,16 @@ The self-improvement mechanisms are designed to work alongside existing workflow
 
 ## When to Use These Resources
 
-1. **Starting a New Linear Task**: Review the Linear Workflows Reference
-2. **Delegating Complex Tasks**: Consult both Linear Workflows and Agent Collaboration documents
-3. **Communication Issues**: Refer to Communication and Delegation SOPs
-4. **Code Management**: Follow guidelines in Agent Collaboration Workflow
-5. **Specialized Workflow Patterns**: Use the Workflow Decision Pathways below to select the appropriate pattern
-6. **Error Encountered**: Use the [Error Tracking System](../../docs/reference/self_improvement/error_tracking/) to document and resolve issues
-7. **Successful Completion**: Apply the [Success Pattern Analysis Framework](../../docs/reference/self_improvement/success_patterns/) to capture learnings
-8. **Receiving Feedback**: Utilize the [Feedback Collection System](../../docs/reference/self_improvement/feedback_collection/) to implement improvements
-9. **Continuous Improvement**: Follow the [Integration Framework](../../docs/reference/self_improvement/integration/) for systematic enhancement
+1. **Understanding Terminology**: Review the Terminology Glossary for consistent language across Linear, GitHub, and agent collaboration
+2. **Starting a New Linear Task**: Review the Linear Workflows Reference
+3. **Delegating Complex Tasks**: Consult both Linear Workflows and Agent Collaboration documents
+4. **Communication Issues**: Refer to Communication and Delegation SOPs
+5. **Code Management**: Follow guidelines in Agent Collaboration Workflow
+6. **Specialized Workflow Patterns**: Use the Workflow Decision Pathways below to select the appropriate pattern
+7. **Error Encountered**: Use the [Error Tracking System](../../docs/reference/self_improvement/error_tracking/) to document and resolve issues
+8. **Successful Completion**: Apply the [Success Pattern Analysis Framework](../../docs/reference/self_improvement/success_patterns/) to capture learnings
+9. **Receiving Feedback**: Utilize the [Feedback Collection System](../../docs/reference/self_improvement/feedback_collection/) to implement improvements
+10. **Continuous Improvement**: Follow the [Integration Framework](../../docs/reference/self_improvement/integration/) for systematic enhancement
 
 ## Workflow Decision Pathways
 
