@@ -1,0 +1,43 @@
+{
+  "name": "linear-automation",
+  "version": "1.0.0",
+  "description": "Linear Workspace Automation and Workflow Optimization System for Helaix",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "triage": "node workflows/triage-manager.js",
+    "metrics": "node monitoring/metrics-collector.js",
+    "automation": "node workflows/automation-engine.js",
+    "templates": "node templates/template-manager.js",
+    "daily": "npm run triage && npm run metrics",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "linear",
+    "automation",
+    "workflow",
+    "triage",
+    "project-management"
+  ],
+  "author": "Helaix Team",
+  "license": "MIT",
+  "dependencies": {
+    "@linear/sdk": "^1.22.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.0.0",
+    "prettier": "^2.0.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/helaix/agient_ops.git"
+  },
+  "bugs": {
+    "url": "https://github.com/helaix/agient_ops/issues"
+  },
+  "homepage": "https://github.com/helaix/agient_ops#readme"
+}
+

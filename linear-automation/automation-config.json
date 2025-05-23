@@ -1,0 +1,245 @@
+{
+  "version": "1.0.0",
+  "description": "Linear Workspace Automation Configuration for Helaix",
+  "team_id": "b98d6ca1-f890-45f9-9ff1-d1b47c2f3645",
+  "team_key": "HLX",
+  
+  "automation_rules": {
+    "issue_creation": {
+      "enabled": true,
+      "rules": [
+        {
+          "name": "auto_assign_default_priority",
+          "description": "Auto-assign medium priority to new issues without priority",
+          "trigger": "issue_created",
+          "condition": "priority == 0",
+          "action": "set_priority",
+          "value": 3
+        },
+        {
+          "name": "auto_assign_project_by_keywords",
+          "description": "Auto-assign to projects based on keywords in title/description",
+          "trigger": "issue_created",
+          "condition": "contains_keywords",
+          "keywords_mapping": {
+            "voice|assistant|hello-operator": "17114839-fd28-49ce-86dd-bd126fe3c74b",
+            "analytics|tracking|metrics": "a00338a7-6b81-47a1-b775-4b95ccb0950c",
+            "outreach|b2b|sales": "2f3d49db-04c3-4a26-ba17-4950d7dbeb0d",
+            "seo|content|marketing": "3630c954-d070-4595-bbda-695b4b54dcf2",
+            "agent|workflow|automation": "7da71364-9033-4310-91af-7c91b7ebaf56",
+            "meta|dx|developer": "9826e06b-1c61-4f0a-841a-74e100b6a30a"
+          }
+        },
+        {
+          "name": "auto_label_by_type",
+          "description": "Auto-assign type labels based on content",
+          "trigger": "issue_created",
+          "condition": "content_analysis",
+          "type_patterns": {
+            "bug|error|fix|broken": "7718a2c0-5e26-43fd-8fd1-0138518895b5",
+            "feature|implement|add|create": "f1359a74-0ff5-4225-9419-1b71bd9caede",
+            "improve|optimize|enhance|refactor": "017f4ad6-b1f6-4838-8d6c-f0aa611156b4",
+            "document|docs|readme|guide": "d859980a-84bd-4505-8953-8065acc923b7",
+            "epic|large|complex|phase": "ab365cc8-bebe-4b2c-9507-4aa2aa2020b1"
+          }
+        }
+      ]
+    },
+    
+    "state_transitions": {
+      "enabled": true,
+      "rules": [
+        {
+          "name": "auto_start_on_assignment",
+          "description": "Move to In Progress when assigned to someone",
+          "trigger": "issue_assigned",
+          "condition": "assignee_changed",
+          "from_state": "01ef8bdd-474c-4d85-86e5-7cbedcc3b815",
+          "to_state": "87b99394-2c6a-4d15-9eae-2d4444ca21d4"
+        },
+        {
+          "name": "auto_review_on_pr_link",
+          "description": "Move to In Review when PR is linked",
+          "trigger": "link_attached",
+          "condition": "link_type == 'pull_request'",
+          "to_state": "08b6262f-5b39-4613-bfcd-31d9bb80d4f0"
+        },
+        {
+          "name": "auto_complete_on_pr_merge",
+          "description": "Move to Done when linked PR is merged",
+          "trigger": "pr_merged",
+          "condition": "linked_pr_merged",
+          "to_state": "674dc967-391c-43a6-a01a-a55249788964"
+        }
+      ]
+    },
+    
+    "label_management": {
+      "enabled": true,
+      "rules": [
+        {
+          "name": "priority_escalation",
+          "description": "Auto-escalate priority based on keywords",
+          "trigger": "issue_created_or_updated",
+          "condition": "contains_urgent_keywords",
+          "urgent_keywords": ["urgent", "critical", "blocking", "emergency", "asap"],
+          "high_keywords": ["important", "high-impact", "priority", "needed"],
+          "actions": {
+            "urgent_keywords": {"priority": 1},
+            "high_keywords": {"priority": 2}
+          }
+        },
+        {
+          "name": "component_labeling",
+          "description": "Auto-add component labels based on content",
+          "trigger": "issue_created",
+          "condition": "content_analysis",
+          "component_patterns": {
+            "frontend|ui|react|vue|angular|css|html": "component:frontend",
+            "backend|api|server|database|sql|nosql": "component:backend",
+            "infrastructure|deploy|ci/cd|docker|kubernetes": "component:infrastructure",
+            "mobile|ios|android|react-native|flutter": "component:mobile",
+            "design|ux|ui/ux|figma|sketch": "component:design"
+          }
+        }
+      ]
+    }
+  },
+  
+  "issue_templates": {
+    "feature_request": {
+      "title": "Feature Request Template",
+      "description": "Template for new feature requests",
+      "required_fields": ["description", "acceptance_criteria", "priority"],
+      "template": "## Feature Description\n\n[Describe the feature in detail]\n\n## User Story\n\nAs a [user type], I want [functionality] so that [benefit].\n\n## Acceptance Criteria\n\n- [ ] Criterion 1\n- [ ] Criterion 2\n- [ ] Criterion 3\n\n## Technical Requirements\n\n[Any technical specifications or constraints]\n\n## Design Considerations\n\n[UI/UX considerations if applicable]\n\n## Testing Requirements\n\n- [ ] Unit tests\n- [ ] Integration tests\n- [ ] User acceptance testing\n\n## Definition of Done\n\n- [ ] Feature implemented\n- [ ] Tests written and passing\n- [ ] Documentation updated\n- [ ] Code reviewed and approved\n- [ ] Deployed to production"
+    },
+    
+    "bug_report": {
+      "title": "Bug Report Template",
+      "description": "Template for reporting bugs",
+      "required_fields": ["description", "reproduction_steps", "expected_behavior", "actual_behavior"],
+      "template": "## Bug Description\n\n[Brief description of the bug]\n\n## Steps to Reproduce\n\n1. Step 1\n2. Step 2\n3. Step 3\n\n## Expected Behavior\n\n[What should happen]\n\n## Actual Behavior\n\n[What actually happens]\n\n## Environment\n\n- OS: [e.g., Windows 10, macOS 12.0]\n- Browser: [e.g., Chrome 95, Safari 15]\n- Version: [e.g., v1.2.3]\n\n## Screenshots/Logs\n\n[Attach any relevant screenshots or error logs]\n\n## Additional Context\n\n[Any other relevant information]\n\n## Priority Assessment\n\n- [ ] Critical (system down, data loss)\n- [ ] High (major feature broken)\n- [ ] Medium (minor feature issue)\n- [ ] Low (cosmetic issue)"
+    },
+    
+    "epic": {
+      "title": "Epic Template",
+      "description": "Template for large initiatives",
+      "required_fields": ["description", "objectives", "success_criteria", "breakdown"],
+      "template": "## Epic Overview\n\n[High-level description of the epic]\n\n## Business Objectives\n\n- Objective 1\n- Objective 2\n- Objective 3\n\n## Success Criteria\n\n- [ ] Measurable outcome 1\n- [ ] Measurable outcome 2\n- [ ] Measurable outcome 3\n\n## User Stories\n\n### Story 1: [Title]\n- As a [user], I want [functionality] so that [benefit]\n- Acceptance criteria: [criteria]\n\n### Story 2: [Title]\n- As a [user], I want [functionality] so that [benefit]\n- Acceptance criteria: [criteria]\n\n## Technical Approach\n\n[High-level technical strategy]\n\n## Dependencies\n\n- Dependency 1\n- Dependency 2\n\n## Risks and Mitigation\n\n| Risk | Impact | Probability | Mitigation |\n|------|--------|-------------|------------|\n| Risk 1 | High | Medium | Mitigation strategy |\n\n## Timeline\n\n- Phase 1: [Description] - [Timeline]\n- Phase 2: [Description] - [Timeline]\n- Phase 3: [Description] - [Timeline]\n\n## Sub-Issues\n\n- [ ] Sub-issue 1\n- [ ] Sub-issue 2\n- [ ] Sub-issue 3"
+    },
+    
+    "documentation": {
+      "title": "Documentation Template",
+      "description": "Template for documentation tasks",
+      "required_fields": ["scope", "audience", "deliverables"],
+      "template": "## Documentation Scope\n\n[What needs to be documented]\n\n## Target Audience\n\n- [ ] End users\n- [ ] Developers\n- [ ] System administrators\n- [ ] Product managers\n\n## Deliverables\n\n- [ ] User guide\n- [ ] API documentation\n- [ ] Technical specifications\n- [ ] Installation guide\n- [ ] Troubleshooting guide\n\n## Content Outline\n\n1. Section 1\n   - Subsection 1.1\n   - Subsection 1.2\n2. Section 2\n   - Subsection 2.1\n   - Subsection 2.2\n\n## Success Criteria\n\n- [ ] Documentation is complete and accurate\n- [ ] Content is reviewed by subject matter experts\n- [ ] Documentation is accessible to target audience\n- [ ] Examples and screenshots are included where appropriate\n\n## Maintenance Plan\n\n[How will this documentation be kept up to date]"
+    }
+  },
+  
+  "triage_process": {
+    "cycles": {
+      "daily": {
+        "name": "Daily Triage",
+        "description": "Review and process new issues",
+        "frequency": "daily",
+        "time": "09:00",
+        "tasks": [
+          "Review 'To Process' queue",
+          "Assign priorities to new issues",
+          "Assign issues to appropriate team members",
+          "Add missing labels",
+          "Move issues to appropriate states"
+        ]
+      },
+      "weekly": {
+        "name": "Weekly Priority Review",
+        "description": "Validate priorities and effort estimates",
+        "frequency": "weekly",
+        "day": "monday",
+        "time": "10:00",
+        "tasks": [
+          "Review priority assignments",
+          "Validate effort estimates",
+          "Adjust project assignments",
+          "Identify blocked issues",
+          "Plan upcoming work"
+        ]
+      },
+      "monthly": {
+        "name": "Monthly Workflow Review",
+        "description": "Review project and label usage",
+        "frequency": "monthly",
+        "day": "first_monday",
+        "time": "14:00",
+        "tasks": [
+          "Analyze project distribution",
+          "Review label usage patterns",
+          "Identify workflow improvements",
+          "Update automation rules",
+          "Clean up stale issues"
+        ]
+      },
+      "quarterly": {
+        "name": "Quarterly Assessment",
+        "description": "Assess workflow effectiveness",
+        "frequency": "quarterly",
+        "tasks": [
+          "Analyze workflow metrics",
+          "Review automation effectiveness",
+          "Gather team feedback",
+          "Plan process improvements",
+          "Update documentation"
+        ]
+      }
+    },
+    
+    "guidelines": {
+      "priority_assignment": {
+        "urgent": "System down, critical bugs, blocking issues",
+        "high": "Important features, high-impact bugs, time-sensitive tasks",
+        "medium": "Standard features, minor bugs, routine tasks",
+        "low": "Nice-to-have features, cosmetic issues, future considerations"
+      },
+      "effort_estimation": {
+        "1": "< 2 hours - Simple fixes, minor updates",
+        "2": "2-8 hours - Small features, moderate fixes",
+        "3": "1-3 days - Medium features, complex fixes",
+        "4": "3-7 days - Large features, major refactoring",
+        "5": "1-2 weeks - Epics, major initiatives"
+      },
+      "project_assignment": {
+        "criteria": [
+          "Issue content and keywords",
+          "Repository association",
+          "Team expertise",
+          "Current workload",
+          "Dependencies"
+        ]
+      }
+    }
+  },
+  
+  "monitoring": {
+    "metrics": {
+      "workflow_metrics": [
+        "issue_processing_time",
+        "label_usage_consistency",
+        "project_distribution_balance",
+        "priority_accuracy_tracking"
+      ],
+      "quality_metrics": [
+        "issues_without_required_labels",
+        "stale_issues_identification",
+        "duplicate_detection",
+        "completion_rate_tracking"
+      ]
+    },
+    "thresholds": {
+      "processing_time_target": "< 24 hours",
+      "labeling_accuracy_target": "> 90%",
+      "stale_issue_threshold": "30 days",
+      "completion_rate_target": "> 80%"
+    }
+  }
+}
+
