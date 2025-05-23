@@ -18,6 +18,18 @@ When working with Linear issues, always refer to the [Linear Workflows Reference
 
 The [Linear Workflow Decision Diagram](../../docs/reference/linear_workflow_diagram.md) provides a visual guide for when to utilize the Linear Workflows Reference.
 
+### Integration Guidelines
+
+For standardized practices in Linear-GitHub integration, refer to the [Integration Guidelines](../../docs/reference/integration_guidelines/) which provide:
+
+- [Introduction to Integration Guidelines](../../docs/reference/integration_guidelines/00_introduction.md): Overview and purpose of integration standards
+- [Linear-GitHub Linking Guide](../../docs/reference/integration_guidelines/01_linear_github_linking.md): Best practices for connecting Linear issues with GitHub PRs
+- [Branch Naming Conventions](../../docs/reference/integration_guidelines/02_branch_naming_conventions.md): Standards for naming branches based on Linear issues
+- [Commit Message Standards](../../docs/reference/integration_guidelines/03_commit_message_standards.md): Guidelines for writing effective commit messages
+- [Summary of Key Recommendations](../../docs/reference/integration_guidelines/04_summary.md): Quick reference guide with key points from all sections
+
+These guidelines ensure traceability, improve collaboration, streamline workflows, and enable better automation between Linear and GitHub.
+
 ### Agent Collaboration
 
 For multi-agent collaboration tasks, refer to the following resources:
@@ -52,11 +64,12 @@ The self-improvement mechanisms are designed to work alongside existing workflow
 2. **Delegating Complex Tasks**: Consult both Linear Workflows and Agent Collaboration documents
 3. **Communication Issues**: Refer to Communication and Delegation SOPs
 4. **Code Management**: Follow guidelines in Agent Collaboration Workflow
-5. **Specialized Workflow Patterns**: Use the Workflow Decision Pathways below to select the appropriate pattern
-6. **Error Encountered**: Use the [Error Tracking System](../../docs/reference/self_improvement/error_tracking/) to document and resolve issues
-7. **Successful Completion**: Apply the [Success Pattern Analysis Framework](../../docs/reference/self_improvement/success_patterns/) to capture learnings
-8. **Receiving Feedback**: Utilize the [Feedback Collection System](../../docs/reference/self_improvement/feedback_collection/) to implement improvements
-9. **Continuous Improvement**: Follow the [Integration Framework](../../docs/reference/self_improvement/integration/) for systematic enhancement
+5. **Linear-GitHub Integration**: Use the Integration Guidelines for standardized practices
+6. **Specialized Workflow Patterns**: Use the Workflow Decision Pathways below to select the appropriate pattern
+7. **Error Encountered**: Use the [Error Tracking System](../../docs/reference/self_improvement/error_tracking/) to document and resolve issues
+8. **Successful Completion**: Apply the [Success Pattern Analysis Framework](../../docs/reference/self_improvement/success_patterns/) to capture learnings
+9. **Receiving Feedback**: Utilize the [Feedback Collection System](../../docs/reference/self_improvement/feedback_collection/) to implement improvements
+10. **Continuous Improvement**: Follow the [Integration Framework](../../docs/reference/self_improvement/integration/) for systematic enhancement
 
 ## Workflow Decision Pathways
 
@@ -453,11 +466,12 @@ graph TD
 The workflows documented here complement and extend the existing frameworks in the Agent Operations repository:
 
 1. **Linear Workflows Reference**: For Linear-specific tools and processes
-2. **Agent Collaboration Workflow**: For hierarchical delegation and code management
-3. **Communication and Delegation SOPs**: For standardized communication practices
-4. **Self-Improvement Mechanisms**: For continuous improvement of agent performance
+2. **Integration Guidelines**: For standardized Linear-GitHub integration practices
+3. **Agent Collaboration Workflow**: For hierarchical delegation and code management
+4. **Communication and Delegation SOPs**: For standardized communication practices
+5. **Self-Improvement Mechanisms**: For continuous improvement of agent performance
 
-When implementing these workflow patterns, refer to the appropriate existing frameworks for specific implementation details related to Linear, collaboration, communication, and self-improvement.
+When implementing these workflow patterns, refer to the appropriate existing frameworks for specific implementation details related to Linear, integration, collaboration, communication, and self-improvement.
 
 ## Continuous Improvement
 
