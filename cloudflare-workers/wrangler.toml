@@ -3,11 +3,7 @@ main = "src/index.ts"
 compatibility_date = "2024-01-01"
 compatibility_flags = ["nodejs_compat"]
 
-# Environment variables
-[vars]
-ENVIRONMENT = "development"
-
-# Durable Objects bindings
+# Durable Objects
 [[durable_objects.bindings]]
 name = "AGENT_COORDINATOR"
 class_name = "AgentCoordinator"
@@ -36,42 +32,28 @@ class_name = "PatternBridgeAgent"
 name = "LINEAR_STATE_AGENT"
 class_name = "LinearStateAgent"
 
-# Durable Objects migrations
-[[migrations]]
-tag = "v1"
-new_classes = [
-  "AgentCoordinator",
-  "StateManager",
-  "IntegrationDashboardAgent",
-  "ReviewManagerAgent",
-  "ContextOptimizerAgent",
-  "PatternBridgeAgent",
-  "LinearStateAgent"
-]
-
-# KV namespace for configuration and caching
+# KV Storage
 [[kv_namespaces]]
 binding = "CONFIG_KV"
-id = "config_namespace"
-preview_id = "config_namespace_preview"
+id = "config_kv_namespace"
+preview_id = "config_kv_preview"
 
-# R2 bucket for logs and analytics
+# R2 Storage
 [[r2_buckets]]
 binding = "LOGS_BUCKET"
 bucket_name = "workflow-logs"
+preview_bucket_name = "workflow-logs-preview"
 
-# Analytics Engine for metrics
+# Analytics Engine
 [[analytics_engine_datasets]]
 binding = "METRICS"
 dataset = "workflow_metrics"
 
-[env.production]
-name = "enhanced-multi-agent-workflow-prod"
-[env.production.vars]
-ENVIRONMENT = "production"
+# Environment Variables
+[vars]
+ENVIRONMENT = "development"
 
-[env.staging]
-name = "enhanced-multi-agent-workflow-staging"
-[env.staging.vars]
-ENVIRONMENT = "staging"
-
+# Secrets (set via wrangler secret put)
+# LINEAR_API_KEY = "..."
+# GITHUB_TOKEN = "..."
+# SLACK_TOKEN = "..."

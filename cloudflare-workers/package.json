@@ -1,5 +1,5 @@
 {
-  "name": "enhanced-multi-agent-workflow-system",
+  "name": "enhanced-multi-agent-workflow",
   "version": "1.0.0",
   "description": "Enhanced Multi-Agent Workflow System using Cloudflare Workers and Durable Objects",
   "main": "src/index.ts",
@@ -8,30 +8,32 @@
     "deploy": "wrangler deploy",
     "test": "vitest",
     "test:watch": "vitest --watch",
-    "type-check": "tsc --noEmit",
+    "test:coverage": "vitest --coverage",
+    "build": "wrangler deploy --dry-run",
     "lint": "eslint src/**/*.ts",
-    "format": "prettier --write src/**/*.ts"
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@cloudflare/workers-types": "^4.20231218.0"
+    "@cloudflare/workers-types": "^4.20240129.0"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^6.0.0",
-    "@typescript-eslint/parser": "^6.0.0",
-    "eslint": "^8.0.0",
-    "prettier": "^3.0.0",
-    "typescript": "^5.0.0",
-    "vitest": "^1.0.0",
-    "wrangler": "^3.0.0"
+    "@types/node": "^20.10.0",
+    "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "@typescript-eslint/parser": "^6.15.0",
+    "eslint": "^8.56.0",
+    "typescript": "^5.3.3",
+    "vitest": "^1.1.0",
+    "@vitest/coverage-v8": "^1.1.0",
+    "wrangler": "^3.22.1"
   },
   "keywords": [
     "cloudflare-workers",
     "durable-objects",
     "multi-agent",
     "workflow",
-    "automation"
+    "state-management",
+    "typescript"
   ],
-  "author": "Helaix",
+  "author": "Enhanced Multi-Agent Workflow System",
   "license": "MIT"
 }
-
