@@ -18,6 +18,18 @@ When working with Linear issues, always refer to the [Linear Workflows Reference
 
 The [Linear Workflow Decision Diagram](../../docs/reference/linear_workflow_diagram.md) provides a visual guide for when to utilize the Linear Workflows Reference.
 
+### Troubleshooting and Issue Resolution
+
+When encountering issues with Linear workflows, consult the [Common Linear Workflow Issues and Solutions](../../docs/troubleshooting/common_linear_issues.md) which provides:
+
+- Comprehensive documentation of 18 common issues across 9 categories
+- Step-by-step resolution procedures for each issue type
+- Prevention strategies and best practices
+- Code snippets and command examples for quick resolution
+- Detailed symptoms and error message identification
+
+For research methodology and implementation insights, see the [Research Summary](../../docs/troubleshooting/research_summary.md) which documents the analysis approach and key findings.
+
 ### Agent Collaboration
 
 For multi-agent collaboration tasks, refer to the following resources:
@@ -52,11 +64,12 @@ The self-improvement mechanisms are designed to work alongside existing workflow
 2. **Delegating Complex Tasks**: Consult both Linear Workflows and Agent Collaboration documents
 3. **Communication Issues**: Refer to Communication and Delegation SOPs
 4. **Code Management**: Follow guidelines in Agent Collaboration Workflow
-5. **Specialized Workflow Patterns**: Use the Workflow Decision Pathways below to select the appropriate pattern
-6. **Error Encountered**: Use the [Error Tracking System](../../docs/reference/self_improvement/error_tracking/) to document and resolve issues
-7. **Successful Completion**: Apply the [Success Pattern Analysis Framework](../../docs/reference/self_improvement/success_patterns/) to capture learnings
-8. **Receiving Feedback**: Utilize the [Feedback Collection System](../../docs/reference/self_improvement/feedback_collection/) to implement improvements
-9. **Continuous Improvement**: Follow the [Integration Framework](../../docs/reference/self_improvement/integration/) for systematic enhancement
+5. **Linear Workflow Issues**: Consult the [Common Linear Workflow Issues and Solutions](../../docs/troubleshooting/common_linear_issues.md) for troubleshooting guidance
+6. **Specialized Workflow Patterns**: Use the Workflow Decision Pathways below to select the appropriate pattern
+7. **Error Encountered**: Use the [Error Tracking System](../../docs/reference/self_improvement/error_tracking/) to document and resolve issues
+8. **Successful Completion**: Apply the [Success Pattern Analysis Framework](../../docs/reference/self_improvement/success_patterns/) to capture learnings
+9. **Receiving Feedback**: Utilize the [Feedback Collection System](../../docs/reference/self_improvement/feedback_collection/) to implement improvements
+10. **Continuous Improvement**: Follow the [Integration Framework](../../docs/reference/self_improvement/integration/) for systematic enhancement
 
 ## Workflow Decision Pathways
 
@@ -70,6 +83,7 @@ graph TD
     B -->|Task Completion| F[Postmortem and Self-Analysis]
     B -->|Error Encountered| G[Error Tracking System]
     B -->|Feedback Received| H[Feedback Collection System]
+    B -->|Linear Issue Encountered| I[Linear Troubleshooting Guide]
     
     C --> G1{Multiple Research Areas?}
     G1 -->|Yes| H1[Create Sub-Issues]
@@ -97,6 +111,11 @@ graph TD
     X1 --> Y1[Implementation Planning]
     Y1 --> Z1[Impact Measurement]
     
+    I --> I2[Issue Categorization]
+    I2 --> I3[Resolution Steps]
+    I3 --> I4[Prevention Implementation]
+    I4 --> I5[Documentation Update]
+    
     %% Self-Improvement Integration Points
     H1 --> SI1[Success Pattern Analysis]
     I1 --> SI1
@@ -105,6 +124,7 @@ graph TD
     R1 --> SI1
     V1 --> SI1
     Z1 --> SI1
+    I5 --> SI1
     
     SI1 --> SI2[Continuous Improvement Cycle]
     
@@ -115,6 +135,7 @@ graph TD
     style F fill:#e0d0ff,stroke:#8030ff
     style G fill:#ffeecc,stroke:#ff9900
     style H fill:#ccffee,stroke:#00cc66
+    style I fill:#ffccdd,stroke:#cc0066
     style SI1 fill:#ffffcc,stroke:#ffcc00
     style SI2 fill:#ffffcc,stroke:#ffcc00
 ```
@@ -197,10 +218,21 @@ graph TD
 **Use when:** You need to gather, analyze, and implement feedback on agent performance.
 **Documentation:** [Feedback Collection System](../../docs/reference/self_improvement/feedback_collection/)
 **Key indicators:**
-- Stakeholders provide input on agent performance
-- User experience feedback is available
-- Performance metrics suggest areas for improvement
-- Systematic feedback collection is needed for continuous improvement
+- Regular feedback cycles are needed for improvement
+- Performance metrics need systematic collection
+- Feedback patterns need analysis and implementation
+- Continuous improvement processes require structured input
+
+### Linear Troubleshooting Guide
+**Use when:** You encounter specific issues with Linear workflows, tools, or processes.
+**Documentation:** [Common Linear Workflow Issues and Solutions](../../docs/troubleshooting/common_linear_issues.md)
+**Key indicators:**
+- Linear API authentication or permission errors
+- Task delegation or sub-issue relationship problems
+- Branch management or PR integration issues
+- Communication or state management difficulties
+- Tool usage errors or missing required fields
+- Cycle management or dependency problems
 
 ### Self-Improvement Integration Framework
 **Use when:** You want to implement a comprehensive approach to continuous improvement.
