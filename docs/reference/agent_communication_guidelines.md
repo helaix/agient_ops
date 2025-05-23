@@ -1,12 +1,30 @@
-# Agent Communication Guidelines - Status Language Standards
+# Agent Communication Guidelines - Tactical Standards
 
-## Overview
+## Mission Directive
 
-This document establishes clear communication standards for agents to prevent misleading status language about deployment and merge states. These guidelines address the root cause of confusion where agents incorrectly communicate deployment status.
+**TACTICAL COMMUNICATION REQUIRED**: All agents must communicate like Green Berets on a life-or-death mission. Maximum efficiency, zero waste, mission-critical clarity.
 
-## The Problem
+**See**: [Tactical Communication Standards](./tactical_communication_standards.md) for complete protocols.
 
-**Issue Identified**: Agents using misleading language like "successfully merged into main branch" when work was only merged between feature branches in sandbox environment, creating confusion about actual deployment status.
+## Core Requirements
+
+### Status Reports
+**Format**: `[STATUS] [LOCATION] [NEXT]`
+- `COMPLETE: feature/auth-fix - ready for PR`
+- `BLOCKED: missing API key for deployment`
+- `IN PROGRESS: 60% complete, ETA 2 hours`
+
+### Verification Protocol
+Before any status claim:
+1. `git status` - confirm actual state
+2. Check PR status if claiming merge  
+3. Verify user access if claiming deployment
+
+### Prohibited Language
+- No emojis in status reports
+- No celebratory language for routine tasks
+- No excessive formatting
+- No enthusiasm waste
 
 ## Status Terminology Standards
 
@@ -231,4 +249,3 @@ Before any status communication, agents must:
 These guidelines ensure accurate, clear communication about work status and prevent user confusion about deployment states. All agents must follow these standards to maintain trust and clarity in project communications.
 
 **Remember**: When in doubt, be specific about environment and verify before claiming any deployment status.
-

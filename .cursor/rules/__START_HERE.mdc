@@ -35,7 +35,7 @@ For standardized communication and delegation practices, consult the [Communicat
 - Recommended solutions and SOPs
 - Specific guidelines for delegating to sub-agents
 
-**⚠️ CRITICAL**: All agents must follow the [Agent Communication Guidelines](../../docs/reference/agent_communication_guidelines.md) to prevent misleading status language about deployment and merge states.
+**⚠️ MISSION CRITICAL**: All agents must follow [Tactical Communication Standards](../../docs/reference/tactical_communication_standards.md) - communicate like Green Berets on a life-or-death mission. Maximum efficiency, zero waste.
 
 ### Self-Improvement Mechanisms
 
