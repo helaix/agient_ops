@@ -1,0 +1,84 @@
+name = "event-router-worker"
+main = "src/workers/event-router.ts"
+compatibility_date = "2023-12-18"
+compatibility_flags = ["nodejs_compat"]
+
+[env.development]
+name = "event-router-worker-dev"
+
+[env.staging]
+name = "event-router-worker-staging"
+
+[env.production]
+name = "event-router-worker-prod"
+
+# KV Namespaces for event filters, routing rules, and analytics
+[[kv_namespaces]]
+binding = "EVENT_FILTERS"
+id = "event_filters_kv"
+preview_id = "event_filters_kv_preview"
+
+[[kv_namespaces]]
+binding = "EVENT_ROUTES"
+id = "event_routes_kv"
+preview_id = "event_routes_kv_preview"
+
+[[kv_namespaces]]
+binding = "RATE_LIMITS"
+id = "rate_limits_kv"
+preview_id = "rate_limits_kv_preview"
+
+[[kv_namespaces]]
+binding = "SUBSCRIPTIONS"
+id = "subscriptions_kv"
+preview_id = "subscriptions_kv_preview"
+
+[[kv_namespaces]]
+binding = "ANALYTICS_CACHE"
+id = "analytics_cache_kv"
+preview_id = "analytics_cache_kv_preview"
+
+# R2 Buckets for event archives and large payloads
+[[r2_buckets]]
+binding = "EVENT_ARCHIVE"
+bucket_name = "event-archive"
+preview_bucket_name = "event-archive-preview"
+
+[[r2_buckets]]
+binding = "DEAD_LETTER_QUEUE"
+bucket_name = "dead-letter-queue"
+preview_bucket_name = "dead-letter-queue-preview"
+
+# Durable Objects for queue management and real-time state
+[[durable_objects.bindings]]
+name = "QUEUE_MANAGER"
+class_name = "QueueManager"
+
+[[durable_objects.bindings]]
+name = "SUBSCRIPTION_MANAGER"
+class_name = "SubscriptionManager"
+
+[[durable_objects.bindings]]
+name = "EVENT_PROCESSOR"
+class_name = "EventProcessor"
+
+[[migrations]]
+tag = "v1"
+new_classes = ["QueueManager", "SubscriptionManager", "EventProcessor"]
+
+# Environment variables for webhook secrets and configuration
+[vars]
+ENVIRONMENT = "development"
+MAX_EVENT_SIZE = "1048576"  # 1MB
+DEFAULT_RETRY_ATTEMPTS = "3"
+DEFAULT_RETRY_DELAY = "1000"  # 1 second
+MAX_QUEUE_SIZE = "10000"
+RATE_LIMIT_WINDOW = "60000"  # 1 minute
+DEFAULT_RATE_LIMIT = "1000"  # requests per window
+
+# Secrets (set via wrangler secret put)
+# GITHUB_WEBHOOK_SECRET
+# LINEAR_WEBHOOK_SECRET
+# SLACK_WEBHOOK_SECRET
+# AGENT_API_KEY
+
