@@ -6,6 +6,11 @@ Welcome to the Agent Operations repository! This repository contains essential d
 
 ## Key Resources
 
+### Integration Guidelines
+**Location**: `docs/reference/integration_guidelines/README.md`
+**When to use**: When setting up Linear-GitHub workflows, naming branches/commits, or working with issue tracking integration
+**Purpose**: Provides comprehensive guidelines for improving integration between Linear and GitHub
+
 ### Linear Workflows
 
 When working with Linear issues, always refer to the [Linear Workflows Reference Guide](../../docs/reference/linear_workflows_reference.md) for comprehensive guidance on:
@@ -35,14 +40,53 @@ For standardized communication and delegation practices, consult the [Communicat
 - Recommended solutions and SOPs
 - Specific guidelines for delegating to sub-agents
 
+## Quick Start
+
+1. **For Linear-GitHub Integration Tasks**: Start with `docs/reference/integration_guidelines/README.md`
+2. **Starting a New Linear Task**: Review the Linear Workflows Reference
+3. **Delegating Complex Tasks**: Consult both Linear Workflows and Agent Collaboration documents
+4. **Communication Issues**: Refer to Communication and Delegation SOPs
+5. **Code Management**: Follow guidelines in Agent Collaboration Workflow
+6. **For General Agent Operations**: Refer to the main documentation in `docs/`
+7. **For Specific Workflows**: Check the appropriate subdirectory in `docs/reference/`
+
+## Agent Workflow
+
+When starting any task:
+
+1. Read this document first
+2. Identify the relevant documentation section
+3. Follow the specific guidelines for your task type
+4. Ensure compliance with established standards
+
+## Documentation Standards
+
+All documentation in this repository follows these principles:
+- Clear, actionable guidance
+- Practical examples and code snippets
+- Consistent formatting and terminology
+- Comprehensive yet concise content
+
 ## When to Use These Resources
 
 1. **Starting a New Linear Task**: Review the Linear Workflows Reference
 2. **Delegating Complex Tasks**: Consult both Linear Workflows and Agent Collaboration documents
 3. **Communication Issues**: Refer to Communication and Delegation SOPs
 4. **Code Management**: Follow guidelines in Agent Collaboration Workflow
+5. **Linear-GitHub Integration**: Use the Integration Guidelines
+
+## Getting Help
+
+If you need clarification on any documentation or guidelines:
+1. Check the relevant README files in each documentation section
+2. Review examples and implementation guides
+3. Consult the summary documents for quick reference
 
 ## Continuous Improvement
 
 These documents are continuously updated based on feedback and evolving best practices. If you identify areas for improvement, please create an issue or PR with your suggestions.
 
+---
+
+**Last Updated**: 2025-05-22
+**Maintained By**: Agent Operations Team
