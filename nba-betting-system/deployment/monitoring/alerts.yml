@@ -1,0 +1,182 @@
+groups:
+  - name: nba-betting-system
+    rules:
+      # Service availability alerts
+      - alert: ServiceDown
+        expr: up == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Service {{ $labels.job }} is down"
+          description: "Service {{ $labels.job }} has been down for more than 1 minute."
+
+      - alert: HighErrorRate
+        expr: rate(http_requests_total{status=~"5.."}[5m]) > 0.1
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High error rate on {{ $labels.job }}"
+          description: "Error rate is {{ $value }} errors per second on {{ $labels.job }}."
+
+      # Performance alerts
+      - alert: HighResponseTime
+        expr: histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m])) > 0.5
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High response time on {{ $labels.job }}"
+          description: "95th percentile response time is {{ $value }}s on {{ $labels.job }}."
+
+      - alert: HighCPUUsage
+        expr: rate(container_cpu_usage_seconds_total[5m]) * 100 > 80
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High CPU usage on {{ $labels.container_name }}"
+          description: "CPU usage is {{ $value }}% on {{ $labels.container_name }}."
+
+      - alert: HighMemoryUsage
+        expr: (container_memory_usage_bytes / container_spec_memory_limit_bytes) * 100 > 85
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High memory usage on {{ $labels.container_name }}"
+          description: "Memory usage is {{ $value }}% on {{ $labels.container_name }}."
+
+      # Database alerts
+      - alert: DatabaseConnectionsHigh
+        expr: pg_stat_database_numbackends > 80
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High number of database connections"
+          description: "Database has {{ $value }} active connections."
+
+      - alert: DatabaseSlowQueries
+        expr: rate(pg_stat_database_tup_returned[5m]) / rate(pg_stat_database_tup_fetched[5m]) < 0.1
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Database slow queries detected"
+          description: "Database query efficiency is low: {{ $value }}."
+
+      # Redis alerts
+      - alert: RedisHighMemoryUsage
+        expr: (redis_memory_used_bytes / redis_memory_max_bytes) * 100 > 90
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Redis memory usage is high"
+          description: "Redis memory usage is {{ $value }}%."
+
+      - alert: RedisConnectionsHigh
+        expr: redis_connected_clients > 100
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High number of Redis connections"
+          description: "Redis has {{ $value }} connected clients."
+
+      # Kafka alerts
+      - alert: KafkaConsumerLag
+        expr: kafka_consumer_lag_sum > 1000
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Kafka consumer lag is high"
+          description: "Consumer lag is {{ $value }} messages."
+
+      - alert: KafkaPartitionOffline
+        expr: kafka_topic_partition_leader == -1
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Kafka partition is offline"
+          description: "Partition {{ $labels.partition }} of topic {{ $labels.topic }} is offline."
+
+      # Business logic alerts
+      - alert: LowBettingOpportunities
+        expr: betting_opportunities_count < 5
+        for: 15m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Low number of betting opportunities"
+          description: "Only {{ $value }} betting opportunities available."
+
+      - alert: ModelPredictionLatency
+        expr: histogram_quantile(0.95, rate(ml_prediction_duration_seconds_bucket[5m])) > 2.0
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "ML model prediction latency is high"
+          description: "95th percentile prediction latency is {{ $value }}s."
+
+      - alert: DataFreshnessIssue
+        expr: time() - data_last_update_timestamp > 300
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Data freshness issue detected"
+          description: "Data hasn't been updated for {{ $value }} seconds."
+
+      - alert: UnusualBettingVolume
+        expr: rate(betting_requests_total[5m]) > 100 or rate(betting_requests_total[5m]) < 1
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Unusual betting volume detected"
+          description: "Betting request rate is {{ $value }} requests per second."
+
+      # Security alerts
+      - alert: HighFailedAuthAttempts
+        expr: rate(auth_failed_attempts_total[5m]) > 10
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High number of failed authentication attempts"
+          description: "{{ $value }} failed authentication attempts per second."
+
+      - alert: SuspiciousAPIUsage
+        expr: rate(api_requests_total[1m]) > 1000
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Suspicious API usage pattern detected"
+          description: "API request rate is {{ $value }} requests per second."
+
+      # Infrastructure alerts
+      - alert: DiskSpaceHigh
+        expr: (node_filesystem_size_bytes - node_filesystem_free_bytes) / node_filesystem_size_bytes * 100 > 85
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Disk space usage is high"
+          description: "Disk usage is {{ $value }}% on {{ $labels.device }}."
+
+      - alert: NetworkLatencyHigh
+        expr: histogram_quantile(0.95, rate(network_latency_seconds_bucket[5m])) > 0.1
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Network latency is high"
+          description: "95th percentile network latency is {{ $value }}s."
+
