@@ -1,0 +1,630 @@
+openapi: 3.0.3
+info:
+  title: NBA Betting System API
+  description: |
+    AI-driven NBA playoff betting system API providing real-time data, 
+    feature engineering, and value bet identification services.
+  version: 1.0.0
+  contact:
+    name: NBA Betting System Team
+    email: api-support@nbabetting.com
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: https://api.nbabetting.com/v1
+    description: Production server
+  - url: https://staging-api.nbabetting.com/v1
+    description: Staging server
+  - url: http://localhost:8080/v1
+    description: Development server
+
+security:
+  - ApiKeyAuth: []
+  - BearerAuth: []
+
+paths:
+  # Health and Status
+  /health:
+    get:
+      summary: Health check endpoint
+      tags: [System]
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+
+  /status:
+    get:
+      summary: System status and metrics
+      tags: [System]
+      responses:
+        '200':
+          description: System status information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+
+  # Data Service Endpoints
+  /data/games:
+    get:
+      summary: Get NBA games data
+      tags: [Data]
+      parameters:
+        - name: date
+          in: query
+          schema:
+            type: string
+            format: date
+          description: Filter games by date (YYYY-MM-DD)
+        - name: team
+          in: query
+          schema:
+            type: string
+          description: Filter games by team abbreviation
+        - name: season
+          in: query
+          schema:
+            type: string
+          description: Filter games by season (e.g., "2023-24")
+        - name: playoffs
+          in: query
+          schema:
+            type: boolean
+          description: Filter for playoff games only
+      responses:
+        '200':
+          description: List of NBA games
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Game'
+
+  /data/teams:
+    get:
+      summary: Get NBA teams data
+      tags: [Data]
+      responses:
+        '200':
+          description: List of NBA teams
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Team'
+
+  /data/players:
+    get:
+      summary: Get NBA players data
+      tags: [Data]
+      parameters:
+        - name: team
+          in: query
+          schema:
+            type: string
+          description: Filter players by team abbreviation
+        - name: position
+          in: query
+          schema:
+            type: string
+          description: Filter players by position
+      responses:
+        '200':
+          description: List of NBA players
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Player'
+
+  /data/odds:
+    get:
+      summary: Get current betting odds
+      tags: [Data]
+      parameters:
+        - name: game_id
+          in: query
+          schema:
+            type: string
+          description: Filter odds by game ID
+        - name: market
+          in: query
+          schema:
+            type: string
+            enum: [moneyline, spread, total]
+          description: Filter odds by market type
+      responses:
+        '200':
+          description: Current betting odds
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Odds'
+
+  # Feature Service Endpoints
+  /features/game/{game_id}:
+    get:
+      summary: Get computed features for a game
+      tags: [Features]
+      parameters:
+        - name: game_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Game identifier
+      responses:
+        '200':
+          description: Computed game features
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameFeatures'
+
+  /features/team/{team_id}:
+    get:
+      summary: Get team performance features
+      tags: [Features]
+      parameters:
+        - name: team_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Team identifier
+        - name: season
+          in: query
+          schema:
+            type: string
+          description: Season filter
+      responses:
+        '200':
+          description: Team performance features
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamFeatures'
+
+  /features/predictions/{game_id}:
+    get:
+      summary: Get ML model predictions for a game
+      tags: [Features]
+      parameters:
+        - name: game_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Game identifier
+      responses:
+        '200':
+          description: ML model predictions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Predictions'
+
+  # Betting Service Endpoints
+  /betting/opportunities:
+    get:
+      summary: Get current value betting opportunities
+      tags: [Betting]
+      parameters:
+        - name: min_value
+          in: query
+          schema:
+            type: number
+            minimum: 0
+          description: Minimum value threshold
+        - name: max_risk
+          in: query
+          schema:
+            type: number
+            minimum: 0
+            maximum: 1
+          description: Maximum risk threshold
+        - name: market
+          in: query
+          schema:
+            type: string
+            enum: [moneyline, spread, total]
+          description: Market type filter
+      responses:
+        '200':
+          description: List of value betting opportunities
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BettingOpportunity'
+
+  /betting/analysis/{game_id}:
+    get:
+      summary: Get detailed betting analysis for a game
+      tags: [Betting]
+      parameters:
+        - name: game_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Game identifier
+      responses:
+        '200':
+          description: Detailed betting analysis
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BettingAnalysis'
+
+  /betting/portfolio:
+    get:
+      summary: Get portfolio performance metrics
+      tags: [Betting]
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Portfolio performance data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Portfolio'
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    HealthResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [healthy, unhealthy]
+        timestamp:
+          type: string
+          format: date-time
+        version:
+          type: string
+        uptime:
+          type: number
+
+    StatusResponse:
+      type: object
+      properties:
+        services:
+          type: object
+          properties:
+            data_service:
+              $ref: '#/components/schemas/ServiceStatus'
+            feature_service:
+              $ref: '#/components/schemas/ServiceStatus'
+            betting_service:
+              $ref: '#/components/schemas/ServiceStatus'
+        metrics:
+          type: object
+          properties:
+            requests_per_minute:
+              type: number
+            average_response_time:
+              type: number
+            error_rate:
+              type: number
+
+    ServiceStatus:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [healthy, degraded, unhealthy]
+        last_check:
+          type: string
+          format: date-time
+        response_time:
+          type: number
+
+    Game:
+      type: object
+      properties:
+        id:
+          type: string
+        date:
+          type: string
+          format: date-time
+        home_team:
+          $ref: '#/components/schemas/Team'
+        away_team:
+          $ref: '#/components/schemas/Team'
+        season:
+          type: string
+        is_playoff:
+          type: boolean
+        status:
+          type: string
+          enum: [scheduled, live, completed, postponed]
+        score:
+          type: object
+          properties:
+            home:
+              type: integer
+            away:
+              type: integer
+
+    Team:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        abbreviation:
+          type: string
+        city:
+          type: string
+        conference:
+          type: string
+          enum: [Eastern, Western]
+        division:
+          type: string
+
+    Player:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        team_id:
+          type: string
+        position:
+          type: string
+        jersey_number:
+          type: integer
+        height:
+          type: string
+        weight:
+          type: integer
+
+    Odds:
+      type: object
+      properties:
+        game_id:
+          type: string
+        market:
+          type: string
+          enum: [moneyline, spread, total]
+        bookmaker:
+          type: string
+        home_odds:
+          type: number
+        away_odds:
+          type: number
+        spread:
+          type: number
+        total:
+          type: number
+        timestamp:
+          type: string
+          format: date-time
+
+    GameFeatures:
+      type: object
+      properties:
+        game_id:
+          type: string
+        features:
+          type: object
+          properties:
+            home_team_strength:
+              type: number
+            away_team_strength:
+              type: number
+            pace_differential:
+              type: number
+            rest_advantage:
+              type: number
+            home_court_advantage:
+              type: number
+            recent_form:
+              type: object
+            head_to_head:
+              type: object
+        computed_at:
+          type: string
+          format: date-time
+
+    TeamFeatures:
+      type: object
+      properties:
+        team_id:
+          type: string
+        season:
+          type: string
+        features:
+          type: object
+          properties:
+            offensive_rating:
+              type: number
+            defensive_rating:
+              type: number
+            pace:
+              type: number
+            true_shooting_percentage:
+              type: number
+            turnover_rate:
+              type: number
+            rebound_rate:
+              type: number
+        updated_at:
+          type: string
+          format: date-time
+
+    Predictions:
+      type: object
+      properties:
+        game_id:
+          type: string
+        predictions:
+          type: object
+          properties:
+            win_probability:
+              type: object
+              properties:
+                home:
+                  type: number
+                away:
+                  type: number
+            spread_prediction:
+              type: number
+            total_prediction:
+              type: number
+            confidence:
+              type: number
+        model_version:
+          type: string
+        generated_at:
+          type: string
+          format: date-time
+
+    BettingOpportunity:
+      type: object
+      properties:
+        id:
+          type: string
+        game_id:
+          type: string
+        market:
+          type: string
+        bet_type:
+          type: string
+        recommended_stake:
+          type: number
+        expected_value:
+          type: number
+        confidence:
+          type: number
+        risk_level:
+          type: string
+          enum: [low, medium, high]
+        bookmaker_odds:
+          type: number
+        fair_odds:
+          type: number
+        edge:
+          type: number
+        expires_at:
+          type: string
+          format: date-time
+
+    BettingAnalysis:
+      type: object
+      properties:
+        game_id:
+          type: string
+        analysis:
+          type: object
+          properties:
+            value_bets:
+              type: array
+              items:
+                $ref: '#/components/schemas/BettingOpportunity'
+            risk_assessment:
+              type: object
+            market_efficiency:
+              type: object
+            recommendations:
+              type: array
+              items:
+                type: string
+        generated_at:
+          type: string
+          format: date-time
+
+    Portfolio:
+      type: object
+      properties:
+        user_id:
+          type: string
+        performance:
+          type: object
+          properties:
+            total_bets:
+              type: integer
+            win_rate:
+              type: number
+            roi:
+              type: number
+            profit_loss:
+              type: number
+            sharpe_ratio:
+              type: number
+        recent_bets:
+          type: array
+          items:
+            type: object
+        updated_at:
+          type: string
+          format: date-time
+
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        code:
+          type: integer
+        timestamp:
+          type: string
+          format: date-time
+
+  responses:
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
