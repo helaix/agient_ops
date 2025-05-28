@@ -1,0 +1,42 @@
+# NBA Data Collection and Preprocessing Requirements
+
+# Core dependencies
+asyncio
+aiohttp>=3.8.0
+aiofiles>=0.8.0
+
+# Data processing
+pandas>=1.5.0
+numpy>=1.21.0
+
+# Data validation
+jsonschema>=4.0.0
+
+# Web scraping (for injury reports)
+beautifulsoup4>=4.11.0
+lxml>=4.9.0
+
+# NBA API (optional - can be installed separately)
+# nba_api>=1.1.0
+
+# Storage and databases (optional - for production deployments)
+# influxdb-client>=1.36.0
+# psycopg2-binary>=2.9.0  # For PostgreSQL/TimescaleDB
+# redis>=4.3.0
+
+# Monitoring and logging
+structlog>=22.0.0
+
+# Configuration management
+pydantic>=1.10.0
+
+# Testing (development)
+pytest>=7.0.0
+pytest-asyncio>=0.20.0
+pytest-mock>=3.8.0
+
+# Development tools
+black>=22.0.0
+flake8>=5.0.0
+mypy>=0.991
+
